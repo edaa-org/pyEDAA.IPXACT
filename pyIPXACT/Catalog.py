@@ -1,4 +1,4 @@
-# EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
+# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
 # vim: tabstop=2:shiftwidth=2:noexpandtab
 # kate: tab-width 2; replace-tabs off; indent-width 2;
 # ==============================================================================
@@ -8,7 +8,7 @@
 #
 # Description:
 # ------------------------------------
-#		TODO:
+#   TODO:
 #
 # License:
 # ==============================================================================
@@ -66,7 +66,7 @@ class Catalog(RootElement):
 			{versionedIdentifier}
 				<{xmlns}:description>{description}</{xmlns}:description>
 			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
-			
+		
 		if self._catalogs:
 			buffer += "\t<{xmlns}:catalogs>\n"
 			for ipxactFile in self._catalogs:
