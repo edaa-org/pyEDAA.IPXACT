@@ -29,13 +29,35 @@
 #
 from pyIPXACT           import Vlnv
 from pyIPXACT.Catalog   import Catalog, IpxactFile
+from pyIPXACT.Component import Component
+from pyIPXACT.Design    import Design
+from pyIPXACT.DesignConfiguration import DesignConfiguration
 
 
 vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
 
-cat = Catalog(vlnv, "IP Core Library")
-cat.AddCatalogItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
-cat.AddCatalogItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
-cat.AddCatalogItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
+# ==============================================================================
+catalog = Catalog(vlnv, "IP Core Library")
+catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
+catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
+catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
 
-print(cat.ToXml())
+print(catalog.ToXml())
+
+
+# ==============================================================================
+component = Component(vlnv, "PoC.io.uart.RX")
+
+print(component.ToXml())
+
+
+# ==============================================================================
+design = Design(vlnv, "SoFPGA")
+
+print(design.ToXml())
+
+
+# ==============================================================================
+designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
+
+print(designConfiguration.ToXml())
