@@ -46,7 +46,7 @@ class Catalog(RootElement):
 		self._designConfigurations =    []
 		self._designs =                 []
 		self._generatorChains =         []
-	                                  
+                                
 	def AddCatalogItem(self, item):
 		if isinstance(item, IpxactFile):
 			self._catalogs.append(item)
