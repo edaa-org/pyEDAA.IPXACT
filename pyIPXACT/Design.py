@@ -30,7 +30,59 @@
 from textwrap           import dedent
 
 from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
-from pyIPXACT.Component import Component
+
+
+class Design(RootElement):
+	def __init__(self, vlnv, description):
+		super().__init__(vlnv)
+		
+		self._description =             description
+		self._componentInstances =      []
+		self._interconnections =        []
+		self._adHocConnections =        []
+                                
+	def AddItem(self, item):
+		if isinstance(item, ComponentInstance):   self._componentInstances.append(item)
+		elif isinstance(item, Interconnection):   self._interconnections.append(item)
+		elif isinstance(item, AdHocConnection):   self._adHocConnections.append(item)
+		else:
+			raise ValueError()
+
+	def ToXml(self):
+		buffer = dedent("""\
+			<?xml xml version="1.0" encoding="UTF-8"?>
+			<{xmlns}:design
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
+														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+			{versionedIdentifier}
+				<{xmlns}:description>{description}</{xmlns}:description>
+			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+		
+		if self._componentInstances:
+			buffer += "\t<{xmlns}:componentInstances>\n"
+			for componentInstance in self._componentInstances:
+				buffer += componentInstance.ToXml(2)
+			buffer += "\t</{xmlns}:componentInstances>\n"
+		
+		if self._interconnections:
+			buffer += "\t<{xmlns}:interconnections>\n"
+			for interconnection in self._interconnections:
+				buffer += interconnection.ToXml(2)
+			buffer += "\t</{xmlns}:interconnections>\n"
+		
+		if self._adHocConnections:
+			buffer += "\t<{xmlns}:adHocConnections>\n"
+			for adHocConnection in self._adHocConnections:
+				buffer += adHocConnection.ToXml(2)
+			buffer += "\t</{xmlns}:adHocConnections>\n"
+		
+		buffer += dedent("""\
+			</{xmlns}:design>
+			""")
+		
+		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
 
 
 class IpxactFile:
@@ -52,52 +104,27 @@ class IpxactFile:
 		return buffer
 
 
-class Catalog(RootElement):
-	def __init__(self, vlnv, description):
-		super().__init__(vlnv)
-		
-		self._description =             description
-		self._abstractionDefinitions =  []
-		self._abstractors =             []
-		self._busInterfaces =           []
-		self._catalogs =                []
-		self._components =              []
-		self._designConfigurations =    []
-		self._designs =                 []
-		self._generatorChains =         []
-                                
-	def AddItem(self, item):
-		if isinstance(item, IpxactFile):          self._catalogs.append(item)
-		elif isinstance(item, Component):         self._components.append(item)
-		else:
-			raise ValueError()
+class ComponentInstance:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
 
-	def ToXml(self):
-		buffer = dedent("""\
-			<?xml xml version="1.0" encoding="UTF-8"?>
-			<{xmlns}:catalog
-				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
-				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
-														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
-			{versionedIdentifier}
-				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
-		
-		if self._catalogs:
-			buffer += "\t<{xmlns}:catalogs>\n"
-			for ipxactFile in self._catalogs:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:catalogs>\n"
-		
-		if self._components:
-			buffer += "\t<{xmlns}:components>\n"
-			for ipxactFile in self._components:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:components>\n"
-		
-		buffer += dedent("""\
-			</{xmlns}:catalog>
-			""")
-		
-		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+
+class Interconnection:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class AdHocConnection:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+

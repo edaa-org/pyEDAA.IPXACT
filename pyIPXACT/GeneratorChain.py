@@ -30,74 +30,83 @@
 from textwrap           import dedent
 
 from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
-from pyIPXACT.Component import Component
 
 
-class IpxactFile:
-	def __init__(self, vlnv, name, description):
-		self._vlnv = vlnv
-		self._name = name
-		self._description = description
-	
-	def ToXml(self, indent):
-		_indent = "\t" * indent
-		buffer = dedent("""\
-			{indent}<{xmlns}:ipxactFile>
-			{indent}	{vlnv}
-			{indent}	<{xmlns}:name>{path}</{xmlns}:name>
-			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
-			{indent}</{xmlns}:ipxactFile>
-		""").format(indent=_indent, xmlns=__DEFAULT_NAMESPACE__, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
-		
-		return buffer
-
-
-class Catalog(RootElement):
-	def __init__(self, vlnv, description):
+class GeneratorChain(RootElement):
+	def __init__(self, vlnv, displayName, description, chainGroup):
 		super().__init__(vlnv)
 		
-		self._description =             description
-		self._abstractionDefinitions =  []
-		self._abstractors =             []
-		self._busInterfaces =           []
-		self._catalogs =                []
-		self._components =              []
-		self._designConfigurations =    []
-		self._designs =                 []
-		self._generatorChains =         []
+		self._displayName =                   displayName
+		self._description =                   description
+		self._chainGroup =                    chainGroup
+		self._generatorChainSelector =        None
+		self._interconnectionConfiguration =  None
+		self._generator =                     None
                                 
-	def AddItem(self, item):
-		if isinstance(item, IpxactFile):          self._catalogs.append(item)
-		elif isinstance(item, Component):         self._components.append(item)
+	def SetItem(self, item):
+		if isinstance(item,   GeneratorChainSelector):      self._generatorChainSelector =      item
+		elif isinstance(item, ComponentGeneratorSelector):  self._componentGeneratorSelector =  item
+		elif isinstance(item, Generator):                   self._generator =                   item
 		else:
 			raise ValueError()
 
 	def ToXml(self):
 		buffer = dedent("""\
 			<?xml xml version="1.0" encoding="UTF-8"?>
-			<{xmlns}:catalog
+			<{xmlns}:generatorChain
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
 				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
 														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
 			{versionedIdentifier}
+				<{xmlns}:displayName>{displayName}</{xmlns}:displayName>
 				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+				<{xmlns}:chainGroup>{chainGroup}</{xmlns}:chainGroup>
+			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), displayName=self._displayName, description=self._description, chainGroup=self._chainGroup)
 		
-		if self._catalogs:
-			buffer += "\t<{xmlns}:catalogs>\n"
-			for ipxactFile in self._catalogs:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:catalogs>\n"
+		if self._generatorChainSelector:
+			buffer += "\t<{xmlns}:generatorChainSelector>\n"
+			buffer += self._generatorChainSelector.ToXml(2)
+			buffer += "\t</{xmlns}:generatorChainSelector>\n"
 		
-		if self._components:
-			buffer += "\t<{xmlns}:components>\n"
-			for ipxactFile in self._components:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:components>\n"
+		if self._componentGeneratorSelector:
+			buffer += "\t<{xmlns}:componentGeneratorSelector>\n"
+			buffer += self._componentGeneratorSelector.ToXml(2)
+			buffer += "\t</{xmlns}:componentGeneratorSelector>\n"
+		
+		if self._generator:
+			buffer += "\t<{xmlns}:generator>\n"
+			buffer += self._generator.ToXml(2)
+			buffer += "\t</{xmlns}:generator>\n"
 		
 		buffer += dedent("""\
-			</{xmlns}:catalog>
+			</{xmlns}:generatorChain>
 			""")
 		
 		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+
+
+class GeneratorChainSelector:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class ComponentGeneratorSelector:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Generator:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+

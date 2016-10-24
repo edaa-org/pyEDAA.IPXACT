@@ -30,52 +30,28 @@
 from textwrap           import dedent
 
 from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
-from pyIPXACT.Component import Component
 
 
-class IpxactFile:
-	def __init__(self, vlnv, name, description):
-		self._vlnv = vlnv
-		self._name = name
-		self._description = description
-	
-	def ToXml(self, indent):
-		_indent = "\t" * indent
-		buffer = dedent("""\
-			{indent}<{xmlns}:ipxactFile>
-			{indent}	{vlnv}
-			{indent}	<{xmlns}:name>{path}</{xmlns}:name>
-			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
-			{indent}</{xmlns}:ipxactFile>
-		""").format(indent=_indent, xmlns=__DEFAULT_NAMESPACE__, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
-		
-		return buffer
-
-
-class Catalog(RootElement):
+class DesignConfiguration(RootElement):
 	def __init__(self, vlnv, description):
 		super().__init__(vlnv)
 		
 		self._description =             description
-		self._abstractionDefinitions =  []
-		self._abstractors =             []
-		self._busInterfaces =           []
-		self._catalogs =                []
-		self._components =              []
-		self._designConfigurations =    []
-		self._designs =                 []
-		self._generatorChains =         []
+		self._generatorChainConfiguration =   None
+		self._interconnectionConfiguration =  None
+		self._viewConfiguration =             None
                                 
-	def AddItem(self, item):
-		if isinstance(item, IpxactFile):          self._catalogs.append(item)
-		elif isinstance(item, Component):         self._components.append(item)
+	def SetItem(self, item):
+		if isinstance(item,   GeneratorChainConfiguration):   self._generatorChainConfiguration =   item
+		elif isinstance(item, InterconnectionConfiguration):  self._interconnectionConfiguration =  item
+		elif isinstance(item, ViewConfiguration):             self._viewConfiguration =             item
 		else:
 			raise ValueError()
 
 	def ToXml(self):
 		buffer = dedent("""\
 			<?xml xml version="1.0" encoding="UTF-8"?>
-			<{xmlns}:catalog
+			<{xmlns}:designConfiguration
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
 				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
@@ -84,20 +60,49 @@ class Catalog(RootElement):
 				<{xmlns}:description>{description}</{xmlns}:description>
 			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
 		
-		if self._catalogs:
-			buffer += "\t<{xmlns}:catalogs>\n"
-			for ipxactFile in self._catalogs:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:catalogs>\n"
+		if self._generatorChainConfiguration:
+			buffer += "\t<{xmlns}:componentInstances>\n"
+			buffer += self._generatorChainConfiguration.ToXml(2)
+			buffer += "\t</{xmlns}:componentInstances>\n"
 		
-		if self._components:
-			buffer += "\t<{xmlns}:components>\n"
-			for ipxactFile in self._components:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:components>\n"
+		if self._interconnectionConfiguration:
+			buffer += "\t<{xmlns}:interconnectionConfiguration>\n"
+			buffer += self._interconnectionConfiguration.ToXml(2)
+			buffer += "\t</{xmlns}:interconnectionConfiguration>\n"
+		
+		if self._viewConfiguration:
+			buffer += "\t<{xmlns}:viewConfiguration>\n"
+			buffer += self._viewConfiguration.ToXml(2)
+			buffer += "\t</{xmlns}:viewConfiguration>\n"
 		
 		buffer += dedent("""\
-			</{xmlns}:catalog>
+			</{xmlns}:designConfiguration>
 			""")
 		
 		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+
+
+class GeneratorChainConfiguration:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class InterconnectionConfiguration:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class ViewConfiguration:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+

@@ -4,7 +4,7 @@
 # ==============================================================================
 # Authors:            Patrick Lehmann
 #
-# Python functions:   A DOM based IP-XACT implementation for Python
+# Python package:     A DOM based IP-XACT implementation for Python
 #
 # Description:
 # ------------------------------------

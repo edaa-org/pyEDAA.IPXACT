@@ -4,7 +4,7 @@
 # ==============================================================================
 # Authors:            Patrick Lehmann
 #
-# Python functions:   A DOM based IP-XACT implementation for Python
+# Python module:      A DOM based IP-XACT implementation for Python
 #
 # Description:
 # ------------------------------------
@@ -43,7 +43,7 @@ class Component(RootElement):
 		self._remapStates =         []
 		self._addressSpaces =       []
 		self._memoryMaps =          []
-		self._model =               []
+		self._model =               None
 		self._componentGenerators = []
 		self._choices =             []
 		self._fileSets =            []
@@ -53,7 +53,31 @@ class Component(RootElement):
 		self._resetTypes =          []
 		self._parameters =          []
 		self._assertions =          []
-
+                                
+	def Settem(self, item):
+		if isinstance(item, Model):                 self._model = item
+		else:
+			raise ValueError()
+                                
+	def AddItem(self, item):
+		if isinstance(item, BusInterface):          self._busInterfaces.append(item)
+		elif isinstance(item, IndirectInterface):   self._indirectInterfaces.append(item)
+		elif isinstance(item, Channel):             self._channels.append(item)
+		elif isinstance(item, RemapState):          self._remapStates.append(item)
+		elif isinstance(item, AddressSpace):        self._addressSpaces.append(item)
+		elif isinstance(item, MemoryMap):           self._memoryMaps.append(item)
+		elif isinstance(item, ComponentGenerator):  self._componentGenerators.append(item)
+		elif isinstance(item, Choice):              self._choices.append(item)
+		elif isinstance(item, FileSet):             self._fileSets.append(item)
+		elif isinstance(item, WhiteboxElement):     self._whiteboxElements.append(item)
+		elif isinstance(item, Cpu):                 self._cpus.append(item)
+		elif isinstance(item, OtherClockDriver):    self._otherClockDrivers.append(item)
+		elif isinstance(item, ResetType):           self._resetTypes.append(item)
+		elif isinstance(item, Parameter):           self._parameters.append(item)
+		elif isinstance(item, Assertion):           self._assertions.append(item)
+		else:
+			raise ValueError()
+	
 	def ToXml(self):
 		buffer = dedent("""\
 			<?xml xml version="1.0" encoding="UTF-8"?>
@@ -71,7 +95,7 @@ class Component(RootElement):
 			for busInterface in self._busInterfaces:
 				buffer += busInterface.ToXml(2)
 			buffer += "\t</{xmlns}:busInterfaces>\n"
-		
+	
 		if self._indirectInterfaces:
 			buffer += "\t<{xmlns}:indirectInterfaces>\n"
 			for indirectInterface in self._indirectInterfaces:
@@ -154,7 +178,7 @@ class Component(RootElement):
 			for parameter in self._parameters:
 				buffer += parameter.ToXml(2)
 			buffer += "\t</{xmlns}:parameters>\n"
-			
+		
 		if self._assertions:
 			buffer += "\t<{xmlns}:assertions>\n"
 			for assertion in self._assertions:
@@ -162,7 +186,135 @@ class Component(RootElement):
 			buffer += "\t</{xmlns}:assertions>\n"
 		
 		buffer += dedent("""\
-			</{xmlns}:component>
-			""")
+				</{xmlns}:component>
+				""")
 		
 		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+
+
+class BusInterface:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+class IndirectInterface:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Channel:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class RemapState:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class AddressSpace:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class MemoryMap:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Model:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class ComponentGenerator:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Choice:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class FileSet:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class WhiteboxElement:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Cpu:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class OtherClockDriver:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class ResetType:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Parameter:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
+
+class Assertion:
+	def __init__(self):
+		pass
+	
+	def ToXml(self, indent=0):
+		return ""
+
