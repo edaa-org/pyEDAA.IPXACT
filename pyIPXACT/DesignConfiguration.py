@@ -104,5 +104,3 @@ class ViewConfiguration:
 	
 	def ToXml(self, indent=0):
 		return ""
-
-

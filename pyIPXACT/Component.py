@@ -317,4 +317,3 @@ class Assertion:
 	
 	def ToXml(self, indent=0):
 		return ""
-

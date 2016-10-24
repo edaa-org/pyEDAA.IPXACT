@@ -108,5 +108,3 @@ class Generator:
 	
 	def ToXml(self, indent=0):
 		return ""
-
-

@@ -126,5 +126,3 @@ class AdHocConnection:
 	
 	def ToXml(self, indent=0):
 		return ""
-
-
