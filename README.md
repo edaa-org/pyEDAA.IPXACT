@@ -1,4 +1,4 @@
-# pyIPXACT - A DOM implementation for [IEEE 1685-2014][IEEE-1685-2014] in Python.
+# pyIPXACT - An IP-XACT DOM for [IEEE 1685-2014][IEEE-1685-2014] in Python.
 
 [![Code Health](https://landscape.io/github/Paebbels/pyIPXACT/master/landscape.svg?style=flat)](https://landscape.io/github/Paebbels/pyIPXACT/master)
 ![Latest tag](https://img.shields.io/github/tag/Paebbels/pyIPXACT.svg?style=flat)

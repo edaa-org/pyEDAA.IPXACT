@@ -28,7 +28,7 @@
 # ==============================================================================
 #
 from pyIPXACT           import Vlnv
-from pyIPXACT.catalog   import Catalog, IpxactFile
+from pyIPXACT.Catalog   import Catalog, IpxactFile
 
 
 vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")

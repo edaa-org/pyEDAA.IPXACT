@@ -29,8 +29,8 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement
-from pyIPXACT.component import Component
+from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
+from pyIPXACT.Component import Component
 
 
 class Catalog(RootElement):
@@ -58,32 +58,32 @@ class Catalog(RootElement):
 	def ToXml(self):
 		buffer = dedent("""\
 			<?xml xml version="1.0" encoding="UTF-8"?>
-			<ipxact:catalog
+			<{xmlns}:catalog
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
 				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
 														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
 			{versionedIdentifier}
-				<ipxact:description>{description}</ipxact:description>
-			""").format(versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+				<{xmlns}:description>{description}</{xmlns}:description>
+			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
 			
 		if self._catalogs:
-			buffer += "\t<ipxact:catalogs>\n"
+			buffer += "\t<{xmlns}:catalogs>\n"
 			for ipxactFile in self._catalogs:
 				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</ipxact:catalogs>\n"
+			buffer += "\t</{xmlns}:catalogs>\n"
 		
 		if self._components:
-			buffer += "\t<ipxact:components>\n"
+			buffer += "\t<{xmlns}:components>\n"
 			for ipxactFile in self._components:
 				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</ipxact:components>\n"
+			buffer += "\t</{xmlns}:components>\n"
 		
 		buffer += dedent("""\
-			</ipxact:catalog>
+			</{xmlns}:catalog>
 			""")
 		
-		return buffer
+		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
 
 
 class IpxactFile:
@@ -95,11 +95,11 @@ class IpxactFile:
 	def ToXml(self, indent):
 		_indent = "\t" * indent
 		buffer = dedent("""\
-			{indent}<ipxact:ipxactFile>
+			{indent}<{xmlns}:ipxactFile>
 			{indent}	{vlnv}
-			{indent}	<ipxact:name>{path}</ipxact:name>
-			{indent}	<ipxact:description>{description}</ipxact:description>
-			{indent}</ipxact:ipxactFile>
-		""").format(indent=_indent, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
+			{indent}	<{xmlns}:name>{path}</{xmlns}:name>
+			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
+			{indent}</{xmlns}:ipxactFile>
+		""").format(indent=_indent, xmlns=__DEFAULT_NAMESPACE__, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
 		
 		return buffer

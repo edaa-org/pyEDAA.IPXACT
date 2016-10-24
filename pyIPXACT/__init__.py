@@ -30,6 +30,9 @@
 from textwrap import dedent
 
 
+__DEFAULT_NAMESPACE__ = "ipxact"
+
+
 class RootElement:
 	def __init__(self, vlnv):
 		self._vlnv =    vlnv
@@ -45,12 +48,12 @@ class Vlnv:
 	def ToXml(self, indent=1, isVersionedIdentifier=False):
 		if isVersionedIdentifier:
 			buffer = dedent("""\
-				{indent}<ipxact:vendor>{vendor}</ipxact:vendor>
-				{indent}<ipxact:library>{library}</ipxact:library>
-				{indent}<ipxact:name>{name}</ipxact:name>
-				{indent}<ipxact:version>{version}</ipxact:version>\
+				{indent}<{xmlns}:vendor>{vendor}</{xmlns}:vendor>
+				{indent}<{xmlns}:library>{library}</{xmlns}:library>
+				{indent}<{xmlns}:name>{name}</{xmlns}:name>
+				{indent}<{xmlns}:version>{version}</{xmlns}:version>\
 			""")
 		else:
-			buffer = """{indent}<ipxact:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
+			buffer = """{indent}<{xmlns}:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
 		
-		return buffer.format(indent= "\t" *indent, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)
+		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_NAMESPACE__, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)

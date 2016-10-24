@@ -29,7 +29,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement
+from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
 
 
 class Component(RootElement):
@@ -57,112 +57,112 @@ class Component(RootElement):
 	def ToXml(self):
 		buffer = dedent("""\
 			<?xml xml version="1.0" encoding="UTF-8"?>
-			<ipxact:component
+			<{xmlns}:component
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
 				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
 														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
 			{versionedIdentifier}
-				<ipxact:description>{description}</ipxact:description>
-			""").format(versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+				<{xmlns}:description>{description}</{xmlns}:description>
+			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
 		
 		if self._busInterfaces:
-			buffer += "\t<ipxact:busInterfaces>\n"
+			buffer += "\t<{xmlns}:busInterfaces>\n"
 			for busInterface in self._busInterfaces:
 				buffer += busInterface.ToXml(2)
-			buffer += "\t</ipxact:busInterfaces>\n"
+			buffer += "\t</{xmlns}:busInterfaces>\n"
 		
 		if self._indirectInterfaces:
-			buffer += "\t<ipxact:indirectInterfaces>\n"
+			buffer += "\t<{xmlns}:indirectInterfaces>\n"
 			for indirectInterface in self._indirectInterfaces:
 				buffer += indirectInterface.ToXml(2)
-			buffer += "\t</ipxact:indirectInterfaces>\n"
+			buffer += "\t</{xmlns}:indirectInterfaces>\n"
 		
 		if self._channels:
-			buffer += "\t<ipxact:channels>\n"
+			buffer += "\t<{xmlns}:channels>\n"
 			for channel in self._channels:
 				buffer += channel.ToXml(2)
-			buffer += "\t</ipxact:channels>\n"
+			buffer += "\t</{xmlns}:channels>\n"
 		
 		if self._remapStates:
-			buffer += "\t<ipxact:remapStates>\n"
+			buffer += "\t<{xmlns}:remapStates>\n"
 			for remapState in self._remapStates:
 				buffer += remapState.ToXml(2)
-			buffer += "\t</ipxact:remapStates>\n"
+			buffer += "\t</{xmlns}:remapStates>\n"
 		
 		if self._addressSpaces:
-			buffer += "\t<ipxact:addressSpaces>\n"
+			buffer += "\t<{xmlns}:addressSpaces>\n"
 			for addressSpace in self._addressSpaces:
 				buffer += addressSpace.ToXml(2)
-			buffer += "\t</ipxact:addressSpaces>\n"
+			buffer += "\t</{xmlns}:addressSpaces>\n"
 		
 		if self._memoryMaps:
-			buffer += "\t<ipxact:memoryMaps>\n"
+			buffer += "\t<{xmlns}:memoryMaps>\n"
 			for memoryMap in self._memoryMaps:
 				buffer += memoryMap.ToXml(2)
-			buffer += "\t</ipxact:memoryMaps>\n"
+			buffer += "\t</{xmlns}:memoryMaps>\n"
 		
 		if self._model:
-			buffer += "\t<ipxact:model>\n"
+			buffer += "\t<{xmlns}:model>\n"
 			buffer += self._model.ToXml(2)
-			buffer += "\t</ipxact:model>\n"
+			buffer += "\t</{xmlns}:model>\n"
 		
 		if self._componentGenerators:
-			buffer += "\t<ipxact:componentGenerators>\n"
+			buffer += "\t<{xmlns}:componentGenerators>\n"
 			for componentGenerator in self._componentGenerators:
 				buffer += componentGenerator.ToXml(2)
-			buffer += "\t</ipxact:componentGenerators>\n"
+			buffer += "\t</{xmlns}:componentGenerators>\n"
 		
 		if self._choices:
-			buffer += "\t<ipxact:choices>\n"
+			buffer += "\t<{xmlns}:choices>\n"
 			for choice in self._choices:
 				buffer += choice.ToXml(2)
-			buffer += "\t</ipxact:choices>\n"
+			buffer += "\t</{xmlns}:choices>\n"
 		
 		if self._fileSets:
-			buffer += "\t<ipxact:fileSets>\n"
+			buffer += "\t<{xmlns}:fileSets>\n"
 			for fileSet in self._fileSets:
 				buffer += fileSet.ToXml(2)
-			buffer += "\t</ipxact:fileSets>\n"
+			buffer += "\t</{xmlns}:fileSets>\n"
 		
 		if self._whiteboxElements:
-			buffer += "\t<ipxact:whiteboxElements>\n"
+			buffer += "\t<{xmlns}:whiteboxElements>\n"
 			for whiteboxElement in self._whiteboxElements:
 				buffer += whiteboxElement.ToXml(2)
-			buffer += "\t</ipxact:whiteboxElements>\n"
+			buffer += "\t</{xmlns}:whiteboxElements>\n"
 		
 		if self._cpus:
-			buffer += "\t<ipxact:cpus>\n"
+			buffer += "\t<{xmlns}:cpus>\n"
 			for cpu in self._cpus:
 				buffer += cpu.ToXml(2)
-			buffer += "\t</ipxact:cpus>\n"
+			buffer += "\t</{xmlns}:cpus>\n"
 		
 		if self._otherClockDrivers:
-			buffer += "\t<ipxact:otherClockDrivers>\n"
+			buffer += "\t<{xmlns}:otherClockDrivers>\n"
 			for otherClockDriver in self._otherClockDrivers:
 				buffer += otherClockDriver.ToXml(2)
-			buffer += "\t</ipxact:otherClockDrivers>\n"
+			buffer += "\t</{xmlns}:otherClockDrivers>\n"
 		
 		if self._resetTypes:
-			buffer += "\t<ipxact:resetTypes>\n"
+			buffer += "\t<{xmlns}:resetTypes>\n"
 			for resetType in self._resetTypes:
 				buffer += resetType.ToXml(2)
-			buffer += "\t</ipxact:resetTypes>\n"
+			buffer += "\t</{xmlns}:resetTypes>\n"
 		
 		if self._parameters:
-			buffer += "\t<ipxact:parameters>\n"
+			buffer += "\t<{xmlns}:parameters>\n"
 			for parameter in self._parameters:
 				buffer += parameter.ToXml(2)
-			buffer += "\t</ipxact:parameters>\n"
+			buffer += "\t</{xmlns}:parameters>\n"
 			
 		if self._assertions:
-			buffer += "\t<ipxact:assertions>\n"
+			buffer += "\t<{xmlns}:assertions>\n"
 			for assertion in self._assertions:
 				buffer += assertion.ToXml(2)
-			buffer += "\t</ipxact:assertions>\n"
+			buffer += "\t</{xmlns}:assertions>\n"
 		
 		buffer += dedent("""\
-			</ipxact:component>
+			</{xmlns}:component>
 			""")
 		
-		return buffer
+		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
