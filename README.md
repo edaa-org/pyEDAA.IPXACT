@@ -1,4 +1,4 @@
-# pyIPXAT
+# pyIPXACT
 
 **This is a Python-based DOM implementation for [IEEE 1685-2014][IEEE-1685-2014].**
 
@@ -22,7 +22,6 @@
 ## Contributors:
 
 * [Patrick Lehmann](https://github.com/Paebbels) (Maintainer)
-* 
 
 
 ## License
