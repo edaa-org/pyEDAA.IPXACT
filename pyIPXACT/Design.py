@@ -29,7 +29,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
+from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
 
 
 class Design(RootElement):
@@ -53,12 +53,17 @@ class Design(RootElement):
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:design
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
-				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
-														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+				xmlns:{xmlns}="{schemaUri}"
+				xsi:schemaLocation="{schemaUri} {schemaUrl}">
 			{versionedIdentifier}
 				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+			""").format(
+				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
+				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
+				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
+				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
+				description=self._description
+			)
 		
 		if self._componentInstances:
 			buffer += "\t<{xmlns}:componentInstances>\n"
@@ -82,7 +87,7 @@ class Design(RootElement):
 			</{xmlns}:design>
 			""")
 		
-		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
 class IpxactFile:
@@ -99,7 +104,7 @@ class IpxactFile:
 			{indent}	<{xmlns}:name>{path}</{xmlns}:name>
 			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
 			{indent}</{xmlns}:ipxactFile>
-		""").format(indent=_indent, xmlns=__DEFAULT_NAMESPACE__, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
+		""").format(indent=_indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
 		
 		return buffer
 

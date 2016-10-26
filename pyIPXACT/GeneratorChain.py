@@ -29,7 +29,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
+from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__, __DEFAULT_SCHEMA__
 
 
 class GeneratorChain(RootElement):
@@ -55,14 +55,21 @@ class GeneratorChain(RootElement):
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:generatorChain
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
-				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
-														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+				xmlns:{xmlns}="{schemaUri}"
+				xsi:schemaLocation="{schemaUri} {schemaUrl}">
 			{versionedIdentifier}
 				<{xmlns}:displayName>{displayName}</{xmlns}:displayName>
 				<{xmlns}:description>{description}</{xmlns}:description>
 				<{xmlns}:chainGroup>{chainGroup}</{xmlns}:chainGroup>
-			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), displayName=self._displayName, description=self._description, chainGroup=self._chainGroup)
+			""").format(
+				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
+				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
+				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
+				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
+				displayName=self._displayName,
+				description=self._description,
+				chainGroup=self._chainGroup
+			)
 		
 		if self._generatorChainSelector:
 			buffer += "\t<{xmlns}:generatorChainSelector>\n"

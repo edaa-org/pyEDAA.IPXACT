@@ -29,7 +29,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__
+from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
 
 
 class Component(RootElement):
@@ -83,12 +83,17 @@ class Component(RootElement):
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:component
 				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
-				xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014/
-														http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd">
+				xmlns:{xmlns}="{schemaUri}"
+				xsi:schemaLocation="{schemaUri} {schemaUrl}">
 			{versionedIdentifier}
 				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(xmlns=__DEFAULT_NAMESPACE__, versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True), description=self._description)
+			""").format(
+				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
+				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
+				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
+				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
+				description=self._description
+			)
 		
 		if self._busInterfaces:
 			buffer += "\t<{xmlns}:busInterfaces>\n"
@@ -189,7 +194,7 @@ class Component(RootElement):
 				</{xmlns}:component>
 				""")
 		
-		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
 class BusInterface:

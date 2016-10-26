@@ -1,0 +1,3 @@
+[submodule "lib/schema"]
+	path = lib/schema
+	url = https://github.com/UnofficialRepos/IPXACT-Schema.git

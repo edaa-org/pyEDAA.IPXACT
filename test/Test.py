@@ -27,6 +27,8 @@
 # limitations under the License.
 # ==============================================================================
 #
+from pathlib import Path
+
 from pyIPXACT           import Vlnv
 from pyIPXACT.Catalog   import Catalog, IpxactFile
 from pyIPXACT.Component import Component
@@ -61,3 +63,9 @@ print(design.ToXml())
 designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
 
 print(designConfiguration.ToXml())
+
+
+# ==============================================================================
+filePath = Path("catalog.xml")
+catalog = Catalog.FromFile(filePath)
+print(catalog.ToXml())
