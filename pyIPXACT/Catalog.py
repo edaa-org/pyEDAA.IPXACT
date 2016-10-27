@@ -27,9 +27,8 @@
 # limitations under the License.
 # ==============================================================================
 #
-import os
-
 from lxml               import etree
+from os                 import chdir as os_chdir
 from textwrap           import dedent
 
 from pathlib            import Path
@@ -107,7 +106,7 @@ class Catalog(RootElement):
 		except OSError as ex:
 			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
 		
-		os.chdir("../lib/schema")
+		os_chdir("../lib/schema")
 		
 		schemaPath = Path("index.xsd")
 		try:

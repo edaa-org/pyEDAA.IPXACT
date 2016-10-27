@@ -11,17 +11,17 @@
 	<ipxact:description>IP Core Library</ipxact:description>
 	<ipxact:catalogs>
 		<ipxact:ipxactFile>
-			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.aurt.RX" version="1.0"/>
+			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.uart.RX" version="1.0"/>
 			<ipxact:name>uart_RX.xml</ipxact:name>
 			<ipxact:description>A UART receiver.</ipxact:description>
 		</ipxact:ipxactFile>
 		<ipxact:ipxactFile>
-			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.aurt.TX" version="1.0"/>
+			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.uart.TX" version="1.0"/>
 			<ipxact:name>uart_TX.xml</ipxact:name>
 			<ipxact:description>A UART transmitter.</ipxact:description>
 		</ipxact:ipxactFile>
 		<ipxact:ipxactFile>
-			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.aurt.Wrapper" version="1.0"/>
+			<ipxact:vlnv vendor="VLSI-EDA" library="PoC" name="PoC.io.uart.Wrapper" version="1.0"/>
 			<ipxact:name>uart_RX.xml</ipxact:name>
 			<ipxact:description>A UART wrapper.</ipxact:description>
 		</ipxact:ipxactFile>
