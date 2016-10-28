@@ -58,7 +58,7 @@ class Component(RootElement):
 		if isinstance(item, Model):                 self._model = item
 		else:
 			raise ValueError()
-                                
+
 	def AddItem(self, item):
 		if isinstance(item, BusInterface):          self._busInterfaces.append(item)
 		elif isinstance(item, IndirectInterface):   self._indirectInterfaces.append(item)

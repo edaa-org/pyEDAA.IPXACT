@@ -42,7 +42,7 @@ class GeneratorChain(RootElement):
 		self._generatorChainSelector =        None
 		self._interconnectionConfiguration =  None
 		self._generator =                     None
-                                
+
 	def SetItem(self, item):
 		if isinstance(item,   GeneratorChainSelector):      self._generatorChainSelector =      item
 		elif isinstance(item, ComponentGeneratorSelector):  self._componentGeneratorSelector =  item

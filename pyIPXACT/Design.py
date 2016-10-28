@@ -40,7 +40,7 @@ class Design(RootElement):
 		self._componentInstances =      []
 		self._interconnections =        []
 		self._adHocConnections =        []
-                                
+
 	def AddItem(self, item):
 		if isinstance(item, ComponentInstance):   self._componentInstances.append(item)
 		elif isinstance(item, Interconnection):   self._interconnections.append(item)

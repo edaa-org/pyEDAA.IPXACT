@@ -40,7 +40,7 @@ class DesignConfiguration(RootElement):
 		self._generatorChainConfiguration =   None
 		self._interconnectionConfiguration =  None
 		self._viewConfiguration =             None
-                                
+
 	def SetItem(self, item):
 		if isinstance(item,   GeneratorChainConfiguration):   self._generatorChainConfiguration =   item
 		elif isinstance(item, InterconnectionConfiguration):  self._interconnectionConfiguration =  item

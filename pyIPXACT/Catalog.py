@@ -162,7 +162,7 @@ class Catalog(RootElement):
 			catalog.AddItem(item)
 			
 		return catalog
-                                
+
 	def AddItem(self, item):
 		if isinstance(item, IpxactFile):          self._catalogs.append(item)
 		elif isinstance(item, Component):         self._components.append(item)
