@@ -53,7 +53,7 @@ class Component(RootElement):
 		self._resetTypes =          []
 		self._parameters =          []
 		self._assertions =          []
-                                
+
 	def Settem(self, item):
 		if isinstance(item, Model):                 self._model = item
 		else:
