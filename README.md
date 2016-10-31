@@ -1,6 +1,7 @@
 # pyIPXACT - An IP-XACT DOM for [IEEE 1685-2014][IEEE-1685-2014] in Python.
 
 [![Code Health](https://landscape.io/github/Paebbels/pyIPXACT/master/landscape.svg?style=flat)](https://landscape.io/github/Paebbels/pyIPXACT/master)
+[[![Build Status](https://travis-ci.org/Paebbels/pyIPXACT.svg?branch=master)](https://travis-ci.org/Paebbels/pyIPXACT)](https://travis-ci.org/Paebbels/pyIPXACT/branches)
 ![Latest tag](https://img.shields.io/github/tag/Paebbels/pyIPXACT.svg?style=flat)
 [![Latest release](https://img.shields.io/github/release/Paebbels/pyIPXACT.svg?style=flat)](https://github.com/Paebbels/pyIPXACT/releases)
 [![Apache License 2.0](https://img.shields.io/github/license/Paebbels/pyIPXACT.svg?style=flat)](LICENSE.md)
