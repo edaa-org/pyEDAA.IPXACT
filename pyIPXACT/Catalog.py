@@ -106,7 +106,7 @@ class Catalog(RootElement):
 		except OSError as ex:
 			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
 		
-		os_chdir("../lib/schema")
+		os_chdir("lib/schema")
 		
 		schemaPath = Path("index.xsd")
 		try:

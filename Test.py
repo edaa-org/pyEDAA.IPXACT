@@ -66,6 +66,6 @@ print(designConfiguration.ToXml())
 
 
 # ==============================================================================
-filePath = Path("catalog.xml")
+filePath = Path("test/catalog.xml")
 catalog = Catalog.FromFile(filePath)
 print(catalog.ToXml())
