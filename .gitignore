@@ -2,5 +2,8 @@
 __pycache__/
 *.py[cod]
 
-# IntelliJ project files
+# Sphinx documentation
+doc/_build
+
+# PyCharm project
 /.idea/workspace.xml
