@@ -4,7 +4,8 @@ install:
   - pip3 install -r tools/Travis-CI/requirements.txt
 
 script:
-  - ./tools/Travis-CI/pyIPXACT.run.sh
+  - echo "No tests. Just deploying to PyPI."
+#  - ./tools/Travis-CI/pyIPXACT.run.sh
 
 deploy:
   provider: pypi

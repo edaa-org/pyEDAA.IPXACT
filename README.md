@@ -1,10 +1,19 @@
 # pyIPXACT - An IP-XACT DOM for [IEEE 1685-2014][IEEE-1685-2014] in Python.
 
+![PyPI - License](https://img.shields.io/pypi/l/pyIPXACT)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/Paebbels/pyIPXACT) 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Paebbels/pyIPXACT)
+[![Documentation Status](https://readthedocs.org/projects/pyipxact/badge/?version=latest)](https://pyipxact.readthedocs.io/en/latest/?badge=latest)  
+[![PyPI](https://img.shields.io/pypi/v/pyIPXACT)](https://pypi.org/project/pyIPXACT/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyIPXACT)
+![PyPI - Wheel](https://img.shields.io/pypi/wheel/pyIPXACT)
+![PyPI - Status](https://img.shields.io/pypi/status/pyIPXACT)
+
+<!--
 [![Code Health](https://landscape.io/github/Paebbels/pyIPXACT/master/landscape.svg?style=flat)](https://landscape.io/github/Paebbels/pyIPXACT/master)
 [![Build Status](https://travis-ci.org/Paebbels/pyIPXACT.svg?branch=master)](https://travis-ci.org/Paebbels/pyIPXACT)
-![Latest tag](https://img.shields.io/github/tag/Paebbels/pyIPXACT.svg?style=flat)
-[![Latest release](https://img.shields.io/github/release/Paebbels/pyIPXACT.svg?style=flat)](https://github.com/Paebbels/pyIPXACT/releases)
-[![Apache License 2.0](https://img.shields.io/github/license/Paebbels/pyIPXACT.svg?style=flat)](LICENSE.md)
+-->
+
 
 
 ## Features
