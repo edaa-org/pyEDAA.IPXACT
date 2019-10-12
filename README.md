@@ -32,6 +32,10 @@
 
 This library is licensed under [Apache License 2.0](LICENSE.md)
 
+-------------------------
+
+SPDX-License-Identifier: Apache-2.0
+
 
 
 [IEEE-1685-2009]: https://standards.ieee.org/findstds/standard/1685-2009.html
