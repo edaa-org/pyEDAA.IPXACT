@@ -29,11 +29,13 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
+from pyIPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
 class DesignConfiguration(RootElement):
-	def __init__(self, vlnv, description):
+	"""Represents an IP-XACT design configuration."""
+
+	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
 		
 		self._description =             description
@@ -49,6 +51,8 @@ class DesignConfiguration(RootElement):
 			raise ValueError()
 
 	def ToXml(self):
+		"""Converts the object's data into XML format."""
+
 		buffer = dedent("""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:designConfiguration
@@ -88,24 +92,36 @@ class DesignConfiguration(RootElement):
 
 
 class GeneratorChainConfiguration:
+	"""Represents an IP-XACT generator chain configuration."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class InterconnectionConfiguration:
+	"""Represents an IP-XACT interconnection configuration."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class ViewConfiguration:
+	"""Represents an IP-XACT view configuration."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""

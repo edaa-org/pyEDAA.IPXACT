@@ -38,13 +38,22 @@ from pyIPXACT.Component import Component
 
 
 class IpxactFile:
-	def __init__(self, vlnv, name, description):
+	"""Represents a IP-XACT file."""
+
+	_vlnv : Vlnv =        None    #: VLNV unique identifier
+	_name : str =         None    #: Name
+	_description : str =  None    #: Description
+
+	def __init__(self, vlnv : Vlnv, name : str, description : str):
+		"""Constructor"""
 		self._vlnv = vlnv
 		self._name = name
 		self._description = description
 	
 	@classmethod
 	def FromXml(cls, element):
+		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
+
 		elementTag = etree.QName(element.tag)
 		if (elementTag.localname != "ipxactFile"):
 			raise PyIpxactException("Expected tag 'ipxactFile'.")
@@ -69,6 +78,8 @@ class IpxactFile:
 		return ipxactFile
 	
 	def ToXml(self, indent):
+		"""Converts the object's data into XML format."""
+
 		_indent = "\t" * indent
 		buffer = dedent("""\
 			{indent}<{xmlns}:ipxactFile>
@@ -82,7 +93,19 @@ class IpxactFile:
 
 
 class Catalog(RootElement):
-	def __init__(self, vlnv, description):
+	"""Represents an IP-XACT catalog."""
+
+	_description : str =             None
+	_abstractionDefinitions : list = None
+	_abstractors : list =            None
+	_busInterfaces : list =          None
+	_catalogs : list =               None
+	_components : list =             None
+	_designConfigurations : list =   None
+	_designs : list =                None
+	_generatorChains : list =        None
+
+	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
 		
 		self._description =             description
@@ -96,7 +119,9 @@ class Catalog(RootElement):
 		self._generatorChains =         []
 
 	@classmethod
-	def FromFile(cls, filePath):
+	def FromFile(cls, filePath : Path):
+		"""Constructs an instance of ``Catalog`` from a file."""
+
 		if (not filePath.exists()): raise PyIpxactException("File '{0!s}' not found.".format(filePath)) from FileNotFoundError(str(filePath))
 		
 		try:
@@ -171,6 +196,8 @@ class Catalog(RootElement):
 		
 
 	def ToXml(self):
+		"""Converts the object's data into XML format."""
+
 		buffer = dedent("""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:catalog

@@ -29,11 +29,13 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
+from pyIPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
 class Design(RootElement):
-	def __init__(self, vlnv, description):
+	"""Represents an IP-XACT design."""
+
+	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
 		
 		self._description =             description
@@ -49,6 +51,8 @@ class Design(RootElement):
 			raise ValueError()
 
 	def ToXml(self):
+		"""Converts the object's data into XML format."""
+
 		buffer = dedent("""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:design
@@ -97,6 +101,8 @@ class IpxactFile:
 		self._description = description
 	
 	def ToXml(self, indent):
+		"""Converts the object's data into XML format."""
+
 		_indent = "\t" * indent
 		buffer = dedent("""\
 			{indent}<{xmlns}:ipxactFile>
@@ -110,24 +116,36 @@ class IpxactFile:
 
 
 class ComponentInstance:
+	"""Represents an IP-XACT component instance."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Interconnection:
+	"""Represents an IP-XACT interconnection."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class AdHocConnection:
+	"""Represents an IP-XACT ad-hoc connection."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""

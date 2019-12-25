@@ -29,11 +29,15 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_NAMESPACE__, __DEFAULT_SCHEMA__
+from pyIPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
 class GeneratorChain(RootElement):
-	def __init__(self, vlnv, displayName, description, chainGroup):
+	"""Represents an IP-XACT generator chain."""
+
+	def __init__(self, vlnv : Vlnv, displayName : str, description : str, chainGroup):
+		"""Constructor"""
+
 		super().__init__(vlnv)
 		
 		self._displayName =                   displayName
@@ -51,6 +55,8 @@ class GeneratorChain(RootElement):
 			raise ValueError()
 
 	def ToXml(self):
+		"""Converts the object's data into XML format."""
+
 		buffer = dedent("""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:generatorChain
@@ -90,28 +96,40 @@ class GeneratorChain(RootElement):
 			</{xmlns}:generatorChain>
 			""")
 		
-		return buffer.format(xmlns=__DEFAULT_NAMESPACE__)
+		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
 class GeneratorChainSelector:
+	"""Represents an IP-XACT generator chain selector."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class ComponentGeneratorSelector:
+	"""Represents an IP-XACT component generator selector."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Generator:
+	"""Represents an IP-XACT generator."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""

@@ -1,14 +1,27 @@
 pyIPXACT Documentation
 ######################
 
-pyIPXACT - An IP-XACT DOM for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_ in Python.
+pyIPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_
+in Python.
 
-Features
-********
+
+
+Implemented Features
+********************
 
 * Generate IP-XACT files for
 
   * IP-XACT catalogs
+
+
+
+Examples
+********
+
+.. info::
+
+   Write an example.
+
 
 
 IP-XACT Resources
@@ -24,23 +37,19 @@ IP-XACT Resources
   * `IPXACT-Schema <https://github.com/UnofficialRepos/IPXACT-Schema>`_ at GitHub
   * `IP-XACT <http://accellera.org/downloads/standards/ip-xact>`_ at `Accellera <http://accellera.org>`_
 
-Installation/Updates
-********************
-
-Installation using PIP
-======================
-
-.. code-block:: bash
-
-   pip3 install pyIPXACT
 
 
-Updating using PIP
-==================
+Contributors
+************
 
-.. code-block:: bash
+* `Patrick Lehmann <https://github.com/Paebbels>`_ (Maintainer)
 
-   pip3 install -U pyIPXACT
+
+
+License
+*******
+
+This library is licensed under **Apache License 2.0**.
 
 ------------------------------------
 
@@ -50,18 +59,28 @@ Updating using PIP
 
    This document was generated on |docdate|.
 
+.. toctree::
+   :caption: Overview
+   :hidden:
 
-.. #
-   toctree::
+   Installation
+   Dependencies
+
+.. toctree::
    :caption: Classes
    :hidden:
 
-   ExecptionBase
-   Predefined
+   pyIPXACT
+   pyIPXACT.Catalog
+   pyIPXACT.Component
+   pyIPXACT.Design
+   pyIPXACT.DesignConfiguration
+   pyIPXACT.GeneratorChain
 
 .. toctree::
    :caption: Appendix
    :hidden:
 
+   License
    genindex
    py-modindex

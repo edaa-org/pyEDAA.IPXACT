@@ -33,6 +33,8 @@ from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
 
 
 class Component(RootElement):
+	"""Represents an IP-XACT components."""
+
 	def __init__(self, vlnv, description):
 		super().__init__(vlnv)
 		
@@ -79,6 +81,8 @@ class Component(RootElement):
 			raise ValueError()
 	
 	def ToXml(self):
+		"""Converts the object's data into XML format."""
+
 		buffer = dedent("""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:component
@@ -198,127 +202,191 @@ class Component(RootElement):
 
 
 class BusInterface:
+	"""Represents an IP-XACT bus interface."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 class IndirectInterface:
+	"""Represents an IP-XACT indirect interface."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Channel:
+	"""Represents an IP-XACT channel."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class RemapState:
+	"""Represents an IP-XACT remap state."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class AddressSpace:
+	"""Represents an IP-XACT address space."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class MemoryMap:
+	"""Represents an IP-XACT memory map."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Model:
+	"""Represents an IP-XACT model."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class ComponentGenerator:
+	"""Represents an IP-XACT component generator."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Choice:
+	"""Represents an IP-XACT choice."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class FileSet:
+	"""Represents an IP-XACT fileset."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class WhiteboxElement:
+	"""Represents an IP-XACT whitebos element."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Cpu:
+	"""Represents an IP-XACT cpu."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class OtherClockDriver:
+	"""Represents an IP-XACT *other* clock driver."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class ResetType:
+	"""Represents an IP-XACT reset type."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Parameter:
+	"""Represents an IP-XACT parameter."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""
 
 
 class Assertion:
+	"""Represents an IP-XACT assertion."""
+
 	def __init__(self):
 		pass
 	
 	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
 		return ""

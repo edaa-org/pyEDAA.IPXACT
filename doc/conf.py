@@ -92,6 +92,13 @@ intersphinx_mapping = {
 
 
 # ==============================================================================
+# Sphinx.Ext.AutoDoc
+# ==============================================================================
+# see: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+autodoc_member_order = "bysource"       # alphabetical, groupwise, bysource
+
+
+# ==============================================================================
 # Sphinx.Ext.ExtLinks
 # ==============================================================================
 extlinks = {

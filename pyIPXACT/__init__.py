@@ -33,7 +33,16 @@ from pathlib import Path
 
 
 class IpxactSchemaStruct:
-	def __init__(self, version, namespacePrefix, schemaUri, schemaUrl, localPath):
+	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
+
+	Version : str =         None    #: Schema version
+	NamespacePrefix : str = None    #: XML namespace prefix
+	SchemaUri : str =       None    #: schema URI
+	SchemaUrl : str =       None    #: schema URL
+	LocalPath : Path =      None    #: local path
+
+	def __init__(self, version : str, namespacePrefix : str, schemaUri : str, schemaUrl : str, localPath : Path):
+		"""Constructor"""
 		self.Version =         version
 		self.NamespacePrefix = namespacePrefix
 		self.SchemaUri =       schemaUri
@@ -56,31 +65,28 @@ __VERSION_TABLE__ = {
 	'1.5':   _IPXACT_15,
 	'2009':  _IPXACT_2009,
 	'2014':  _IPXACT_2014
-}
-__URI_MAP__ = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}
+}          #: Dictionary of all IP-XACT versions mapping to :class:`IpxactSchemaStruct` instances.
+
+__URI_MAP__ = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}  #: Mapping from schema URIs to :class:`IpxactSchemaStruct` instances.
 
 
-__DEFAULT_VERSION__ = "2014"
-__DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]
-
-
-class RootElement:
-	def __init__(self, vlnv):
-		self._vlnv =    vlnv
-
-	@classmethod
-	def FromFile(cls, file):
-		pass
+__DEFAULT_VERSION__ = "2014"                                  #: IP-XACT default version
+__DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default Schema
 
 
 class Vlnv:
+	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
+
 	def __init__(self, vendor, library, name, version):
+		"""Constructor"""
 		self.Vendor =   vendor
 		self.Library =  library
 		self.Name =     name
 		self.Version =  version
 	
 	def ToXml(self, indent=1, isVersionedIdentifier=False):
+		"""Converts the object's data into XML format."""
+
 		if isVersionedIdentifier:
 			buffer = dedent("""\
 				{indent}<{xmlns}:vendor>{vendor}</{xmlns}:vendor>
@@ -93,5 +99,21 @@ class Vlnv:
 		
 		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)
 
+
+class RootElement:
+	"""Base-class for all IP-XACT data classes."""
+
+	_vlnv : Vlnv = None   #: VLNV unique identifier.
+
+	def __init__(self, vlnv):
+		"""Base-constructor to set a VLNV field for all derives classes."""
+		self._vlnv =    vlnv
+
+	@classmethod
+	def FromFile(cls, file):
+		pass
+
+
 class PyIpxactException(Exception):
+	"""Base-exception for all exceptions in this package."""
 	pass
