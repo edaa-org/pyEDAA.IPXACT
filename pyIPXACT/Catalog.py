@@ -27,6 +27,8 @@
 # limitations under the License.
 # ==============================================================================
 #
+from typing import List
+
 from lxml               import etree
 from os                 import chdir as os_chdir
 from textwrap           import dedent
@@ -95,15 +97,15 @@ class IpxactFile:
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_description : str =             None
-	_abstractionDefinitions : list = None
-	_abstractors : list =            None
-	_busInterfaces : list =          None
-	_catalogs : list =               None
-	_components : list =             None
-	_designConfigurations : list =   None
-	_designs : list =                None
-	_generatorChains : list =        None
+	_description :            str =   None
+	_abstractionDefinitions : List =  None
+	_abstractors :            List =  None
+	_busInterfaces :          List =  None
+	_catalogs :               List =  None
+	_components :             List =  None
+	_designConfigurations :   List =  None
+	_designs :                List =  None
+	_generatorChains :        List =  None
 
 	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)

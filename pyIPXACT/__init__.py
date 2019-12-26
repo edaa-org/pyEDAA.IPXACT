@@ -77,6 +77,11 @@ __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default
 class Vlnv:
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
+	Vendor :  str = None    #: Vendor name in a VLNV unique identifier
+	Library : str = None    #: Library name in a VLNV unique identifier
+	Name :    str = None    #: Component name in a VLNV unique identifier
+	Version : str = None    #: Version in a VLNV unique identifier
+
 	def __init__(self, vendor, library, name, version):
 		"""Constructor"""
 		self.Vendor =   vendor
