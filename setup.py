@@ -1,7 +1,6 @@
 # EMACS settings: -*-  tab-width: 2; indent-tabs-mode: t -*-
 # vim: tabstop=2:shiftwidth=2:noexpandtab
 # kate: tab-width 2; replace-tabs off; indent-width 2;
-#
 # =============================================================================
 #              ___ ______  __    _    ____ _____ 
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
@@ -42,7 +41,7 @@ with open("README.md", "r") as file:
 
 setuptools.setup(
 	name="pyIPXACT",
-	version="0.1.4",
+	version="0.1.5",
 	author="Patrick Lehmann",
 	author_email="Paebbels@gmail.com",
 	description="A Document-Object-Model (DOM) for IP-XACT files.",

@@ -1,7 +1,14 @@
 # EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
 # vim: tabstop=2:shiftwidth=2:noexpandtab
 # kate: tab-width 2; replace-tabs off; indent-width 2;
-# ==============================================================================
+# =============================================================================
+#              ___ ______  __    _    ____ _____
+#  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
+# | '_ \| | | || || |_) \  /   / _ \| |     | |
+# | |_) | |_| || ||  __//  \  / ___ \ |___  | |
+# | .__/ \__, |___|_|  /_/\_\/_/   \_\____| |_|
+# |_|    |___/
+# =============================================================================
 # Authors:            Patrick Lehmann
 #
 # Python package:     A DOM based IP-XACT implementation for Python
