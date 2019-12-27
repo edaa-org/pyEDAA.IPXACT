@@ -1,20 +1,19 @@
+[![PyPI - License](https://img.shields.io/pypi/l/pyIPXACT?logo=PyPI)](LICENSE.md)
+[![GitHub tag (latest SemVer incl. pre-release)](https://img.shields.io/github/v/tag/Paebbels/pyIPXACT?logo=GitHub&include_prereleases)](https://github.com/Paebbels/pyIPXACT/tags)
+[![GitHub release (latest SemVer incl. including pre-releases)](https://img.shields.io/github/v/release/Paebbels/pyIPXACT?logo=GitHub&include_prereleases)](https://github.com/Paebbels/pyIPXACT/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/Paebbels/pyIPXACT?logo=GitHub&)](https://github.com/Paebbels/pyIPXACT/releases)
+[![Libraries.io status for latest release](https://img.shields.io/librariesio/release/pypi/pyIPXACT)](https://libraries.io/github/Paebbels/pyIPXACT)
+[![Requires.io](https://img.shields.io/requires/github/Paebbels/pyIPXACT)](https://requires.io/github/Paebbels/pyIPXACT/requirements/?branch=master)  
+[![Travis](https://img.shields.io/travis/com/Paebbels/pyIPXACT?logo=Travis)](https://travis-ci.com/Paebbels/pyIPXACT)
+[![PyPI](https://img.shields.io/pypi/v/pyIPXACT?logo=PyPI)](https://pypi.org/project/pyIPXACT/)
+![PyPI - Status](https://img.shields.io/pypi/status/pyIPXACT?logo=PyPI)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyIPXACT?logo=PyPI)
+[![Dependent repos (via libraries.io)](https://img.shields.io/librariesio/dependent-repos/pypi/pyIPXACT)](https://github.com/Paebbels/pyIPXACT/network/dependents)  
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3deb3840b05b40bf935380b41074bea9)](https://www.codacy.com/manual/Paebbels/pyIPXACT)
+[![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/pypi/pyIPXACT)](https://libraries.io/github/Paebbels/pyIPXACT/sourcerank)
+[![Read the Docs](https://img.shields.io/readthedocs/pyipxact)](https://pyIPXACT.readthedocs.io/en/latest/)
+
 # pyIPXACT - An IP-XACT DOM for [IEEE 1685-2014][IEEE-1685-2014] in Python.
-
-![PyPI - License](https://img.shields.io/pypi/l/pyIPXACT)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/Paebbels/pyIPXACT) 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Paebbels/pyIPXACT)
-[![Documentation Status](https://readthedocs.org/projects/pyipxact/badge/?version=latest)](https://pyipxact.readthedocs.io/en/latest/?badge=latest)  
-[![PyPI](https://img.shields.io/pypi/v/pyIPXACT)](https://pypi.org/project/pyIPXACT/)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyIPXACT)
-![PyPI - Wheel](https://img.shields.io/pypi/wheel/pyIPXACT)
-![PyPI - Status](https://img.shields.io/pypi/status/pyIPXACT)
-
-<!--
-[![Code Health](https://landscape.io/github/Paebbels/pyIPXACT/master/landscape.svg?style=flat)](https://landscape.io/github/Paebbels/pyIPXACT/master)
-[![Build Status](https://travis-ci.org/Paebbels/pyIPXACT.svg?branch=master)](https://travis-ci.org/Paebbels/pyIPXACT)
--->
-
-
 
 ## Features
 

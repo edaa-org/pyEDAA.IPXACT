@@ -41,7 +41,7 @@ with open("README.md", "r") as file:
 
 setuptools.setup(
 	name="pyIPXACT",
-	version="0.1.5",
+	version="0.1.6",
 	author="Patrick Lehmann",
 	author_email="Paebbels@gmail.com",
 	description="A Document-Object-Model (DOM) for IP-XACT files.",
@@ -56,7 +56,8 @@ setuptools.setup(
 		"Programming Language :: Python :: 3.6",
 		"Programming Language :: Python :: 3.7",
 		"Programming Language :: Python :: 3.8",
-		"Development Status :: 3 - Alpha",
+		"Development Status :: 2 - Pre-Alpha",
+		#   "Development Status :: 3 - Alpha",
 		#		"Development Status :: 4 - Beta",
 		#		"Development Status :: 5 - Production/Stable",
 		"Topic :: Utilities"
