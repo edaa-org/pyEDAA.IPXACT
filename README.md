@@ -21,7 +21,7 @@
   * IP-XACT catalogs
 
 
-## IP-XACT Resources:
+## IP-XACT Resources
 
 * Standards:
   * [IEEE 1685-2009][IEEE-1685-2009]
@@ -31,7 +31,7 @@
   * [IP-XACT][IPXACT] at [Accellera][Accellera]
 
 
-## Contributors:
+## Contributors
 
 * [Patrick Lehmann](https://github.com/Paebbels) (Maintainer)
 
@@ -45,10 +45,7 @@ This library is licensed under [Apache License 2.0](LICENSE.md)
 SPDX-License-Identifier: Apache-2.0
 
 
-
 [IEEE-1685-2009]: https://standards.ieee.org/findstds/standard/1685-2009.html
 [IEEE-1685-2014]: https://standards.ieee.org/findstds/standard/1685-2014.html
 [IPXACT]:         http://accellera.org/downloads/standards/ip-xact
 [Accellera]:      http://accellera.org
-
- 
