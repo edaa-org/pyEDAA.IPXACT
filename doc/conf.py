@@ -121,10 +121,9 @@ autodoc_member_order = "bysource"       # alphabetical, groupwise, bysource
 # Sphinx.Ext.ExtLinks
 # ==============================================================================
 extlinks = {
-	'issue': ('https://github.com/Paebbels/pyIPXACT/issues/%s', 'issue #'),
-	'pull':  ('https://github.com/Paebbels/pyIPXACT/pull/%s', 'pull request #'),
-	'src':   ('https://github.com/Paebbels/pyIPXACT/blob/master/pyIPXACT/%s?ts=2', None),
-#	'test':  ('https://github.com/Paebbels/pyIPXACT/blob/master/test/%s?ts=2', None)
+	'ghissue': ('https://github.com/edaa-org/pyEDAA.IPXACT/issues/%s', 'issue #'),
+	'ghpull':  ('https://github.com/edaa-org/pyEDAA.IPXACT/pull/%s', 'pull request #'),
+	'ghsrc':   ('https://github.com/edaa-org/pyEDAA.IPXACT/blob/main/%s', ''),
 }
 
 
