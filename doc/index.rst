@@ -79,14 +79,6 @@ License
 
 This Python library (source code) is licensed under `Apache License 2.0 <License>`.
 
-------------------------------------
-
-.. |docdate| date:: %b %d, %Y - %H:%M
-
-.. only:: html
-
-   This document was generated on |docdate|.
-
 .. toctree::
    :hidden:
 
