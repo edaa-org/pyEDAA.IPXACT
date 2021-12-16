@@ -88,6 +88,11 @@ This Python library (source code) is licensed under `Apache License 2.0 <License
    This document was generated on |docdate|.
 
 .. toctree::
+   :hidden:
+
+   Used as a layer of EDA² ➚ <https://edaa-org.github.io/>
+
+.. toctree::
    :caption: Overview
    :hidden:
 
