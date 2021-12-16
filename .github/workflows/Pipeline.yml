@@ -1,0 +1,65 @@
+name: Pipeline
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+
+  Params:
+    uses: pyTooling/Actions/.github/workflows/Parameters.yml@r0
+    with:
+      name: pyEDAA.IPXACT
+
+  Package:
+    uses: pyTooling/Actions/.github/workflows/Package.yml@r0
+    needs:
+      - Params
+    with:
+      python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
+
+  Release:
+    uses: pyTooling/Actions/.github/workflows/Release.yml@r0
+    if: startsWith(github.ref, 'refs/tags')
+    needs:
+      - Package
+
+  PublishOnPyPI:
+    uses: pyTooling/Actions/.github/workflows/PublishOnPyPI.yml@r0
+    if: startsWith(github.ref, 'refs/tags')
+    needs:
+      - Params
+      - Release
+      - Package
+    with:
+      python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
+    secrets:
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+  BuildTheDocs:
+    uses: pyTooling/Actions/.github/workflows/BuildTheDocs.yml@r0
+    needs:
+      - Params
+    with:
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
+
+  PublishToGitHubPages:
+    uses: pyTooling/Actions/.github/workflows/PublishToGitHubPages.yml@r0
+    needs:
+      - Params
+      - BuildTheDocs
+    with:
+      doc: ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
+
+  ArtifactCleanUp:
+    uses: pyTooling/Actions/.github/workflows/ArtifactCleanUp.yml@r0
+    needs:
+      - Params
+      - BuildTheDocs
+      - PublishToGitHubPages
+    with:
+      package: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
+      remaining: |
+        ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
