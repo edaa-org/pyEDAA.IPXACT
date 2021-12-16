@@ -28,7 +28,7 @@ Implemented Features
 Examples
 ********
 
-.. info::
+.. NOTE::
 
    Write an example.
 
