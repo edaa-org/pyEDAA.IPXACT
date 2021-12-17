@@ -7,6 +7,8 @@ from os.path import abspath
 from pathlib import Path
 from json import loads
 
+from pyTooling.Packaging import extractVersionInformation
+
 ROOT = Path(__file__).resolve().parent
 
 sys_path.insert(0, abspath('..'))
@@ -17,12 +19,14 @@ sys_path.insert(0, abspath('..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'pyIPXACT'
-copyright = '2007-2019, Patrick Lehmann'
-author = 'Patrick Lehmann'
+project = "pyEDAA.IPXACT"
+packageInformationFile = ROOT.parent / f"{project.replace('.', '/')}/__init__.py"
+versionInformation = extractVersionInformation(packageInformationFile)
 
-# The full version, including alpha/beta/rc tags
-release = 'v0.1'
+author =    versionInformation.Author
+copyright = versionInformation.Copyright
+version =   ".".join(versionInformation.Version.split(".")[:2])  # e.g. 2.3    The short X.Y version.
+release =   versionInformation.Version
 
 
 # -- General configuration ---------------------------------------------------
