@@ -29,10 +29,10 @@
 
 .. Disabled shields: |SHIELD:png:IPXACT-codacy-quality| |SHIELD:png:IPXACT-codacy-coverage| |SHIELD:png:IPXACT-codecov-coverage| |SHIELD:png:IPXACT-lib-dep| |SHIELD:png:IPXACT-req-status| |SHIELD:png:IPXACT-lib-rank|
 
-pyIPXACT Documentation
-######################
+pyEDAA.IPXACT Documentation
+###########################
 
-pyIPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_
+pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_
 in Python.
 
 
@@ -95,12 +95,12 @@ This Python library (source code) is licensed under `Apache License 2.0 <License
    :caption: Classes
    :hidden:
 
-   pyIPXACT
-   pyIPXACT.Catalog
-   pyIPXACT.Component
-   pyIPXACT.Design
-   pyIPXACT.DesignConfiguration
-   pyIPXACT.GeneratorChain
+   pyEDAA.IPXACT/index
+   pyEDAA.IPXACT/Catalog
+   pyEDAA.IPXACT/Component
+   pyEDAA.IPXACT/Design
+   pyEDAA.IPXACT/DesignConfiguration
+   pyEDAA.IPXACT/GeneratorChain
 
 .. toctree::
    :caption: Appendix

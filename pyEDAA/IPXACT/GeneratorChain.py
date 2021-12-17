@@ -36,7 +36,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
+from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
 class GeneratorChain(RootElement):

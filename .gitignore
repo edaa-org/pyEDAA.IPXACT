@@ -8,3 +8,6 @@ doc/_theme
 
 # PyCharm project
 /.idea/workspace.xml
+
+# VSCode settings
+/.vscode

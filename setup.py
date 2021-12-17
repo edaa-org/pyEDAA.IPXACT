@@ -19,7 +19,7 @@
 #
 # License:
 # ============================================================================
-# Copyright 2017-2019 Patrick Lehmann - Bötzingen, Germany
+# Copyright 2017-2021 Patrick Lehmann - Bötzingen, Germany
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -34,33 +34,21 @@
 # limitations under the License.
 # ============================================================================
 #
-import setuptools
+from pathlib             import Path
+from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub
 
-with open("README.md", "r") as file:
-	long_description = file.read()
+gitHubNamespace =        "edaa-org"
+packageName =            "pyEDAA.IPXACT"
+packageDirectory =       packageName.replace(".", "/")
+packageInformationFile = Path(f"{packageDirectory}/__init__.py")
 
-setuptools.setup(
-	name="pyIPXACT",
-	version="0.1.6",
-	author="Patrick Lehmann",
-	author_email="Paebbels@gmail.com",
+DescribePythonPackageHostedOnGitHub(
+	packageName=packageName,
 	description="A Document-Object-Model (DOM) for IP-XACT files.",
-	long_description=long_description,
-	long_description_content_type="text/markdown",
-	url="https://github.com/Paebbels/pyIPXACT",
-	packages=setuptools.find_packages(),
+	gitHubNamespace=gitHubNamespace,
+	sourceFileWithVersion=packageInformationFile,
+	developmentStatus="pre-alpha",
 	classifiers=[
-		"License :: OSI Approved :: Apache Software License",
-		"Operating System :: OS Independent",
-		"Programming Language :: Python :: 3.5",
-		"Programming Language :: Python :: 3.6",
-		"Programming Language :: Python :: 3.7",
-		"Programming Language :: Python :: 3.8",
-		"Development Status :: 2 - Pre-Alpha",
-		#   "Development Status :: 3 - Alpha",
-		#		"Development Status :: 4 - Beta",
-		#		"Development Status :: 5 - Production/Stable",
-		"Topic :: Utilities"
-	],
-	python_requires='>=3.5',
+		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+	]
 )

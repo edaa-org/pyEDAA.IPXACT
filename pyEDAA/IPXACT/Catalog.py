@@ -42,8 +42,8 @@ from textwrap           import dedent
 
 from pathlib            import Path
 
-from pyIPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
-from pyIPXACT.Component import Component
+from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
+from pyEDAA.IPXACT.Component import Component
 
 
 class IpxactFile:

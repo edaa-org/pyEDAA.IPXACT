@@ -29,11 +29,11 @@
 #
 from pathlib import Path
 
-from pyIPXACT           import Vlnv
-from pyIPXACT.Catalog   import Catalog, IpxactFile
-from pyIPXACT.Component import Component
-from pyIPXACT.Design    import Design
-from pyIPXACT.DesignConfiguration import DesignConfiguration
+from pyEDAA.IPXACT           import Vlnv
+from pyEDAA.IPXACT.Catalog   import Catalog, IpxactFile
+from pyEDAA.IPXACT.Component import Component
+from pyEDAA.IPXACT.Design    import Design
+from pyEDAA.IPXACT.DesignConfiguration import DesignConfiguration
 
 
 vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")

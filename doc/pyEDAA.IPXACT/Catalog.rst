@@ -1,8 +1,8 @@
-pyIPXACT.Catalog
-################
+pyEDAA.IPXACT.Catalog
+#####################
 
 
-.. automodule:: pyIPXACT.Catalog
+.. automodule:: pyEDAA.IPXACT.Catalog
    :show-inheritance:
    :members:
    :private-members:

@@ -36,7 +36,7 @@
 #
 from textwrap           import dedent
 
-from pyIPXACT           import RootElement, __DEFAULT_SCHEMA__
+from pyEDAA.IPXACT      import RootElement, __DEFAULT_SCHEMA__
 
 
 class Component(RootElement):

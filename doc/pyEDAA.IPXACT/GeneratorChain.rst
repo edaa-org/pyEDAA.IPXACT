@@ -1,7 +1,7 @@
-pyIPXACT.DesignConfiguration
+pyEDAA.IPXACT.GeneratorChain
 ############################
 
-.. automodule:: pyIPXACT.DesignConfiguration
+.. automodule:: pyEDAA.IPXACT.GeneratorChain
    :show-inheritance:
    :members:
    :private-members:
