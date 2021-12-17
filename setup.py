@@ -49,11 +49,6 @@ DescribePythonPackageHostedOnGitHub(
 	sourceFileWithVersion=packageInformationFile,
 	developmentStatus="pre-alpha",
 	classifiers=[
-		"Operating System :: OS Independent",
-		"Development Status :: 2 - Pre-Alpha",
-		#   "Development Status :: 3 - Alpha",
-		#		"Development Status :: 4 - Beta",
-		#		"Development Status :: 5 - Production/Stable",
-		"Topic :: Utilities"
+		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
 	]
 )
