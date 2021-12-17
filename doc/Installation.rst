@@ -9,7 +9,7 @@ Installation using PIP
 
 .. code-block:: bash
 
-   pip3 install pyIPXACT
+   pip3 install pyEDAA.IPXACT
 
 
 Updating using PIP
@@ -17,5 +17,5 @@ Updating using PIP
 
 .. code-block:: bash
 
-   pip3 install -U pyIPXACT
+   pip3 install -U pyEDAA.IPXACT
 

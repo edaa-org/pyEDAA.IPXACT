@@ -1,7 +1,8 @@
-pyIPXACT.Component
-##################
+pyEDAA.IPXACT.Design
+####################
 
-.. automodule:: pyIPXACT.Component
+
+.. automodule:: pyEDAA.IPXACT.Design
    :show-inheritance:
    :members:
    :private-members:

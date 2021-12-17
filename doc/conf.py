@@ -12,7 +12,7 @@ from pyTooling.Packaging import extractVersionInformation
 ROOT = Path(__file__).resolve().parent
 
 sys_path.insert(0, abspath('..'))
-#sys_path.insert(0, abspath('../pyIPXACT'))
+sys_path.insert(0, abspath('../pyEDAA/IPXACT'))
 #sys_path.insert(0, abspath('_extensions'))
 #sys_path.insert(0, abspath('_themes/sphinx_rtd_theme'))
 
