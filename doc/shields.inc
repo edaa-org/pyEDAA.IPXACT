@@ -4,11 +4,11 @@
    # percent encoding so that the URL is properly parsed.
 
 .. # Sourcecode link to GitHub
-.. |SHIELD:svg:IPXACT-github| image:: https://img.shields.io/badge/pyEDAA-pyEDAA.IPXACT-29b6f6.svg?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd
+.. |SHIELD:svg:IPXACT-github| image:: https://img.shields.io/badge/pyEDAA-IPXACT-29b6f6.svg?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT
-.. |SHIELD:png:IPXACT-github| image:: https://raster.shields.io/badge/pyEDAA-pyEDAA.IPXACT-29b6f6.svg?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd
+.. |SHIELD:png:IPXACT-github| image:: https://raster.shields.io/badge/pyEDAA-IPXACT-29b6f6.svg?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd
    :alt: Sourcecode on GitHub
    :height: 22
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT
