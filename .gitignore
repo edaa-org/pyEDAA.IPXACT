@@ -2,12 +2,24 @@
 __pycache__/
 *.py[cod]
 
+# Coverage.py
+.coverage
+.cov
+coverage.xml
+
+# setuptools
+/build/**/*.*
+/dist/**/*.*
+/*.egg-info
+
+# Dependencies
+!requirements.txt
+
 # Sphinx documentation
-doc/_build
-doc/_theme
+/doc/_build/
+/doc/_theme/
+/doc/pyEDAA.IPXACT/**/*.*
+!/doc/pyEDAA.IPXACT/index.rst
 
 # PyCharm project
 /.idea/workspace.xml
-
-# VSCode settings
-/.vscode
