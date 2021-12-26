@@ -27,13 +27,13 @@
 
 An IP-XACT Document Object Model (DOM) for [IEEE 1685-2014][IEEE-1685-2014] written in Python.
 
-## Features
+# Features
 
 * Generate IP-XACT files for
   * IP-XACT catalogs
 
 
-## IP-XACT Resources
+# IP-XACT Resources
 
 * Standards:
   * [IEEE 1685-2009][IEEE-1685-2009]
@@ -43,12 +43,12 @@ An IP-XACT Document Object Model (DOM) for [IEEE 1685-2014][IEEE-1685-2014] writ
   * [IP-XACT][IPXACT] at [Accellera][Accellera]
 
 
-## Contributors
+# Contributors
 
 * [Patrick Lehmann](https://github.com/Paebbels) (Maintainer)
 
 
-## License
+# License
 
 This Python library (source code) is licensed under [Apache License 2.0](LICENSE.md).
 
