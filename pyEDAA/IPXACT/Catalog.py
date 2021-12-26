@@ -58,7 +58,7 @@ class IpxactFile:
 		self._vlnv = vlnv
 		self._name = name
 		self._description = description
-	
+
 	@classmethod
 	def FromXml(cls, element):
 		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
@@ -66,7 +66,7 @@ class IpxactFile:
 		elementTag = etree.QName(element.tag)
 		if (elementTag.localname != "ipxactFile"):
 			raise PyIpxactException("Expected tag 'ipxactFile'.")
-		
+
 		for element2 in element:
 			element3 = etree.QName(element2)
 			if (element3.localname == "vlnv"):
@@ -74,7 +74,7 @@ class IpxactFile:
 				library = element2.get("library")
 				name2 =   element2.get("name")
 				version = element2.get("version")
-				
+
 				vlnv = Vlnv(vendor, library, name2, version)
 			elif (element3.localname == "name"):
 				name = element2.text
@@ -82,10 +82,10 @@ class IpxactFile:
 				description = element2.text
 			else:
 				raise PyIpxactException("Unsupported tag '{0}' in node 'ipxactFile'.".format(element.localname))
-		
+
 		ipxactFile = cls(vlnv, name, description)
 		return ipxactFile
-	
+
 	def ToXml(self, indent):
 		"""Converts the object's data into XML format."""
 
@@ -97,7 +97,7 @@ class IpxactFile:
 			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
 			{indent}</{xmlns}:ipxactFile>
 		""").format(indent=_indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
-		
+
 		return buffer
 
 
@@ -116,7 +116,7 @@ class Catalog(RootElement):
 
 	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
-		
+
 		self._description =             description
 		self._abstractionDefinitions =  []
 		self._abstractors =             []
@@ -132,16 +132,16 @@ class Catalog(RootElement):
 		"""Constructs an instance of ``Catalog`` from a file."""
 
 		if (not filePath.exists()): raise PyIpxactException("File '{0!s}' not found.".format(filePath)) from FileNotFoundError(str(filePath))
-		
+
 		try:
 			with filePath.open(encoding="utf-8") as fileHandle:
 				content = fileHandle.read()
 				content = bytes(bytearray(content, encoding='utf-8'))
 		except OSError as ex:
 			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
-		
+
 		os_chdir("lib/schema")
-		
+
 		schemaPath = Path("index.xsd")
 		try:
 			with schemaPath.open(encoding="utf-8") as fileHandle:
@@ -149,26 +149,26 @@ class Catalog(RootElement):
 				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:
 			raise PyIpxactException("Couldn't open '{0!s}'.".format(schemaPath)) from ex
-		
+
 		xmlParser = etree.XMLParser(remove_blank_text=True, encoding="utf-8")
-		
+
 		schemaRoot =  etree.XML(schema, xmlParser)
 		schemaTree =  etree.ElementTree(schemaRoot)
 		xmlschema =   etree.XMLSchema(schemaTree)
 		root =        etree.XML(content, xmlParser)
 		rootTag =     etree.QName(root.tag)
-		
+
 		if (not xmlschema.validate(root)):
 			raise PyIpxactException("The input IP-XACT file is not valid.")
-		
+
 		if (rootTag.namespace not in __URI_MAP__):
 			raise PyIpxactException("The input IP-XACT file uses an unsupported namespace: '{0}'.".format(rootTag.namespace))
-		
+
 		if (rootTag.localname != "catalog"):
 			raise PyIpxactException("The input IP-XACT file is not a catalog file.")
-		
+
 		print("==" * 20)
-		
+
 		items = []
 		for rootElements in root:
 			element = etree.QName(rootElements)
@@ -187,14 +187,14 @@ class Catalog(RootElement):
 					items.append(IpxactFile.FromXml(ipxactFileElement))
 			else:
 				raise PyIpxactException("Unsupported tag '{0}' at root-level.".format(element.localname))
-			
+
 		print("==" * 20)
-		
+
 		vlnv =    Vlnv(vendor=vendor, library=library, name=name, version=version)
 		catalog = cls(vlnv, description=description)
 		for item in items:
 			catalog.AddItem(item)
-			
+
 		return catalog
 
 	def AddItem(self, item):
@@ -202,7 +202,7 @@ class Catalog(RootElement):
 		elif isinstance(item, Component):         self._components.append(item)
 		else:
 			raise ValueError()
-		
+
 
 	def ToXml(self):
 		"""Converts the object's data into XML format."""
@@ -222,21 +222,21 @@ class Catalog(RootElement):
 				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
 				description=self._description
 			)
-		
+
 		if self._catalogs:
 			buffer += "\t<{xmlns}:catalogs>\n"
 			for ipxactFile in self._catalogs:
 				buffer += ipxactFile.ToXml(2)
 			buffer += "\t</{xmlns}:catalogs>\n"
-		
+
 		if self._components:
 			buffer += "\t<{xmlns}:components>\n"
 			for ipxactFile in self._components:
 				buffer += ipxactFile.ToXml(2)
 			buffer += "\t</{xmlns}:components>\n"
-		
+
 		buffer += dedent("""\
 			</{xmlns}:catalog>
 			""")
-		
+
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)

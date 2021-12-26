@@ -44,7 +44,7 @@ class DesignConfiguration(RootElement):
 
 	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
-		
+
 		self._description =             description
 		self._generatorChainConfiguration =   None
 		self._interconnectionConfiguration =  None
@@ -75,26 +75,26 @@ class DesignConfiguration(RootElement):
 				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
 				description=self._description
 			)
-		
+
 		if self._generatorChainConfiguration:
 			buffer += "\t<{xmlns}:componentInstances>\n"
 			buffer += self._generatorChainConfiguration.ToXml(2)
 			buffer += "\t</{xmlns}:componentInstances>\n"
-		
+
 		if self._interconnectionConfiguration:
 			buffer += "\t<{xmlns}:interconnectionConfiguration>\n"
 			buffer += self._interconnectionConfiguration.ToXml(2)
 			buffer += "\t</{xmlns}:interconnectionConfiguration>\n"
-		
+
 		if self._viewConfiguration:
 			buffer += "\t<{xmlns}:viewConfiguration>\n"
 			buffer += self._viewConfiguration.ToXml(2)
 			buffer += "\t</{xmlns}:viewConfiguration>\n"
-		
+
 		buffer += dedent("""\
 			</{xmlns}:designConfiguration>
 			""")
-		
+
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
@@ -103,7 +103,7 @@ class GeneratorChainConfiguration:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -115,7 +115,7 @@ class InterconnectionConfiguration:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -127,7 +127,7 @@ class ViewConfiguration:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 

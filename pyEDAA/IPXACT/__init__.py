@@ -43,7 +43,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2007-2021, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.2.1"
+__version__ =   "0.2.2"
 
 
 class IpxactSchemaStruct:
@@ -102,7 +102,7 @@ class Vlnv:
 		self.Library =  library
 		self.Name =     name
 		self.Version =  version
-	
+
 	def ToXml(self, indent=1, isVersionedIdentifier=False):
 		"""Converts the object's data into XML format."""
 
@@ -115,7 +115,7 @@ class Vlnv:
 			""")
 		else:
 			buffer = """{indent}<{xmlns}:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
-		
+
 		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)
 
 
