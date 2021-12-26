@@ -35,7 +35,7 @@
 # ============================================================================
 #
 from pathlib             import Path
-from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub
+from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
 gitHubNamespace =        "edaa-org"
 packageName =            "pyEDAA.IPXACT"
@@ -48,7 +48,5 @@ DescribePythonPackageHostedOnGitHub(
 	gitHubNamespace=gitHubNamespace,
 	sourceFileWithVersion=packageInformationFile,
 	developmentStatus="pre-alpha",
-	classifiers=[
-		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
-	]
+	classifiers=list(DEFAULT_CLASSIFIERS) + ["Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"]
 )
