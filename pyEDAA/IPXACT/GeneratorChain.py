@@ -46,7 +46,7 @@ class GeneratorChain(RootElement):
 		"""Constructor"""
 
 		super().__init__(vlnv)
-		
+
 		self._displayName =                   displayName
 		self._description =                   description
 		self._chainGroup =                    chainGroup
@@ -83,26 +83,26 @@ class GeneratorChain(RootElement):
 				description=self._description,
 				chainGroup=self._chainGroup
 			)
-		
+
 		if self._generatorChainSelector:
 			buffer += "\t<{xmlns}:generatorChainSelector>\n"
 			buffer += self._generatorChainSelector.ToXml(2)
 			buffer += "\t</{xmlns}:generatorChainSelector>\n"
-		
+
 		if self._componentGeneratorSelector:
 			buffer += "\t<{xmlns}:componentGeneratorSelector>\n"
 			buffer += self._componentGeneratorSelector.ToXml(2)
 			buffer += "\t</{xmlns}:componentGeneratorSelector>\n"
-		
+
 		if self._generator:
 			buffer += "\t<{xmlns}:generator>\n"
 			buffer += self._generator.ToXml(2)
 			buffer += "\t</{xmlns}:generator>\n"
-		
+
 		buffer += dedent("""\
 			</{xmlns}:generatorChain>
 			""")
-		
+
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
@@ -111,7 +111,7 @@ class GeneratorChainSelector:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -123,7 +123,7 @@ class ComponentGeneratorSelector:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -135,7 +135,7 @@ class Generator:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 

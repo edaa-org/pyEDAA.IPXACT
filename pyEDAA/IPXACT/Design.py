@@ -44,7 +44,7 @@ class Design(RootElement):
 
 	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
-		
+
 		self._description =             description
 		self._componentInstances =      []
 		self._interconnections =        []
@@ -75,29 +75,29 @@ class Design(RootElement):
 				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
 				description=self._description
 			)
-		
+
 		if self._componentInstances:
 			buffer += "\t<{xmlns}:componentInstances>\n"
 			for componentInstance in self._componentInstances:
 				buffer += componentInstance.ToXml(2)
 			buffer += "\t</{xmlns}:componentInstances>\n"
-		
+
 		if self._interconnections:
 			buffer += "\t<{xmlns}:interconnections>\n"
 			for interconnection in self._interconnections:
 				buffer += interconnection.ToXml(2)
 			buffer += "\t</{xmlns}:interconnections>\n"
-		
+
 		if self._adHocConnections:
 			buffer += "\t<{xmlns}:adHocConnections>\n"
 			for adHocConnection in self._adHocConnections:
 				buffer += adHocConnection.ToXml(2)
 			buffer += "\t</{xmlns}:adHocConnections>\n"
-		
+
 		buffer += dedent("""\
 			</{xmlns}:design>
 			""")
-		
+
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
@@ -106,7 +106,7 @@ class IpxactFile:
 		self._vlnv = vlnv
 		self._name = name
 		self._description = description
-	
+
 	def ToXml(self, indent):
 		"""Converts the object's data into XML format."""
 
@@ -118,7 +118,7 @@ class IpxactFile:
 			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
 			{indent}</{xmlns}:ipxactFile>
 		""").format(indent=_indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
-		
+
 		return buffer
 
 
@@ -127,7 +127,7 @@ class ComponentInstance:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -139,7 +139,7 @@ class Interconnection:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
@@ -151,7 +151,7 @@ class AdHocConnection:
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
