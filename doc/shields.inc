@@ -54,21 +54,21 @@
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT/actions/workflows/Pipeline.yml
 
 .. # Codacy - quality
-.. |SHIELD:svg:IPXACT-codacy-quality| image:: https://img.shields.io/codacy/grade/3deb3840b05b40bf935380b41074bea9?longCache=true&style=flat-square&logo=codacy
+.. |SHIELD:svg:IPXACT-codacy-quality| image:: https://img.shields.io/codacy/grade/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&style=flat-square&logo=codacy
    :alt: Codacy - Quality
    :height: 22
    :target: https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT
-.. |SHIELD:png:IPXACT-codacy-quality| image:: https://raster.shields.io/codacy/grade/3deb3840b05b40bf935380b41074bea9?longCache=true&style=flat-square&logo=codacy
+.. |SHIELD:png:IPXACT-codacy-quality| image:: https://raster.shields.io/codacy/grade/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&style=flat-square&logo=codacy
    :alt: Codacy - Quality
    :height: 22
    :target: https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT
 
 .. # Codacy - coverage
-.. |SHIELD:svg:IPXACT-codacy-coverage| image:: https://img.shields.io/codacy/coverage/3deb3840b05b40bf935380b41074bea9?longCache=true&style=flat-square&logo=codacy
+.. |SHIELD:svg:IPXACT-codacy-coverage| image:: https://img.shields.io/codacy/coverage/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&style=flat-square&logo=codacy
    :alt: Codacy - Line Coverage
    :height: 22
    :target: https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT
-.. |SHIELD:png:IPXACT-codacy-coverage| image:: https://raster.shields.io/codacy/coverage/3deb3840b05b40bf935380b41074bea9?longCache=true&style=flat-square&logo=codacy
+.. |SHIELD:png:IPXACT-codacy-coverage| image:: https://raster.shields.io/codacy/coverage/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&style=flat-square&logo=codacy
    :alt: Codacy - Line Coverage
    :height: 22
    :target: https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT
