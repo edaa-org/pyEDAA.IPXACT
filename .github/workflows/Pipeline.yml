@@ -12,6 +12,7 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/Parameters.yml@r0
     with:
       name: pyEDAA.IPXACT
+      python_version_list: "3.6 3.7 3.8 3.9 3.10"
 
   Package:
     uses: pyTooling/Actions/.github/workflows/Package.yml@r0
