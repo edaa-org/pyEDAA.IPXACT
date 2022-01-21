@@ -106,6 +106,7 @@ This Python library (source code) is licensed under `Apache License 2.0 <License
    :caption: Appendix
    :hidden:
 
+   References
    License
    genindex
    py-modindex
