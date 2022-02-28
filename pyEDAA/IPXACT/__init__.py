@@ -12,7 +12,7 @@
 # License:                                                                                                             #
 # ==================================================================================================================== #
 # Copyright 2017-2022 Patrick Lehmann - Bötzingen, Germany                                                             #
-# Copyright 2007-2016 Patrick Lehmann - Dresden, Germany                                                               #
+# Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
 # you may not use this file except in compliance with the License.                                                     #
@@ -37,7 +37,7 @@ from pyTooling.Decorators import export
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2007-2022, Patrick Lehmann"
+__copyright__ = "2016-2022, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
 __version__ =   "0.3.0"
 
