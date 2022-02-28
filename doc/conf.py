@@ -145,8 +145,8 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
 	( master_doc,
-		'pyEDAA.ProjectModel.tex',
-		'The pyEDAA.ProjectModel Documentation',
+		'pyEDAA.IPXACT.tex',
+		'The pyEDAA.IPXACT Documentation',
 		'Patrick Lehmann',
 		'manual'
 	),
