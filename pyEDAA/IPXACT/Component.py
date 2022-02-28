@@ -1,7 +1,4 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
+# ==================================================================================================================== #
 #              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |
@@ -12,10 +9,6 @@
 # Authors:            Patrick Lehmann
 #
 # Python module:      A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
 #
 # License:
 # ==============================================================================
@@ -36,9 +29,12 @@
 #
 from textwrap           import dedent
 
+from pyTooling.Decorators import export
+
 from pyEDAA.IPXACT      import RootElement, __DEFAULT_SCHEMA__
 
 
+@export
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
@@ -208,6 +204,7 @@ class Component(RootElement):
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
+@export
 class BusInterface:
 	"""Represents an IP-XACT bus interface."""
 
@@ -219,6 +216,8 @@ class BusInterface:
 
 		return ""
 
+
+@export
 class IndirectInterface:
 	"""Represents an IP-XACT indirect interface."""
 
@@ -231,6 +230,7 @@ class IndirectInterface:
 		return ""
 
 
+@export
 class Channel:
 	"""Represents an IP-XACT channel."""
 
@@ -243,6 +243,7 @@ class Channel:
 		return ""
 
 
+@export
 class RemapState:
 	"""Represents an IP-XACT remap state."""
 
@@ -255,6 +256,7 @@ class RemapState:
 		return ""
 
 
+@export
 class AddressSpace:
 	"""Represents an IP-XACT address space."""
 
@@ -267,6 +269,7 @@ class AddressSpace:
 		return ""
 
 
+@export
 class MemoryMap:
 	"""Represents an IP-XACT memory map."""
 
@@ -279,6 +282,7 @@ class MemoryMap:
 		return ""
 
 
+@export
 class Model:
 	"""Represents an IP-XACT model."""
 
@@ -291,6 +295,7 @@ class Model:
 		return ""
 
 
+@export
 class ComponentGenerator:
 	"""Represents an IP-XACT component generator."""
 
@@ -303,6 +308,7 @@ class ComponentGenerator:
 		return ""
 
 
+@export
 class Choice:
 	"""Represents an IP-XACT choice."""
 
@@ -315,6 +321,7 @@ class Choice:
 		return ""
 
 
+@export
 class FileSet:
 	"""Represents an IP-XACT fileset."""
 
@@ -327,6 +334,7 @@ class FileSet:
 		return ""
 
 
+@export
 class WhiteboxElement:
 	"""Represents an IP-XACT whitebos element."""
 
@@ -339,6 +347,7 @@ class WhiteboxElement:
 		return ""
 
 
+@export
 class Cpu:
 	"""Represents an IP-XACT cpu."""
 
@@ -351,6 +360,7 @@ class Cpu:
 		return ""
 
 
+@export
 class OtherClockDriver:
 	"""Represents an IP-XACT *other* clock driver."""
 
@@ -363,6 +373,7 @@ class OtherClockDriver:
 		return ""
 
 
+@export
 class ResetType:
 	"""Represents an IP-XACT reset type."""
 
@@ -375,6 +386,7 @@ class ResetType:
 		return ""
 
 
+@export
 class Parameter:
 	"""Represents an IP-XACT parameter."""
 
@@ -387,6 +399,7 @@ class Parameter:
 		return ""
 
 
+@export
 class Assertion:
 	"""Represents an IP-XACT assertion."""
 

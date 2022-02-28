@@ -1,8 +1,5 @@
-# EMACS settings: -*-  tab-width: 2; indent-tabs-mode: t -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
-#              ___ ______  __    _    ____ _____ 
+# ==================================================================================================================== #
+#              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |  
 # | |_) | |_| || ||  __//  \  / ___ \ |___  | |  
@@ -13,19 +10,15 @@
 #
 # Python module:	    A Document-Object-Model (DOM) for IP-XACT files.
 #
-# Description:
-# ------------------------------------
-#		TODO
-#
 # License:
-# ============================================================================
-# Copyright 2017-2021 Patrick Lehmann - Bötzingen, Germany
+# ==================================================================================================================== #
+# Copyright 2017-2022 Patrick Lehmann - Bötzingen, Germany
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#		http://www.apache.org/licenses/LICENSE-2.0
+#   http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,

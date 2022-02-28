@@ -1,7 +1,4 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
+# ==================================================================================================================== #
 #              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |
@@ -12,10 +9,6 @@
 # Authors:            Patrick Lehmann
 #
 # Python module:      A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
 #
 # License:
 # ==============================================================================
@@ -36,9 +29,12 @@
 #
 from textwrap           import dedent
 
+from pyTooling.Decorators import export
+
 from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
+@export
 class Design(RootElement):
 	"""Represents an IP-XACT design."""
 
@@ -101,6 +97,7 @@ class Design(RootElement):
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
+@export
 class IpxactFile:
 	def __init__(self, vlnv, name, description):
 		self._vlnv = vlnv
@@ -122,6 +119,7 @@ class IpxactFile:
 		return buffer
 
 
+@export
 class ComponentInstance:
 	"""Represents an IP-XACT component instance."""
 
@@ -134,6 +132,7 @@ class ComponentInstance:
 		return ""
 
 
+@export
 class Interconnection:
 	"""Represents an IP-XACT interconnection."""
 
@@ -146,6 +145,7 @@ class Interconnection:
 		return ""
 
 
+@export
 class AdHocConnection:
 	"""Represents an IP-XACT ad-hoc connection."""
 

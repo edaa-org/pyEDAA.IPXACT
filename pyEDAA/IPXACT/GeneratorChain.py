@@ -1,7 +1,4 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
+# ==================================================================================================================== #
 #              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |
@@ -12,10 +9,6 @@
 # Authors:            Patrick Lehmann
 #
 # Python module:      A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
 #
 # License:
 # ==============================================================================
@@ -36,9 +29,12 @@
 #
 from textwrap           import dedent
 
+from pyTooling.Decorators import export
+
 from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 
 
+@export
 class GeneratorChain(RootElement):
 	"""Represents an IP-XACT generator chain."""
 
@@ -106,6 +102,7 @@ class GeneratorChain(RootElement):
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
+@export
 class GeneratorChainSelector:
 	"""Represents an IP-XACT generator chain selector."""
 
@@ -118,6 +115,7 @@ class GeneratorChainSelector:
 		return ""
 
 
+@export
 class ComponentGeneratorSelector:
 	"""Represents an IP-XACT component generator selector."""
 
@@ -130,6 +128,7 @@ class ComponentGeneratorSelector:
 		return ""
 
 
+@export
 class Generator:
 	"""Represents an IP-XACT generator."""
 

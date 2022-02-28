@@ -1,7 +1,4 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
+# ==================================================================================================================== #
 #              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |
@@ -12,10 +9,6 @@
 # Authors:            Patrick Lehmann
 #
 # Python module:      A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
 #
 # License:
 # ==============================================================================
@@ -42,10 +35,13 @@ from textwrap           import dedent
 
 from pathlib            import Path
 
+from pyTooling.Decorators import export
+
 from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
 from pyEDAA.IPXACT.Component import Component
 
 
+@export
 class IpxactFile:
 	"""Represents a IP-XACT file."""
 
@@ -101,6 +97,7 @@ class IpxactFile:
 		return buffer
 
 
+@export
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 

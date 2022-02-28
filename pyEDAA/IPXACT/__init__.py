@@ -1,7 +1,4 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
+# ==================================================================================================================== #
 #              ___ ______  __    _    ____ _____
 #  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
 # | '_ \| | | || || |_) \  /   / _ \| |     | |
@@ -12,10 +9,6 @@
 # Authors:            Patrick Lehmann
 #
 # Python package:     A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
 #
 # License:
 # ==============================================================================
@@ -34,18 +27,19 @@
 # limitations under the License.
 # ==============================================================================
 #
-from textwrap import dedent
-
-from pathlib import Path
-
-
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2007-2021, Patrick Lehmann"
+__copyright__ = "2007-2022, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
 __version__ =   "0.2.2"
 
+from pathlib  import Path
+from textwrap import dedent
 
+from pyTooling.Decorators import export
+
+
+@export
 class IpxactSchemaStruct:
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
@@ -88,6 +82,7 @@ __DEFAULT_VERSION__ = "2014"                                  #: IP-XACT default
 __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default Schema
 
 
+@export
 class Vlnv:
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
@@ -119,6 +114,7 @@ class Vlnv:
 		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)
 
 
+@export
 class RootElement:
 	"""Base-class for all IP-XACT data classes."""
 
@@ -133,6 +129,6 @@ class RootElement:
 		pass
 
 
+@export
 class PyIpxactException(Exception):
 	"""Base-exception for all exceptions in this package."""
-	pass
