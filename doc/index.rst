@@ -104,7 +104,58 @@ News
 
    .. rubric:: Major Update
 
-* Major documentation updates.
+* Major documentation updates
+
+  * Fixed issues with autoapi/autodoc.
+  * Documented dependencies.
+
+* Translated test program to unit tests.
+
+  * Collect code coverage.
+
+* Linked IP-XACT schema submodule to new location as :ghrepo:`edaa-org/IPXACT-Schema <edaa-org/IPXACT-Schema>`.
+
+
+.. only:: html
+
+   Dec. 2021 - Moved to EDA²
+   =========================
+
+.. only:: latex
+
+   .. rubric:: Moved to EDA²
+
+* Moved to EDA² as pyEDAA.IPXACT.
+
+  * Updated documentation pages.
+  * Added EDA² branding.
+
+* Activated GHA workflow.
+
+
+.. only:: html
+
+   Dec. 2019 - Packaging for PyPI
+   ==============================
+
+.. only:: latex
+
+   .. rubric:: Packaging for PyPI
+
+* Code is now available as a Python package on PyPI.
+
+
+.. only:: html
+
+   Oct. 2016 - Initial Document Object Model (DOM)
+   ===============================================
+
+.. only:: latex
+
+   .. rubric:: Initial Document Object Model (DOM)
+
+* Initial Document Object Model (DOM).
+* Referenced IP-XACT schema definitions from :ghrepo:`UnofficialRepos/IPXACT-Schema <UnofficialRepos/IPXACT-Schema>`
 
 
 .. _contributors:
@@ -113,7 +164,7 @@ Contributors
 ************
 
 * :ghrepo:`Patrick Lehmann <Paebbels>` (Maintainer)
-* `Unai Martinez-Corral <https://GitHub.com/umarcor/>`__
+* :ghrepo:`Unai Martinez-Corral <umarcor>`
 * `and more... <https://GitHub.com/edaa-org/pyEDAA.IPXACT/graphs/contributors>`__
 
 
