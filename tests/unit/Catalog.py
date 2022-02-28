@@ -34,7 +34,7 @@ from unittest     import TestCase
 
 from pyEDAA.IPXACT import Vlnv
 from pyEDAA.IPXACT.Catalog import Catalog
-from pyEDAA.IPXACT.Design import IpxactFile
+from pyEDAA.IPXACT.Design  import IpxactFile
 
 
 if __name__ == "__main__": # pragma: no cover
