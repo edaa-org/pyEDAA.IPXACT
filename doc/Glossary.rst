@@ -3,14 +3,14 @@ Glossary
 
 .. glossary::
 
-   Program
+   VLNV
+     Vendor - Library - Name - Version
+
+   AAA
      *TBC*
 
-   Executable
+   BBB
      *TBC*
 
-   CLIOption
-     *TBC*
-
-   CLIParameter
+   CCC
      *TBC*
