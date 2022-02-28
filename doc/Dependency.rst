@@ -3,31 +3,33 @@
 Dependency
 ##########
 
-.. |img-CLIAbstraction-lib-status| image:: https://img.shields.io/librariesio/release/pypi/pyTooling.CLIAbstraction
+.. |img-IPXACT-lib-status| image:: https://img.shields.io/librariesio/release/pypi/pyEDAA.IPXACT
    :alt: Libraries.io status for latest release
    :height: 22
-   :target: https://libraries.io/github/pyTooling/pyTooling.CLIAbstraction
-.. |img-CLIAbstraction-req-status| image:: https://img.shields.io/requires/github/pyTooling/pyTooling.CLIAbstraction
+   :target: https://libraries.io/github/edaa-org/pyEDAA.IPXACT
+.. |img-IPXACT-req-status| image:: https://img.shields.io/requires/github/edaa-org/pyEDAA.IPXACT
    :alt: Requires.io
    :height: 22
-   :target: https://requires.io/github/pyTooling/pyTooling.CLIAbstraction/requirements/?branch=main
+   :target: https://requires.io/github/edaa-org/pyEDAA.IPXACT/requirements/?branch=main
 
 +------------------------------------------+------------------------------------------+
 | `Libraries.io <https://libraries.io/>`_  | `Requires.io <https://requires.io/>`_    |
 +==========================================+==========================================+
-| |img-CLIAbstraction-lib-status|          | |img-CLIAbstraction-req-status|          |
+| |img-IPXACT-lib-status|                  | |img-IPXACT-req-status|                  |
 +------------------------------------------+------------------------------------------+
 
 
 .. _dependency-package:
 
-pyTooling.CLIAbstraction Package
-********************************
+pyEDAA.IPXACT Package
+*********************
 
 +---------------------------------------------------------------+-------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Package**                                                   | **Version** | **License**                                                                               | **Dependencies**                                                                                                                                       |
 +===============================================================+=============+===========================================================================================+========================================================================================================================================================+
 | `pyTooling <https://GitHub.com/pyTooling/pyTooling>`__        | ≥1.9.4      | `Apache License, 2.0 <https://GitHub.com/pyTooling/pyTooling/blob/main/LICENSE.txt>`__    | *None*                                                                                                                                                 |
++---------------------------------------------------------------+-------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `lxml <https://GitHub.com/lxml/lxml>`__                       | ≥4.6.4      | `BSD 3-Clause <https://GitHub.com/lxml/lxml/blob/master/LICENSE.txt>`__                   | *Not yet evaluated.*                                                                                                                                   |
 +---------------------------------------------------------------+-------------+-------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
 | `pyAttributes <https://GitHub.com/pyTooling/pyAttributes>`__  | ≥2.5.0      | `Apache License, 2.0 <https://GitHub.com/pyTooling/pyTooling/blob/main/LICENSE.txt>`__    | * `pyTooling <https://GitHub.com/pyTooling/pyTooling>`__ - `Apache License, 2.0 <https://GitHub.com/pyTooling/pyTooling/blob/main/LICENSE.txt>`__      |
 |                                                               |             |                                                                                           | * `argcomplete <https://GitHub.com/kislyuk/argcomplete>`__ - `Apache License, 2.0 <https://GitHub.com/kislyuk/argcomplete/blob/develop/LICENSE.rst>`__ |

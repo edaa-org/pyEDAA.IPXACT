@@ -32,9 +32,19 @@
 pyEDAA.IPXACT Documentation
 ###########################
 
-pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_
+pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
 in Python.
 
+
+.. _goals:
+
+Main Goals
+**********
+
+* Offer a Python-based Document Object Model (DOM) for IP-XACT.
+
+
+.. _features:
 
 Implemented Features
 ********************
@@ -43,13 +53,19 @@ Implemented Features
 
   * IP-XACT catalogs
 
+.. #Comment
+   .. _usecase:
+
+   Use Cases
+   *********
+
+   * Wrap command line interfaces of EDA tools (Electronic Design Automation) in Python classes.
+
 
 Examples
 ********
 
-.. NOTE::
-
-   Write an example.
+.. todo:: Write an example.
 
 
 IP-XACT Resources
@@ -57,27 +73,73 @@ IP-XACT Resources
 
 * Standards:
 
-  * `IEEE 1685-2009 <https://standards.ieee.org/findstds/standard/1685-2009.html>`_
-  * `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`_
+  * `IEEE 1685-2009 <https://standards.ieee.org/findstds/standard/1685-2009.html>`__
+  * `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
 
 * Schema files:
 
-  * `IPXACT-Schema <https://github.com/UnofficialRepos/IPXACT-Schema>`_ at GitHub
-  * `IP-XACT <http://accellera.org/downloads/standards/ip-xact>`_ at `Accellera <http://accellera.org>`_
+  * :ghrepo:`IPXACT-Schema <edaa-org/IPXACT-Schema>` at GitHub
+  * `IP-XACT <http://accellera.org/downloads/standards/ip-xact>`__ at `Accellera <http://accellera.org>`__
 
+.. #Comment
+   Consumers
+   *********
+
+   This layer is used by:
+
+   * ✅ `pyEDAA.CLITool <https://github.com/edaa-org/pyEDAA.CLITool>`__
+
+
+.. _news:
+
+News
+****
+
+.. only:: html
+
+   Feb. 2022 - Major Update
+   ========================
+
+.. only:: latex
+
+   .. rubric:: Major Update
+
+* Major documentation updates.
+
+
+.. _contributors:
 
 Contributors
 ************
 
-* `Patrick Lehmann <https://github.com/Paebbels>`_ (Maintainer)
+* :ghrepo:`Patrick Lehmann <Paebbels>` (Maintainer)
 * `Unai Martinez-Corral <https://GitHub.com/umarcor/>`__
 * `and more... <https://GitHub.com/edaa-org/pyEDAA.IPXACT/graphs/contributors>`__
 
 
+.. _license:
+
 License
 *******
 
-This Python library (source code) is licensed under `Apache License 2.0 <License>`.
+.. only:: html
+
+   This Python package (source code) is licensed under `Apache License 2.0 <Code-License.html>`__. |br|
+   The accompanying documentation is licensed under `Creative Commons - Attribution 4.0 (CC-BY 4.0) <Doc-License.html>`__.
+
+.. only:: latex
+
+   This Python package (source code) is licensed under **Apache License 2.0**. |br|
+   The accompanying documentation is licensed under **Creative Commons - Attribution 4.0 (CC-BY 4.0)**.
+
+------------------------------------
+
+.. |docdate| date:: %d.%b %Y - %H:%M
+
+.. only:: html
+
+   This document was generated on |docdate|.
+
 
 .. toctree::
    :hidden:
@@ -85,28 +147,45 @@ This Python library (source code) is licensed under `Apache License 2.0 <License
    Used as a layer of EDA² ➚ <https://edaa-org.github.io/>
 
 .. toctree::
-   :caption: Overview
+   :caption: Introduction
    :hidden:
 
    Installation
-   Dependencies
+   Dependency
+
+.. raw:: latex
+
+   \part{Main Documentation}
 
 .. toctree::
-   :caption: Classes
+   :caption: Main Documentation
+   :hidden:
+
+   Tutorial
+   FurtherResources
+
+.. raw:: latex
+
+   \part{References}
+
+.. toctree::
+   :caption: References
    :hidden:
 
    pyEDAA.IPXACT/index
-   pyEDAA.IPXACT/Catalog
-   pyEDAA.IPXACT/Component
-   pyEDAA.IPXACT/Design
-   pyEDAA.IPXACT/DesignConfiguration
-   pyEDAA.IPXACT/GeneratorChain
+
+.. raw:: latex
+
+   \part{Appendix}
 
 .. toctree::
    :caption: Appendix
    :hidden:
 
-   References
+   Coverage Report ➚ <coverage/index>
+   Static Type Check Report ➚ <typing/index>
    License
+   Doc-License
+   Glossary
    genindex
    py-modindex

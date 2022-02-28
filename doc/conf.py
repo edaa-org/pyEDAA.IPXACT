@@ -11,16 +11,21 @@ from pyTooling.Packaging import extractVersionInformation
 
 ROOT = Path(__file__).resolve().parent
 
+sys_path.insert(0, abspath('.'))
 sys_path.insert(0, abspath('..'))
 sys_path.insert(0, abspath('../pyEDAA/IPXACT'))
 #sys_path.insert(0, abspath('_extensions'))
-#sys_path.insert(0, abspath('_themes/sphinx_rtd_theme'))
 
 
-# -- Project information -----------------------------------------------------
+# ==============================================================================
+# Project information and versioning
+# ==============================================================================
+# The version info for the project you're documenting, acts as replacement for
+# |version| and |release|, also used in various other places throughout the
+# built documents.
+project =     "pyEDAA.IPXACT"
 
-project = "pyEDAA.IPXACT"
-packageInformationFile = ROOT.parent / f"{project.replace('.', '/')}/__init__.py"
+packageInformationFile = Path(f"../{project.replace('.', '/')}/__init__.py")
 versionInformation = extractVersionInformation(packageInformationFile)
 
 author =    versionInformation.Author
@@ -28,24 +33,11 @@ copyright = versionInformation.Copyright
 version =   ".".join(versionInformation.Version.split(".")[:2])  # e.g. 2.3    The short X.Y version.
 release =   versionInformation.Version
 
-
-# -- General configuration ---------------------------------------------------
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-extensions = [
-# Standard Sphinx extensions
-	"sphinx.ext.autodoc",
-	'sphinx.ext.extlinks',
-	'sphinx.ext.intersphinx',
-	'sphinx.ext.inheritance_diagram',
-	'sphinx.ext.todo',
-	'sphinx.ext.graphviz',
-	'sphinx.ext.mathjax',
-	'sphinx.ext.ifconfig',
-	'sphinx.ext.viewcode',
-]
+# ==============================================================================
+# Miscellaneous settings
+# ==============================================================================
+# The master toctree document.
+master_doc = 'index'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -55,7 +47,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = [
 	"_build",
-	"_theme",
+	"_themes",
 	"Thumbs.db",
 	".DS_Store"
 ]
@@ -64,7 +56,22 @@ exclude_patterns = [
 pygments_style = 'stata-dark'
 
 
-# -- Options for HTML output -------------------------------------------------
+# ==============================================================================
+# Restructured Text settings
+# ==============================================================================
+prologPath = "prolog.inc"
+try:
+	with open(prologPath, "r") as prologFile:
+		rst_prolog = prologFile.read()
+except Exception as ex:
+	print("[ERROR:] While reading '{0!s}'.".format(prologPath))
+	print(ex)
+	rst_prolog = ""
+
+
+# ==============================================================================
+# Options for HTML output
+# ==============================================================================
 
 html_context = {}
 ctx = ROOT / 'context.json'
@@ -87,7 +94,7 @@ else:
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-html_logo = str(Path(html_static_path[0]) / "logo.svg")
+html_logo = str(Path(html_static_path[0]) / "logo_on_dark.svg")
 html_favicon = str(Path(html_static_path[0]) / "favicon.svg")
 
 # Output file base name for HTML help builder.
@@ -98,11 +105,81 @@ htmlhelp_basename = 'pyEDAAIPXACTDoc'
 # The empty string is equivalent to '%b %d, %Y'.
 html_last_updated_fmt = "%d.%m.%Y"
 
+
+# ==============================================================================
+# Options for LaTeX / PDF output
+# ==============================================================================
+from textwrap import dedent
+
+latex_elements = {
+	# The paper size ('letterpaper' or 'a4paper').
+	'papersize': 'a4paper',
+
+	# The font size ('10pt', '11pt' or '12pt').
+	#'pointsize': '10pt',
+
+	# Additional stuff for the LaTeX preamble.
+	'preamble': dedent(r"""
+		% ================================================================================
+		% User defined additional preamble code
+		% ================================================================================
+		% Add more Unicode characters for pdfLaTeX.
+		% - Alternatively, compile with XeLaTeX or LuaLaTeX.
+		% - https://GitHub.com/sphinx-doc/sphinx/issues/3511
+		%
+		\ifdefined\DeclareUnicodeCharacter
+			\DeclareUnicodeCharacter{2265}{$\geq$}
+			\DeclareUnicodeCharacter{21D2}{$\Rightarrow$}
+		\fi
+
+
+		% ================================================================================
+		"""),
+
+	# Latex figure (float) alignment
+	#'figure_align': 'htbp',
+}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+	( master_doc,
+		'pyEDAA.ProjectModel.tex',
+		'The pyEDAA.ProjectModel Documentation',
+		'Patrick Lehmann',
+		'manual'
+	),
+]
+
+
+# ==============================================================================
+# Extensions
+# ==============================================================================
+extensions = [
+# Standard Sphinx extensions
+	"sphinx.ext.autodoc",
+	'sphinx.ext.extlinks',
+	'sphinx.ext.intersphinx',
+	'sphinx.ext.inheritance_diagram',
+	'sphinx.ext.todo',
+	'sphinx.ext.graphviz',
+	'sphinx.ext.mathjax',
+	'sphinx.ext.ifconfig',
+	'sphinx.ext.viewcode',
+# SphinxContrib extensions
+	'sphinxcontrib.mermaid',
+# Other extensions
+	'sphinx_fontawesome',
+	'sphinx_autodoc_typehints',
+	'autoapi.sphinx',
+]
+
 # ==============================================================================
 # Sphinx.Ext.InterSphinx
 # ==============================================================================
 intersphinx_mapping = {
-	'python':       ('https://docs.python.org/3', None),
+	'python':   ('https://docs.python.org/3', None),
 #	'pyFlags':      ('http://pyFlags.readthedocs.io/en/latest', None),
 }
 
@@ -111,7 +188,17 @@ intersphinx_mapping = {
 # Sphinx.Ext.AutoDoc
 # ==============================================================================
 # see: https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+autodoc_default_options = {
+	"private-members": True,
+	"special-members": True,
+	"inherited-members": True,
+	"exclude-members": "__weakref__"
+}
+#autodoc_class_signature = "separated"
 autodoc_member_order = "bysource"       # alphabetical, groupwise, bysource
+autodoc_typehints = "both"
+#autoclass_content = "both"
+
 
 
 # ==============================================================================
@@ -130,3 +217,21 @@ extlinks = {
 # Sphinx.Ext.Graphviz
 # ==============================================================================
 graphviz_output_format = "svg"
+
+
+
+# ==============================================================================
+# Sphinx.Ext.ToDo
+# ==============================================================================
+# If true, `todo` and `todoList` produce output, else they produce nothing.
+todo_include_todos = True
+todo_link_only = True
+
+
+
+# ==============================================================================
+# AutoAPI.Sphinx
+# ==============================================================================
+autoapi_modules = {
+  'pyEDAA.IPXACT':  {'output': "pyEDAA.IPXACT", "override": True}
+}
