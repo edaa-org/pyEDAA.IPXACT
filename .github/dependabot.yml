@@ -5,6 +5,8 @@ updates:
   target-branch: dev
   commit-message:
     prefix: "[Dependabot]"
+  labels:
+      - Dependencies
   schedule:
     interval: weekly
     time: "04:00"

@@ -14,10 +14,53 @@ jobs:
       name: pyEDAA.IPXACT
       python_version_list: "3.6 3.7 3.8 3.9 3.10"
 
+  UnitTesting:
+    uses: pyTooling/Actions/.github/workflows/UnitTesting.yml@r0
+    needs:
+      - Params
+    with:
+      jobs: ${{ needs.Params.outputs.python_jobs }}
+      pacboy: >-
+        msys/git
+        python-pip:p
+        python-wheel:p
+        python-coverage:p
+        python-lxml:p
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}
+
+  Coverage:
+    uses: pyTooling/Actions/.github/workflows/CoverageCollection.yml@r0
+    needs:
+      - Params
+    with:
+      python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.coverage }}
+    secrets:
+      codacy_token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+
+  StaticTypeCheck:
+    uses: pyTooling/Actions/.github/workflows/StaticTypeCheck.yml@r0
+    needs:
+      - Params
+    with:
+      python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
+      requirements: '-r tests/requirements.txt'
+      commands: |
+        cd pyEDAA
+        mypy --html-report ../htmlmypy -p IPXACT
+      report: 'htmlmypy'
+      artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.typing }}
+
+  PublishTestResults:
+    uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r0
+    needs:
+      - UnitTesting
+
   Package:
     uses: pyTooling/Actions/.github/workflows/Package.yml@r0
     needs:
       - Params
+      - Coverage
     with:
       python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
       artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
@@ -26,6 +69,9 @@ jobs:
     uses: pyTooling/Actions/.github/workflows/Release.yml@r0
     if: startsWith(github.ref, 'refs/tags')
     needs:
+      - UnitTesting
+      - Coverage
+      - StaticTypeCheck
       - Package
 
   PublishOnPyPI:
@@ -37,14 +83,23 @@ jobs:
       - Package
     with:
       python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
+      requirements: -r dist/requirements.txt
       artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
     secrets:
       PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+
+#  VerifyDocs:
+#    uses: pyTooling/Actions/.github/workflows/VerifyDocs.yml@r0
+#    needs:
+#      - Params
+#    with:
+#      python_version: ${{ fromJson(needs.Params.outputs.params).python_version }}
 
   BuildTheDocs:
     uses: pyTooling/Actions/.github/workflows/BuildTheDocs.yml@r0
     needs:
       - Params
+#      - VerifyDocs
     with:
       artifact: ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
 
@@ -53,17 +108,42 @@ jobs:
     needs:
       - Params
       - BuildTheDocs
+      - Coverage
+      - StaticTypeCheck
     with:
       doc: ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
+      coverage: ${{ fromJson(needs.Params.outputs.params).artifacts.coverage }}
+      typing: ${{ fromJson(needs.Params.outputs.params).artifacts.typing }}
 
   ArtifactCleanUp:
     uses: pyTooling/Actions/.github/workflows/ArtifactCleanUp.yml@r0
     needs:
       - Params
+      - UnitTesting
+      - Coverage
+      - StaticTypeCheck
       - BuildTheDocs
       - PublishToGitHubPages
-      #- PublishTestResults
+      - PublishTestResults
     with:
       package: ${{ fromJson(needs.Params.outputs.params).artifacts.package }}
       remaining: |
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-ubuntu-3.6
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-ubuntu-3.7
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-ubuntu-3.8
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-ubuntu-3.9
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-ubuntu-3.10
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-windows-3.6
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-windows-3.7
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-windows-3.8
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-windows-3.9
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-windows-3.10
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-msys2-3.9
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-macos-3.6
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-macos-3.7
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-macos-3.8
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-macos-3.9
+        ${{ fromJson(needs.Params.outputs.params).artifacts.unittesting }}-macos-3.10
+        ${{ fromJson(needs.Params.outputs.params).artifacts.coverage }}
+        ${{ fromJson(needs.Params.outputs.params).artifacts.typing }}
         ${{ fromJson(needs.Params.outputs.params).artifacts.doc }}
