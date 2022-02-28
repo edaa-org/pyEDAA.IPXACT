@@ -54,6 +54,7 @@ jobs:
   PublishTestResults:
     uses: pyTooling/Actions/.github/workflows/PublishTestResults.yml@r0
     needs:
+      - Coverage
       - UnitTesting
 
   Package:
