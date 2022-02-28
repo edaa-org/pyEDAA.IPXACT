@@ -35,7 +35,7 @@ from textwrap           import dedent
 
 from pathlib            import Path
 
-from pyTooling.Decorators import export
+from pyTooling.Decorators    import export
 
 from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
 from pyEDAA.IPXACT.Component import Component
@@ -44,10 +44,9 @@ from pyEDAA.IPXACT.Component import Component
 @export
 class IpxactFile:
 	"""Represents a IP-XACT file."""
-
-	_vlnv : Vlnv =        None    #: VLNV unique identifier
-	_name : str =         None    #: Name
-	_description : str =  None    #: Description
+	_vlnv: Vlnv          #: VLNV unique identifier
+	_name: str           #: Name
+	_description: str    #: Description
 
 	def __init__(self, vlnv : Vlnv, name : str, description : str):
 		"""Constructor"""
@@ -58,41 +57,40 @@ class IpxactFile:
 	@classmethod
 	def FromXml(cls, element):
 		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
-
 		elementTag = etree.QName(element.tag)
-		if (elementTag.localname != "ipxactFile"):
+		if elementTag.localname != "ipxactFile":
 			raise PyIpxactException("Expected tag 'ipxactFile'.")
 
 		for element2 in element:
 			element3 = etree.QName(element2)
-			if (element3.localname == "vlnv"):
+			if element3.localname == "vlnv":
 				vendor =  element2.get("vendor")
 				library = element2.get("library")
 				name2 =   element2.get("name")
 				version = element2.get("version")
 
 				vlnv = Vlnv(vendor, library, name2, version)
-			elif (element3.localname == "name"):
+			elif element3.localname == "name":
 				name = element2.text
-			elif (element3.localname == "description"):
+			elif element3.localname == "description":
 				description = element2.text
 			else:
-				raise PyIpxactException("Unsupported tag '{0}' in node 'ipxactFile'.".format(element.localname))
+				raise PyIpxactException(f"Unsupported tag '{element.localname}' in node 'ipxactFile'.")
 
 		ipxactFile = cls(vlnv, name, description)
 		return ipxactFile
 
 	def ToXml(self, indent):
 		"""Converts the object's data into XML format."""
-
 		_indent = "\t" * indent
-		buffer = dedent("""\
-			{indent}<{xmlns}:ipxactFile>
-			{indent}	{vlnv}
-			{indent}	<{xmlns}:name>{path}</{xmlns}:name>
-			{indent}	<{xmlns}:description>{description}</{xmlns}:description>
-			{indent}</{xmlns}:ipxactFile>
-		""").format(indent=_indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vlnv=self._vlnv.ToXml(0), path=self._name, description=self._description)
+		prefix = __DEFAULT_SCHEMA__.NamespacePrefix
+		buffer = dedent(f"""\
+			{_indent}<{prefix}:ipxactFile>
+			{_indent}	{self._vlnv.ToXml(0)}
+			{_indent}	<{prefix}:name>{self._name}</{prefix}:name>
+			{_indent}	<{prefix}:description>{self._description}</{prefix}:description>
+			{_indent}</{prefix}:ipxactFile>
+		""")
 
 		return buffer
 
@@ -101,15 +99,15 @@ class IpxactFile:
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_description :            str =   None
-	_abstractionDefinitions : List =  None
-	_abstractors :            List =  None
-	_busInterfaces :          List =  None
-	_catalogs :               List =  None
-	_components :             List =  None
-	_designConfigurations :   List =  None
-	_designs :                List =  None
-	_generatorChains :        List =  None
+	_description: str
+	_abstractionDefinitions: List
+	_abstractors: List
+	_busInterfaces: List
+	_catalogs: List
+	_components: List
+	_designConfigurations: List
+	_designs: List
+	_generatorChains: List
 
 	def __init__(self, vlnv : Vlnv, description : str):
 		super().__init__(vlnv)
@@ -128,7 +126,8 @@ class Catalog(RootElement):
 	def FromFile(cls, filePath : Path):
 		"""Constructs an instance of ``Catalog`` from a file."""
 
-		if (not filePath.exists()): raise PyIpxactException("File '{0!s}' not found.".format(filePath)) from FileNotFoundError(str(filePath))
+		if not filePath.exists():
+			raise PyIpxactException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
 
 		try:
 			with filePath.open(encoding="utf-8") as fileHandle:
@@ -137,15 +136,13 @@ class Catalog(RootElement):
 		except OSError as ex:
 			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
 
-		os_chdir("lib/schema")
-
-		schemaPath = Path("index.xsd")
+		schemaPath = Path("../lib/schema/ieee-1685-2014/index.xsd")
 		try:
 			with schemaPath.open(encoding="utf-8") as fileHandle:
 				schema = fileHandle.read()
 				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:
-			raise PyIpxactException("Couldn't open '{0!s}'.".format(schemaPath)) from ex
+			raise PyIpxactException(f"Couldn't open '{schemaPath}'.") from ex
 
 		xmlParser = etree.XMLParser(remove_blank_text=True, encoding="utf-8")
 
@@ -155,13 +152,11 @@ class Catalog(RootElement):
 		root =        etree.XML(content, xmlParser)
 		rootTag =     etree.QName(root.tag)
 
-		if (not xmlschema.validate(root)):
+		if not xmlschema.validate(root):
 			raise PyIpxactException("The input IP-XACT file is not valid.")
-
-		if (rootTag.namespace not in __URI_MAP__):
-			raise PyIpxactException("The input IP-XACT file uses an unsupported namespace: '{0}'.".format(rootTag.namespace))
-
-		if (rootTag.localname != "catalog"):
+		elif rootTag.namespace not in __URI_MAP__:
+			raise PyIpxactException(f"The input IP-XACT file uses an unsupported namespace: '{rootTag.namespace}'.")
+		elif rootTag.localname != "catalog":
 			raise PyIpxactException("The input IP-XACT file is not a catalog file.")
 
 		print("==" * 20)
@@ -183,11 +178,11 @@ class Catalog(RootElement):
 				for ipxactFileElement in rootElements:
 					items.append(IpxactFile.FromXml(ipxactFileElement))
 			else:
-				raise PyIpxactException("Unsupported tag '{0}' at root-level.".format(element.localname))
+				raise PyIpxactException(f"Unsupported tag '{element.localname}' at root-level.")
 
 		print("==" * 20)
 
-		vlnv =    Vlnv(vendor=vendor, library=library, name=name, version=version)
+		vlnv = Vlnv(vendor=vendor, library=library, name=name, version=version)
 		catalog = cls(vlnv, description=description)
 		for item in items:
 			catalog.AddItem(item)
@@ -195,10 +190,12 @@ class Catalog(RootElement):
 		return catalog
 
 	def AddItem(self, item):
-		if isinstance(item, IpxactFile):          self._catalogs.append(item)
-		elif isinstance(item, Component):         self._components.append(item)
+		if isinstance(item, IpxactFile):
+			self._catalogs.append(item)
+		elif isinstance(item, Component):
+			self._components.append(item)
 		else:
-			raise ValueError()
+			raise TypeError(f"Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
 
 
 	def ToXml(self):
