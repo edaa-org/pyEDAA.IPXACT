@@ -1,11 +1,11 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
 =={{ '=' * node.name|length }}==
 ``{{ node.name }}``
 =={{ '=' * node.name|length }}==
 
-.. #automodule:: {{ node.name }}
-
-   .. contents::
-      :local:
 {##}
 {%- block modules -%}
 {%- if subnodes %}
