@@ -1,2 +1,2 @@
-lxml>=4.6
-pyTooling>=1.9.4
+lxml>=4.8
+pyTooling>=1.9.5
