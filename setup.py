@@ -42,6 +42,6 @@ DescribePythonPackageHostedOnGitHub(
 	description="A Document-Object-Model (DOM) for IP-XACT files.",
 	gitHubNamespace=gitHubNamespace,
 	sourceFileWithVersion=packageInformationFile,
-	developmentStatus="pre-alpha",
+	developmentStatus="alpha",
 	classifiers=list(DEFAULT_CLASSIFIERS) + ["Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"]
 )
