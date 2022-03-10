@@ -1,50 +1,48 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
-#              ___ ______  __    _    ____ _____
-#  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
-# | '_ \| | | || || |_) \  /   / _ \| |     | |
-# | |_) | |_| || ||  __//  \  / ___ \ |___  | |
-# | .__/ \__, |___|_|  /_/\_\/_/   \_\____| |_|
-# |_|    |___/
-# =============================================================================
-# Authors:            Patrick Lehmann
-#
-# Python module:      A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
-#
-# License:
-# ==============================================================================
-# Copyright 2007-2016 Patrick Lehmann - Dresden, Germany
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
+# ==================================================================================================================== #
+#              _____ ____    _        _      ___ ______  __    _    ____ _____                                         #
+#  _ __  _   _| ____|  _ \  / \      / \    |_ _|  _ \ \/ /   / \  / ___|_   _|                                        #
+# | '_ \| | | |  _| | | | |/ _ \    / _ \    | || |_) \  /   / _ \| |     | |                                          #
+# | |_) | |_| | |___| |_| / ___ \  / ___ \ _ | ||  __//  \  / ___ \ |___  | |                                          #
+# | .__/ \__, |_____|____/_/   \_\/_/   \_(_)___|_|  /_/\_\/_/   \_\____| |_|                                          #
+# |_|    |___/                                                                                                         #
+# ==================================================================================================================== #
+# Authors:                                                                                                             #
+#   Patrick Lehmann                                                                                                    #
+#                                                                                                                      #
+# License:                                                                                                             #
+# ==================================================================================================================== #
+# Copyright 2017-2022 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
+#                                                                                                                      #
+# Licensed under the Apache License, Version 2.0 (the "License");                                                      #
+# you may not use this file except in compliance with the License.                                                     #
+# You may obtain a copy of the License at                                                                              #
+#                                                                                                                      #
+#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #
+#                                                                                                                      #
+# Unless required by applicable law or agreed to in writing, software                                                  #
+# distributed under the License is distributed on an "AS IS" BASIS,                                                    #
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #
+# See the License for the specific language governing permissions and                                                  #
+# limitations under the License.                                                                                       #
+#                                                                                                                      #
+# SPDX-License-Identifier: Apache-2.0                                                                                  #
+# ==================================================================================================================== #
 #
 from textwrap           import dedent
+
+from pyTooling.Decorators import export
 
 from pyEDAA.IPXACT      import RootElement, __DEFAULT_SCHEMA__
 
 
+@export
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
 	def __init__(self, vlnv, description):
 		super().__init__(vlnv)
-		
+
 		self._description =         description
 		self._busInterfaces =       []
 		self._indirectInterfaces =  []
@@ -86,7 +84,7 @@ class Component(RootElement):
 		elif isinstance(item, Assertion):           self._assertions.append(item)
 		else:
 			raise ValueError()
-	
+
 	def ToXml(self):
 		"""Converts the object's data into XML format."""
 
@@ -105,294 +103,311 @@ class Component(RootElement):
 				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
 				description=self._description
 			)
-		
+
 		if self._busInterfaces:
 			buffer += "\t<{xmlns}:busInterfaces>\n"
 			for busInterface in self._busInterfaces:
 				buffer += busInterface.ToXml(2)
 			buffer += "\t</{xmlns}:busInterfaces>\n"
-	
+
 		if self._indirectInterfaces:
 			buffer += "\t<{xmlns}:indirectInterfaces>\n"
 			for indirectInterface in self._indirectInterfaces:
 				buffer += indirectInterface.ToXml(2)
 			buffer += "\t</{xmlns}:indirectInterfaces>\n"
-		
+
 		if self._channels:
 			buffer += "\t<{xmlns}:channels>\n"
 			for channel in self._channels:
 				buffer += channel.ToXml(2)
 			buffer += "\t</{xmlns}:channels>\n"
-		
+
 		if self._remapStates:
 			buffer += "\t<{xmlns}:remapStates>\n"
 			for remapState in self._remapStates:
 				buffer += remapState.ToXml(2)
 			buffer += "\t</{xmlns}:remapStates>\n"
-		
+
 		if self._addressSpaces:
 			buffer += "\t<{xmlns}:addressSpaces>\n"
 			for addressSpace in self._addressSpaces:
 				buffer += addressSpace.ToXml(2)
 			buffer += "\t</{xmlns}:addressSpaces>\n"
-		
+
 		if self._memoryMaps:
 			buffer += "\t<{xmlns}:memoryMaps>\n"
 			for memoryMap in self._memoryMaps:
 				buffer += memoryMap.ToXml(2)
 			buffer += "\t</{xmlns}:memoryMaps>\n"
-		
+
 		if self._model:
 			buffer += "\t<{xmlns}:model>\n"
 			buffer += self._model.ToXml(2)
 			buffer += "\t</{xmlns}:model>\n"
-		
+
 		if self._componentGenerators:
 			buffer += "\t<{xmlns}:componentGenerators>\n"
 			for componentGenerator in self._componentGenerators:
 				buffer += componentGenerator.ToXml(2)
 			buffer += "\t</{xmlns}:componentGenerators>\n"
-		
+
 		if self._choices:
 			buffer += "\t<{xmlns}:choices>\n"
 			for choice in self._choices:
 				buffer += choice.ToXml(2)
 			buffer += "\t</{xmlns}:choices>\n"
-		
+
 		if self._fileSets:
 			buffer += "\t<{xmlns}:fileSets>\n"
 			for fileSet in self._fileSets:
 				buffer += fileSet.ToXml(2)
 			buffer += "\t</{xmlns}:fileSets>\n"
-		
+
 		if self._whiteboxElements:
 			buffer += "\t<{xmlns}:whiteboxElements>\n"
 			for whiteboxElement in self._whiteboxElements:
 				buffer += whiteboxElement.ToXml(2)
 			buffer += "\t</{xmlns}:whiteboxElements>\n"
-		
+
 		if self._cpus:
 			buffer += "\t<{xmlns}:cpus>\n"
 			for cpu in self._cpus:
 				buffer += cpu.ToXml(2)
 			buffer += "\t</{xmlns}:cpus>\n"
-		
+
 		if self._otherClockDrivers:
 			buffer += "\t<{xmlns}:otherClockDrivers>\n"
 			for otherClockDriver in self._otherClockDrivers:
 				buffer += otherClockDriver.ToXml(2)
 			buffer += "\t</{xmlns}:otherClockDrivers>\n"
-		
+
 		if self._resetTypes:
 			buffer += "\t<{xmlns}:resetTypes>\n"
 			for resetType in self._resetTypes:
 				buffer += resetType.ToXml(2)
 			buffer += "\t</{xmlns}:resetTypes>\n"
-		
+
 		if self._parameters:
 			buffer += "\t<{xmlns}:parameters>\n"
 			for parameter in self._parameters:
 				buffer += parameter.ToXml(2)
 			buffer += "\t</{xmlns}:parameters>\n"
-		
+
 		if self._assertions:
 			buffer += "\t<{xmlns}:assertions>\n"
 			for assertion in self._assertions:
 				buffer += assertion.ToXml(2)
 			buffer += "\t</{xmlns}:assertions>\n"
-		
+
 		buffer += dedent("""\
 				</{xmlns}:component>
 				""")
-		
+
 		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
 
 
+@export
 class BusInterface:
 	"""Represents an IP-XACT bus interface."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
+
+@export
 class IndirectInterface:
 	"""Represents an IP-XACT indirect interface."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Channel:
 	"""Represents an IP-XACT channel."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class RemapState:
 	"""Represents an IP-XACT remap state."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class AddressSpace:
 	"""Represents an IP-XACT address space."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class MemoryMap:
 	"""Represents an IP-XACT memory map."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Model:
 	"""Represents an IP-XACT model."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class ComponentGenerator:
 	"""Represents an IP-XACT component generator."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Choice:
 	"""Represents an IP-XACT choice."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class FileSet:
 	"""Represents an IP-XACT fileset."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class WhiteboxElement:
 	"""Represents an IP-XACT whitebos element."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Cpu:
 	"""Represents an IP-XACT cpu."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class OtherClockDriver:
 	"""Represents an IP-XACT *other* clock driver."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class ResetType:
 	"""Represents an IP-XACT reset type."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Parameter:
 	"""Represents an IP-XACT parameter."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 
 		return ""
 
 
+@export
 class Assertion:
 	"""Represents an IP-XACT assertion."""
 
 	def __init__(self):
 		pass
-	
+
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
 

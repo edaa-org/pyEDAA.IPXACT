@@ -1,9 +1,8 @@
-pyEDAA.IPXACT
-#############
+Python Class Reference
+######################
 
+Reference of all packages and modules:
 
-.. automodule:: pyEDAA.IPXACT
-   :show-inheritance:
-   :members:
-   :private-members:
-   :special-members: __init__
+.. toctree::
+
+   pyEDAA.IPXACT

@@ -1,10 +1,36 @@
 [build-system]
 requires = [
-    "pyTooling >= 1.7.0",
-    "setuptools >= 35.0.2",
-    "wheel >= 0.29.0"
+    "pyTooling >= 1.9.5",
+    "setuptools >= 60.9.3",
+    "wheel >= 0.37.1"
 ]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 120
+
+[tool.pytest.ini_options]
+# Don't set 'python_classes = *' otherwise, pytest doesn't search for classes
+# derived from unittest.Testcase
+python_files = "*"
+python_functions = "test_*"
+
+[tool.coverage.run]
+branch = true
+omit = [
+	"*site-packages*",
+	"setup.py"
+]
+
+[tool.coverage.report]
+#skip_covered = true
+skip_empty = true
+exclude_lines = [
+	"raise NotImplementedError"
+]
+
+[tool.coverage.html]
+directory = "report/coverage/html"
+
+[tool.coverage.xml]
+output = "report/coverage/coverage.xml"

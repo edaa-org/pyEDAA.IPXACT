@@ -1,51 +1,48 @@
-# EMACS settings: -*- tab-width: 2; indent-tabs-mode: t; python-indent-offset: 2 -*-
-# vim: tabstop=2:shiftwidth=2:noexpandtab
-# kate: tab-width 2; replace-tabs off; indent-width 2;
-# =============================================================================
-#              ___ ______  __    _    ____ _____
-#  _ __  _   _|_ _|  _ \ \/ /   / \  / ___|_   _|
-# | '_ \| | | || || |_) \  /   / _ \| |     | |
-# | |_) | |_| || ||  __//  \  / ___ \ |___  | |
-# | .__/ \__, |___|_|  /_/\_\/_/   \_\____| |_|
-# |_|    |___/
-# =============================================================================
-# Authors:            Patrick Lehmann
+# ==================================================================================================================== #
+#              _____ ____    _        _      ___ ______  __    _    ____ _____                                         #
+#  _ __  _   _| ____|  _ \  / \      / \    |_ _|  _ \ \/ /   / \  / ___|_   _|                                        #
+# | '_ \| | | |  _| | | | |/ _ \    / _ \    | || |_) \  /   / _ \| |     | |                                          #
+# | |_) | |_| | |___| |_| / ___ \  / ___ \ _ | ||  __//  \  / ___ \ |___  | |                                          #
+# | .__/ \__, |_____|____/_/   \_\/_/   \_(_)___|_|  /_/\_\/_/   \_\____| |_|                                          #
+# |_|    |___/                                                                                                         #
+# ==================================================================================================================== #
+# Authors:                                                                                                             #
+#   Patrick Lehmann                                                                                                    #
+#                                                                                                                      #
+# License:                                                                                                             #
+# ==================================================================================================================== #
+# Copyright 2017-2022 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
+#                                                                                                                      #
+# Licensed under the Apache License, Version 2.0 (the "License");                                                      #
+# you may not use this file except in compliance with the License.                                                     #
+# You may obtain a copy of the License at                                                                              #
+#                                                                                                                      #
+#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #
+#                                                                                                                      #
+# Unless required by applicable law or agreed to in writing, software                                                  #
+# distributed under the License is distributed on an "AS IS" BASIS,                                                    #
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #
+# See the License for the specific language governing permissions and                                                  #
+# limitations under the License.                                                                                       #
+#                                                                                                                      #
+# SPDX-License-Identifier: Apache-2.0                                                                                  #
+# ==================================================================================================================== #
 #
-# Python package:     A DOM based IP-XACT implementation for Python
-#
-# Description:
-# ------------------------------------
-#   TODO:
-#
-# License:
-# ==============================================================================
-# Copyright 2007-2016 Patrick Lehmann - Dresden, Germany
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#   http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-#
+"""A DOM based IP-XACT implementation for Python."""
+from pathlib  import Path
 from textwrap import dedent
 
-from pathlib import Path
-
+from pyTooling.Decorators import export
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2007-2021, Patrick Lehmann"
+__copyright__ = "2016-2022, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.2.1"
+__version__ =   "0.3.0"
 
 
+@export
 class IpxactSchemaStruct:
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
@@ -88,6 +85,7 @@ __DEFAULT_VERSION__ = "2014"                                  #: IP-XACT default
 __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default Schema
 
 
+@export
 class Vlnv:
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
@@ -102,7 +100,7 @@ class Vlnv:
 		self.Library =  library
 		self.Name =     name
 		self.Version =  version
-	
+
 	def ToXml(self, indent=1, isVersionedIdentifier=False):
 		"""Converts the object's data into XML format."""
 
@@ -115,10 +113,11 @@ class Vlnv:
 			""")
 		else:
 			buffer = """{indent}<{xmlns}:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
-		
+
 		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self.Vendor, library=self.Library, name=self.Name, version=self.Version)
 
 
+@export
 class RootElement:
 	"""Base-class for all IP-XACT data classes."""
 
@@ -133,6 +132,6 @@ class RootElement:
 		pass
 
 
+@export
 class PyIpxactException(Exception):
 	"""Base-exception for all exceptions in this package."""
-	pass

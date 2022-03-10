@@ -29,107 +29,21 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from textwrap           import dedent
+"""Testcase for ``Catalog``."""
+from unittest     import TestCase
 
-from pyTooling.Decorators import export
-
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
-
-
-@export
-class DesignConfiguration(RootElement):
-	"""Represents an IP-XACT design configuration."""
-
-	def __init__(self, vlnv : Vlnv, description : str):
-		super().__init__(vlnv)
-
-		self._description =             description
-		self._generatorChainConfiguration =   None
-		self._interconnectionConfiguration =  None
-		self._viewConfiguration =             None
-
-	def SetItem(self, item):
-		if isinstance(item,   GeneratorChainConfiguration):   self._generatorChainConfiguration =   item
-		elif isinstance(item, InterconnectionConfiguration):  self._interconnectionConfiguration =  item
-		elif isinstance(item, ViewConfiguration):             self._viewConfiguration =             item
-		else:
-			raise ValueError()
-
-	def ToXml(self):
-		"""Converts the object's data into XML format."""
-
-		buffer = dedent("""\
-			<?xml version="1.0" encoding="UTF-8"?>
-			<{xmlns}:designConfiguration
-				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="{schemaUri}"
-				xsi:schemaLocation="{schemaUri} {schemaUrl}">
-			{versionedIdentifier}
-				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(
-				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
-				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
-				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
-				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
-				description=self._description
-			)
-
-		if self._generatorChainConfiguration:
-			buffer += "\t<{xmlns}:componentInstances>\n"
-			buffer += self._generatorChainConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:componentInstances>\n"
-
-		if self._interconnectionConfiguration:
-			buffer += "\t<{xmlns}:interconnectionConfiguration>\n"
-			buffer += self._interconnectionConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:interconnectionConfiguration>\n"
-
-		if self._viewConfiguration:
-			buffer += "\t<{xmlns}:viewConfiguration>\n"
-			buffer += self._viewConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:viewConfiguration>\n"
-
-		buffer += dedent("""\
-			</{xmlns}:designConfiguration>
-			""")
-
-		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
+from pyEDAA.IPXACT import Vlnv
+from pyEDAA.IPXACT.DesignConfiguration import DesignConfiguration
 
 
-@export
-class GeneratorChainConfiguration:
-	"""Represents an IP-XACT generator chain configuration."""
-
-	def __init__(self):
-		pass
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
+if __name__ == "__main__": # pragma: no cover
+	print("ERROR: you called a testcase declaration file as an executable module.")
+	print("Use: 'python -m unitest <testcase module>'")
+	exit(1)
 
 
-@export
-class InterconnectionConfiguration:
-	"""Represents an IP-XACT interconnection configuration."""
+class Catalogs(TestCase):
+	def test_DesignConfiguration(self):
+		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
 
-	def __init__(self):
-		pass
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class ViewConfiguration:
-	"""Represents an IP-XACT view configuration."""
-
-	def __init__(self):
-		pass
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
+		designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
