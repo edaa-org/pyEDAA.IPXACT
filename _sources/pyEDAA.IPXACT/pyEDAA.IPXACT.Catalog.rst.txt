@@ -1,0 +1,34 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=========================
+``pyEDAA.IPXACT.Catalog``
+=========================
+
+
+.. currentmodule:: pyEDAA.IPXACT.Catalog
+
+
+**Classes**
+
+- :py:class:`IpxactFile`:
+  Represents a IP-XACT file.
+
+- :py:class:`Catalog`:
+  Represents an IP-XACT catalog.
+
+
+.. autoclass:: IpxactFile
+   :members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IpxactFile
+      :parts: 1
+
+.. autoclass:: Catalog
+   :members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Catalog
+      :parts: 1

@@ -1,0 +1,69 @@
+.. # Template modified  by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=================
+``pyEDAA.IPXACT``
+=================
+
+
+
+**Submodules**
+
+
+.. toctree::
+
+   pyEDAA.IPXACT.Catalog
+   pyEDAA.IPXACT.Component
+   pyEDAA.IPXACT.Design
+   pyEDAA.IPXACT.DesignConfiguration
+   pyEDAA.IPXACT.GeneratorChain
+
+.. currentmodule:: pyEDAA.IPXACT
+
+
+**Classes**
+
+- :py:class:`IpxactSchemaStruct`:
+  Schema descriptor made of version, namespace prefix, URI, URL and local path.
+
+- :py:class:`Vlnv`:
+  VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT.
+
+- :py:class:`RootElement`:
+  Base-class for all IP-XACT data classes.
+
+
+.. autoclass:: IpxactSchemaStruct
+   :members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IpxactSchemaStruct
+      :parts: 1
+
+.. autoclass:: Vlnv
+   :members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Vlnv
+      :parts: 1
+
+.. autoclass:: RootElement
+   :members:
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RootElement
+      :parts: 1
+
+
+**Exceptions**
+
+- :py:exc:`PyIpxactException`:
+  Base-exception for all exceptions in this package.
+
+
+.. autoexception:: PyIpxactException
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PyIpxactException
+      :parts: 1

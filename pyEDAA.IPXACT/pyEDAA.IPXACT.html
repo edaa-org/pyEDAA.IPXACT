@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyEDAA.IPXACT &mdash; pyEDAA.IPXACT 0.3.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyEDAA.IPXACT.Catalog" href="pyEDAA.IPXACT.Catalog.html" />
+    <link rel="prev" title="Python Class Reference" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html">
+            <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/">Used as a layer of EDA² ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependency</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FurtherResources.html">Further Resources</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Python Class Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Catalog</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Component</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Design</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.DesignConfiguration</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.GeneratorChain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.__init__"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.Version"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.Version</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.NamespacePrefix"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.NamespacePrefix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUri"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.SchemaUri</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUrl"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.SchemaUrl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct.LocalPath"><code class="docutils literal notranslate"><span class="pre">IpxactSchemaStruct.LocalPath</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv"><code class="docutils literal notranslate"><span class="pre">Vlnv</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.__init__"><code class="docutils literal notranslate"><span class="pre">Vlnv.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.Vendor"><code class="docutils literal notranslate"><span class="pre">Vlnv.Vendor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.Library"><code class="docutils literal notranslate"><span class="pre">Vlnv.Library</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.Name"><code class="docutils literal notranslate"><span class="pre">Vlnv.Name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.Version"><code class="docutils literal notranslate"><span class="pre">Vlnv.Version</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv.ToXml"><code class="docutils literal notranslate"><span class="pre">Vlnv.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.RootElement"><code class="docutils literal notranslate"><span class="pre">RootElement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.RootElement.__init__"><code class="docutils literal notranslate"><span class="pre">RootElement.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.RootElement._vlnv"><code class="docutils literal notranslate"><span class="pre">RootElement._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException"><code class="docutils literal notranslate"><span class="pre">PyIpxactException</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__cause__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__cause__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__context__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__context__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__delattr__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__delattr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__getattribute__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__getattribute__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__init__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__new__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__new__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__reduce__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__reduce__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__repr__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__setattr__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__setattr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.__str__"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.__str__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.add_note"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.add_note()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException.with_traceback"><code class="docutils literal notranslate"><span class="pre">PyIpxactException.with_traceback()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Coverage Report ➚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyEDAA.IPXACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Python Class Reference</a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/edaa-org/pyEDAA.IPXACT/blob/main/doc/pyEDAA.IPXACT/pyEDAA.IPXACT.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.xlarge {font-size: x-large; }
+</style><section id="pyedaa-ipxact">
+<h1><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT</span></code><a class="headerlink" href="#pyedaa-ipxact" title="Permalink to this heading">¶</a></h1>
+<p><strong>Submodules</strong></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Catalog</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile"><code class="docutils literal notranslate"><span class="pre">IpxactFile</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile.__init__"><code class="docutils literal notranslate"><span class="pre">IpxactFile.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile._vlnv"><code class="docutils literal notranslate"><span class="pre">IpxactFile._vlnv</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile._name"><code class="docutils literal notranslate"><span class="pre">IpxactFile._name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile._description"><code class="docutils literal notranslate"><span class="pre">IpxactFile._description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile.FromXml"><code class="docutils literal notranslate"><span class="pre">IpxactFile.FromXml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.IpxactFile.ToXml"><code class="docutils literal notranslate"><span class="pre">IpxactFile.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.Catalog"><code class="docutils literal notranslate"><span class="pre">Catalog</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.Catalog.__init__"><code class="docutils literal notranslate"><span class="pre">Catalog.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.Catalog._vlnv"><code class="docutils literal notranslate"><span class="pre">Catalog._vlnv</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.Catalog.FromFile"><code class="docutils literal notranslate"><span class="pre">Catalog.FromFile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html#pyEDAA.IPXACT.Catalog.Catalog.ToXml"><code class="docutils literal notranslate"><span class="pre">Catalog.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT.Component.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Component</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component"><code class="docutils literal notranslate"><span class="pre">Component</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component.__init__"><code class="docutils literal notranslate"><span class="pre">Component.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component.ToXml"><code class="docutils literal notranslate"><span class="pre">Component.ToXml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component._vlnv"><code class="docutils literal notranslate"><span class="pre">Component._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface"><code class="docutils literal notranslate"><span class="pre">BusInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface.__init__"><code class="docutils literal notranslate"><span class="pre">BusInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface.ToXml"><code class="docutils literal notranslate"><span class="pre">BusInterface.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface"><code class="docutils literal notranslate"><span class="pre">IndirectInterface</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface.__init__"><code class="docutils literal notranslate"><span class="pre">IndirectInterface.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface.ToXml"><code class="docutils literal notranslate"><span class="pre">IndirectInterface.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel"><code class="docutils literal notranslate"><span class="pre">Channel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel.__init__"><code class="docutils literal notranslate"><span class="pre">Channel.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel.ToXml"><code class="docutils literal notranslate"><span class="pre">Channel.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState"><code class="docutils literal notranslate"><span class="pre">RemapState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState.__init__"><code class="docutils literal notranslate"><span class="pre">RemapState.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState.ToXml"><code class="docutils literal notranslate"><span class="pre">RemapState.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace"><code class="docutils literal notranslate"><span class="pre">AddressSpace</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace.__init__"><code class="docutils literal notranslate"><span class="pre">AddressSpace.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace.ToXml"><code class="docutils literal notranslate"><span class="pre">AddressSpace.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap"><code class="docutils literal notranslate"><span class="pre">MemoryMap</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap.__init__"><code class="docutils literal notranslate"><span class="pre">MemoryMap.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap.ToXml"><code class="docutils literal notranslate"><span class="pre">MemoryMap.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model.__init__"><code class="docutils literal notranslate"><span class="pre">Model.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model.ToXml"><code class="docutils literal notranslate"><span class="pre">Model.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator"><code class="docutils literal notranslate"><span class="pre">ComponentGenerator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator.__init__"><code class="docutils literal notranslate"><span class="pre">ComponentGenerator.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator.ToXml"><code class="docutils literal notranslate"><span class="pre">ComponentGenerator.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice"><code class="docutils literal notranslate"><span class="pre">Choice</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice.__init__"><code class="docutils literal notranslate"><span class="pre">Choice.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice.ToXml"><code class="docutils literal notranslate"><span class="pre">Choice.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet"><code class="docutils literal notranslate"><span class="pre">FileSet</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet.__init__"><code class="docutils literal notranslate"><span class="pre">FileSet.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet.ToXml"><code class="docutils literal notranslate"><span class="pre">FileSet.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement"><code class="docutils literal notranslate"><span class="pre">WhiteboxElement</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement.__init__"><code class="docutils literal notranslate"><span class="pre">WhiteboxElement.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement.ToXml"><code class="docutils literal notranslate"><span class="pre">WhiteboxElement.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu"><code class="docutils literal notranslate"><span class="pre">Cpu</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu.__init__"><code class="docutils literal notranslate"><span class="pre">Cpu.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu.ToXml"><code class="docutils literal notranslate"><span class="pre">Cpu.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver"><code class="docutils literal notranslate"><span class="pre">OtherClockDriver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver.__init__"><code class="docutils literal notranslate"><span class="pre">OtherClockDriver.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver.ToXml"><code class="docutils literal notranslate"><span class="pre">OtherClockDriver.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType"><code class="docutils literal notranslate"><span class="pre">ResetType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType.__init__"><code class="docutils literal notranslate"><span class="pre">ResetType.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType.ToXml"><code class="docutils literal notranslate"><span class="pre">ResetType.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter"><code class="docutils literal notranslate"><span class="pre">Parameter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter.__init__"><code class="docutils literal notranslate"><span class="pre">Parameter.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter.ToXml"><code class="docutils literal notranslate"><span class="pre">Parameter.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion"><code class="docutils literal notranslate"><span class="pre">Assertion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion.__init__"><code class="docutils literal notranslate"><span class="pre">Assertion.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion.ToXml"><code class="docutils literal notranslate"><span class="pre">Assertion.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT.Design.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.Design</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Design"><code class="docutils literal notranslate"><span class="pre">Design</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Design.__init__"><code class="docutils literal notranslate"><span class="pre">Design.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Design.ToXml"><code class="docutils literal notranslate"><span class="pre">Design.ToXml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Design._vlnv"><code class="docutils literal notranslate"><span class="pre">Design._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.IpxactFile"><code class="docutils literal notranslate"><span class="pre">IpxactFile</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.IpxactFile.__init__"><code class="docutils literal notranslate"><span class="pre">IpxactFile.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.IpxactFile.ToXml"><code class="docutils literal notranslate"><span class="pre">IpxactFile.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.ComponentInstance"><code class="docutils literal notranslate"><span class="pre">ComponentInstance</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.ComponentInstance.__init__"><code class="docutils literal notranslate"><span class="pre">ComponentInstance.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.ComponentInstance.ToXml"><code class="docutils literal notranslate"><span class="pre">ComponentInstance.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Interconnection"><code class="docutils literal notranslate"><span class="pre">Interconnection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Interconnection.__init__"><code class="docutils literal notranslate"><span class="pre">Interconnection.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.Interconnection.ToXml"><code class="docutils literal notranslate"><span class="pre">Interconnection.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.AdHocConnection"><code class="docutils literal notranslate"><span class="pre">AdHocConnection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.AdHocConnection.__init__"><code class="docutils literal notranslate"><span class="pre">AdHocConnection.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.Design.html#pyEDAA.IPXACT.Design.AdHocConnection.ToXml"><code class="docutils literal notranslate"><span class="pre">AdHocConnection.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.DesignConfiguration</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.DesignConfiguration"><code class="docutils literal notranslate"><span class="pre">DesignConfiguration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.DesignConfiguration.__init__"><code class="docutils literal notranslate"><span class="pre">DesignConfiguration.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.DesignConfiguration.ToXml"><code class="docutils literal notranslate"><span class="pre">DesignConfiguration.ToXml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.DesignConfiguration._vlnv"><code class="docutils literal notranslate"><span class="pre">DesignConfiguration._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.GeneratorChainConfiguration"><code class="docutils literal notranslate"><span class="pre">GeneratorChainConfiguration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.GeneratorChainConfiguration.__init__"><code class="docutils literal notranslate"><span class="pre">GeneratorChainConfiguration.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.GeneratorChainConfiguration.ToXml"><code class="docutils literal notranslate"><span class="pre">GeneratorChainConfiguration.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.InterconnectionConfiguration"><code class="docutils literal notranslate"><span class="pre">InterconnectionConfiguration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.InterconnectionConfiguration.__init__"><code class="docutils literal notranslate"><span class="pre">InterconnectionConfiguration.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.InterconnectionConfiguration.ToXml"><code class="docutils literal notranslate"><span class="pre">InterconnectionConfiguration.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.ViewConfiguration"><code class="docutils literal notranslate"><span class="pre">ViewConfiguration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.ViewConfiguration.__init__"><code class="docutils literal notranslate"><span class="pre">ViewConfiguration.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.ViewConfiguration.ToXml"><code class="docutils literal notranslate"><span class="pre">ViewConfiguration.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html"><code class="docutils literal notranslate"><span class="pre">pyEDAA.IPXACT.GeneratorChain</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChain"><code class="docutils literal notranslate"><span class="pre">GeneratorChain</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__init__"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.ToXml"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.ToXml()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChain._vlnv"><code class="docutils literal notranslate"><span class="pre">GeneratorChain._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.__init__"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.ToXml"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.__init__"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.ToXml"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.Generator.__init__"><code class="docutils literal notranslate"><span class="pre">Generator.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.Generator.ToXml"><code class="docutils literal notranslate"><span class="pre">Generator.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.IpxactSchemaStruct" title="pyEDAA.IPXACT.IpxactSchemaStruct"><code class="xref py py-class docutils literal notranslate"><span class="pre">IpxactSchemaStruct</span></code></a>:
+Schema descriptor made of version, namespace prefix, URI, URL and local path.</p></li>
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv" title="pyEDAA.IPXACT.Vlnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vlnv</span></code></a>:
+VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT.</p></li>
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.RootElement" title="pyEDAA.IPXACT.RootElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">RootElement</span></code></a>:
+Base-class for all IP-XACT data classes.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.</span></span><span class="sig-name descname"><span class="pre">IpxactSchemaStruct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespacePrefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schemaUri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schemaUrl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localPath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#IpxactSchemaStruct"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schema descriptor made of version, namespace prefix, URI, URL and local path.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-6aacb0a747a7337fe077e796ecb8f8f2dcd98603.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of IpxactSchemaStruct</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>namespacePrefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>schemaUri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>schemaUrl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>localPath</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><em>Path</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespacePrefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schemaUri</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schemaUrl</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">localPath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#IpxactSchemaStruct.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>version</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>namespacePrefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>schemaUri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>schemaUrl</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – </p></li>
+<li><p><strong>localPath</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><em>Path</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.Version">
+<span class="sig-name descname"><span class="pre">Version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.Version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schema version</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.NamespacePrefix">
+<span class="sig-name descname"><span class="pre">NamespacePrefix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.NamespacePrefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>XML namespace prefix</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUri">
+<span class="sig-name descname"><span class="pre">SchemaUri</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUri" title="Permalink to this definition">¶</a></dt>
+<dd><p>schema URI</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUrl">
+<span class="sig-name descname"><span class="pre">SchemaUrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.SchemaUrl" title="Permalink to this definition">¶</a></dt>
+<dd><p>schema URL</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.IpxactSchemaStruct.LocalPath">
+<span class="sig-name descname"><span class="pre">LocalPath</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.11)"><span class="pre">Path</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.IpxactSchemaStruct.LocalPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>local path</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.</span></span><span class="sig-name descname"><span class="pre">Vlnv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vendor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#Vlnv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-a5b2e06488da490cc9b7c506bf3070f2e85cf3ab.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of Vlnv</p></object></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vendor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">library</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#Vlnv.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.Vendor">
+<span class="sig-name descname"><span class="pre">Vendor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.Vendor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Vendor name in a VLNV unique identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.Library">
+<span class="sig-name descname"><span class="pre">Library</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.Library" title="Permalink to this definition">¶</a></dt>
+<dd><p>Library name in a VLNV unique identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.Name">
+<span class="sig-name descname"><span class="pre">Name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.Name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Component name in a VLNV unique identifier</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.Version">
+<span class="sig-name descname"><span class="pre">Version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.Version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Version in a VLNV unique identifier</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.Vlnv.ToXml">
+<span class="sig-name descname"><span class="pre">ToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isVersionedIdentifier</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#Vlnv.ToXml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.Vlnv.ToXml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts the object’s data into XML format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.RootElement">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.</span></span><span class="sig-name descname"><span class="pre">RootElement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlnv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#RootElement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.RootElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base-class for all IP-XACT data classes.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-48f21d224dac65e57d348907797e0bacafdf055a.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of RootElement</p></object></div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.RootElement.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vlnv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#RootElement.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.RootElement.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base-constructor to set a VLNV field for all derives classes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.RootElement._vlnv">
+<span class="sig-name descname"><span class="pre">_vlnv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pyEDAA.IPXACT.Vlnv" title="pyEDAA.IPXACT.Vlnv"><span class="pre">Vlnv</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pyEDAA.IPXACT.RootElement._vlnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>VLNV unique identifier.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p><strong>Exceptions</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.PyIpxactException" title="pyEDAA.IPXACT.PyIpxactException"><code class="xref py py-exc docutils literal notranslate"><span class="pre">PyIpxactException</span></code></a>:
+Base-exception for all exceptions in this package.</p></li>
+</ul>
+<dl class="py exception">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.</span></span><span class="sig-name descname"><span class="pre">PyIpxactException</span></span><a class="reference internal" href="../_modules/pyEDAA/IPXACT.html#PyIpxactException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base-exception for all exceptions in this package.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-88aa910f0886fe774ce37eba4e2bca43b9f6e70a.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of PyIpxactException</p></object></div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__cause__">
+<span class="sig-name descname"><span class="pre">__cause__</span></span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__cause__" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception cause</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__context__">
+<span class="sig-name descname"><span class="pre">__context__</span></span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__context__" title="Permalink to this definition">¶</a></dt>
+<dd><p>exception context</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__delattr__">
+<span class="sig-name descname"><span class="pre">__delattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__delattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement delattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__getattribute__">
+<span class="sig-name descname"><span class="pre">__getattribute__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__getattribute__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return getattr(self, name).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__new__">
+<span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__new__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__reduce__">
+<span class="sig-name descname"><span class="pre">__reduce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__reduce__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper for pickle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__setattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.add_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.PyIpxactException.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.PyIpxactException.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Python Class Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyEDAA.IPXACT.Catalog.html" class="btn btn-neutral float-right" title="pyEDAA.IPXACT.Catalog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2022, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 23.12.2022.
+      </span></p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
