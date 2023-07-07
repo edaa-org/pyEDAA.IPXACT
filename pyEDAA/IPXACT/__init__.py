@@ -46,11 +46,11 @@ __version__ =   "0.3.2"
 class IpxactSchemaStruct:
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
-	Version : str =         None    #: Schema version
-	NamespacePrefix : str = None    #: XML namespace prefix
-	SchemaUri : str =       None    #: schema URI
-	SchemaUrl : str =       None    #: schema URL
-	LocalPath : Path =      None    #: local path
+	Version: str             #: Schema version
+	NamespacePrefix: str     #: XML namespace prefix
+	SchemaUri: str           #: Schema URI
+	SchemaUrl: str           #: Schema URL
+	LocalPath: Path          #: Local path
 
 	def __init__(self, version : str, namespacePrefix : str, schemaUri : str, schemaUrl : str, localPath : Path):
 		"""Constructor"""
@@ -89,10 +89,10 @@ __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default
 class Vlnv:
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
-	Vendor :  str = None    #: Vendor name in a VLNV unique identifier
-	Library : str = None    #: Library name in a VLNV unique identifier
-	Name :    str = None    #: Component name in a VLNV unique identifier
-	Version : str = None    #: Version in a VLNV unique identifier
+	Vendor:  str    #: Vendor name in a VLNV unique identifier
+	Library: str    #: Library name in a VLNV unique identifier
+	Name:    str    #: Component name in a VLNV unique identifier
+	Version: str    #: Version in a VLNV unique identifier
 
 	def __init__(self, vendor, library, name, version):
 		"""Constructor"""
@@ -121,7 +121,7 @@ class Vlnv:
 class RootElement:
 	"""Base-class for all IP-XACT data classes."""
 
-	_vlnv : Vlnv = None   #: VLNV unique identifier.
+	_vlnv: Vlnv   #: VLNV unique identifier.
 
 	def __init__(self, vlnv):
 		"""Base-constructor to set a VLNV field for all derives classes."""
