@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2022 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -132,7 +132,7 @@ class Catalog(RootElement):
 			raise PyIpxactException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
 
 		try:
-			with filePath.open(encoding="utf-8") as fileHandle:
+			with filePath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not open in binary?
 				content = fileHandle.read()
 				content = bytes(bytearray(content, encoding='utf-8'))
 		except OSError as ex:
@@ -140,7 +140,7 @@ class Catalog(RootElement):
 
 		schemaPath = Path("../lib/schema/ieee-1685-2014/index.xsd")
 		try:
-			with schemaPath.open(encoding="utf-8") as fileHandle:
+			with schemaPath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not opening as binary?
 				schema = fileHandle.read()
 				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:

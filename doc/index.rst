@@ -17,17 +17,17 @@
 
    |  |SHIELD:svg:IPXACT-github| |SHIELD:svg:IPXACT-src-license| |SHIELD:svg:IPXACT-ghp-doc| |SHIELD:svg:IPXACT-doc-license| |SHIELD:svg:IPXACT-gitter|
    |  |SHIELD:svg:IPXACT-pypi-tag| |SHIELD:svg:IPXACT-pypi-status| |SHIELD:svg:IPXACT-pypi-python|
-   |  |SHIELD:svg:IPXACT-gha-test| |SHIELD:svg:IPXACT-lib-status| |SHIELD:svg:IPXACT-codacy-quality|
+   |  |SHIELD:svg:IPXACT-gha-test| |SHIELD:svg:IPXACT-lib-status| |SHIELD:svg:IPXACT-codacy-quality| |SHIELD:svg:IPXACT-codacy-coverage| |SHIELD:svg:IPXACT-codecov-coverage|
 
-.. Disabled shields: |SHIELD:svg:IPXACT-codacy-coverage| |SHIELD:svg:IPXACT-codecov-coverage| |SHIELD:svg:IPXACT-lib-dep| |SHIELD:svg:IPXACT-req-status| |SHIELD:svg:IPXACT-lib-rank|
+.. Disabled shields: |SHIELD:svg:IPXACT-lib-dep| |SHIELD:svg:IPXACT-req-status| |SHIELD:svg:IPXACT-lib-rank|
 
 .. only:: latex
 
    |SHIELD:png:IPXACT-github| |SHIELD:png:IPXACT-src-license| |SHIELD:png:IPXACT-ghp-doc| |SHIELD:png:IPXACT-doc-license| |SHIELD:png:IPXACT-gitter|
    |SHIELD:png:IPXACT-pypi-tag| |SHIELD:png:IPXACT-pypi-status| |SHIELD:png:IPXACT-pypi-python|
-   |SHIELD:png:IPXACT-gha-test| |SHIELD:png:IPXACT-lib-status| |SHIELD:png:IPXACT-codacy-quality|
+   |SHIELD:png:IPXACT-gha-test| |SHIELD:png:IPXACT-lib-status| |SHIELD:png:IPXACT-codacy-quality| |SHIELD:png:IPXACT-codacy-coverage| |SHIELD:png:IPXACT-codecov-coverage|
 
-.. Disabled shields: |SHIELD:png:IPXACT-codacy-coverage| |SHIELD:png:IPXACT-codecov-coverage| |SHIELD:png:IPXACT-lib-dep| |SHIELD:png:IPXACT-req-status| |SHIELD:png:IPXACT-lib-rank|
+.. Disabled shields: |SHIELD:png:IPXACT-lib-dep| |SHIELD:png:IPXACT-req-status| |SHIELD:png:IPXACT-lib-rank|
 
 pyEDAA.IPXACT Documentation
 ###########################
