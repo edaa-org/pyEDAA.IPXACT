@@ -166,17 +166,17 @@ class Catalog(RootElement):
 		items = []
 		for rootElements in root:
 			element = etree.QName(rootElements)
-			if (element.localname == "vendor"):
+			if element.localname == "vendor":
 				vendor = rootElements.text
-			elif (element.localname == "library"):
+			elif element.localname == "library":
 				library = rootElements.text
-			elif (element.localname == "name"):
+			elif element.localname == "name":
 				name = rootElements.text
-			elif (element.localname == "version"):
+			elif element.localname == "version":
 				version = rootElements.text
-			elif (element.localname == "description"):
+			elif element.localname == "description":
 				description = rootElements.text
-			elif (element.localname == "catalogs"):
+			elif element.localname == "catalogs":
 				for ipxactFileElement in rootElements:
 					items.append(IpxactFile.FromXml(ipxactFileElement))
 			else:
