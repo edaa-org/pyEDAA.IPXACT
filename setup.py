@@ -29,6 +29,7 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
+from itertools           import chain
 from pathlib             import Path
 from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
@@ -45,5 +46,14 @@ DescribePythonPackageHostedOnGitHub(
 	developmentStatus="alpha",
 	classifiers=list(DEFAULT_CLASSIFIERS) + [
 		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
-	]
+	],
+	dataFiles={
+		packageName: [
+			str(file.relative_to(Path.cwd()))
+			for file in chain(
+				Path.cwd().glob("ipxact*/**/*"),
+				Path.cwd().glob("ieee*/**/*")
+			)
+		]
+	}
 )

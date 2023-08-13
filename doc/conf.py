@@ -208,7 +208,7 @@ extlinks = {
 	'ghrepo':      ('https://github.com/%s', 'gh:'),
 	'ghissue':     ('https://github.com/edaa-org/pyEDAA.IPXACT/issues/%s', 'issue #'),
 	'ghpull':      ('https://github.com/edaa-org/pyEDAA.IPXACT/pull/%s', 'pull request #'),
-	'ghsrc':       ('https://github.com/edaa-org/pyEDAA.IPXACT/blob/main/%s', ''),
+	'ghsrc':       ('https://github.com/edaa-org/pyEDAA.IPXACT/blob/main/%s', None),
 	'pypiproject': ('https://pypi.org/project/%s', 'pypi:')
 }
 

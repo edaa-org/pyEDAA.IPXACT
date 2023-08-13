@@ -22,7 +22,7 @@
 [![Libraries.io SourceRank](https://img.shields.io/librariesio/sourcerank/pypi/pyEDAA.IPXACT?longCache=true&style=flat-square)](https://libraries.io/github/edaa-org/pyEDAA.IPXACT/sourcerank)
 -->
 
-An IP-XACT Document Object Model (DOM) for [IEEE 1685-2014][IEEE-1685-2014] written in Python.
+An IP-XACT Document Object Model (DOM) for [IEEE 1685-2022][IEEE-1685-2022] written in Python.
 
 # Features
 
@@ -35,8 +35,9 @@ An IP-XACT Document Object Model (DOM) for [IEEE 1685-2014][IEEE-1685-2014] writ
 * Standards:
   * [IEEE 1685-2009][IEEE-1685-2009]
   * [IEEE 1685-2014][IEEE-1685-2014]
+  * [IEEE 1685-2022][IEEE-1685-2022]
 * Schema files:
-  * [IPXACT-Schema](https://github.com/UnofficialRepos/IPXACT-Schema) at GitHub
+  * [IPXACT-Schema](https://github.com/edaa-org/IPXACT-Schema) at GitHub
   * [IP-XACT][IPXACT] at [Accellera][Accellera]
 
 
@@ -47,7 +48,8 @@ An IP-XACT Document Object Model (DOM) for [IEEE 1685-2014][IEEE-1685-2014] writ
 
 # License
 
-This Python library (source code) is licensed under [Apache License 2.0](LICENSE.md).
+This Python package (source code) is licensed under [Apache License 2.0](LICENSE.md).  
+The accompanying documentation is licensed under [Creative Commons - Attribution 4.0 (CC-BY 4.0)](doc/Doc-License.rst).
 
 -------------------------
 SPDX-License-Identifier: Apache-2.0
@@ -55,5 +57,6 @@ SPDX-License-Identifier: Apache-2.0
 
 [IEEE-1685-2009]: https://standards.ieee.org/findstds/standard/1685-2009.html
 [IEEE-1685-2014]: https://standards.ieee.org/findstds/standard/1685-2014.html
+[IEEE-1685-2022]: https://standards.ieee.org/findstds/standard/1685-2022.html
 [IPXACT]:         http://accellera.org/downloads/standards/ip-xact
 [Accellera]:      http://accellera.org
