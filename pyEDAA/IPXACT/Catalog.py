@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -29,6 +29,7 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
+from sys import version_info
 from typing import List
 
 from lxml               import etree
@@ -37,6 +38,7 @@ from textwrap           import dedent
 
 from pathlib            import Path
 
+from pyTooling.Common import getFullyQualifiedName
 from pyTooling.Decorators    import export
 
 from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
@@ -50,7 +52,7 @@ class IpxactFile:
 	_name: str           #: Name
 	_description: str    #: Description
 
-	def __init__(self, vlnv : Vlnv, name : str, description : str):
+	def __init__(self, vlnv: Vlnv, name: str, description: str):
 		"""Constructor"""
 		self._vlnv = vlnv
 		self._name = name
@@ -111,7 +113,7 @@ class Catalog(RootElement):
 	_designs: List
 	_generatorChains: List
 
-	def __init__(self, vlnv : Vlnv, description : str):
+	def __init__(self, vlnv: Vlnv, description: str):
 		super().__init__(vlnv)
 
 		self._description =             description
@@ -191,16 +193,19 @@ class Catalog(RootElement):
 
 		return catalog
 
-	def AddItem(self, item):
+	def AddItem(self, item) -> None:
 		if isinstance(item, IpxactFile):
 			self._catalogs.append(item)
 		elif isinstance(item, Component):
 			self._components.append(item)
 		else:
-			raise TypeError(f"Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
+			ex = TypeError(f"Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
+			raise ex
 
 
-	def ToXml(self):
+	def ToXml(self) -> str:
 		"""Converts the object's data into XML format."""
 
 		buffer = dedent("""\

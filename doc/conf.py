@@ -61,7 +61,7 @@ pygments_style = 'stata-dark'
 # ==============================================================================
 prologPath = Path("prolog.inc")
 try:
-	with prologPath.open("r") as fileHandle:
+	with prologPath.open("r", encoding="utf-8") as fileHandle:
 		rst_prolog = fileHandle.read()
 except Exception as ex:
 	print(f"[ERROR:] While reading '{prologPath}'.")
@@ -205,11 +205,11 @@ autodoc_typehints = "both"
 # Sphinx.Ext.ExtLinks
 # ==============================================================================
 extlinks = {
-	'ghrepo':      ('https://github.com/%s', 'gh:'),
-	'ghissue':     ('https://github.com/edaa-org/pyEDAA.IPXACT/issues/%s', 'issue #'),
-	'ghpull':      ('https://github.com/edaa-org/pyEDAA.IPXACT/pull/%s', 'pull request #'),
+	'ghrepo':      ('https://github.com/%s', 'gh:%s'),
+	'ghissue':     ('https://github.com/edaa-org/pyEDAA.IPXACT/issues/%s', 'issue #%s'),
+	'ghpull':      ('https://github.com/edaa-org/pyEDAA.IPXACT/pull/%s', 'pull request #%s'),
 	'ghsrc':       ('https://github.com/edaa-org/pyEDAA.IPXACT/blob/main/%s', None),
-	'pypiproject': ('https://pypi.org/project/%s', 'pypi:')
+	'pypiproject': ('https://pypi.org/project/%s', 'pypi:%s')
 }
 
 

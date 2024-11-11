@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -37,7 +37,7 @@ from pyTooling.Decorators import export
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2016-2023, Patrick Lehmann"
+__copyright__ = "2016-2024, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
 __version__ =   "0.3.2"
 
@@ -52,7 +52,7 @@ class IpxactSchemaStruct:
 	SchemaUrl: str           #: Schema URL
 	LocalPath: Path          #: Local path
 
-	def __init__(self, version : str, namespacePrefix : str, schemaUri : str, schemaUrl : str, localPath : Path):
+	def __init__(self, version: str, namespacePrefix: str, schemaUri: str, schemaUrl: str, localPath: Path):
 		"""Constructor"""
 		self.Version =         version
 		self.NamespacePrefix = namespacePrefix

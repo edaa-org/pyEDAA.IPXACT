@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -47,7 +47,7 @@ if __name__ == "__main__": # pragma: no cover
 
 class Catalogs(TestCase):
 	@mark.xfail(reason="This has a known issue.")
-	def test_Catalog(self):
+	def test_Catalog(self) -> None:
 		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
 
 		catalog = Catalog(vlnv, "IP Core Library")
@@ -56,6 +56,6 @@ class Catalogs(TestCase):
 		catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
 
 	@mark.xfail(reason="This has a known issue.")
-	def test_ReadFromFile(self):
+	def test_ReadFromFile(self) -> None:
 		filePath = Path("catalog.xml")
 		catalog = Catalog.FromFile(filePath)

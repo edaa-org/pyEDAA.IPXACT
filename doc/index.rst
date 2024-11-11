@@ -158,7 +158,7 @@ News
 * Referenced IP-XACT schema definitions from :ghrepo:`UnofficialRepos/IPXACT-Schema <UnofficialRepos/IPXACT-Schema>`
 
 
-.. _contributors:
+.. _CONTRIBUTORS:
 
 Contributors
 ************
@@ -168,7 +168,7 @@ Contributors
 * `and more... <https://GitHub.com/edaa-org/pyEDAA.IPXACT/graphs/contributors>`__
 
 
-.. _license:
+.. _LICENSE:
 
 License
 *******

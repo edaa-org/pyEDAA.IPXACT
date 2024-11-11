@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -40,7 +40,7 @@ from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 class Design(RootElement):
 	"""Represents an IP-XACT design."""
 
-	def __init__(self, vlnv : Vlnv, description : str):
+	def __init__(self, vlnv: Vlnv, description: str):
 		super().__init__(vlnv)
 
 		self._description =             description
@@ -48,14 +48,14 @@ class Design(RootElement):
 		self._interconnections =        []
 		self._adHocConnections =        []
 
-	def AddItem(self, item):
+	def AddItem(self, item) -> None:
 		if isinstance(item, ComponentInstance):   self._componentInstances.append(item)
 		elif isinstance(item, Interconnection):   self._interconnections.append(item)
 		elif isinstance(item, AdHocConnection):   self._adHocConnections.append(item)
 		else:
 			raise ValueError()
 
-	def ToXml(self):
+	def ToXml(self) -> str:
 		"""Converts the object's data into XML format."""
 
 		buffer = dedent("""\
@@ -125,7 +125,7 @@ class IpxactFile:
 class ComponentInstance:
 	"""Represents an IP-XACT component instance."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -138,7 +138,7 @@ class ComponentInstance:
 class Interconnection:
 	"""Represents an IP-XACT interconnection."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -151,7 +151,7 @@ class Interconnection:
 class AdHocConnection:
 	"""Represents an IP-XACT ad-hoc connection."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):

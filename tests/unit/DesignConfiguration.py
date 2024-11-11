@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2024 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -43,7 +43,7 @@ if __name__ == "__main__": # pragma: no cover
 
 
 class Catalogs(TestCase):
-	def test_DesignConfiguration(self):
+	def test_DesignConfiguration(self) -> None:
 		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
 
 		designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
