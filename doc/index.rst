@@ -78,7 +78,7 @@ IP-XACT Resources
 
 * Schema files:
 
-  * :ghrepo:`IPXACT-Schema <edaa-org/IPXACT-Schema>` at GitHub
+  * :gh:`IPXACT-Schema <edaa-org/IPXACT-Schema>` at GitHub
   * `IP-XACT <http://accellera.org/downloads/standards/ip-xact>`__ at `Accellera <http://accellera.org>`__
 
 .. #Comment
@@ -113,7 +113,7 @@ News
 
   * Collect code coverage.
 
-* Linked IP-XACT schema submodule to new location as :ghrepo:`edaa-org/IPXACT-Schema <edaa-org/IPXACT-Schema>`.
+* Linked IP-XACT schema submodule to new location as :gh:`edaa-org/IPXACT-Schema <edaa-org/IPXACT-Schema>`.
 
 
 .. only:: html
@@ -155,7 +155,7 @@ News
    .. rubric:: Initial Document Object Model (DOM)
 
 * Initial Document Object Model (DOM).
-* Referenced IP-XACT schema definitions from :ghrepo:`UnofficialRepos/IPXACT-Schema <UnofficialRepos/IPXACT-Schema>`
+* Referenced IP-XACT schema definitions from :gh:`UnofficialRepos/IPXACT-Schema <UnofficialRepos/IPXACT-Schema>`
 
 
 .. _CONTRIBUTORS:
@@ -163,8 +163,8 @@ News
 Contributors
 ************
 
-* :ghrepo:`Patrick Lehmann <Paebbels>` (Maintainer)
-* :ghrepo:`Unai Martinez-Corral <umarcor>`
+* :gh:`Patrick Lehmann <Paebbels>` (Maintainer)
+* :gh:`Unai Martinez-Corral <umarcor>`
 * `and more... <https://GitHub.com/edaa-org/pyEDAA.IPXACT/graphs/contributors>`__
 
 
@@ -182,14 +182,6 @@ License
 
    This Python package (source code) is licensed under **Apache License 2.0**. |br|
    The accompanying documentation is licensed under **Creative Commons - Attribution 4.0 (CC-BY 4.0)**.
-
-------------------------------------
-
-.. |docdate| date:: %d.%b %Y - %H:%M
-
-.. only:: html
-
-   This document was generated on |docdate|.
 
 
 .. toctree::
@@ -217,13 +209,19 @@ License
 
 .. raw:: latex
 
-   \part{References}
+   \part{References and Reports}
 
 .. toctree::
-   :caption: References
+   :caption: References and Reports
    :hidden:
 
-   pyEDAA.IPXACT/index
+   Python Class Reference <pyEDAA.IPXACT/pyEDAA.IPXACT>
+   unittests/index
+   coverage/index
+   Doc. Coverage Report <DocCoverage>
+   Static Type Check Report ➚ <typing/index>
+
+.. Coverage Report ➚ <coverage/index>
 
 .. raw:: latex
 
@@ -233,10 +231,9 @@ License
    :caption: Appendix
    :hidden:
 
-   Coverage Report ➚ <coverage/index>
-   Static Type Check Report ➚ <typing/index>
    License
    Doc-License
    Glossary
    genindex
-   py-modindex
+   Python Module Index <modindex>
+   TODO
