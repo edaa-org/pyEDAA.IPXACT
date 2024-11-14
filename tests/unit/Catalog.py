@@ -35,8 +35,7 @@ from pytest       import mark
 from unittest     import TestCase
 
 from pyEDAA.IPXACT import Vlnv
-from pyEDAA.IPXACT.Catalog import Catalog
-from pyEDAA.IPXACT.Design  import IpxactFile
+from pyEDAA.IPXACT.Catalog import IpxactFile, Catalog
 
 
 if __name__ == "__main__": # pragma: no cover
@@ -57,5 +56,5 @@ class Catalogs(TestCase):
 
 	@mark.xfail(reason="This has a known issue.")
 	def test_ReadFromFile(self) -> None:
-		filePath = Path("catalog.xml")
+		filePath = Path("tests/catalog.xml")
 		catalog = Catalog.FromFile(filePath)

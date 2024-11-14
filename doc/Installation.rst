@@ -462,7 +462,7 @@ Ensure :ref:`packaging requirements <DEP/packaging>` are installed.
          python3 -m pip uninstall -y pyEDAA.IPXACT
 
          # Install from wheel
-         python3 -m pip install ./dist/pyEDAA.IPXACT-0.3.0-py3-none-any.whl
+         python3 -m pip install ./dist/pyEDAA.IPXACT-0.4.0-py3-none-any.whl
 
    .. tab-item:: Windows
       :sync: Windows
@@ -478,7 +478,7 @@ Ensure :ref:`packaging requirements <DEP/packaging>` are installed.
          py -m pip uninstall -y pyEDAA.IPXACT
 
          # Install from wheel
-         py -m pip install .\dist\pyEDAA.IPXACT-0.3.0-py3-none-any.whl
+         py -m pip install .\dist\pyEDAA.IPXACT-0.4.0-py3-none-any.whl
 
 .. note::
 
