@@ -49,9 +49,12 @@ class DesignConfiguration(RootElement):
 		self._viewConfiguration =             None
 
 	def SetItem(self, item):
-		if isinstance(item,   GeneratorChainConfiguration):   self._generatorChainConfiguration =   item
-		elif isinstance(item, InterconnectionConfiguration):  self._interconnectionConfiguration =  item
-		elif isinstance(item, ViewConfiguration):             self._viewConfiguration =             item
+		if isinstance(item,   GeneratorChainConfiguration):
+			self._generatorChainConfiguration =   item
+		elif isinstance(item, InterconnectionConfiguration):
+			self._interconnectionConfiguration =  item
+		elif isinstance(item, ViewConfiguration):
+			self._viewConfiguration =             item
 		else:
 			raise ValueError()
 

@@ -52,12 +52,16 @@ setup(**DescribePythonPackageHostedOnGitHub(
 	],
 	dataFiles={
 		packageName: [
-			str(file)
-			for file in chain(
-				Path.cwd().glob("ipxact*/**/*"),
-				Path.cwd().glob("ieee*/**/*")
+			str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/py.typed")
 			)
-		]
+		],
 	}
 ))
-

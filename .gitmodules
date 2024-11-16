@@ -1,3 +1,3 @@
 [submodule "lib/schema"]
-	path = lib/schema
+	path = pyEDAA/IPXACT/Schema
 	url = ../IPXACT-Schema.git

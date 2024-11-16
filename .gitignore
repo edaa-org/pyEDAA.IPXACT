@@ -15,7 +15,7 @@ coverage.xml
 /report/unit
 
 # setuptools
-/build/**/*.*
+/build/**/*
 /dist/**/*.*
 /*.egg-info
 
