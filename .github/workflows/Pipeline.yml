@@ -9,7 +9,7 @@ on:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@dev
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r4
     with:
       package_namespace: pyEDAA
       package_name: IPXACT
