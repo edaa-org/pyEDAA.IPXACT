@@ -44,11 +44,11 @@
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT/network/dependents
 
 .. # GHA test and coverage
-.. |SHIELD:svg:IPXACT-gha-test| image:: https://img.shields.io/github/workflow/status/edaa-org/pyEDAA.IPXACT/Pipeline/main?longCache=true&style=flat-square&label=Build%20and%20Test&logo=GitHub%20Actions&logoColor=FFFFFF
+.. |SHIELD:svg:IPXACT-gha-test| image:: https://img.shields.io/github/actions/workflow/status/edaa-org/pyEDAA.IPXACT/Pipeline.ymllongCache=true&style=flat-square&label=Build%20and%20Test&logo=GitHub%20Actions&logoColor=FFFFFF
    :alt: GitHub Workflow - Build and Test Status
    :height: 22
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT/actions/workflows/Pipeline.yml
-.. |SHIELD:png:IPXACT-gha-test| image:: https://raster.shields.io/github/workflow/status/edaa-org/pyEDAA.IPXACT/Pipeline/main?longCache=true&style=flat-square&label=Build%20and%20Test&logo=GitHub%20Actions&logoColor=FFFFFF
+.. |SHIELD:png:IPXACT-gha-test| image:: https://raster.shields.io/github/actions/workflow/status/edaa-org/pyEDAA.IPXACT/Pipeline.ymllongCache=true&style=flat-square&label=Build%20and%20Test&logo=GitHub%20Actions&logoColor=FFFFFF
    :alt: GitHub Workflow - Build and Test Status
    :height: 22
    :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT/actions/workflows/Pipeline.yml
