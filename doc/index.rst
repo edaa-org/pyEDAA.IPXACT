@@ -1,9 +1,18 @@
 .. include:: shields.inc
 
-.. image:: _static/logo.svg
-   :height: 90 px
-   :align: center
-   :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT
+.. only:: html
+
+   .. image:: _static/logo.svg
+      :height: 90 px
+      :align: center
+      :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT
+
+.. only:: latex
+
+   .. image:: _static/logo.png
+      :height: 90 px
+      :align: center
+      :target: https://GitHub.com/edaa-org/pyEDAA.IPXACT
 
 .. raw:: html
 
