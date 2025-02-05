@@ -29,12 +29,12 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Testcase for ``Catalog``."""
-from unittest     import TestCase
+"""Testcases for IP-XACT XSD schema files."""
+from unittest import TestCase
 
-from pyEDAA.IPXACT import Vlnv
-from pyEDAA.IPXACT.DesignConfiguration import DesignConfiguration
+from lxml.etree    import XMLParser, parse, XMLSchema
 
+from pyEDAA.IPXACT import __VERSION_TABLE__, __DEFAULT_VERSION__, __DEFAULT_SCHEMA__
 
 if __name__ == "__main__": # pragma: no cover
 	print("ERROR: you called a testcase declaration file as an executable module.")
@@ -42,8 +42,22 @@ if __name__ == "__main__": # pragma: no cover
 	exit(1)
 
 
-class Catalogs(TestCase):
-	def test_DesignConfiguration(self) -> None:
-		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
+class CheckPaths(TestCase):
+	def test_DefaultVersion(self):
+		self.assertEqual(2022, int(__DEFAULT_VERSION__))
 
-		designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
+	def test_DefaultSchema(self):
+		self.assertEqual(2022, __DEFAULT_SCHEMA__.Version)
+
+	def test_VersionTable(self):
+		print()
+
+		for version, schema in __VERSION_TABLE__.items():
+			with self.subTest(version):
+				self.assertTrue(schema.LocalPath.exists())
+
+				print(f"Loading schema for '{schema.SchemaUri}' from '{schema.LocalPath}' ...")
+				schemaParser = XMLParser(ns_clean=True)
+				schemaRoot = parse(schema.LocalPath, schemaParser)
+
+				junitSchema = XMLSchema(schemaRoot)

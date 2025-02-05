@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -29,6 +29,10 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
+"""Package installer for 'An abstract SystemRDL language model'."""
+from setuptools          import setup
+
+from itertools           import chain
 from pathlib             import Path
 from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
@@ -37,7 +41,7 @@ packageName =            "pyEDAA.IPXACT"
 packageDirectory =       packageName.replace(".", "/")
 packageInformationFile = Path(f"{packageDirectory}/__init__.py")
 
-DescribePythonPackageHostedOnGitHub(
+setup(**DescribePythonPackageHostedOnGitHub(
 	packageName=packageName,
 	description="A Document-Object-Model (DOM) for IP-XACT files.",
 	gitHubNamespace=gitHubNamespace,
@@ -45,5 +49,19 @@ DescribePythonPackageHostedOnGitHub(
 	developmentStatus="alpha",
 	classifiers=list(DEFAULT_CLASSIFIERS) + [
 		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
-	]
-)
+	],
+	dataFiles={
+		packageName: [
+			str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
+				Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
+				Path.cwd().glob("pyEDAA/IPXACT/py.typed")
+			)
+		],
+	}
+))

@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -66,7 +66,7 @@ class Component(RootElement):
 		else:
 			raise ValueError()
 
-	def AddItem(self, item):
+	def AddItem(self, item) -> None:
 		if isinstance(item, BusInterface):          self._busInterfaces.append(item)
 		elif isinstance(item, IndirectInterface):   self._indirectInterfaces.append(item)
 		elif isinstance(item, Channel):             self._channels.append(item)
@@ -85,7 +85,7 @@ class Component(RootElement):
 		else:
 			raise ValueError()
 
-	def ToXml(self):
+	def ToXml(self) -> str:
 		"""Converts the object's data into XML format."""
 
 		buffer = dedent("""\
@@ -210,7 +210,7 @@ class Component(RootElement):
 class BusInterface:
 	"""Represents an IP-XACT bus interface."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -223,7 +223,7 @@ class BusInterface:
 class IndirectInterface:
 	"""Represents an IP-XACT indirect interface."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -236,7 +236,7 @@ class IndirectInterface:
 class Channel:
 	"""Represents an IP-XACT channel."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -249,7 +249,7 @@ class Channel:
 class RemapState:
 	"""Represents an IP-XACT remap state."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -262,7 +262,7 @@ class RemapState:
 class AddressSpace:
 	"""Represents an IP-XACT address space."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -275,7 +275,7 @@ class AddressSpace:
 class MemoryMap:
 	"""Represents an IP-XACT memory map."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -288,7 +288,7 @@ class MemoryMap:
 class Model:
 	"""Represents an IP-XACT model."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -301,7 +301,7 @@ class Model:
 class ComponentGenerator:
 	"""Represents an IP-XACT component generator."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -314,7 +314,7 @@ class ComponentGenerator:
 class Choice:
 	"""Represents an IP-XACT choice."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -327,7 +327,7 @@ class Choice:
 class FileSet:
 	"""Represents an IP-XACT fileset."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -340,7 +340,7 @@ class FileSet:
 class WhiteboxElement:
 	"""Represents an IP-XACT whitebos element."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -353,7 +353,7 @@ class WhiteboxElement:
 class Cpu:
 	"""Represents an IP-XACT cpu."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -366,7 +366,7 @@ class Cpu:
 class OtherClockDriver:
 	"""Represents an IP-XACT *other* clock driver."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -379,7 +379,7 @@ class OtherClockDriver:
 class ResetType:
 	"""Represents an IP-XACT reset type."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -392,7 +392,7 @@ class ResetType:
 class Parameter:
 	"""Represents an IP-XACT parameter."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -405,7 +405,7 @@ class Parameter:
 class Assertion:
 	"""Represents an IP-XACT assertion."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):

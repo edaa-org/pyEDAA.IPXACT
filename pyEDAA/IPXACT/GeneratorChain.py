@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -40,7 +40,7 @@ from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 class GeneratorChain(RootElement):
 	"""Represents an IP-XACT generator chain."""
 
-	def __init__(self, vlnv : Vlnv, displayName : str, description : str, chainGroup):
+	def __init__(self, vlnv: Vlnv, displayName: str, description: str, chainGroup):
 		"""Constructor"""
 
 		super().__init__(vlnv)
@@ -59,7 +59,7 @@ class GeneratorChain(RootElement):
 		else:
 			raise ValueError()
 
-	def ToXml(self):
+	def ToXml(self) -> str:
 		"""Converts the object's data into XML format."""
 
 		buffer = dedent("""\
@@ -108,7 +108,7 @@ class GeneratorChain(RootElement):
 class GeneratorChainSelector:
 	"""Represents an IP-XACT generator chain selector."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -121,7 +121,7 @@ class GeneratorChainSelector:
 class ComponentGeneratorSelector:
 	"""Represents an IP-XACT component generator selector."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -134,7 +134,7 @@ class ComponentGeneratorSelector:
 class Generator:
 	"""Represents an IP-XACT generator."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):

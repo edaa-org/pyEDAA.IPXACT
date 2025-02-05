@@ -6,9 +6,16 @@ __pycache__/
 .coverage
 .cov
 coverage.xml
+/report/coverage
+
+# mypy
+/report/typing
+
+# pytest
+/report/unit
 
 # setuptools
-/build/**/*.*
+/build/**/*
 /dist/**/*.*
 /*.egg-info
 
@@ -19,7 +26,9 @@ coverage.xml
 /doc/_build/
 /doc/_theme/
 /doc/pyEDAA.IPXACT/**/*.*
-!/doc/pyEDAA.IPXACT/index.rst
 
-# PyCharm project
+# PyCharm project files
 /.idea/workspace.xml
+
+# Git files
+!.git*

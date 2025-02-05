@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -40,7 +40,7 @@ from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
 class DesignConfiguration(RootElement):
 	"""Represents an IP-XACT design configuration."""
 
-	def __init__(self, vlnv : Vlnv, description : str):
+	def __init__(self, vlnv: Vlnv, description: str):
 		super().__init__(vlnv)
 
 		self._description =             description
@@ -49,13 +49,16 @@ class DesignConfiguration(RootElement):
 		self._viewConfiguration =             None
 
 	def SetItem(self, item):
-		if isinstance(item,   GeneratorChainConfiguration):   self._generatorChainConfiguration =   item
-		elif isinstance(item, InterconnectionConfiguration):  self._interconnectionConfiguration =  item
-		elif isinstance(item, ViewConfiguration):             self._viewConfiguration =             item
+		if isinstance(item,   GeneratorChainConfiguration):
+			self._generatorChainConfiguration =   item
+		elif isinstance(item, InterconnectionConfiguration):
+			self._interconnectionConfiguration =  item
+		elif isinstance(item, ViewConfiguration):
+			self._viewConfiguration =             item
 		else:
 			raise ValueError()
 
-	def ToXml(self):
+	def ToXml(self) -> str:
 		"""Converts the object's data into XML format."""
 
 		buffer = dedent("""\
@@ -100,7 +103,7 @@ class DesignConfiguration(RootElement):
 class GeneratorChainConfiguration:
 	"""Represents an IP-XACT generator chain configuration."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -113,7 +116,7 @@ class GeneratorChainConfiguration:
 class InterconnectionConfiguration:
 	"""Represents an IP-XACT interconnection configuration."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):
@@ -126,7 +129,7 @@ class InterconnectionConfiguration:
 class ViewConfiguration:
 	"""Represents an IP-XACT view configuration."""
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	def ToXml(self, indent=0):

@@ -1,15 +1,15 @@
 Further Resources
 #################
 
-* :pypiproject:`pyIPXACT` was moved and renamed to pyEDAA.IPXACT (this repository).
-* :pypiproject:`peakrdl-ipxact`
+* :pypi:`pyIPXACT` was moved and renamed to pyEDAA.IPXACT (this repository).
+* :pypi:`peakrdl-ipxact`
 
-  * :pypiproject:`ralbot-ipxact` was renamed to *peakrdl-ipxact*.
+  * :pypi:`ralbot-ipxact` was renamed to *peakrdl-ipxact*.
 
-* :pypiproject:`ipxact2systemverilog`
-* :ghrepo:`edaa-org/IPXACT-Schema`
-* :ghrepo:`iDoka/ipxact-cli-tools`
-* :ghrepo:`olofk/ipyxact`
-* :ghrepo:`kactus2`
+* :pypi:`ipxact2systemverilog`
+* :gh:`edaa-org/IPXACT-Schema`
+* :gh:`iDoka/ipxact-cli-tools`
+* :gh:`olofk/ipyxact`
+* :gh:`kactus2`
 
   * `research.tuni.fi/system-on-chip/tool <https://research.tuni.fi/system-on-chip/tools/>`__

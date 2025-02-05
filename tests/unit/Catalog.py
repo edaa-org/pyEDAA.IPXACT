@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2023 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -35,8 +35,7 @@ from pytest       import mark
 from unittest     import TestCase
 
 from pyEDAA.IPXACT import Vlnv
-from pyEDAA.IPXACT.Catalog import Catalog
-from pyEDAA.IPXACT.Design  import IpxactFile
+from pyEDAA.IPXACT.Catalog import IpxactFile, Catalog
 
 
 if __name__ == "__main__": # pragma: no cover
@@ -47,7 +46,7 @@ if __name__ == "__main__": # pragma: no cover
 
 class Catalogs(TestCase):
 	@mark.xfail(reason="This has a known issue.")
-	def test_Catalog(self):
+	def test_Catalog(self) -> None:
 		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
 
 		catalog = Catalog(vlnv, "IP Core Library")
@@ -56,6 +55,6 @@ class Catalogs(TestCase):
 		catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
 
 	@mark.xfail(reason="This has a known issue.")
-	def test_ReadFromFile(self):
-		filePath = Path("catalog.xml")
+	def test_ReadFromFile(self) -> None:
+		filePath = Path("tests/catalog.xml")
 		catalog = Catalog.FromFile(filePath)
