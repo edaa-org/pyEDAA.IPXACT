@@ -1,0 +1,100 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=============
+pyEDAA.IPXACT
+=============
+
+.. automodule:: pyEDAA.IPXACT
+
+
+
+**Submodules**
+
+.. toctree::
+   :maxdepth: 1
+
+   pyEDAA.IPXACT.Catalog
+   pyEDAA.IPXACT.Component
+   pyEDAA.IPXACT.Design
+   pyEDAA.IPXACT.DesignConfiguration
+   pyEDAA.IPXACT.GeneratorChain
+   pyEDAA.IPXACT.Schema
+
+.. currentmodule:: pyEDAA.IPXACT
+
+
+**Exceptions**
+
+- :py:exc:`PyIpxactException`:
+  Base-exception for all exceptions in this package.
+
+
+
+**Classes**
+
+- :py:class:`IpxactSchema`:
+  Schema descriptor made of version, namespace prefix, URI, URL and local path.
+
+- :py:class:`Vlnv`:
+  VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT.
+
+- :py:class:`RootElement`:
+  Base-class for all IP-XACT data classes.
+
+
+
+---------------------
+
+**Exceptions**
+
+
+
+
+.. autoexception:: PyIpxactException
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: PyIpxactException
+      :parts: 1
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: IpxactSchema
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IpxactSchema
+      :parts: 1
+
+.. autoclass:: Vlnv
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Vlnv
+      :parts: 1
+
+.. autoclass:: RootElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RootElement
+      :parts: 1
