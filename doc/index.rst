@@ -45,7 +45,7 @@ pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <http
 in Python.
 
 
-.. _goals:
+.. _GOALS:
 
 Main Goals
 **********
@@ -63,7 +63,7 @@ Implemented Features
   * IP-XACT catalogs
 
 .. #Comment
-   .. _usecase:
+   .. _USECASES:
 
    Use Cases
    *********
@@ -99,7 +99,7 @@ IP-XACT Resources
    * ✅ `pyEDAA.CLITool <https://github.com/edaa-org/pyEDAA.CLITool>`__
 
 
-.. _news:
+.. _NEWS:
 
 News
 ****
