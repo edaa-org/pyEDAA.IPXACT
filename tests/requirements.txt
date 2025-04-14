@@ -5,7 +5,7 @@ Coverage ~= 7.8
 
 # Test Runner
 pytest ~= 8.3
-pytest-cov ~= 6.0
+pytest-cov ~= 6.1
 
 # Static Type Checking
 mypy ~= 1.15
