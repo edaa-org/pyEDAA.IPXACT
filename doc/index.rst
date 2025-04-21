@@ -227,6 +227,7 @@ License
    Python Class Reference <pyEDAA.IPXACT/pyEDAA.IPXACT>
    unittests/index
    coverage/index
+   CodeCoverage
    Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>
 
