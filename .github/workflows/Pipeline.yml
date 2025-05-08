@@ -16,6 +16,7 @@ jobs:
       codecov:           true
       codacy:            true
       dorny:             true
+      cleanup:           false
     secrets:
       PYPI_TOKEN:    ${{ secrets.PYPI_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
