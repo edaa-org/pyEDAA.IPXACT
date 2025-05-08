@@ -39,8 +39,8 @@ from pyTooling.Decorators import export, readonly
 from pyTooling.Common     import getResourceFile, getFullyQualifiedName
 from pyTooling.Versioning import SemanticVersion, CalendarVersion
 
-from . import Schema
-
+from .       import Schema
+from .Schema import *
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
@@ -151,14 +151,14 @@ class IpxactSchema:
 
 
 #                           version, xmlns,    URI                                                          URL,                                                              Local Path
-_IPXACT_10 =   IpxactSchema("1.0",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0",       "",                                                              getResourceFile(Schema, "ipxact-1.0/index.xsd"))
-_IPXACT_11 =   IpxactSchema("1.1",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1",       "",                                                              getResourceFile(Schema, "ipxact-1.1/index.xsd"))
-_IPXACT_12 =   IpxactSchema("1.2",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2",       "",                                                              getResourceFile(Schema, "ipxact-1.2/index.xsd"))
-_IPXACT_14 =   IpxactSchema("1.4",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4",       "",                                                              getResourceFile(Schema, "ipxact-1.4/index.xsd"))
-_IPXACT_15 =   IpxactSchema("1.5",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5",       "",                                                              getResourceFile(Schema, "ipxact-1.5/index.xsd"))
-_IPXACT_2009 = IpxactSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "",                                                              getResourceFile(Schema, "ieee-1685-2009/index.xsd"))
-_IPXACT_2014 = IpxactSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", getResourceFile(Schema, "ieee-1685-2014/index.xsd"))
-_IPXACT_2022 = IpxactSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", getResourceFile(Schema, "ieee-1685-2022/index.xsd"))
+_IPXACT_10 =   IpxactSchema("1.0",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0",       "",                                                              _IPXACT_10_INDEX)
+_IPXACT_11 =   IpxactSchema("1.1",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1",       "",                                                              _IPXACT_11_INDEX)
+_IPXACT_12 =   IpxactSchema("1.2",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2",       "",                                                              _IPXACT_12_INDEX)
+_IPXACT_14 =   IpxactSchema("1.4",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4",       "",                                                              _IPXACT_14_INDEX)
+_IPXACT_15 =   IpxactSchema("1.5",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5",       "",                                                              _IPXACT_15_INDEX)
+_IPXACT_2009 = IpxactSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "", _IPXACT_2009_INDEX)
+_IPXACT_2014 = IpxactSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", _IPXACT_2014_INDEX)
+_IPXACT_2022 = IpxactSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", _IPXACT_2022_INDEX)
 
 __VERSION_TABLE__: Dict[str, IpxactSchema] = {
 	'1.0':   _IPXACT_10,
@@ -287,5 +287,5 @@ class RootElement:
 
 
 @export
-class PyIpxactException(Exception):
+class IPXACTException(Exception):
 	"""Base-exception for all exceptions in this package."""

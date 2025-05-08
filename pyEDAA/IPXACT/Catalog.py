@@ -41,7 +41,7 @@ from pathlib            import Path
 from pyTooling.Common import getFullyQualifiedName
 from pyTooling.Decorators    import export
 
-from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
+from pyEDAA.IPXACT           import RootElement, Vlnv, IPXACTException, __URI_MAP__, __DEFAULT_SCHEMA__
 from pyEDAA.IPXACT.Component import Component
 
 
@@ -63,7 +63,7 @@ class IpxactFile:
 		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
 		elementTag = etree.QName(element.tag)
 		if elementTag.localname != "ipxactFile":
-			raise PyIpxactException("Expected tag 'ipxactFile'.")
+			raise IPXACTException("Expected tag 'ipxactFile'.")
 
 		for element2 in element:
 			element3 = etree.QName(element2)
@@ -79,7 +79,7 @@ class IpxactFile:
 			elif element3.localname == "description":
 				description = element2.text
 			else:
-				raise PyIpxactException(f"Unsupported tag '{element.localname}' in node 'ipxactFile'.")
+				raise IPXACTException(f"Unsupported tag '{element.localname}' in node 'ipxactFile'.")
 
 		ipxactFile = cls(vlnv, name, description)
 		return ipxactFile
@@ -131,14 +131,14 @@ class Catalog(RootElement):
 		"""Constructs an instance of ``Catalog`` from a file."""
 
 		if not filePath.exists():
-			raise PyIpxactException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
+			raise IPXACTException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
 
 		try:
 			with filePath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not open in binary?
 				content = fileHandle.read()
 				content = bytes(bytearray(content, encoding='utf-8'))
 		except OSError as ex:
-			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
+			raise IPXACTException("Couldn't open '{0!s}'.".format(filePath)) from ex
 
 		schemaPath = Path("../lib/schema/ieee-1685-2014/index.xsd")
 		try:
@@ -146,7 +146,7 @@ class Catalog(RootElement):
 				schema = fileHandle.read()
 				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:
-			raise PyIpxactException(f"Couldn't open '{schemaPath}'.") from ex
+			raise IPXACTException(f"Couldn't open '{schemaPath}'.") from ex
 
 		xmlParser = etree.XMLParser(remove_blank_text=True, encoding="utf-8")
 
@@ -157,11 +157,11 @@ class Catalog(RootElement):
 		rootTag =     etree.QName(root.tag)
 
 		if not xmlschema.validate(root):
-			raise PyIpxactException("The input IP-XACT file is not valid.")
+			raise IPXACTException("The input IP-XACT file is not valid.")
 		elif rootTag.namespace not in __URI_MAP__:
-			raise PyIpxactException(f"The input IP-XACT file uses an unsupported namespace: '{rootTag.namespace}'.")
+			raise IPXACTException(f"The input IP-XACT file uses an unsupported namespace: '{rootTag.namespace}'.")
 		elif rootTag.localname != "catalog":
-			raise PyIpxactException("The input IP-XACT file is not a catalog file.")
+			raise IPXACTException("The input IP-XACT file is not a catalog file.")
 
 		print("==" * 20)
 
@@ -182,7 +182,7 @@ class Catalog(RootElement):
 				for ipxactFileElement in rootElements:
 					items.append(IpxactFile.FromXml(ipxactFileElement))
 			else:
-				raise PyIpxactException(f"Unsupported tag '{element.localname}' at root-level.")
+				raise IPXACTException(f"Unsupported tag '{element.localname}' at root-level.")
 
 		print("==" * 20)
 
