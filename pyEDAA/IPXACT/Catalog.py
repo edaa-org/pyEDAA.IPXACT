@@ -34,7 +34,7 @@ from sys      import version_info
 from textwrap import dedent
 from typing   import List
 
-from lxml     import etree
+from lxml.etree              import XMLParser, XML, XMLSchema, ElementTree, QName
 
 from pyTooling.Decorators    import export
 from pyTooling.Common        import getFullyQualifiedName
@@ -89,7 +89,7 @@ class IpxactFile(Element):
 	def FromXml(cls, ipxactFileElement):
 		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
 
-		elementTag = etree.QName(ipxactFileElement.tag)
+		elementTag = QName(ipxactFileElement.tag)
 		if elementTag.localname != "ipxactFile":
 			raise IPXACTException("Expected tag 'ipxactFile'.")
 
@@ -97,7 +97,7 @@ class IpxactFile(Element):
 		name = None
 		description = None
 		for subElement in ipxactFileElement:
-			element = etree.QName(subElement)
+			element = QName(subElement)
 			if element.localname == "vlnv":
 				vendor =  subElement.get("vendor")
 				library = subElement.get("library")
@@ -117,6 +117,9 @@ class IpxactFile(Element):
 
 	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__):
 		"""Converts the object's data into XML format."""
+		# WORKAROUND:
+		#   Python <=3.11:
+		#   {'\t' * indent} is not supported by Python before 3.12 due to a backslash within {...}
 		indent = "\t" * indent
 		xmlns = schema.NamespacePrefix
 		return dedent(f"""\
@@ -160,32 +163,33 @@ class Catalog(RootElement):
 		"""Constructs an instance of ``Catalog`` from a file."""
 
 		if not filePath.exists():
-			raise IPXACTException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
+			raise IPXACTException(f"IPXACT file '{filePath}' not found.") from FileNotFoundError(str(filePath))
 
 		try:
-			with filePath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not open in binary?
+			with filePath.open("rb") as fileHandle:
 				content = fileHandle.read()
-				content = bytes(bytearray(content, encoding='utf-8'))
 		except OSError as ex:
-			raise IPXACTException("Couldn't open '{0!s}'.".format(filePath)) from ex
+			raise IPXACTException(f"Couldn't open '{filePath}'.") from ex
 
-		schemaPath = Path("../lib/schema/ieee-1685-2014/index.xsd")
+		xmlParser = XMLParser(remove_blank_text=True, encoding="utf-8")
+		root =      XML(content, xmlParser)
+		rootTag =   QName(root.tag)
+
+		namespacePrefix = root.prefix
+		namespaceName = root.nsmap[namespacePrefix]
+		ipxactSchema = __URI_MAP__[namespaceName]
 		try:
-			with schemaPath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not opening as binary?
+			with ipxactSchema.LocalPath.open("rb") as fileHandle:
 				schema = fileHandle.read()
-				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:
-			raise IPXACTException(f"Couldn't open '{schemaPath}'.") from ex
+			raise IPXACTException(f"Couldn't open IP-XACT schema '{ipxactSchema.LocalPath}' for {namespacePrefix} ({namespaceName}).") from ex
 
-		xmlParser = etree.XMLParser(remove_blank_text=True, encoding="utf-8")
+		uri = ipxactSchema.LocalPath.as_uri()
+		schemaRoot =  XML(schema, parser=xmlParser, base_url=uri)
+		schemaTree =  ElementTree(schemaRoot)
+		xmlSchema =   XMLSchema(schemaTree)
 
-		schemaRoot =  etree.XML(schema, xmlParser)
-		schemaTree =  etree.ElementTree(schemaRoot)
-		xmlschema =   etree.XMLSchema(schemaTree)
-		root =        etree.XML(content, xmlParser)
-		rootTag =     etree.QName(root.tag)
-
-		if not xmlschema.validate(root):
+		if not xmlSchema.validate(root):
 			raise IPXACTException("The input IP-XACT file is not valid.")
 		elif rootTag.namespace not in __URI_MAP__:
 			raise IPXACTException(f"The input IP-XACT file uses an unsupported namespace: '{rootTag.namespace}'.")
@@ -196,7 +200,7 @@ class Catalog(RootElement):
 
 		items = []
 		for rootElements in root:
-			element = etree.QName(rootElements)
+			element = QName(rootElements)
 			if element.localname == "vendor":
 				vendor = rootElements.text
 			elif element.localname == "library":

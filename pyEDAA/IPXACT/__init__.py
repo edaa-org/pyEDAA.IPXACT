@@ -77,7 +77,7 @@ class IpxactSchema(metaclass=ExtendedType, slots=True):
 		:param schemaUrl:          URL the IP-XACT schema definition file (XSD).
 		:param localPath:          Path to the local XSD file.
 		"""
-
+		# TODO: add raises ... lines
 		if version is None:
 			raise ValueError(f"Parameter 'version' is None.")
 		elif isinstance(version, str):
@@ -149,6 +149,12 @@ class IpxactSchema(metaclass=ExtendedType, slots=True):
 	@readonly
 	def LocalPath(self) -> Path:
 		return self._localPath
+
+	def __repr__(self) -> str:
+		return f"<{self.__class__.__name__} IP-XACT {self._version} {self._schemaUri} - {self._localPath}>"
+
+	def __str__(self) -> str:
+		return f"IP-XACT {self._version}"
 
 
 #                           version, xmlns,    URI                                                          URL,                                                              Local Path
@@ -263,6 +269,9 @@ class VLNV(metaclass=ExtendedType, slots=True):
 		:return:
 		"""
 
+		# WORKAROUND:
+		#   Python <=3.11:
+		#   {'\t' * indent} is not supported by Python before 3.12 due to a backslash within {...}
 		indent = "\t" * indent
 		xmlns = schema.NamespacePrefix
 

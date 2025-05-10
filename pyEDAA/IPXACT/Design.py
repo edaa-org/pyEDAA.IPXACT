@@ -163,6 +163,9 @@ class IpxactFile(Element):
 	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
+		# WORKAROUND:
+		#   Python <=3.11:
+		#   {'\t' * indent} is not supported by Python before 3.12 due to a backslash within {...}
 		indent = "\t" * indent
 		xmlns = schema.NamespacePrefix
 		return dedent(f"""\
