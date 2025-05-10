@@ -29,24 +29,30 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from textwrap           import dedent
+from textwrap import dedent
+from typing   import Optional as Nullable
 
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
+from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IpxactSchema
 
 
 @export
 class DesignConfiguration(RootElement):
 	"""Represents an IP-XACT design configuration."""
 
-	def __init__(self, vlnv: Vlnv, description: str):
+	_description:                  str
+	_generatorChainConfiguration:  Nullable["GeneratorChainConfiguration"]
+	_interconnectionConfiguration: Nullable["InterconnectionConfiguration"]
+	_viewConfiguration:            Nullable["ViewConfiguration"]
+
+	def __init__(self, vlnv: VLNV, description: str):
 		super().__init__(vlnv)
 
-		self._description =             description
-		self._generatorChainConfiguration =   None
-		self._interconnectionConfiguration =  None
-		self._viewConfiguration =             None
+		self._description =                  description
+		self._generatorChainConfiguration =  None
+		self._interconnectionConfiguration = None
+		self._viewConfiguration =            None
 
 	def SetItem(self, item):
 		if isinstance(item,   GeneratorChainConfiguration):
@@ -58,45 +64,40 @@ class DesignConfiguration(RootElement):
 		else:
 			raise ValueError()
 
-	def ToXml(self) -> str:
+	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
-		buffer = dedent("""\
+		xmlns = schema.NamespacePrefix
+		buffer = dedent(f"""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:designConfiguration
-				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="{schemaUri}"
-				xsi:schemaLocation="{schemaUri} {schemaUrl}">
-			{versionedIdentifier}
-				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(
-				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
-				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
-				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
-				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
-				description=self._description
-			)
+			\txmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			\txmlns:{xmlns}="{schema.SchemaUri}"
+			\txsi:schemaLocation="{schema.SchemaUri} {schema.SchemaUrl}">
+			{self._vlnv.ToXml(schema, isVersionedIdentifier=True)}
+			\t<{xmlns}:description>{self._description}</{xmlns}:description>
+			""")
 
 		if self._generatorChainConfiguration:
-			buffer += "\t<{xmlns}:componentInstances>\n"
-			buffer += self._generatorChainConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:componentInstances>\n"
+			buffer += f"\t<{xmlns}:componentInstances>\n"
+			buffer += self._generatorChainConfiguration.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:componentInstances>\n"
 
 		if self._interconnectionConfiguration:
-			buffer += "\t<{xmlns}:interconnectionConfiguration>\n"
-			buffer += self._interconnectionConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:interconnectionConfiguration>\n"
+			buffer += f"\t<{xmlns}:interconnectionConfiguration>\n"
+			buffer += self._interconnectionConfiguration.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:interconnectionConfiguration>\n"
 
 		if self._viewConfiguration:
-			buffer += "\t<{xmlns}:viewConfiguration>\n"
-			buffer += self._viewConfiguration.ToXml(2)
-			buffer += "\t</{xmlns}:viewConfiguration>\n"
+			buffer += f"\t<{xmlns}:viewConfiguration>\n"
+			buffer += self._viewConfiguration.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:viewConfiguration>\n"
 
-		buffer += dedent("""\
+		buffer += dedent(f"""\
 			</{xmlns}:designConfiguration>
 			""")
 
-		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
+		return buffer
 
 
 @export
@@ -106,7 +107,7 @@ class GeneratorChainConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent=0):
+	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -119,7 +120,7 @@ class InterconnectionConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent=0):
+	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -132,7 +133,7 @@ class ViewConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent=0):
+	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""

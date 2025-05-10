@@ -34,7 +34,7 @@ from pathlib import Path
 from pytest       import mark
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import Vlnv
+from pyEDAA.IPXACT import VLNV
 from pyEDAA.IPXACT.Catalog import IpxactFile, Catalog
 
 
@@ -47,12 +47,12 @@ if __name__ == "__main__": # pragma: no cover
 class Catalogs(TestCase):
 	@mark.xfail(reason="This has a known issue.")
 	def test_Catalog(self) -> None:
-		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VLSI-EDA", "PoC", "PoC", "1.0")
 
 		catalog = Catalog(vlnv, "IP Core Library")
-		catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
-		catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
-		catalog.AddItem(IpxactFile(Vlnv(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
 
 	@mark.xfail(reason="This has a known issue.")
 	def test_ReadFromFile(self) -> None:

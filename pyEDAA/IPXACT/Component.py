@@ -29,18 +29,39 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from textwrap           import dedent
+from sys import version_info
+from textwrap             import dedent
+from typing import List
 
+from pyTooling.Common import getFullyQualifiedName
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT      import RootElement, __DEFAULT_SCHEMA__
+from pyEDAA.IPXACT import __DEFAULT_SCHEMA__, RootElement, VLNV, IpxactSchema, Element
 
 
 @export
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
-	def __init__(self, vlnv, description):
+	_description:         str
+	_busInterfaces:       List
+	_indirectInterfaces:  List
+	_channels:            List
+	_remapStates:         List
+	_addressSpaces:       List
+	_memoryMaps:          List
+	_model:               "Model"
+	_componentGenerators: List
+	_choices:             List
+	_fileSets:            List
+	_whiteboxElements:    List
+	_cpus:                List
+	_otherClockDrivers:   List
+	_resetTypes:          List
+	_parameters:          List
+	_assertions:          List
+
+	def __init__(self, vlnv: VLNV, description: str):
 		super().__init__(vlnv)
 
 		self._description =         description
@@ -61,157 +82,170 @@ class Component(RootElement):
 		self._parameters =          []
 		self._assertions =          []
 
-	def Settem(self, item):
+	def SetItem(self, item):
 		if isinstance(item, Model):                 self._model = item
 		else:
 			raise ValueError()
 
 	def AddItem(self, item) -> None:
-		if isinstance(item, BusInterface):          self._busInterfaces.append(item)
-		elif isinstance(item, IndirectInterface):   self._indirectInterfaces.append(item)
-		elif isinstance(item, Channel):             self._channels.append(item)
-		elif isinstance(item, RemapState):          self._remapStates.append(item)
-		elif isinstance(item, AddressSpace):        self._addressSpaces.append(item)
-		elif isinstance(item, MemoryMap):           self._memoryMaps.append(item)
-		elif isinstance(item, ComponentGenerator):  self._componentGenerators.append(item)
-		elif isinstance(item, Choice):              self._choices.append(item)
-		elif isinstance(item, FileSet):             self._fileSets.append(item)
-		elif isinstance(item, WhiteboxElement):     self._whiteboxElements.append(item)
-		elif isinstance(item, Cpu):                 self._cpus.append(item)
-		elif isinstance(item, OtherClockDriver):    self._otherClockDrivers.append(item)
-		elif isinstance(item, ResetType):           self._resetTypes.append(item)
-		elif isinstance(item, Parameter):           self._parameters.append(item)
-		elif isinstance(item, Assertion):           self._assertions.append(item)
+		if isinstance(item, BusInterface):
+			self._busInterfaces.append(item)
+		elif isinstance(item, IndirectInterface):
+			self._indirectInterfaces.append(item)
+		elif isinstance(item, Channel):
+			self._channels.append(item)
+		elif isinstance(item, RemapState):
+			self._remapStates.append(item)
+		elif isinstance(item, AddressSpace):
+			self._addressSpaces.append(item)
+		elif isinstance(item, MemoryMap):
+			self._memoryMaps.append(item)
+		elif isinstance(item, ComponentGenerator):
+			self._componentGenerators.append(item)
+		elif isinstance(item, Choice):
+			self._choices.append(item)
+		elif isinstance(item, FileSet):
+			self._fileSets.append(item)
+		elif isinstance(item, WhiteboxElement):
+			self._whiteboxElements.append(item)
+		elif isinstance(item, Cpu):
+			self._cpus.append(item)
+		elif isinstance(item, OtherClockDriver):
+			self._otherClockDrivers.append(item)
+		elif isinstance(item, ResetType):
+			self._resetTypes.append(item)
+		elif isinstance(item, Parameter):
+			self._parameters.append(item)
+		elif isinstance(item, Assertion):
+			self._assertions.append(item)
 		else:
-			raise ValueError()
+			ex = TypeError("Parameter 'item' is not a BusInterface, IndirectInterface, Channel, RemapState, AddressSpace, MemoryMap, ComponentGenerator, Choice, FileSet, WhiteboxElement, Cpu, OtherClockDriver, ResetType, Parameter, or Assertion.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
+			raise ex
 
-	def ToXml(self) -> str:
+	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
-		buffer = dedent("""\
-			<?xml version="1.0" encoding="UTF-8"?>
+		xmlns = schema.NamespacePrefix
+		buffer = dedent(f"""\
+			<?xml version="1.0" encoding="UTF-8" ?>
 			<{xmlns}:component
-				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="{schemaUri}"
-				xsi:schemaLocation="{schemaUri} {schemaUrl}">
-			{versionedIdentifier}
-				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(
-				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
-				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
-				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
-				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
-				description=self._description
-			)
+			\txmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			\txmlns:{xmlns}="{schema.SchemaUri}"
+			\txsi:schemaLocation="{schema.SchemaUri} {schema.SchemaUrl}">
+			{self._vlnv.ToXml(schema, isVersionedIdentifier=True)}
+			\t<{xmlns}:description>{self._description}</{xmlns}:description>
+			""")
 
 		if self._busInterfaces:
-			buffer += "\t<{xmlns}:busInterfaces>\n"
+			buffer += f"\t<{xmlns}:busInterfaces>\n"
 			for busInterface in self._busInterfaces:
-				buffer += busInterface.ToXml(2)
-			buffer += "\t</{xmlns}:busInterfaces>\n"
+				buffer += busInterface.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:busInterfaces>\n"
 
 		if self._indirectInterfaces:
-			buffer += "\t<{xmlns}:indirectInterfaces>\n"
+			buffer += f"\t<{xmlns}:indirectInterfaces>\n"
 			for indirectInterface in self._indirectInterfaces:
-				buffer += indirectInterface.ToXml(2)
-			buffer += "\t</{xmlns}:indirectInterfaces>\n"
+				buffer += indirectInterface.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:indirectInterfaces>\n"
 
 		if self._channels:
-			buffer += "\t<{xmlns}:channels>\n"
+			buffer += f"\t<{xmlns}:channels>\n"
 			for channel in self._channels:
-				buffer += channel.ToXml(2)
-			buffer += "\t</{xmlns}:channels>\n"
+				buffer += channel.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:channels>\n"
 
 		if self._remapStates:
-			buffer += "\t<{xmlns}:remapStates>\n"
+			buffer += f"\t<{xmlns}:remapStates>\n"
 			for remapState in self._remapStates:
-				buffer += remapState.ToXml(2)
-			buffer += "\t</{xmlns}:remapStates>\n"
+				buffer += remapState.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:remapStates>\n"
 
 		if self._addressSpaces:
-			buffer += "\t<{xmlns}:addressSpaces>\n"
+			buffer += f"\t<{xmlns}:addressSpaces>\n"
 			for addressSpace in self._addressSpaces:
-				buffer += addressSpace.ToXml(2)
-			buffer += "\t</{xmlns}:addressSpaces>\n"
+				buffer += addressSpace.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:addressSpaces>\n"
 
 		if self._memoryMaps:
-			buffer += "\t<{xmlns}:memoryMaps>\n"
+			buffer += f"\t<{xmlns}:memoryMaps>\n"
 			for memoryMap in self._memoryMaps:
-				buffer += memoryMap.ToXml(2)
-			buffer += "\t</{xmlns}:memoryMaps>\n"
+				buffer += memoryMap.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:memoryMaps>\n"
 
 		if self._model:
-			buffer += "\t<{xmlns}:model>\n"
-			buffer += self._model.ToXml(2)
-			buffer += "\t</{xmlns}:model>\n"
+			buffer += f"\t<{xmlns}:model>\n"
+			buffer += self._model.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:model>\n"
 
 		if self._componentGenerators:
-			buffer += "\t<{xmlns}:componentGenerators>\n"
+			buffer += f"\t<{xmlns}:componentGenerators>\n"
 			for componentGenerator in self._componentGenerators:
-				buffer += componentGenerator.ToXml(2)
-			buffer += "\t</{xmlns}:componentGenerators>\n"
+				buffer += componentGenerator.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:componentGenerators>\n"
 
 		if self._choices:
-			buffer += "\t<{xmlns}:choices>\n"
+			buffer += f"\t<{xmlns}:choices>\n"
 			for choice in self._choices:
-				buffer += choice.ToXml(2)
-			buffer += "\t</{xmlns}:choices>\n"
+				buffer += choice.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:choices>\n"
 
 		if self._fileSets:
-			buffer += "\t<{xmlns}:fileSets>\n"
+			buffer += f"\t<{xmlns}:fileSets>\n"
 			for fileSet in self._fileSets:
-				buffer += fileSet.ToXml(2)
-			buffer += "\t</{xmlns}:fileSets>\n"
+				buffer += fileSet.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:fileSets>\n"
 
 		if self._whiteboxElements:
-			buffer += "\t<{xmlns}:whiteboxElements>\n"
+			buffer += f"\t<{xmlns}:whiteboxElements>\n"
 			for whiteboxElement in self._whiteboxElements:
-				buffer += whiteboxElement.ToXml(2)
-			buffer += "\t</{xmlns}:whiteboxElements>\n"
+				buffer += whiteboxElement.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:whiteboxElements>\n"
 
 		if self._cpus:
-			buffer += "\t<{xmlns}:cpus>\n"
+			buffer += f"\t<{xmlns}:cpus>\n"
 			for cpu in self._cpus:
-				buffer += cpu.ToXml(2)
-			buffer += "\t</{xmlns}:cpus>\n"
+				buffer += cpu.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:cpus>\n"
 
 		if self._otherClockDrivers:
-			buffer += "\t<{xmlns}:otherClockDrivers>\n"
+			buffer += f"\t<{xmlns}:otherClockDrivers>\n"
 			for otherClockDriver in self._otherClockDrivers:
-				buffer += otherClockDriver.ToXml(2)
-			buffer += "\t</{xmlns}:otherClockDrivers>\n"
+				buffer += otherClockDriver.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:otherClockDrivers>\n"
 
 		if self._resetTypes:
-			buffer += "\t<{xmlns}:resetTypes>\n"
+			buffer += f"\t<{xmlns}:resetTypes>\n"
 			for resetType in self._resetTypes:
-				buffer += resetType.ToXml(2)
-			buffer += "\t</{xmlns}:resetTypes>\n"
+				buffer += resetType.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:resetTypes>\n"
 
 		if self._parameters:
-			buffer += "\t<{xmlns}:parameters>\n"
+			buffer += f"\t<{xmlns}:parameters>\n"
 			for parameter in self._parameters:
-				buffer += parameter.ToXml(2)
-			buffer += "\t</{xmlns}:parameters>\n"
+				buffer += parameter.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:parameters>\n"
 
 		if self._assertions:
-			buffer += "\t<{xmlns}:assertions>\n"
+			buffer += f"\t<{xmlns}:assertions>\n"
 			for assertion in self._assertions:
-				buffer += assertion.ToXml(2)
-			buffer += "\t</{xmlns}:assertions>\n"
+				buffer += assertion.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:assertions>\n"
 
-		buffer += dedent("""\
+		buffer += dedent(f"""\
 				</{xmlns}:component>
 				""")
 
-		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
+		return buffer
 
 
 @export
-class BusInterface:
+class BusInterface(Element):
 	"""Represents an IP-XACT bus interface."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -220,11 +254,11 @@ class BusInterface:
 
 
 @export
-class IndirectInterface:
+class IndirectInterface(Element):
 	"""Represents an IP-XACT indirect interface."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -233,11 +267,11 @@ class IndirectInterface:
 
 
 @export
-class Channel:
+class Channel(Element):
 	"""Represents an IP-XACT channel."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -246,11 +280,11 @@ class Channel:
 
 
 @export
-class RemapState:
+class RemapState(Element):
 	"""Represents an IP-XACT remap state."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -259,11 +293,11 @@ class RemapState:
 
 
 @export
-class AddressSpace:
+class AddressSpace(Element):
 	"""Represents an IP-XACT address space."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -272,11 +306,11 @@ class AddressSpace:
 
 
 @export
-class MemoryMap:
+class MemoryMap(Element):
 	"""Represents an IP-XACT memory map."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -285,11 +319,11 @@ class MemoryMap:
 
 
 @export
-class Model:
+class Model(Element):
 	"""Represents an IP-XACT model."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -301,8 +335,8 @@ class Model:
 class ComponentGenerator:
 	"""Represents an IP-XACT component generator."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -311,11 +345,11 @@ class ComponentGenerator:
 
 
 @export
-class Choice:
+class Choice(Element):
 	"""Represents an IP-XACT choice."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -324,11 +358,11 @@ class Choice:
 
 
 @export
-class FileSet:
+class FileSet(Element):
 	"""Represents an IP-XACT fileset."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -337,11 +371,11 @@ class FileSet:
 
 
 @export
-class WhiteboxElement:
+class WhiteboxElement(Element):
 	"""Represents an IP-XACT whitebos element."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -350,11 +384,11 @@ class WhiteboxElement:
 
 
 @export
-class Cpu:
+class Cpu(Element):
 	"""Represents an IP-XACT cpu."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -363,11 +397,11 @@ class Cpu:
 
 
 @export
-class OtherClockDriver:
+class OtherClockDriver(Element):
 	"""Represents an IP-XACT *other* clock driver."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -376,11 +410,11 @@ class OtherClockDriver:
 
 
 @export
-class ResetType:
+class ResetType(Element):
 	"""Represents an IP-XACT reset type."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -389,11 +423,11 @@ class ResetType:
 
 
 @export
-class Parameter:
-	"""Represents an IP-XACT parameter."""
+class Parameter(Element):
+	"""Represents an IP-XACT parameter.""""""Represents an IP-XACT assertion."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""
@@ -402,11 +436,11 @@ class Parameter:
 
 
 @export
-class Assertion:
+class Assertion(Element):
 	"""Represents an IP-XACT assertion."""
 
-	def __init__(self) -> None:
-		pass
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
 
 	def ToXml(self, indent=0):
 		"""Converts the object's data into XML format."""

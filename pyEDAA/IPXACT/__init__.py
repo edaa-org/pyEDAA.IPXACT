@@ -33,11 +33,12 @@
 from pathlib  import Path
 from sys      import version_info
 from textwrap import dedent
-from typing import Union, Dict
+from typing   import Union, Dict
 
-from pyTooling.Decorators import export, readonly
-from pyTooling.Common     import getResourceFile, getFullyQualifiedName
-from pyTooling.Versioning import SemanticVersion, CalendarVersion
+from pyTooling.Decorators  import export, readonly
+from pyTooling.MetaClasses import ExtendedType
+from pyTooling.Common      import getFullyQualifiedName
+from pyTooling.Versioning  import SemanticVersion, CalendarVersion
 
 from .       import Schema
 from .Schema import *
@@ -50,7 +51,7 @@ __version__ =   "0.4.1"
 
 
 @export
-class IpxactSchema:
+class IpxactSchema(metaclass=ExtendedType, slots=True):
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
 	_version:         Union[SemanticVersion, CalendarVersion]  #: Schema version
@@ -177,7 +178,7 @@ __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default
 
 
 @export
-class Vlnv:
+class VLNV(metaclass=ExtendedType, slots=True):
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
 	_vendor:  str              #: Vendor name in a VLNV unique identifier
@@ -251,38 +252,62 @@ class Vlnv:
 	def Version(self) -> SemanticVersion:
 		return self._version
 
-	def ToXml(self, indent=1, isVersionedIdentifier=False):
-		"""Converts the object's data into XML format."""
+	def ToXml(self, indent=1, schema: IpxactSchema = __DEFAULT_SCHEMA__, isVersionedIdentifier=False) -> str:
+		"""
+		Converts the object's data into XML format.
+
+		:param indent:                Level of indentations.
+		:param schema:                XML schema.
+		:param isVersionedIdentifier: If true, generate 4 individual tags (``<vendor>``, ``<library>``, ``<name>``,
+		                              ``<version>``), otherwise a single ``<vlnv>``-tag with attributes.
+		:return:
+		"""
+
+		indent = "\t" * indent
+		xmlns = schema.NamespacePrefix
 
 		if isVersionedIdentifier:
-			buffer = dedent("""\
-				{indent}<{xmlns}:vendor>{vendor}</{xmlns}:vendor>
-				{indent}<{xmlns}:library>{library}</{xmlns}:library>
-				{indent}<{xmlns}:name>{name}</{xmlns}:name>
-				{indent}<{xmlns}:version>{version}</{xmlns}:version>\
+			return dedent(f"""\
+				{indent}<{xmlns}:vendor>{self._vendor}</{xmlns}:vendor>
+				{indent}<{xmlns}:library>{self._library}</{xmlns}:library>
+				{indent}<{xmlns}:name>{self._name}</{xmlns}:name>
+				{indent}<{xmlns}:version>{self._version}</{xmlns}:version>
 			""")
 		else:
-			buffer = """{indent}<{xmlns}:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
-
-		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self._vendor, library=self._library, name=self._name, version=self._version)
-
+			return f"""{indent}<{xmlns}:vlnv vendor="{self._vendor}" library="{self._library}" name="{self._name}" version="{self._version}"/>"""
 
 @export
-class RootElement:
-	"""Base-class for all IP-XACT data classes."""
+class Element(metaclass=ExtendedType, slots=True):
+	"""Base-class for all IP-XACT elements."""
 
-	_vlnv: Vlnv   #: VLNV unique identifier.
+	_vlnv: VLNV   #: VLNV unique identifier.
 
-	def __init__(self, vlnv: Vlnv) -> None:
+	def __init__(self, vlnv: VLNV) -> None:
 		"""
 		Initializes the RootElement with an VLNV field for all derives classes.
 
-		:param vlnv: VLNV unique identifier.
+		:param vlnv:       VLNV unique identifier.
+		:raises TypeError: If parameter vlnv is not a VLNV.
 		"""
+		if not isinstance(vlnv, VLNV):
+			ex = TypeError(f"Parameter 'vlnv' is not a VLNV.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(vlnv)}'.")
+			raise ex
+
 		self._vlnv =    vlnv
 
+	@readonly
+	def VLNV(self) -> VLNV:
+		return self._vlnv
+
+
+@export
+class RootElement(Element):
+	"""Base-class for all IP-XACT root elements."""
+
 	@classmethod
-	def FromFile(cls, file):
+	def FromFile(cls, file: Path):
 		pass
 
 
