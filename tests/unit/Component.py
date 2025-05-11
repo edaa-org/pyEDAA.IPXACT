@@ -44,6 +44,6 @@ if __name__ == "__main__": # pragma: no cover
 
 class Components(TestCase):
 	def test_Component(self) -> None:
-		vlnv = VLNV("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		component = Component(vlnv, "PoC.io.uart.RX")

@@ -30,11 +30,10 @@
 # ==================================================================================================================== #
 #
 """Testcase for ``Catalog``."""
-from pathlib import Path
-from pytest       import mark
-from unittest     import TestCase
+from pathlib  import Path
+from unittest import TestCase
 
-from pyEDAA.IPXACT import VLNV
+from pyEDAA.IPXACT         import VLNV
 from pyEDAA.IPXACT.Catalog import IpxactFile, Catalog
 
 
@@ -45,16 +44,25 @@ if __name__ == "__main__": # pragma: no cover
 
 
 class Catalogs(TestCase):
-	@mark.xfail(reason="This has a known issue.")
+	# @mark.xfail(reason="This has a known issue.")
 	def test_Catalog(self) -> None:
-		vlnv = VLNV("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		catalog = Catalog(vlnv, "IP Core Library")
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.aurt.Wrapper", version=vlnv.Version), "uart_RX.xml", "A UART wrapper."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
+		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.Wrapper", version=vlnv.Version), "uart_Wrapper.xml", "A UART wrapper."))
 
-	@mark.xfail(reason="This has a known issue.")
+		self.assertIs(vlnv, catalog.VLNV)
+		self.assertEqual(3, len(catalog.Catalogs))
+
+	# @mark.xfail(reason="This has a known issue.")
 	def test_ReadFromFile(self) -> None:
-		filePath = Path("tests/catalog.xml")
+		filePath = Path("tests/Examples/Catalog.xml")
 		catalog = Catalog.FromFile(filePath)
+
+		self.assertEqual("VHDL", catalog.VLNV.Vendor)
+		self.assertEqual("PoC", catalog.VLNV.Library)
+		self.assertEqual("PoC", catalog.VLNV.Name)
+		self.assertEqual("1.0", catalog.VLNV.Version)
+		self.assertEqual(3, len(catalog.Catalogs))

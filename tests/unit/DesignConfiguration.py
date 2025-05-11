@@ -44,6 +44,6 @@ if __name__ == "__main__": # pragma: no cover
 
 class Catalogs(TestCase):
 	def test_DesignConfiguration(self) -> None:
-		vlnv = VLNV("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")

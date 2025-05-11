@@ -43,6 +43,6 @@ if __name__ == "__main__": # pragma: no cover
 
 class Designs(TestCase):
 	def test_Design(self) -> None:
-		vlnv = VLNV("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		design = Design(vlnv, "SoFPGA")
