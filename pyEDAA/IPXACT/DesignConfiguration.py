@@ -34,7 +34,7 @@ from typing   import Optional as Nullable
 
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IpxactSchema
+from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema
 
 
 @export
@@ -64,7 +64,7 @@ class DesignConfiguration(RootElement):
 		else:
 			raise ValueError()
 
-	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		xmlns = schema.NamespacePrefix
@@ -107,7 +107,7 @@ class GeneratorChainConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -120,7 +120,7 @@ class InterconnectionConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -133,7 +133,7 @@ class ViewConfiguration:
 	def __init__(self) -> None:
 		pass
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""

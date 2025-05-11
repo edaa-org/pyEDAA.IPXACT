@@ -51,7 +51,7 @@ __version__ =   "0.5.0"
 
 
 @export
-class IpxactSchema(metaclass=ExtendedType, slots=True):
+class IPXACTSchema(metaclass=ExtendedType, slots=True):
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
 	_version:         Union[SemanticVersion, CalendarVersion]  #: Schema version
@@ -158,16 +158,16 @@ class IpxactSchema(metaclass=ExtendedType, slots=True):
 
 
 #                           version, xmlns,    URI                                                          URL,                                                              Local Path
-_IPXACT_10 =   IpxactSchema("1.0",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0",       "",                                                              _IPXACT_10_INDEX)
-_IPXACT_11 =   IpxactSchema("1.1",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1",       "",                                                              _IPXACT_11_INDEX)
-_IPXACT_12 =   IpxactSchema("1.2",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2",       "",                                                              _IPXACT_12_INDEX)
-_IPXACT_14 =   IpxactSchema("1.4",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4",       "",                                                              _IPXACT_14_INDEX)
-_IPXACT_15 =   IpxactSchema("1.5",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5",       "",                                                              _IPXACT_15_INDEX)
-_IPXACT_2009 = IpxactSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "", _IPXACT_2009_INDEX)
-_IPXACT_2014 = IpxactSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", _IPXACT_2014_INDEX)
-_IPXACT_2022 = IpxactSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", _IPXACT_2022_INDEX)
+_IPXACT_10 =   IPXACTSchema("1.0", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0", "", _IPXACT_10_INDEX)
+_IPXACT_11 =   IPXACTSchema("1.1", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1", "", _IPXACT_11_INDEX)
+_IPXACT_12 =   IPXACTSchema("1.2", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2", "", _IPXACT_12_INDEX)
+_IPXACT_14 =   IPXACTSchema("1.4", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4", "", _IPXACT_14_INDEX)
+_IPXACT_15 =   IPXACTSchema("1.5", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5", "", _IPXACT_15_INDEX)
+_IPXACT_2009 = IPXACTSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "", _IPXACT_2009_INDEX)
+_IPXACT_2014 = IPXACTSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", _IPXACT_2014_INDEX)
+_IPXACT_2022 = IPXACTSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", _IPXACT_2022_INDEX)
 
-__VERSION_TABLE__: Dict[str, IpxactSchema] = {
+__VERSION_TABLE__: Dict[str, IPXACTSchema] = {
 	'1.0':   _IPXACT_10,
 	'1.1':   _IPXACT_11,
 	'1.4':   _IPXACT_14,
@@ -177,7 +177,7 @@ __VERSION_TABLE__: Dict[str, IpxactSchema] = {
 	'2022':  _IPXACT_2022
 }          #: Dictionary of all IP-XACT versions mapping to :class:`IpxactSchema` instances.
 
-__URI_MAP__: Dict[str, IpxactSchema] = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}  #: Mapping from schema URIs to :class:`IpxactSchema` instances.
+__URI_MAP__: Dict[str, IPXACTSchema] = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}  #: Mapping from schema URIs to :class:`IpxactSchema` instances.
 
 __DEFAULT_VERSION__ = "2022"                                  #: IP-XACT default version
 __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default Schema
@@ -258,7 +258,7 @@ class VLNV(metaclass=ExtendedType, slots=True):
 	def Version(self) -> SemanticVersion:
 		return self._version
 
-	def ToXml(self, indent=1, schema: IpxactSchema = __DEFAULT_SCHEMA__, isVersionedIdentifier=False) -> str:
+	def ToXml(self, indent=1, schema: IPXACTSchema = __DEFAULT_SCHEMA__, isVersionedIdentifier=False) -> str:
 		"""
 		Converts the object's data into XML format.
 

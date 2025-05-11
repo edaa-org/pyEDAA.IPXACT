@@ -41,7 +41,7 @@
 pyEDAA.IPXACT Documentation
 ###########################
 
-pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
+pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2022 <https://standards.ieee.org/findstds/standard/1685-2022.html>`__
 in Python.
 
 
@@ -84,6 +84,7 @@ IP-XACT Resources
 
   * `IEEE 1685-2009 <https://standards.ieee.org/findstds/standard/1685-2009.html>`__
   * `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
+  * `IEEE 1685-2022 <https://standards.ieee.org/findstds/standard/1685-2022.html>`__
 
 * Schema files:
 

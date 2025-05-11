@@ -36,7 +36,7 @@ from typing import List
 from pyTooling.Common import getFullyQualifiedName
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import __DEFAULT_SCHEMA__, RootElement, VLNV, IpxactSchema, Element
+from pyEDAA.IPXACT import __DEFAULT_SCHEMA__, RootElement, VLNV, IPXACTSchema, Element
 
 
 @export
@@ -124,7 +124,7 @@ class Component(RootElement):
 				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
-	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		xmlns = schema.NamespacePrefix

@@ -39,7 +39,7 @@ from lxml.etree              import XMLParser, XML, XMLSchema, ElementTree, QNam
 from pyTooling.Decorators    import export, readonly
 from pyTooling.Common        import getFullyQualifiedName
 
-from pyEDAA.IPXACT           import RootElement, VLNV, IPXACTException, __URI_MAP__, __DEFAULT_SCHEMA__, IpxactSchema, Element
+from pyEDAA.IPXACT           import RootElement, VLNV, IPXACTException, __URI_MAP__, __DEFAULT_SCHEMA__, IPXACTSchema, Element
 from pyEDAA.IPXACT.Component import Component
 
 
@@ -115,7 +115,7 @@ class IpxactFile(Element):
 		ipxactFile = cls(vlnv, name, description)
 		return ipxactFile
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__):
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__):
 		"""Converts the object's data into XML format."""
 		# WORKAROUND:
 		#   Python <=3.11:
@@ -237,7 +237,7 @@ class Catalog(RootElement):
 				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
-	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		xmlns = schema.NamespacePrefix

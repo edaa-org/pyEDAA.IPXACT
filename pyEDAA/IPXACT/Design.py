@@ -36,7 +36,7 @@ from typing   import List
 from pyTooling.Decorators import export
 from pyTooling.Common     import getFullyQualifiedName
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IpxactSchema, Element
+from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema, Element
 
 
 @export
@@ -80,7 +80,7 @@ class Design(RootElement):
 		else:
 			raise ValueError()
 
-	def ToXml(self, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		xmlns = schema.NamespacePrefix
@@ -160,7 +160,7 @@ class IpxactFile(Element):
 		self._name = name
 		self._description = description
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		# WORKAROUND:
@@ -184,7 +184,7 @@ class ComponentInstance(Element):
 	def __init__(self, vlnv: VLNV) -> None:
 		super().__init__(vlnv)
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -197,7 +197,7 @@ class Interconnection(Element):
 	def __init__(self, vlnv: VLNV) -> None:
 		super().__init__(vlnv)
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
@@ -210,7 +210,7 @@ class AdHocConnection(Element):
 	def __init__(self, vlnv: VLNV) -> None:
 		super().__init__(vlnv)
 
-	def ToXml(self, indent: int = 0, schema: IpxactSchema = __DEFAULT_SCHEMA__) -> str:
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
 		return ""
