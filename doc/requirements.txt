@@ -1,7 +1,7 @@
 -r ../requirements.txt
 
 # Enforce latest version on ReadTheDocs
-sphinx ~= 8.2
+sphinx ~= 7.4
 docutils ~= 0.21
 docutils_stubs ~= 0.0.22
 
