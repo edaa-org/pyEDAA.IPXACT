@@ -39,12 +39,12 @@ from lxml.etree import QName, _Element
 from pyTooling.Decorators    import export, readonly
 from pyTooling.Common        import getFullyQualifiedName
 
-from pyEDAA.IPXACT           import RootElement, VLNV, IPXACTException, __DEFAULT_SCHEMA__, IPXACTSchema, Element
+from pyEDAA.IPXACT           import NamedElement, RootElement, VLNV, IPXACTException, __DEFAULT_SCHEMA__, IPXACTSchema, Element
 from pyEDAA.IPXACT.Component import Component
 
 
 @export
-class IpxactFile(Element):
+class IpxactFile(NamedElement):
 	"""Represents a IP-XACT file."""
 
 	_name:        str    #: Name

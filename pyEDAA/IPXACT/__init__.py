@@ -33,11 +33,9 @@
 from pathlib  import Path
 from sys      import version_info
 from textwrap import dedent
-from typing import Union, Dict, Tuple, Optional as Nullable, ClassVar
+from typing   import Union, Dict, Tuple, Optional as Nullable, ClassVar
 
-from docutils.nodes import description
-from lxml.etree import XMLParser, XML, XMLSchema, ElementTree, QName, _Element
-
+from lxml.etree            import XMLParser, XML, XMLSchema, ElementTree, QName, _Element, _Comment
 from pyTooling.Decorators  import export, readonly
 from pyTooling.MetaClasses import ExtendedType, abstractmethod
 from pyTooling.Common      import getFullyQualifiedName
@@ -298,11 +296,21 @@ class VLNV(metaclass=ExtendedType, slots=True):
 class Element(metaclass=ExtendedType, slots=True):
 	"""Base-class for all IP-XACT elements."""
 
+	def __init__(self, vlnv: VLNV) -> None:
+		"""
+		Initializes the Element class.
+		"""
+
+
+@export
+class NamedElement(Element):
+	"""Base-class for all IP-XACT elements with a VLNV."""
+
 	_vlnv: VLNV   #: VLNV unique identifier.
 
 	def __init__(self, vlnv: VLNV) -> None:
 		"""
-		Initializes the RootElement with an VLNV field for all derives classes.
+		Initializes the NameElement with an VLNV field for all derives classes.
 
 		:param vlnv:       VLNV unique identifier.
 		:raises TypeError: If parameter vlnv is not a VLNV.
@@ -321,7 +329,7 @@ class Element(metaclass=ExtendedType, slots=True):
 
 
 @export
-class RootElement(Element):
+class RootElement(NamedElement):
 	"""Base-class for all IP-XACT root elements."""
 
 	_file:        Nullable[Path]
@@ -400,6 +408,9 @@ class RootElement(Element):
 		found = 0
 		i = iter(self._xmlRoot)
 		for element in i:
+			if isinstance(element, _Comment):
+				continue
+
 			elementLocalname = QName(element).localname
 			if elementLocalname == "vendor":
 				found |= 1
@@ -423,6 +434,9 @@ class RootElement(Element):
 				break
 
 		for element in i:
+			if isinstance(element, _Comment):
+				continue
+
 			self.Parse(element)
 
 		vlnv = VLNV(vendor=vendor, library=library, name=name, version=version)
