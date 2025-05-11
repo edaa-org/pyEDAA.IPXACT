@@ -33,14 +33,14 @@ from textwrap           import dedent
 
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, Vlnv
+from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV
 
 
 @export
 class GeneratorChain(RootElement):
 	"""Represents an IP-XACT generator chain."""
 
-	def __init__(self, vlnv: Vlnv, displayName: str, description: str, chainGroup):
+	def __init__(self, vlnv: VLNV, displayName: str, description: str, chainGroup):
 		"""Constructor"""
 
 		super().__init__(vlnv)

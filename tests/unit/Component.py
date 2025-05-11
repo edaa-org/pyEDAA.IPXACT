@@ -32,7 +32,7 @@
 """Testcase for ``Catalog``."""
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import Vlnv
+from pyEDAA.IPXACT import VLNV
 from pyEDAA.IPXACT.Component import Component
 
 
@@ -44,6 +44,6 @@ if __name__ == "__main__": # pragma: no cover
 
 class Components(TestCase):
 	def test_Component(self) -> None:
-		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		component = Component(vlnv, "PoC.io.uart.RX")

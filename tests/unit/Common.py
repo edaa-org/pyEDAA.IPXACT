@@ -29,10 +29,12 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Testcase for ``Catalog``."""
+"""Testcase for ``VLNV``."""
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import Vlnv
+from pyTooling.Versioning import SemanticVersion
+
+from pyEDAA.IPXACT import VLNV
 
 
 if __name__ == "__main__": # pragma: no cover
@@ -42,14 +44,15 @@ if __name__ == "__main__": # pragma: no cover
 
 
 class VLNVs(TestCase):
-	def test_Vlnv(self) -> None:
+	def test_VLNV(self) -> None:
 		vendor = "EDA²"
 		library = "pyEDAA"
 		name = "IPXACT"
 		version = "1.0"
-		vlnv = Vlnv(vendor, library, name, version)
+		vlnv = VLNV(vendor, library, name, version)
 
 		self.assertEqual(vendor, vlnv.Vendor)
 		self.assertEqual(library, vlnv.Library)
 		self.assertEqual(name, vlnv.Name)
 		self.assertEqual(version, vlnv.Version)
+		self.assertIsInstance(vlnv.Version, SemanticVersion)

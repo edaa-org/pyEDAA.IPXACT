@@ -60,4 +60,4 @@ class CheckPaths(TestCase):
 				schemaParser = XMLParser(ns_clean=True)
 				schemaRoot = parse(schema.LocalPath, schemaParser)
 
-				junitSchema = XMLSchema(schemaRoot)
+				ipxactSchema = XMLSchema(schemaRoot)

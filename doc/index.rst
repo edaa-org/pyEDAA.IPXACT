@@ -41,11 +41,11 @@
 pyEDAA.IPXACT Documentation
 ###########################
 
-pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
+pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for `IEEE 1685-2022 <https://standards.ieee.org/findstds/standard/1685-2022.html>`__
 in Python.
 
 
-.. _goals:
+.. _GOALS:
 
 Main Goals
 **********
@@ -63,7 +63,7 @@ Implemented Features
   * IP-XACT catalogs
 
 .. #Comment
-   .. _usecase:
+   .. _USECASES:
 
    Use Cases
    *********
@@ -84,6 +84,7 @@ IP-XACT Resources
 
   * `IEEE 1685-2009 <https://standards.ieee.org/findstds/standard/1685-2009.html>`__
   * `IEEE 1685-2014 <https://standards.ieee.org/findstds/standard/1685-2014.html>`__
+  * `IEEE 1685-2022 <https://standards.ieee.org/findstds/standard/1685-2022.html>`__
 
 * Schema files:
 
@@ -99,10 +100,23 @@ IP-XACT Resources
    * ✅ `pyEDAA.CLITool <https://github.com/edaa-org/pyEDAA.CLITool>`__
 
 
-.. _news:
+.. _NEWS:
 
 News
 ****
+
+.. only:: html
+
+   May 2025 - Validation and Schema Updates
+   ========================================
+
+.. only:: latex
+
+   .. rubric:: Validation and Schema Updates
+
+* Integrated IPXACT-Schema as a submodule and deliver XML schema files (XSD) via Python package as resource files.
+* Reworked XML validation using the correct schema version based on the embedded IP-XACT URI.
+
 
 .. only:: html
 
@@ -227,6 +241,7 @@ License
    Python Class Reference <pyEDAA.IPXACT/pyEDAA.IPXACT>
    unittests/index
    coverage/index
+   CodeCoverage
    Doc. Coverage Report <DocCoverage>
    Static Type Check Report ➚ <typing/index>
 

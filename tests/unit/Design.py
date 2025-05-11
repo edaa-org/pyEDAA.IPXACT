@@ -32,7 +32,7 @@
 """Testcase for ``Catalog``."""
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import Vlnv
+from pyEDAA.IPXACT import VLNV
 from pyEDAA.IPXACT.Design import Design
 
 if __name__ == "__main__": # pragma: no cover
@@ -43,6 +43,6 @@ if __name__ == "__main__": # pragma: no cover
 
 class Designs(TestCase):
 	def test_Design(self) -> None:
-		vlnv = Vlnv("VLSI-EDA", "PoC", "PoC", "1.0")
+		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
 		design = Design(vlnv, "SoFPGA")

@@ -33,24 +33,25 @@
 from pathlib  import Path
 from sys      import version_info
 from textwrap import dedent
-from typing import Union, Dict
+from typing   import Union, Dict
 
-from pyTooling.Decorators import export, readonly
-from pyTooling.Common     import getResourceFile, getFullyQualifiedName
-from pyTooling.Versioning import SemanticVersion, CalendarVersion
+from pyTooling.Decorators  import export, readonly
+from pyTooling.MetaClasses import ExtendedType
+from pyTooling.Common      import getFullyQualifiedName
+from pyTooling.Versioning  import SemanticVersion, CalendarVersion
 
-from . import Schema
-
+from .       import Schema
+from .Schema import *
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2016-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.4.0"
+__version__ =   "0.5.0"
 
 
 @export
-class IpxactSchema:
+class IPXACTSchema(metaclass=ExtendedType, slots=True):
 	"""Schema descriptor made of version, namespace prefix, URI, URL and local path."""
 
 	_version:         Union[SemanticVersion, CalendarVersion]  #: Schema version
@@ -76,7 +77,7 @@ class IpxactSchema:
 		:param schemaUrl:          URL the IP-XACT schema definition file (XSD).
 		:param localPath:          Path to the local XSD file.
 		"""
-
+		# TODO: add raises ... lines
 		if version is None:
 			raise ValueError(f"Parameter 'version' is None.")
 		elif isinstance(version, str):
@@ -149,18 +150,24 @@ class IpxactSchema:
 	def LocalPath(self) -> Path:
 		return self._localPath
 
+	def __repr__(self) -> str:
+		return f"<{self.__class__.__name__} IP-XACT {self._version} {self._schemaUri} - {self._localPath}>"
+
+	def __str__(self) -> str:
+		return f"IP-XACT {self._version}"
+
 
 #                           version, xmlns,    URI                                                          URL,                                                              Local Path
-_IPXACT_10 =   IpxactSchema("1.0",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0",       "",                                                              getResourceFile(Schema, "ipxact-1.0/index.xsd"))
-_IPXACT_11 =   IpxactSchema("1.1",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1",       "",                                                              getResourceFile(Schema, "ipxact-1.1/index.xsd"))
-_IPXACT_12 =   IpxactSchema("1.2",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2",       "",                                                              getResourceFile(Schema, "ipxact-1.2/index.xsd"))
-_IPXACT_14 =   IpxactSchema("1.4",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4",       "",                                                              getResourceFile(Schema, "ipxact-1.4/index.xsd"))
-_IPXACT_15 =   IpxactSchema("1.5",  "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5",       "",                                                              getResourceFile(Schema, "ipxact-1.5/index.xsd"))
-_IPXACT_2009 = IpxactSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "",                                                              getResourceFile(Schema, "ieee-1685-2009/index.xsd"))
-_IPXACT_2014 = IpxactSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", getResourceFile(Schema, "ieee-1685-2014/index.xsd"))
-_IPXACT_2022 = IpxactSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022",        "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", getResourceFile(Schema, "ieee-1685-2022/index.xsd"))
+_IPXACT_10 =   IPXACTSchema("1.0", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0", "", _IPXACT_10_INDEX)
+_IPXACT_11 =   IPXACTSchema("1.1", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1", "", _IPXACT_11_INDEX)
+_IPXACT_12 =   IPXACTSchema("1.2", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2", "", _IPXACT_12_INDEX)
+_IPXACT_14 =   IPXACTSchema("1.4", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4", "", _IPXACT_14_INDEX)
+_IPXACT_15 =   IPXACTSchema("1.5", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5", "", _IPXACT_15_INDEX)
+_IPXACT_2009 = IPXACTSchema("2009", "spirit", "http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009", "", _IPXACT_2009_INDEX)
+_IPXACT_2014 = IPXACTSchema("2014", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014", "http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd", _IPXACT_2014_INDEX)
+_IPXACT_2022 = IPXACTSchema("2022", "ipxact", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022", "http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd", _IPXACT_2022_INDEX)
 
-__VERSION_TABLE__: Dict[str, IpxactSchema] = {
+__VERSION_TABLE__: Dict[str, IPXACTSchema] = {
 	'1.0':   _IPXACT_10,
 	'1.1':   _IPXACT_11,
 	'1.4':   _IPXACT_14,
@@ -170,14 +177,14 @@ __VERSION_TABLE__: Dict[str, IpxactSchema] = {
 	'2022':  _IPXACT_2022
 }          #: Dictionary of all IP-XACT versions mapping to :class:`IpxactSchema` instances.
 
-__URI_MAP__: Dict[str, IpxactSchema] = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}  #: Mapping from schema URIs to :class:`IpxactSchema` instances.
+__URI_MAP__: Dict[str, IPXACTSchema] = {value.SchemaUri: value for key, value in __VERSION_TABLE__.items()}  #: Mapping from schema URIs to :class:`IpxactSchema` instances.
 
 __DEFAULT_VERSION__ = "2022"                                  #: IP-XACT default version
 __DEFAULT_SCHEMA__ =  __VERSION_TABLE__[__DEFAULT_VERSION__]  #: IP-XACT default Schema
 
 
 @export
-class Vlnv:
+class VLNV(metaclass=ExtendedType, slots=True):
 	"""VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT."""
 
 	_vendor:  str              #: Vendor name in a VLNV unique identifier
@@ -251,41 +258,68 @@ class Vlnv:
 	def Version(self) -> SemanticVersion:
 		return self._version
 
-	def ToXml(self, indent=1, isVersionedIdentifier=False):
-		"""Converts the object's data into XML format."""
+	def ToXml(self, indent=1, schema: IPXACTSchema = __DEFAULT_SCHEMA__, isVersionedIdentifier=False) -> str:
+		"""
+		Converts the object's data into XML format.
+
+		:param indent:                Level of indentations.
+		:param schema:                XML schema.
+		:param isVersionedIdentifier: If true, generate 4 individual tags (``<vendor>``, ``<library>``, ``<name>``,
+		                              ``<version>``), otherwise a single ``<vlnv>``-tag with attributes.
+		:return:
+		"""
+
+		# WORKAROUND:
+		#   Python <=3.11:
+		#   {'\t' * indent} is not supported by Python before 3.12 due to a backslash within {...}
+		indent = "\t" * indent
+		xmlns = schema.NamespacePrefix
 
 		if isVersionedIdentifier:
-			buffer = dedent("""\
-				{indent}<{xmlns}:vendor>{vendor}</{xmlns}:vendor>
-				{indent}<{xmlns}:library>{library}</{xmlns}:library>
-				{indent}<{xmlns}:name>{name}</{xmlns}:name>
-				{indent}<{xmlns}:version>{version}</{xmlns}:version>\
+			return dedent(f"""\
+				{indent}<{xmlns}:vendor>{self._vendor}</{xmlns}:vendor>
+				{indent}<{xmlns}:library>{self._library}</{xmlns}:library>
+				{indent}<{xmlns}:name>{self._name}</{xmlns}:name>
+				{indent}<{xmlns}:version>{self._version}</{xmlns}:version>
 			""")
 		else:
-			buffer = """{indent}<{xmlns}:vlnv vendor="{vendor}" library="{library}" name="{name}" version="{version}"/>"""
-
-		return buffer.format(indent= "\t" *indent, xmlns=__DEFAULT_SCHEMA__.NamespacePrefix, vendor=self._vendor, library=self._library, name=self._name, version=self._version)
-
+			return f"""{indent}<{xmlns}:vlnv vendor="{self._vendor}" library="{self._library}" name="{self._name}" version="{self._version}"/>"""
 
 @export
-class RootElement:
-	"""Base-class for all IP-XACT data classes."""
+class Element(metaclass=ExtendedType, slots=True):
+	"""Base-class for all IP-XACT elements."""
 
-	_vlnv: Vlnv   #: VLNV unique identifier.
+	_vlnv: VLNV   #: VLNV unique identifier.
 
-	def __init__(self, vlnv: Vlnv) -> None:
+	def __init__(self, vlnv: VLNV) -> None:
 		"""
 		Initializes the RootElement with an VLNV field for all derives classes.
 
-		:param vlnv: VLNV unique identifier.
+		:param vlnv:       VLNV unique identifier.
+		:raises TypeError: If parameter vlnv is not a VLNV.
 		"""
+		if not isinstance(vlnv, VLNV):
+			ex = TypeError(f"Parameter 'vlnv' is not a VLNV.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(vlnv)}'.")
+			raise ex
+
 		self._vlnv =    vlnv
 
+	@readonly
+	def VLNV(self) -> VLNV:
+		return self._vlnv
+
+
+@export
+class RootElement(Element):
+	"""Base-class for all IP-XACT root elements."""
+
 	@classmethod
-	def FromFile(cls, file):
+	def FromFile(cls, file: Path):
 		pass
 
 
 @export
-class PyIpxactException(Exception):
+class IPXACTException(Exception):
 	"""Base-exception for all exceptions in this package."""

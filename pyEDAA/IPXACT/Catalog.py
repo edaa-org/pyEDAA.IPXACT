@@ -29,98 +29,130 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from sys import version_info
-from typing import List
+from pathlib  import Path
+from sys      import version_info
+from textwrap import dedent
+from typing   import List, Dict
 
-from lxml               import etree
-from os                 import chdir as os_chdir
-from textwrap           import dedent
+from lxml.etree              import XMLParser, XML, XMLSchema, ElementTree, QName
 
-from pathlib            import Path
+from pyTooling.Decorators    import export, readonly
+from pyTooling.Common        import getFullyQualifiedName
 
-from pyTooling.Common import getFullyQualifiedName
-from pyTooling.Decorators    import export
-
-from pyEDAA.IPXACT           import RootElement, Vlnv, PyIpxactException, __URI_MAP__, __DEFAULT_SCHEMA__
+from pyEDAA.IPXACT           import RootElement, VLNV, IPXACTException, __URI_MAP__, __DEFAULT_SCHEMA__, IPXACTSchema, Element
 from pyEDAA.IPXACT.Component import Component
 
 
 @export
-class IpxactFile:
+class IpxactFile(Element):
 	"""Represents a IP-XACT file."""
-	_vlnv: Vlnv          #: VLNV unique identifier
-	_name: str           #: Name
+
+	_name:        str    #: Name
 	_description: str    #: Description
 
-	def __init__(self, vlnv: Vlnv, name: str, description: str):
-		"""Constructor"""
+	def __init__(self, vlnv: VLNV, name: str, description: str):
+		"""
+		Instantiates an ipxactFile structure.
+
+		:param vlnv:        A Vendor-Library-Name-Version unique identified.
+		:param name:        Name of the IP-XACT file.
+		:param description: A description text.
+		:raises TypeError:  If parameter vlnv is not a VLNV.
+		:raises TypeError:  If parameter name is not a string.
+		:raises ValueError: If parameter name is empty.
+		:raises TypeError:  If parameter description is not a string.
+		:raises ValueError: If parameter description is empty.
+		"""
+		super().__init__(vlnv)
+
+		if not isinstance(name, str):
+			ex = TypeError(f"Parameter 'name' is not a string.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
+			raise ex
+		elif name == "":
+			raise ValueError(f"Parameter 'name' is empty.")
+
+		if not isinstance(description, str):
+			ex = TypeError(f"Parameter 'description' is not a string.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+			raise ex
+		elif description == "":
+			raise ValueError(f"Parameter 'description' is empty.")
+
 		self._vlnv = vlnv
 		self._name = name
 		self._description = description
 
 	@classmethod
-	def FromXml(cls, element):
+	def FromXml(cls, ipxactFileElement):
 		"""Constructs an instance of ``IpxactFile`` from an lxml element."""
-		elementTag = etree.QName(element.tag)
+
+		elementTag = QName(ipxactFileElement.tag)
 		if elementTag.localname != "ipxactFile":
-			raise PyIpxactException("Expected tag 'ipxactFile'.")
+			raise IPXACTException("Expected tag 'ipxactFile'.")
 
-		for element2 in element:
-			element3 = etree.QName(element2)
-			if element3.localname == "vlnv":
-				vendor =  element2.get("vendor")
-				library = element2.get("library")
-				name2 =   element2.get("name")
-				version = element2.get("version")
+		vlnv = None
+		name = None
+		description = None
+		for subElement in ipxactFileElement:
+			element = QName(subElement)
+			if element.localname == "vlnv":
+				vendor =  subElement.get("vendor")
+				library = subElement.get("library")
+				name2 =   subElement.get("name")
+				version = subElement.get("version")
 
-				vlnv = Vlnv(vendor, library, name2, version)
-			elif element3.localname == "name":
-				name = element2.text
-			elif element3.localname == "description":
-				description = element2.text
+				vlnv = VLNV(vendor, library, name2, version)
+			elif element.localname == "name":
+				name = subElement.text
+			elif element.localname == "description":
+				description = subElement.text
 			else:
-				raise PyIpxactException(f"Unsupported tag '{element.localname}' in node 'ipxactFile'.")
+				raise IPXACTException(f"Unsupported tag '{ipxactFileElement.localname}' in node 'ipxactFile'.")
 
 		ipxactFile = cls(vlnv, name, description)
 		return ipxactFile
 
-	def ToXml(self, indent):
+	def ToXml(self, indent: int = 0, schema: IPXACTSchema = __DEFAULT_SCHEMA__):
 		"""Converts the object's data into XML format."""
-		_indent = "\t" * indent
-		prefix = __DEFAULT_SCHEMA__.NamespacePrefix
-		buffer = dedent(f"""\
-			{_indent}<{prefix}:ipxactFile>
-			{_indent}	{self._vlnv.ToXml(0)}
-			{_indent}	<{prefix}:name>{self._name}</{prefix}:name>
-			{_indent}	<{prefix}:description>{self._description}</{prefix}:description>
-			{_indent}</{prefix}:ipxactFile>
+		# WORKAROUND:
+		#   Python <=3.11:
+		#   {'\t' * indent} is not supported by Python before 3.12 due to a backslash within {...}
+		indent = "\t" * indent
+		xmlns = schema.NamespacePrefix
+		return dedent(f"""\
+			{indent}<{xmlns}:ipxactFile>
+			{indent}\t{self._vlnv.ToXml(0, schema)}
+			{indent}\t<{xmlns}:name>{self._name}</{xmlns}:name>
+			{indent}\t<{xmlns}:description>{self._description}</{xmlns}:description>
+			{indent}</{xmlns}:ipxactFile>
 		""")
-
-		return buffer
 
 
 @export
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_description: str
+	_description:            str
 	_abstractionDefinitions: List
-	_abstractors: List
-	_busInterfaces: List
-	_catalogs: List
-	_components: List
-	_designConfigurations: List
-	_designs: List
-	_generatorChains: List
+	_abstractors:            List
+	_busInterfaces:          List
+	_catalogs:               Dict[VLNV, IpxactFile]
+	_components:             List
+	_designConfigurations:   List
+	_designs:                List
+	_generatorChains:        List
 
-	def __init__(self, vlnv: Vlnv, description: str):
+	def __init__(self, vlnv: VLNV, description: str):
 		super().__init__(vlnv)
 
 		self._description =             description
 		self._abstractionDefinitions =  []
 		self._abstractors =             []
 		self._busInterfaces =           []
-		self._catalogs =                []
+		self._catalogs =                {}
 		self._components =              []
 		self._designConfigurations =    []
 		self._designs =                 []
@@ -131,43 +163,46 @@ class Catalog(RootElement):
 		"""Constructs an instance of ``Catalog`` from a file."""
 
 		if not filePath.exists():
-			raise PyIpxactException(f"File '{filePath}' not found.") from FileNotFoundError(str(filePath))
+			raise IPXACTException(f"IPXACT file '{filePath}' not found.") from FileNotFoundError(str(filePath))
 
 		try:
-			with filePath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not open in binary?
+			with filePath.open("rb") as fileHandle:
 				content = fileHandle.read()
-				content = bytes(bytearray(content, encoding='utf-8'))
 		except OSError as ex:
-			raise PyIpxactException("Couldn't open '{0!s}'.".format(filePath)) from ex
+			raise IPXACTException(f"Couldn't open '{filePath}'.") from ex
 
-		schemaPath = Path("../lib/schema/ieee-1685-2014/index.xsd")
+		xmlParser = XMLParser(remove_blank_text=True, encoding="utf-8")
+		root =      XML(content, parser=xmlParser, base_url=filePath.resolve().as_uri())  # - relative paths are not supported
+		rootTag =   QName(root.tag)
+
+		if rootTag.localname != "catalog":
+			raise IPXACTException("The input IP-XACT file is not a catalog file.")
+
+		namespacePrefix = root.prefix
+		namespaceURI = root.nsmap[namespacePrefix]
+		if namespaceURI in __URI_MAP__:
+			ipxactSchema = __URI_MAP__[namespaceURI]
+		else:
+			raise IPXACTException(f"The input IP-XACT file uses an unsupported namespace: '{namespaceURI}'.")
+
 		try:
-			with schemaPath.open("r", encoding="utf-8") as fileHandle:  # TODO: why not opening as binary?
+			with ipxactSchema.LocalPath.open("rb") as fileHandle:
 				schema = fileHandle.read()
-				schema = bytes(bytearray(schema, encoding='utf-8'))
 		except OSError as ex:
-			raise PyIpxactException(f"Couldn't open '{schemaPath}'.") from ex
+			raise IPXACTException(f"Couldn't open IP-XACT schema '{ipxactSchema.LocalPath}' for {namespacePrefix} ({namespaceURI}).") from ex
 
-		xmlParser = etree.XMLParser(remove_blank_text=True, encoding="utf-8")
+		schemaRoot = XML(schema, parser=xmlParser, base_url=ipxactSchema.LocalPath.as_uri())
+		schemaTree =  ElementTree(schemaRoot)
+		xmlSchema =   XMLSchema(schemaTree)
 
-		schemaRoot =  etree.XML(schema, xmlParser)
-		schemaTree =  etree.ElementTree(schemaRoot)
-		xmlschema =   etree.XMLSchema(schemaTree)
-		root =        etree.XML(content, xmlParser)
-		rootTag =     etree.QName(root.tag)
-
-		if not xmlschema.validate(root):
-			raise PyIpxactException("The input IP-XACT file is not valid.")
-		elif rootTag.namespace not in __URI_MAP__:
-			raise PyIpxactException(f"The input IP-XACT file uses an unsupported namespace: '{rootTag.namespace}'.")
-		elif rootTag.localname != "catalog":
-			raise PyIpxactException("The input IP-XACT file is not a catalog file.")
-
-		print("==" * 20)
+		try:
+			xmlSchema.assertValid(root)
+		except Exception as ex:
+			raise IPXACTException("The input IP-XACT file is not valid.") from ex
 
 		items = []
 		for rootElements in root:
-			element = etree.QName(rootElements)
+			element = QName(rootElements)
 			if element.localname == "vendor":
 				vendor = rootElements.text
 			elif element.localname == "library":
@@ -182,11 +217,9 @@ class Catalog(RootElement):
 				for ipxactFileElement in rootElements:
 					items.append(IpxactFile.FromXml(ipxactFileElement))
 			else:
-				raise PyIpxactException(f"Unsupported tag '{element.localname}' at root-level.")
+				raise IPXACTException(f"Unsupported tag '{element.localname}' at root-level.")
 
-		print("==" * 20)
-
-		vlnv = Vlnv(vendor=vendor, library=library, name=name, version=version)
+		vlnv = VLNV(vendor=vendor, library=library, name=name, version=version)
 		catalog = cls(vlnv, description=description)
 		for item in items:
 			catalog.AddItem(item)
@@ -195,7 +228,7 @@ class Catalog(RootElement):
 
 	def AddItem(self, item) -> None:
 		if isinstance(item, IpxactFile):
-			self._catalogs.append(item)
+			self._catalogs[item.VLNV] = item
 		elif isinstance(item, Component):
 			self._components.append(item)
 		else:
@@ -204,40 +237,38 @@ class Catalog(RootElement):
 				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
-
-	def ToXml(self) -> str:
+	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
 
-		buffer = dedent("""\
+		xmlns = schema.NamespacePrefix
+		buffer = dedent(f"""\
 			<?xml version="1.0" encoding="UTF-8"?>
 			<{xmlns}:catalog
-				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-				xmlns:{xmlns}="{schemaUri}"
-				xsi:schemaLocation="{schemaUri} {schemaUrl}">
-			{versionedIdentifier}
-				<{xmlns}:description>{description}</{xmlns}:description>
-			""").format(
-				xmlns=__DEFAULT_SCHEMA__.NamespacePrefix,
-				schemaUri=__DEFAULT_SCHEMA__.SchemaUri,
-				schemaUrl=__DEFAULT_SCHEMA__.SchemaUrl,
-				versionedIdentifier=self._vlnv.ToXml(isVersionedIdentifier=True),
-				description=self._description
-			)
+			\txmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			\txmlns:{xmlns}="{schema.SchemaUri}"
+			\txsi:schemaLocation="{schema.SchemaUri} {schema.SchemaUrl}">
+			{self._vlnv.ToXml(schema, isVersionedIdentifier=True)}
+			\t<{xmlns}:description>{self._description}</{xmlns}:description>
+			""")
 
 		if self._catalogs:
-			buffer += "\t<{xmlns}:catalogs>\n"
+			buffer += f"\t<{xmlns}:catalogs>\n"
 			for ipxactFile in self._catalogs:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:catalogs>\n"
+				buffer += ipxactFile.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:catalogs>\n"
 
 		if self._components:
-			buffer += "\t<{xmlns}:components>\n"
+			buffer += f"\t<{xmlns}:components>\n"
 			for ipxactFile in self._components:
-				buffer += ipxactFile.ToXml(2)
-			buffer += "\t</{xmlns}:components>\n"
+				buffer += ipxactFile.ToXml(2, schema)
+			buffer += f"\t</{xmlns}:components>\n"
 
-		buffer += dedent("""\
+		buffer += dedent(f"""\
 			</{xmlns}:catalog>
 			""")
 
-		return buffer.format(xmlns=__DEFAULT_SCHEMA__.NamespacePrefix)
+		return buffer
+
+	@readonly
+	def Catalogs(self) -> Dict[VLNV, IpxactFile]:
+		return self._catalogs
