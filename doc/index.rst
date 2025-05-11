@@ -106,6 +106,19 @@ News
 
 .. only:: html
 
+   May 2025 - Validation and Schema Updates
+   ========================================
+
+.. only:: latex
+
+   .. rubric:: Validation and Schema Updates
+
+* Integrated IPXACT-Schema as a submodule and deliver XML schema files (XSD) via Python package as resource files.
+* Reworked XML validation using the correct schema version based on the embedded IP-XACT URI.
+
+
+.. only:: html
+
    Feb. 2022 - Major Update
    ========================
 
