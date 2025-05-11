@@ -169,6 +169,18 @@ class Catalog(RootElement):
 		if elementLocalname == "catalogs":
 			for ipxactFileElement in element:
 				self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		elif elementLocalname == "abstractionDefinitions":
+			pass
+		elif elementLocalname == "components":
+			pass
+		elif elementLocalname == "abstractors":
+			pass
+		elif elementLocalname == "designs":
+			pass
+		elif elementLocalname == "designConfigurations":
+			pass
+		elif elementLocalname == "generatorChains":
+			pass
 		else:
 			raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 

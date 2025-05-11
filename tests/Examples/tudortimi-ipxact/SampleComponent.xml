@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example component used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document.
+-->
+<!-- LINK: component: see 6.1, Component -->
+<ipxact:component xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                  xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                      index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleComponent</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:busInterfaces>
+    <!-- LINK: busInterface: 6.5.1, busInterface -->
+    <!-- Basic slave interface with both RTL and TLM representations -->
+    <ipxact:busInterface>
+      <ipxact:name>Slave</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <!-- LINK: abstractionTypes: 6.5.6, Abstraction types -->
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:viewRef>RTLview</ipxact:viewRef>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_RTL" version="1.0">
+            <!-- Configure abstraction to have the 'Parity' logical port -->
+            <ipxact:configurableElementValues>
+              <ipxact:configurableElementValue referenceId="UsingParity">1
+              </ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+          </ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <!-- LINK: portMap: 6.5.7, Port map -->
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Data</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>slv_data</ipxact:name>
+                <ipxact:partSelect>
+                  <ipxact:range>
+                    <ipxact:left>7</ipxact:left>
+                    <ipxact:right>0</ipxact:right>
+                  </ipxact:range>
+                </ipxact:partSelect>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Address</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>slv_addr</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Parity</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>slv_parity</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <!-- Mapping to clock port included for 'information' only - not
+                 for connecting -->
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Clk</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>clk</ipxact:name>
+              </ipxact:physicalPort>
+              <ipxact:isInformative>true</ipxact:isInformative>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+        <ipxact:abstractionType>
+          <ipxact:viewRef>TLMview</ipxact:viewRef>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_TLM" version="1.0"/>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Transport</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>slv_transaction</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <!-- LINK: interfaceMode: see 6.5.2, Interface modes -->
+      <!-- LINK: slave: see 6.5.4, Slave interface -->
+      <ipxact:slave>
+        <ipxact:memoryMapRef memoryMapRef="SimpleMapWithBlock"/>
+      </ipxact:slave>
+      <!-- This interface must be connected in any containing design -->
+      <ipxact:connectionRequired>true</ipxact:connectionRequired>
+    </ipxact:busInterface>
+    <!-- Basic master interface with both RTL and TLM representations -->
+    <ipxact:busInterface>
+      <ipxact:name>Master</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:viewRef>RTLview</ipxact:viewRef>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_RTL" version="1.0">
+            <!-- Configure abstraction to not have the 'Parity' logical port -->
+            <!-- This is the default but included to make it explicit -->
+            <ipxact:configurableElementValues>
+              <ipxact:configurableElementValue referenceId="UsingParity">0
+              </ipxact:configurableElementValue>
+            </ipxact:configurableElementValues>
+          </ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Data</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>mst_data</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Address</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>mst_addr</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+            <!-- Mapping to clock port included for 'information' only - not
+                 for connecting -->
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Clk</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>clk</ipxact:name>
+              </ipxact:physicalPort>
+              <ipxact:isInformative>true</ipxact:isInformative>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+        <ipxact:abstractionType>
+          <ipxact:viewRef>TLMview</ipxact:viewRef>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_TLM" version="1.0"/>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>Transport</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>mst_transaction</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <!-- LINK: master: see 6.5.3, Master interface -->
+      <ipxact:master>
+        <ipxact:addressSpaceRef addressSpaceRef="simpleAddressSpace"/>
+      </ipxact:master>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>MirroredMaster</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <ipxact:mirroredMaster/>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>MirroredSlave</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <!-- LINK: master: see 6.5.5, Mirrored slave interface -->
+      <ipxact:mirroredSlave>
+        <ipxact:baseAddresses>
+          <ipxact:remapAddress>0x40000000</ipxact:remapAddress>
+          <ipxact:range>0x1000</ipxact:range>
+        </ipxact:baseAddresses>
+      </ipxact:mirroredSlave>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>SlaveWithTransparentBridge</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <ipxact:slave>
+        <ipxact:transparentBridge masterRef="Master"/>
+      </ipxact:slave>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>SlaveForSubspaceMap</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <ipxact:slave>
+        <ipxact:memoryMapRef memoryMapRef="SimpleMapWithSubspace"/>
+      </ipxact:slave>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>Monitor</ipxact:name>
+      <ipxact:busType vendor="accellera.org" library="Sample"
+                      name="SampleBusDefinition" version="1.0"/>
+      <ipxact:monitor interfaceMode="slave"/>
+    </ipxact:busInterface>
+  </ipxact:busInterfaces>
+  <ipxact:indirectInterfaces>
+    <!-- LINK: indirectInterface: see 6.6, Indirect interfaces -->
+    <ipxact:indirectInterface>
+      <ipxact:name>IndirectMemoryInterface</ipxact:name>
+      <ipxact:indirectAddressRef>IAR</ipxact:indirectAddressRef>
+      <ipxact:indirectDataRef>IDR</ipxact:indirectDataRef>
+      <ipxact:memoryMapRef>MapForMemory</ipxact:memoryMapRef>
+    </ipxact:indirectInterface>
+  </ipxact:indirectInterfaces>
+  <ipxact:channels>
+    <!-- LINK: channel: see 6.7, Component channels -->
+    <ipxact:channel>
+      <ipxact:name>theChannel</ipxact:name>
+      <ipxact:busInterfaceRef>
+        <ipxact:localName>MirroredMaster</ipxact:localName>
+      </ipxact:busInterfaceRef>
+      <ipxact:busInterfaceRef>
+        <ipxact:localName>MirroredSlave</ipxact:localName>
+      </ipxact:busInterfaceRef>
+    </ipxact:channel>
+  </ipxact:channels>
+  <ipxact:remapStates>
+    <!-- LINK: remapStates: see 6.10.2, Remap states-->
+    <ipxact:remapState>
+      <ipxact:name>Boot</ipxact:name>
+      <ipxact:description>Defines the remap state associated with the component at boot time.</ipxact:description>
+    </ipxact:remapState>
+    <ipxact:remapState>
+      <ipxact:name>Normal</ipxact:name>
+      <ipxact:description>Defines the remap state associated with the component after boot time.</ipxact:description>
+    </ipxact:remapState>
+  </ipxact:remapStates>
+  <ipxact:addressSpaces>
+    <!-- LINK: addressSpace: see 6.8.1, addressSpaces -->
+    <ipxact:addressSpace>
+      <ipxact:name>simpleAddressSpace</ipxact:name>
+      <ipxact:range>4*(2**30)</ipxact:range>
+      <ipxact:width>32</ipxact:width>
+    </ipxact:addressSpace>
+  </ipxact:addressSpaces>
+  <ipxact:memoryMaps>
+    <!-- LINK: memoryMap: see 6.9.1, memoryMaps -->
+    <ipxact:memoryMap>
+      <ipxact:name>SimpleMapWithBlock</ipxact:name>
+      <!-- Address block starts at address 0, containing 1024 addressable 8-
+           bit -->
+      <!-- units, organized into larger 32-bit units. -->
+      <!-- LINK: addressBlock: see 6.9.2, Address block -->
+      <ipxact:addressBlock>
+        <ipxact:name>SimpleAddressBlock</ipxact:name>
+        <ipxact:baseAddress>0x0</ipxact:baseAddress>
+        <!-- LINK: addressBlockDefinitionGroup: see 6.9.3, Address block
+             definition group -->
+        <ipxact:range>2**10</ipxact:range>
+        <ipxact:width>32</ipxact:width>
+        <!-- LINK: memoryBlockData: see 6.9.4, memoryBlockData group -->
+        <ipxact:usage>register</ipxact:usage>
+        <ipxact:volatile>false</ipxact:volatile>
+        <ipxact:access>read-write</ipxact:access>
+        <!-- LINK: registerData: see 6.11.1, Register data -->
+        <!-- LINK: register: see 6.11.2, Register -->
+        <ipxact:register>
+          <ipxact:name>BasicRegister</ipxact:name>
+          <ipxact:addressOffset>0x4</ipxact:addressOffset>
+          <!-- LINK: registerDefinitionGroup: see 6.11.3, Register definition
+               group -->
+          <ipxact:size>32</ipxact:size>
+          <ipxact:volatile>true</ipxact:volatile>
+          <ipxact:access>read-writeOnce</ipxact:access>
+          <!-- LINK: field: see 6.11.8, Register bit fields -->
+          <ipxact:field>
+            <ipxact:name>F1</ipxact:name>
+            <ipxact:bitOffset>0</ipxact:bitOffset>
+            <ipxact:resets>
+              <ipxact:reset>
+                <ipxact:value>0x0</ipxact:value>
+              </ipxact:reset>
+              <ipxact:reset resetTypeRef="SOFT">
+                <ipxact:value>0xf</ipxact:value>
+                <ipxact:mask>0xa</ipxact:mask>
+              </ipxact:reset>
+            </ipxact:resets>
+            <ipxact:bitWidth>4</ipxact:bitWidth>
+            <!-- LINK: fieldData: see 6.11.9 Field data group -->
+            <ipxact:access>writeOnce</ipxact:access>
+            <!-- Document pre-defined values that can be written to this field -->
+            <ipxact:enumeratedValues>
+              <!-- LINK: enumeratedValue: see 6.11.10, Enumeration values -->
+              <ipxact:enumeratedValue>
+                <ipxact:name>SetPos0</ipxact:name>
+                <ipxact:value>0x1</ipxact:value>
+              </ipxact:enumeratedValue>
+              <ipxact:enumeratedValue>
+                <ipxact:name>SetPos1</ipxact:name>
+                <ipxact:value>0x2</ipxact:value>
+              </ipxact:enumeratedValue>
+            </ipxact:enumeratedValues>
+          </ipxact:field>
+          <ipxact:field>
+            <ipxact:name>F2</ipxact:name>
+            <ipxact:bitOffset>4</ipxact:bitOffset>
+            <ipxact:resets>
+              <ipxact:reset>
+                <ipxact:value>0x0</ipxact:value>
+              </ipxact:reset>
+            </ipxact:resets>
+            <ipxact:bitWidth>4</ipxact:bitWidth>
+            <ipxact:modifiedWriteValue>oneToClear</ipxact:modifiedWriteValue>
+            <ipxact:readAction>modify</ipxact:readAction>
+            <ipxact:testable testConstraint="readOnly">true</ipxact:testable>
+          </ipxact:field>
+          <ipxact:field>
+            <ipxact:name>F3</ipxact:name>
+            <ipxact:bitOffset>8</ipxact:bitOffset>
+            <ipxact:bitWidth>4</ipxact:bitWidth>
+            <!-- LINK: writeValueConstraint: see 6.11.11, Write value constraint
+            -->
+            <ipxact:writeValueConstraint>
+              <ipxact:minimum>0x1</ipxact:minimum>
+              <ipxact:maximum>0x2</ipxact:maximum>
+            </ipxact:writeValueConstraint>
+          </ipxact:field>
+          <ipxact:field>
+            <ipxact:name>F4</ipxact:name>
+            <ipxact:bitOffset>12</ipxact:bitOffset>
+            <ipxact:bitWidth>20</ipxact:bitWidth>
+            <ipxact:reserved>true</ipxact:reserved>
+          </ipxact:field>
+        </ipxact:register>
+        <ipxact:register>
+          <ipxact:name>IAR</ipxact:name>
+          <ipxact:addressOffset>0x8</ipxact:addressOffset>
+          <ipxact:size>32</ipxact:size>
+          <ipxact:field fieldID="IAR">
+            <ipxact:name>IAR</ipxact:name>
+            <ipxact:bitOffset>0</ipxact:bitOffset>
+            <ipxact:bitWidth>32</ipxact:bitWidth>
+          </ipxact:field>
+        </ipxact:register>
+        <ipxact:register>
+          <ipxact:name>IDR</ipxact:name>
+          <ipxact:addressOffset>0xc</ipxact:addressOffset>
+          <ipxact:size>32</ipxact:size>
+          <ipxact:field fieldID="IDR">
+            <ipxact:name>IDR</ipxact:name>
+            <ipxact:bitOffset>0</ipxact:bitOffset>
+            <ipxact:bitWidth>32</ipxact:bitWidth>
+          </ipxact:field>
+        </ipxact:register>
+        <ipxact:register>
+          <ipxact:name>RegisterWithAlternate</ipxact:name>
+          <ipxact:addressOffset>0x10</ipxact:addressOffset>
+          <ipxact:size>32</ipxact:size>
+          <ipxact:access>write-only</ipxact:access>
+          <ipxact:field>
+            <ipxact:name>F</ipxact:name>
+            <ipxact:bitOffset>0</ipxact:bitOffset>
+            <ipxact:bitWidth>32</ipxact:bitWidth>
+          </ipxact:field>
+          <ipxact:alternateRegisters>
+            <!-- LINK: alternateRegister: see 6.11.4, Alternate register -->
+            <ipxact:alternateRegister>
+              <ipxact:name>Alternate1</ipxact:name>
+              <ipxact:alternateGroups>
+                <ipxact:alternateGroup>AltRegGroup</ipxact:alternateGroup>
+              </ipxact:alternateGroups>
+              <!-- LINK: alternateRegisterDefinitionGroup: see 6.11.5, Alternate
+                   register definition group -->
+              <ipxact:access>read-only</ipxact:access>
+              <ipxact:field>
+                <ipxact:name>F</ipxact:name>
+                <ipxact:bitOffset>0</ipxact:bitOffset>
+                <ipxact:bitWidth>32</ipxact:bitWidth>
+              </ipxact:field>
+            </ipxact:alternateRegister>
+          </ipxact:alternateRegisters>
+        </ipxact:register>
+        <!-- 8 registers combined in an array with 32 bit gap -->
+        <!-- LINK: registerFile: see 6.11.6, Register file -->
+        <ipxact:registerFile>
+          <ipxact:name>RegisterArray</ipxact:name>
+          <ipxact:dim>8</ipxact:dim>
+          <ipxact:addressOffset>0x200</ipxact:addressOffset>
+          <ipxact:range>0x10</ipxact:range>
+          <ipxact:register>
+            <ipxact:name>RegArrayEntry</ipxact:name>
+            <ipxact:addressOffset>0x0</ipxact:addressOffset>
+            <ipxact:size>32</ipxact:size>
+            <ipxact:field>
+              <ipxact:name>MandatoryField</ipxact:name>
+              <ipxact:bitOffset>0</ipxact:bitOffset>
+              <ipxact:bitWidth>32</ipxact:bitWidth>
+            </ipxact:field>
+          </ipxact:register>
+        </ipxact:registerFile>
+      </ipxact:addressBlock>
+      <ipxact:addressUnitBits>8</ipxact:addressUnitBits>
+    </ipxact:memoryMap>
+    <ipxact:memoryMap>
+      <ipxact:name>SimpleMapWithBank</ipxact:name>
+      <!-- Serial bank with two memory blocks of 1 k units of 32-bit data. -->
+      <!-- The only address specified is 0x10000, but this causes address block
+      -->
+      <!-- ram0 and ram1 to be mapped to addresses 0x10000 and 0x11000
+           respectively. -->
+      <!-- LINK: addressBank: see 6.9.5, Bank -->
+      <ipxact:bank bankAlignment="serial">
+        <ipxact:name>SerialBank</ipxact:name>
+        <ipxact:baseAddress>0x1000</ipxact:baseAddress>
+        <ipxact:addressBlock>
+          <ipxact:name>ram0</ipxact:name>
+          <ipxact:range>0x1000</ipxact:range>
+          <ipxact:width>32</ipxact:width>
+        </ipxact:addressBlock>
+        <ipxact:addressBlock>
+          <ipxact:name>ram1</ipxact:name>
+          <ipxact:range>0x1000</ipxact:range>
+          <ipxact:width>32</ipxact:width>
+        </ipxact:addressBlock>
+      </ipxact:bank>
+    </ipxact:memoryMap>
+    <ipxact:memoryMap>
+      <ipxact:name>SimpleMapWithSubspace</ipxact:name>
+      <!-- Address space from master interface 'Master' mapped into slave
+           interface -->
+      <!-- SlaveForSubspaceMap at address 0x10000 -->
+      <!-- LINK: subspaceMap: see 6.9.9, Subsapce map -->
+      <ipxact:subspaceMap masterRef="Master">
+        <ipxact:name>SubSpace</ipxact:name>
+        <ipxact:baseAddress>0x10000</ipxact:baseAddress>
+      </ipxact:subspaceMap>
+    </ipxact:memoryMap>
+    <ipxact:memoryMap>
+      <ipxact:name>MapForMemory</ipxact:name>
+      <ipxact:addressBlock>
+        <ipxact:name>MemoryBlock</ipxact:name>
+        <ipxact:baseAddress>0x0</ipxact:baseAddress>
+        <ipxact:range>2**10</ipxact:range>
+        <ipxact:width>32</ipxact:width>
+        <ipxact:usage>memory</ipxact:usage>
+        <ipxact:access>read-write</ipxact:access>
+      </ipxact:addressBlock>
+    </ipxact:memoryMap>
+  </ipxact:memoryMaps>
+  <!-- LINK: model: see 6.12.1, Model -->
+  <ipxact:model>
+    <ipxact:views>
+      <ipxact:view>
+        <ipxact:name>RTLview</ipxact:name>
+        <ipxact:displayName>RTL View</ipxact:displayName>
+        <ipxact:description>Simple RTL view of a component.</ipxact:description>
+        <ipxact:envIdentifier>:*Synthesis:</ipxact:envIdentifier>
+        <ipxact:componentInstantiationRef>VerilogModel</ipxact:componentInstantiationRef>
+      </ipxact:view>
+      <ipxact:view>
+        <ipxact:name>TLMview</ipxact:name>
+        <ipxact:displayName>TLM View</ipxact:displayName>
+        <ipxact:description>Simple TLM view of a component.</ipxact:description>
+        <ipxact:isPresent>TLMModelsAvailable</ipxact:isPresent>
+        <ipxact:envIdentifier>:*Simulation:</ipxact:envIdentifier>
+        <ipxact:componentInstantiationRef>TLMModel</ipxact:componentInstantiationRef>
+      </ipxact:view>
+    </ipxact:views>
+    <ipxact:instantiations>
+      <!-- LINK: instantiationsGroup: see 6.12.2, instantiationsGroup -->
+      <!-- LINK: componentInstantiation: see 6.12.3, componentInstantiation -->
+      <ipxact:componentInstantiation>
+        <ipxact:name>VerilogModel</ipxact:name>
+        <ipxact:language>verilog</ipxact:language>
+        <ipxact:moduleName>sample</ipxact:moduleName>
+        <!-- LINK: moduleParameters: see 6.12.6, Module parameters -->
+        <ipxact:moduleParameters>
+          <ipxact:moduleParameter type="bit">
+            <ipxact:name>dual_mode_reg_value</ipxact:name>
+            <ipxact:vectors>
+              <ipxact:vector>
+                <ipxact:left>3</ipxact:left>
+                <ipxact:right>0</ipxact:right>
+              </ipxact:vector>
+            </ipxact:vectors>
+            <ipxact:value>comp_dual_mode?4'hf:4'h0</ipxact:value>
+          </ipxact:moduleParameter>
+        </ipxact:moduleParameters>
+        <ipxact:fileSetRef>
+          <ipxact:localName>VerilogFiles</ipxact:localName>
+        </ipxact:fileSetRef>
+      </ipxact:componentInstantiation>
+      <ipxact:componentInstantiation>
+        <ipxact:name>TLMModel</ipxact:name>
+        <ipxact:language>SystemC</ipxact:language>
+        <ipxact:moduleName>sample</ipxact:moduleName>
+        <ipxact:moduleParameters>
+          <ipxact:moduleParameter type="bit">
+            <ipxact:name>dual_mode</ipxact:name>
+            <ipxact:value>comp_dual_mode</ipxact:value>
+          </ipxact:moduleParameter>
+          <ipxact:moduleParameter parameterId="vdp" resolve="generated"
+                                  type="bit">
+            <ipxact:name>view_dependent_param</ipxact:name>
+            <ipxact:value>0</ipxact:value>
+          </ipxact:moduleParameter>
+        </ipxact:moduleParameters>
+        <ipxact:fileSetRef>
+          <ipxact:localName>SystemCFiles</ipxact:localName>
+        </ipxact:fileSetRef>
+      </ipxact:componentInstantiation>
+    </ipxact:instantiations>
+    <ipxact:ports>
+      <!-- LINK: port: see 6.12.7, Component ports -->
+      <ipxact:port>
+        <ipxact:name>slv_data</ipxact:name>
+        <!-- LINK: wire: see 6.12.8, Component wire ports -->
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>15</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <!-- LINK: wireTypeDef: see 6.12.9, Component wireTypeDef -->
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>logic</ipxact:typeName>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+          <!-- Default upper 8 bits since the interface only uses 8 bits -->
+          <ipxact:drivers>
+            <!-- LINK: driver: see 6.12.10, Component driver -->
+            <ipxact:driver>
+              <ipxact:range>
+                <ipxact:left>15</ipxact:left><ipxact:right>8</ipxact:right>
+              </ipxact:range>
+              <ipxact:defaultValue>8'h0</ipxact:defaultValue>
+            </ipxact:driver>
+          </ipxact:drivers>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>mst_data</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>out</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>7</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>logic</ipxact:typeName>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>slv_addr</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>7</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>logic</ipxact:typeName>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+          <ipxact:constraintSets>
+            <!-- LINK: constraintSet: see 6.12.13, Component wire port constraints -->
+            <ipxact:constraintSet>
+              <!-- Port driven by high strength sequential cell for synthesis -->
+              <ipxact:driveConstraint>
+                <!-- LINK: cellSpecification: see 6.12.15, Load and drive constraint
+                     cell specification -->
+                <ipxact:cellSpecification cellStrength="high">
+                  <ipxact:cellClass>sequential</ipxact:cellClass>
+                </ipxact:cellSpecification>
+              </ipxact:driveConstraint>
+              <!-- Port timing requirements for synthesis -->
+              <!-- LINK: timingConstraint: see 6.12.14, Port timing constraints -->
+              <ipxact:timingConstraint clockName="clk">60</ipxact:timingConstraint>
+            </ipxact:constraintSet>
+          </ipxact:constraintSets>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>mst_addr</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>out</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>7</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>logic</ipxact:typeName>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+          <ipxact:constraintSets>
+            <ipxact:constraintSet>
+              <!-- Port drives 2 high strength sequential cells for synthesis -->
+              <ipxact:loadConstraint>
+                <ipxact:cellSpecification cellStrength="high">
+                  <ipxact:cellClass>sequential</ipxact:cellClass>
+                </ipxact:cellSpecification>
+                <ipxact:count>2</ipxact:count>
+              </ipxact:loadConstraint>
+              <!-- Port timing requirements for synthesis -->
+              <ipxact:timingConstraint clockName="clk">40</ipxact:timingConstraint>
+            </ipxact:constraintSet>
+          </ipxact:constraintSets>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- parity port exists in RTL view with default data type -->
+      <ipxact:port>
+        <ipxact:name>slv_parity</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- clock port exists in RTL view with default data type -->
+      <ipxact:port>
+        <ipxact:name>clk</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+          <ipxact:drivers>
+            <ipxact:driver>
+              <!-- LINK: clockDriver: see 6.12.11, Component driver/clockDriver -->
+              <ipxact:clockDriver>
+                <ipxact:clockPeriod>5</ipxact:clockPeriod>
+                <ipxact:clockPulseOffset>2.5</ipxact:clockPulseOffset>
+                <ipxact:clockPulseValue>1</ipxact:clockPulseValue>
+                <ipxact:clockPulseDuration>2.5</ipxact:clockPulseDuration>
+              </ipxact:clockDriver>
+            </ipxact:driver>
+          </ipxact:drivers>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- reset port exists in RTL view with default data type -->
+      <ipxact:port>
+        <ipxact:name>reset</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:viewRef>RTLview</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+          <ipxact:drivers>
+            <ipxact:driver>
+              <ipxact:singleShotDriver>
+                <ipxact:singleShotOffset>2</ipxact:singleShotOffset>
+                <ipxact:singleShotValue>1</ipxact:singleShotValue>
+                <ipxact:singleShotDuration>5</ipxact:singleShotDuration>
+              </ipxact:singleShotDriver>
+            </ipxact:driver>
+          </ipxact:drivers>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- status port exists in all views with default data type -->
+      <ipxact:port>
+        <ipxact:name>status</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>out</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>7</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- anotherPort port exists in all views with default data type -->
+      <ipxact:port>
+        <ipxact:name>anotherPort</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>3</ipxact:left><ipxact:right>0</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+        </ipxact:wire>
+      </ipxact:port>
+      <!-- slv_transaction port exists in TLM view only -->
+      <ipxact:port>
+        <ipxact:name>slv_transaction</ipxact:name>
+        <!-- LINK: transactional: see 6.12.17, Component transactional port type -->
+        <ipxact:transactional>
+          <ipxact:initiative>requires</ipxact:initiative>
+          <ipxact:transTypeDefs>
+            <!-- LINK: transTypeDef: see 6.12.19, Component transactional port
+                 type definition -->
+            <ipxact:transTypeDef>
+              <ipxact:typeName>sampleTLMtype</ipxact:typeName>
+              <ipxact:viewRef>TLMview</ipxact:viewRef>
+            </ipxact:transTypeDef>
+          </ipxact:transTypeDefs>
+        </ipxact:transactional>
+      </ipxact:port>
+      <!-- mst_transaction port exists in TLM view only -->
+      <ipxact:port>
+        <ipxact:name>mst_transaction</ipxact:name>
+        <ipxact:transactional>
+          <ipxact:initiative>provides</ipxact:initiative>
+          <ipxact:transTypeDefs>
+            <ipxact:transTypeDef>
+              <ipxact:typeName>sampleTLMtype</ipxact:typeName>
+              <ipxact:viewRef>TLMview</ipxact:viewRef>
+            </ipxact:transTypeDef>
+          </ipxact:transTypeDefs>
+        </ipxact:transactional>
+      </ipxact:port>
+    </ipxact:ports>
+  </ipxact:model>
+  <ipxact:componentGenerators>
+    <!-- LINK: componentGenerator: see 6.13, Component generators -->
+    <ipxact:componentGenerator>
+      <ipxact:name>SimpleComponentGenerator</ipxact:name>
+      <ipxact:description>Simple TGI based component generator</ipxact:description>
+      <ipxact:phase>1</ipxact:phase>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="genParm1" prompt="Parm 1"
+                          type="shortint" resolve="user">
+          <ipxact:name>genParm1</ipxact:name>
+          <ipxact:description>First generator parameter.</ipxact:description>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="genParm2" prompt="Parm 2"
+                          type="shortint" resolve="user">
+          <ipxact:name>genParm2</ipxact:name>
+          <ipxact:description>Second generator parameter.</ipxact:description>
+          <ipxact:value>2</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+      <ipxact:apiType>TGI_2014_BASE</ipxact:apiType>
+      <!-- By convention, generator invoked and passed parameters as follows:
+      -->
+      <!-- generator.sh -genParm1 <value> -genParm2 <value> -->
+      <ipxact:generatorExe>../bin/generator.sh</ipxact:generatorExe>
+    </ipxact:componentGenerator>
+  </ipxact:componentGenerators>
+  <!-- LINK: choices: see 6.14, Choices -->
+  <ipxact:choices>
+    <ipxact:choice>
+      <ipxact:name>bitsize</ipxact:name>
+      <ipxact:enumeration text="32 bits">32</ipxact:enumeration>
+      <ipxact:enumeration text="64 bits">64</ipxact:enumeration>
+    </ipxact:choice>
+  </ipxact:choices>
+  <ipxact:fileSets>
+    <!-- LINK: fileSet: see 6.15.1, File sets -->
+    <ipxact:fileSet>
+      <ipxact:name>VerilogFiles</ipxact:name>
+      <!-- LINK: file: see 6.15.2, file -->
+      <ipxact:file>
+        <ipxact:name>../src/component.v</ipxact:name>
+        <ipxact:fileType>verilogSource</ipxact:fileType>
+        <ipxact:isStructural>true</ipxact:isStructural>
+      </ipxact:file>
+    </ipxact:fileSet>
+    <ipxact:fileSet>
+      <ipxact:name>SystemCFiles</ipxact:name>
+      <ipxact:file>
+        <ipxact:name>../src/component.C</ipxact:name>
+        <ipxact:fileType>systemCSource-2.2</ipxact:fileType>
+      </ipxact:file>
+    </ipxact:fileSet>
+  </ipxact:fileSets>
+  <ipxact:whiteboxElements>
+    <!-- LINK: whiteboxElement: see 6.16, White box elements -->
+    <ipxact:whiteboxElement>
+      <ipxact:name>ImportantInternalSignal</ipxact:name>
+      <ipxact:description>Defines access point for forcing sim values</ipxact:description>
+      <ipxact:whiteboxType>signal</ipxact:whiteboxType>
+      <ipxact:driveable>true</ipxact:driveable>
+    </ipxact:whiteboxElement>
+  </ipxact:whiteboxElements>
+  <ipxact:cpus>
+    <!-- LINK: cpu: see 6.18, CPUs -->
+    <ipxact:cpu>
+      <ipxact:name>cpuDefn</ipxact:name>
+      <ipxact:addressSpaceRef addressSpaceRef="simpleAddressSpace"/>
+    </ipxact:cpu>
+  </ipxact:cpus>
+  <ipxact:otherClockDrivers>
+    <!-- LINK: otherClockDriver: see 6.12.16, Other clock drivers -->
+    <ipxact:otherClockDriver clockName="virtualClock1">
+      <ipxact:clockPeriod>10</ipxact:clockPeriod>
+      <ipxact:clockPulseOffset>5</ipxact:clockPulseOffset>
+      <ipxact:clockPulseValue>1</ipxact:clockPulseValue>
+      <ipxact:clockPulseDuration>5</ipxact:clockPulseDuration>
+    </ipxact:otherClockDriver>
+  </ipxact:otherClockDrivers>
+  <ipxact:resetTypes>
+    <!-- TODO: MISSING definition of resetType in document -->
+    <ipxact:resetType>
+      <!-- LINK: resetType: see 6.19, Reset type -->
+      <ipxact:name>SOFT</ipxact:name>
+      <ipxact:displayName>Soft Reset</ipxact:displayName>
+    </ipxact:resetType>
+  </ipxact:resetTypes>
+  <ipxact:description>Example component used in the IP-XACT standard.</ipxact:description>
+  <!-- LINK: parameters: see C.18, parameters -->
+  <ipxact:parameters>
+    <!-- LINK: parameters: see C.19, attributes -->
+    <ipxact:parameter parameterId="TLMModelsAvailable" prompt="TLM Models Available" type="bit" resolve="user">
+      <ipxact:name>TLMModelsAvailable</ipxact:name>
+      <ipxact:displayName>TLM Models Available</ipxact:displayName>
+      <ipxact:description>Set to true if TLM simulation models are available.</ipxact:description>
+      <ipxact:value>0</ipxact:value>
+    </ipxact:parameter>
+    <ipxact:parameter parameterId="comp_dual_mode" prompt="Dual Mode Supported" type="bit" resolve="user">
+      <ipxact:name>comp_dual_mode</ipxact:name>
+      <ipxact:description>Indicates dual mode support is desired.</ipxact:description>
+      <ipxact:value>1</ipxact:value>
+    </ipxact:parameter>
+    <!-- Parameter leveraging an enumeration 'choice' -->
+    <ipxact:parameter parameterId="addrBits" choiceRef="bitsize"
+                      prompt="Address Bits" type="shortint" resolve="user">
+      <ipxact:name>addrBits</ipxact:name>
+      <ipxact:value>32</ipxact:value>
+    </ipxact:parameter>
+  </ipxact:parameters>
+  <!-- LINK: assertions: see C.2, assertions -->
+  <ipxact:assertions>
+    <ipxact:assertion>
+      <ipxact:name>ArbitraryAssertion1</ipxact:name>
+      <ipxact:description>Arbitrary assertion to show syntax. Must evaluate to true.</ipxact:description>
+      <ipxact:assert>TLMModelsAvailable || !comp_dual_mode</ipxact:assert>
+    </ipxact:assertion>
+  </ipxact:assertions>
+  <!-- LINK: vendorExtensions: see C.24, vendorExtensions -->
+  <!-- TODO: Cannot handle vendor extensions yet. Re-add part once supported -->
+</ipxact:component>

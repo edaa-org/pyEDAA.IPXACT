@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example bus definition used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document
+-->
+<!-- LINK: busDefinition/busDefinition: see 5.2, Bus definition -->
+<ipxact:busDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                      xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                          index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleBusDefinitionExtension</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:directConnection>true</ipxact:directConnection>
+  <ipxact:broadcast>true</ipxact:broadcast>
+  <ipxact:isAddressable>false</ipxact:isAddressable>
+  <ipxact:extends vendor="accellera.org" library="Sample"
+                  name="SampleBusDefinitionBase" version="1.0"/>
+  <ipxact:maxMasters>1</ipxact:maxMasters>
+  <ipxact:maxSlaves>16</ipxact:maxSlaves>
+  <ipxact:systemGroupNames>
+    <ipxact:systemGroupName>SystemSignals</ipxact:systemGroupName>
+  </ipxact:systemGroupNames>
+  <ipxact:description>Example bus definition used in the IP-XACT standard.</ipxact:description>
+  <!-- ipxact:parameters - excluded for brevity - see component example -->
+  <!-- ipxact:assertions - excluded for brevity - see component example -->
+  <!-- ipxact:vendorExtensions - excluded for brevity - see component example
+  -->
+</ipxact:busDefinition>

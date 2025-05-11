@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example design used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document.
+-->
+<!-- LINK: design: see 7.1, Design -->
+<ipxact:design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+               xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                   index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleDesign</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <!-- Two RTL instances (U1, U2), and 1 TLM instance (U3) -->
+  <ipxact:componentInstances>
+    <!-- LINK: componentInstance: see 7.2, Design component instances -->
+    <ipxact:componentInstance>
+      <ipxact:instanceName>U1</ipxact:instanceName>
+      <ipxact:componentRef vendor="accellera.org" library="Sample"
+                           name="SampleComponent" version="1.0">
+        <ipxact:configurableElementValues>
+          <ipxact:configurableElementValue referenceId="comp_dual_mode">0</ipxact:configurableElementValue>
+        </ipxact:configurableElementValues>
+      </ipxact:componentRef>
+    </ipxact:componentInstance>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>U2</ipxact:instanceName>
+      <ipxact:componentRef vendor="accellera.org" library="Sample"
+                           name="SampleComponent" version="1.0">
+      </ipxact:componentRef>
+    </ipxact:componentInstance>
+    <ipxact:componentInstance>
+      <ipxact:instanceName>U3</ipxact:instanceName>
+      <ipxact:componentRef vendor="accellera.org" library="Sample"
+                           name="SampleComponent" version="1.0">
+      </ipxact:componentRef>
+    </ipxact:componentInstance>
+  </ipxact:componentInstances>
+  <ipxact:interconnections>
+    <!-- Simple master to slave interface connection -->
+    <!-- LINK: interconnection: see 7.3.1, interconnection -->
+    <ipxact:interconnection>
+      <ipxact:name>TwoIntfs</ipxact:name>
+      <!-- LINK: activeInterface: see 7.4, Active, hierarchical, monitored, and
+           monitor interfaces -->
+      <ipxact:activeInterface componentRef="U1" busRef="Master"/>
+      <ipxact:activeInterface componentRef="U2" busRef="Slave"/>
+    </ipxact:interconnection>
+    <!-- Broadcast interface from a slave (one to many connection) -->
+    <ipxact:interconnection>
+      <ipxact:name>BroadcastConnection</ipxact:name>
+      <ipxact:activeInterface componentRef="U1" busRef="Slave"/>
+      <ipxact:hierInterface busRef="Slave0"/>
+      <ipxact:hierInterface busRef="Slave1"/>
+    </ipxact:interconnection>
+    <!-- Export Master interface - will be used for TLM to RTL conversion -->
+    <ipxact:interconnection>
+      <ipxact:name>ExportTLM</ipxact:name>
+      <ipxact:activeInterface componentRef="U3" busRef="Master"/>
+      <ipxact:hierInterface busRef="TLMMaster"/>
+    </ipxact:interconnection>
+    <!-- LINK: monitorInterconnection: 7.3.2 monitorInterconnection -->
+    <!-- Monitor interface connection -->
+    <ipxact:monitorInterconnection>
+      <ipxact:name>MonitorConnection</ipxact:name>
+      <ipxact:monitoredActiveInterface componentRef="U2" busRef="Slave"/>
+      <ipxact:monitorInterface componentRef="U2" busRef="Monitor"/>
+    </ipxact:monitorInterconnection>
+  </ipxact:interconnections>
+  <ipxact:adHocConnections>
+    <!-- Simple two pin connection. Range not mentioned on anotherPort -->
+    <!-- which implies all bits are connected -->
+    <!-- LINK: adHocConnection: see 7.5, Design ad hoc connections -->
+    <ipxact:adHocConnection>
+      <ipxact:name>SimpleWire</ipxact:name>
+      <ipxact:portReferences>
+        <!-- LINK: internalPortReference: see 7.6, Port references -->
+        <ipxact:internalPortReference componentRef="U1" portRef="anotherPort"/>
+        <ipxact:internalPortReference componentRef="U2" portRef="status">
+          <ipxact:partSelect>
+            <ipxact:range><ipxact:left>7</ipxact:left><ipxact:right>4</ipxact:right></ipxact:range>
+          </ipxact:partSelect>
+        </ipxact:internalPortReference>
+      </ipxact:portReferences>
+    </ipxact:adHocConnection>
+    <!-- Tie input bits to a constant -->
+    <ipxact:adHocConnection>
+      <ipxact:name>TieOff</ipxact:name>
+      <ipxact:tiedValue>3'h2</ipxact:tiedValue>
+      <ipxact:portReferences>
+        <ipxact:internalPortReference componentRef="U2" portRef="anotherPort">
+          <ipxact:partSelect>
+            <ipxact:range><ipxact:left>2</ipxact:left><ipxact:right>0</ipxact:right></ipxact:range>
+          </ipxact:partSelect>
+        </ipxact:internalPortReference>
+      </ipxact:portReferences>
+    </ipxact:adHocConnection>
+    <!-- Tie output bits to open -->
+    <ipxact:adHocConnection>
+      <ipxact:name>TieOpen</ipxact:name>
+      <ipxact:tiedValue>open</ipxact:tiedValue>
+      <ipxact:portReferences>
+        <ipxact:internalPortReference componentRef="U1" portRef="status"/>
+      </ipxact:portReferences>
+    </ipxact:adHocConnection>
+  </ipxact:adHocConnections>
+</ipxact:design>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example abstraction definition used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document. This is a trivial TLM abstraction.
+-->
+<!-- LINK: abstractionDefinition: see 5.3, Abstraction definition -->
+<ipxact:abstractionDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                              xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                                  index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleAbstractionDefinition_TLM</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:busType vendor="accellera.org" library="Sample"
+                  name="SampleBusDefinitionExtension" version="1.0"/>
+  <ipxact:ports>
+    <!-- LINK: port: see 5.4, Ports -->
+    <!-- Simple transactional port -->
+    <ipxact:port>
+      <ipxact:logicalName>Transport</ipxact:logicalName>
+      <!-- LINK: transactional: see 5.9, Transactional ports -->
+      <ipxact:transactional>
+        <ipxact:onMaster>
+          <!-- abstractionDefinition/transactionalPort -->
+          <ipxact:presence>optional</ipxact:presence>
+          <ipxact:initiative>provides</ipxact:initiative>
+          <ipxact:kind>simple_socket</ipxact:kind>
+          <ipxact:busWidth>8</ipxact:busWidth>
+          <!-- LINK: protocol: see 6.12.8, Component transactional protocol/
+               payload definition -->
+          <ipxact:protocol>
+            <ipxact:protocolType>tlm</ipxact:protocolType>
+            <ipxact:payload>
+              <ipxact:name>tlm2</ipxact:name>
+              <ipxact:type>generic</ipxact:type>
+            </ipxact:payload>
+          </ipxact:protocol>
+        </ipxact:onMaster>
+        <ipxact:onSlave>
+          <ipxact:initiative>requires</ipxact:initiative>
+          <ipxact:kind>simple_socket</ipxact:kind>
+          <ipxact:protocol>
+            <ipxact:protocolType>tlm</ipxact:protocolType>
+            <ipxact:payload>
+              <ipxact:name>tlm2</ipxact:name>
+              <ipxact:type>generic</ipxact:type>
+            </ipxact:payload>
+          </ipxact:protocol>
+        </ipxact:onSlave>
+      </ipxact:transactional>
+    </ipxact:port>
+  </ipxact:ports>
+  <ipxact:description>Example TLM abstraction definition used in the IP-XACT standard.</ipxact:description>
+</ipxact:abstractionDefinition>

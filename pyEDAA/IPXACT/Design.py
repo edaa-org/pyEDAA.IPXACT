@@ -80,11 +80,18 @@ class Design(RootElement):
 
 	def Parse(self, element: _Element) -> None:
 		elementLocalname = QName(element).localname
-		# if elementLocalname == "catalogs":
-		# 	for ipxactFileElement in element:
-		# 		self.AddItem(IpxactFile.FromXml(ipxactFileElement))
-		# else:
-		raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
+		if elementLocalname == "componentInstances":
+			pass
+			# for ipxactFileElement in element:
+			# 	self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		elif elementLocalname == "componentInstances":
+			pass
+		elif elementLocalname == "interconnections":
+			pass
+		elif elementLocalname == "adHocConnections":
+			pass
+		else:
+			raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def AddItem(self, item) -> None:
 		if isinstance(item, ComponentInstance):

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example abstraction definition used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document. This file represents an RTL abstraction.
+-->
+<!-- LINK: abstractionDefinition: see 5.3, Abstraction definition -->
+<ipxact:abstractionDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                              xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                              xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                                  index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleAbstractionDefinition_RTL</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:busType vendor="accellera.org" library="Sample"
+                  name="SampleBusDefinitionExtension" version="1.0"/>
+  <ipxact:ports>
+    <!-- LINK: port: see 5.4, Ports -->
+    <!-- Simple wire port -->
+    <ipxact:port>
+      <ipxact:logicalName>Data</ipxact:logicalName>
+      <ipxact:displayName>Data Bus</ipxact:displayName>
+      <ipxact:description>The data bus</ipxact:description>
+      <!-- LINK: wire: see 5.5, Wire ports -->
+      <ipxact:wire>
+        <!-- LINK: qualifier: see 5.6, Qualifiers -->
+        <ipxact:qualifier>
+          <ipxact:isData>true</ipxact:isData>
+        </ipxact:qualifier>
+        <ipxact:onMaster>
+          <!-- LINK: wirePort: see 5.7, Wire port group -->
+          <ipxact:presence>required</ipxact:presence>
+          <ipxact:width>8</ipxact:width>
+          <ipxact:direction>out</ipxact:direction>
+          <!-- LINK: modeConstraints: see 5.8, Wire port mode (and mirrored
+               mode) constraints -->
+          <ipxact:modeConstraints>
+            <ipxact:timingConstraint clockName="Clk">40</ipxact:timingConstraint>
+          </ipxact:modeConstraints>
+        </ipxact:onMaster>
+        <ipxact:onSlave>
+          <ipxact:width>8</ipxact:width>
+          <ipxact:direction>in</ipxact:direction>
+        </ipxact:onSlave>
+        <ipxact:defaultValue>'ff</ipxact:defaultValue>
+      </ipxact:wire>
+    </ipxact:port>
+    <ipxact:port>
+      <ipxact:logicalName>Address</ipxact:logicalName>
+      <ipxact:displayName>Address Bus</ipxact:displayName>
+      <ipxact:description>The address bus</ipxact:description>
+      <!-- LINK: wire: see 5.5, Wire ports -->
+      <ipxact:wire>
+        <!-- LINK: qualifier: see 5.6, Qualifiers -->
+        <ipxact:qualifier>
+          <ipxact:isAddress>true</ipxact:isAddress>
+        </ipxact:qualifier>
+        <ipxact:onMaster>
+          <!-- LINK: wirePort: see 5.7, Wire port group -->
+          <ipxact:presence>required</ipxact:presence>
+          <ipxact:direction>out</ipxact:direction>
+        </ipxact:onMaster>
+        <ipxact:onSlave>
+          <ipxact:width>8</ipxact:width>
+          <ipxact:direction>in</ipxact:direction>
+        </ipxact:onSlave>
+        <ipxact:defaultValue>'ff</ipxact:defaultValue>
+      </ipxact:wire>
+    </ipxact:port>
+    <!-- Simple clock port to show system elements -->
+    <ipxact:port>
+      <ipxact:logicalName>Clk</ipxact:logicalName>
+      <ipxact:wire>
+        <ipxact:qualifier>
+          <ipxact:isClock>true</ipxact:isClock>
+        </ipxact:qualifier>
+        <ipxact:onSystem>
+          <ipxact:group>SystemSignals</ipxact:group>
+          <ipxact:width>1</ipxact:width>
+          <ipxact:direction>out</ipxact:direction>
+        </ipxact:onSystem>
+        <ipxact:onMaster>
+          <ipxact:presence>optional</ipxact:presence>
+          <ipxact:width>1</ipxact:width>
+          <ipxact:direction>in</ipxact:direction>
+        </ipxact:onMaster>
+        <ipxact:onSlave>
+          <ipxact:presence>optional</ipxact:presence>
+          <ipxact:width>1</ipxact:width>
+          <ipxact:direction>in</ipxact:direction>
+        </ipxact:onSlave>
+        <ipxact:requiresDriver driverType="singleShot">true</ipxact:requiresDriver>
+      </ipxact:wire>
+    </ipxact:port>
+    <!-- Conditionally existing logical port -->
+    <ipxact:port>
+      <ipxact:isPresent>UsingParity</ipxact:isPresent>
+      <ipxact:logicalName>Parity</ipxact:logicalName>
+      <ipxact:wire>
+        <ipxact:onMaster>
+          <ipxact:presence>required</ipxact:presence>
+          <ipxact:width>1</ipxact:width>
+          <ipxact:direction>out</ipxact:direction>
+        </ipxact:onMaster>
+        <ipxact:onSlave>
+          <ipxact:presence>required</ipxact:presence>
+          <ipxact:width>1</ipxact:width>
+          <ipxact:direction>in</ipxact:direction>
+        </ipxact:onSlave>
+      </ipxact:wire>
+    </ipxact:port>
+  </ipxact:ports>
+  <ipxact:description>Example RTL abstraction definition used in the IP-XACT standard.</ipxact:description>
+  <ipxact:parameters>
+    <ipxact:parameter parameterId="UsingParity" type="bit"
+                      resolve="generated">
+      <ipxact:name>UsingParity</ipxact:name>
+      <ipxact:description>Set to true if parity interface being used.</ipxact:description>
+      <ipxact:value>0</ipxact:value>
+    </ipxact:parameter>
+  </ipxact:parameters>
+</ipxact:abstractionDefinition>
