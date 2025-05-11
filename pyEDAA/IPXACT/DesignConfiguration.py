@@ -29,30 +29,46 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from textwrap import dedent
-from typing   import Optional as Nullable
+from pathlib              import Path
+from textwrap             import dedent
+from typing               import Optional as Nullable, ClassVar
 
+from lxml.etree           import _Element, QName
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema
+from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema, IPXACTException
 
 
 @export
 class DesignConfiguration(RootElement):
 	"""Represents an IP-XACT design configuration."""
 
-	_description:                  str
+	_rootTagName:                  ClassVar[str] = "designConfiguration"
+
 	_generatorChainConfiguration:  Nullable["GeneratorChainConfiguration"]
 	_interconnectionConfiguration: Nullable["InterconnectionConfiguration"]
 	_viewConfiguration:            Nullable["ViewConfiguration"]
 
-	def __init__(self, vlnv: VLNV, description: str):
-		super().__init__(vlnv)
-
-		self._description =                  description
+	def __init__(
+		self,
+		designConfigurationFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
 		self._generatorChainConfiguration =  None
 		self._interconnectionConfiguration = None
 		self._viewConfiguration =            None
+
+		super().__init__(designConfigurationFile, parse, vlnv, description)
+
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		# if elementLocalname == "catalogs":
+		# 	for ipxactFileElement in element:
+		# 		self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		# else:
+		raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def SetItem(self, item):
 		if isinstance(item,   GeneratorChainConfiguration):

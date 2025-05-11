@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example abstractor used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document.
+-->
+<!-- LINK: abstractor: see 8.1, Abstractor -->
+<ipxact:abstractor xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                   xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                       index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleAbstractor</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:abstractorMode>master</ipxact:abstractorMode>
+  <ipxact:busType vendor="accellera.org" library="Sample"
+                  name="SampleBusDefinition" version="1.0"/>
+  <!-- LINK: abstractorInterfaces: see 8.2, Abstractor interfaces -->
+  <ipxact:abstractorInterfaces>
+    <!-- master interface -->
+    <ipxact:abstractorInterface>
+      <ipxact:name>Master</ipxact:name>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_TLM" version="1.0"/>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+    </ipxact:abstractorInterface>
+    <!-- mirrored master interface -->
+    <ipxact:abstractorInterface>
+      <ipxact:name>MirroredMaster</ipxact:name>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="accellera.org" library="Sample"
+                                 name="SampleAbstractionDefinition_RTL" version="1.0"/>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+    </ipxact:abstractorInterface>
+  </ipxact:abstractorInterfaces>
+  <!-- Remaining content in abstractor is optional and similar enough -->
+  <!-- to a component that it is excluded from the example -->
+</ipxact:abstractor>

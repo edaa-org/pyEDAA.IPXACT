@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example designConfiguration used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document.
+-->
+<!-- LINK: designConfiguration: see 10.2, designConfiguration -->
+<ipxact:designConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                            xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                            xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                                index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleDesignConfiguration</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <ipxact:generatorChainConfiguration vendor="accellera.org" library="Sample"
+                                      name="SampleGeneratorChain" version="1.0">
+    <ipxact:configurableElementValues>
+      <ipxact:configurableElementValue referenceId="genParm1">7</ipxact:configurableElementValue>
+    </ipxact:configurableElementValues>
+  </ipxact:generatorChainConfiguration>
+  <!-- LINK: interconnectionConfiguration: see 10.3,
+       interconnectionConfiguration -->
+  <ipxact:interconnectionConfiguration>
+    <ipxact:interconnectionRef>ExportTLM</ipxact:interconnectionRef>
+    <ipxact:abstractorInstances>
+      <!-- LINK: abstractorInstance: see 10.4, abstractor instance -->
+      <ipxact:abstractorInstance>
+        <ipxact:instanceName>U_tlm2rtl</ipxact:instanceName>
+        <ipxact:abstractorRef vendor="accellera.org" library="Sample"
+                              name="SampleAbstractor" version="1.0"/>
+        <ipxact:viewName>default</ipxact:viewName>
+      </ipxact:abstractorInstance>
+    </ipxact:abstractorInstances>
+  </ipxact:interconnectionConfiguration>
+  <!-- Select RTL for U1, U2, and TLM for U3 -->
+  <!-- LINK: viewConfiguration: see 10.5, viewConfiguration -->
+  <ipxact:viewConfiguration>
+    <ipxact:instanceName>U1</ipxact:instanceName>
+    <ipxact:view viewRef="RTLview"/>
+  </ipxact:viewConfiguration>
+  <ipxact:viewConfiguration>
+    <ipxact:instanceName>U2</ipxact:instanceName>
+    <ipxact:view viewRef="RTLview"/>
+  </ipxact:viewConfiguration>
+  <ipxact:viewConfiguration>
+    <ipxact:instanceName>U3</ipxact:instanceName>
+    <ipxact:view viewRef="TLMview">
+      <ipxact:configurableElementValues>
+        <ipxact:configurableElementValue referenceId="vdp">1</ipxact:configurableElementValue>
+      </ipxact:configurableElementValues>
+    </ipxact:view>
+  </ipxact:viewConfiguration>
+</ipxact:designConfiguration>

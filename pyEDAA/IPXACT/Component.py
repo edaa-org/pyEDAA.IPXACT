@@ -29,31 +29,323 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from sys import version_info
+from pathlib              import Path
+from sys                  import version_info
 from textwrap             import dedent
-from typing import List
+from typing import List, Optional as Nullable, ClassVar, Dict, Union
 
-from pyTooling.Common import getFullyQualifiedName
-from pyTooling.Decorators import export
+from lxml.etree           import _Element, QName, _Comment
+from pyTooling.Decorators import export, readonly
+from pyTooling.Common     import getFullyQualifiedName
 
-from pyEDAA.IPXACT import __DEFAULT_SCHEMA__, RootElement, VLNV, IPXACTSchema, Element
+from pyEDAA.IPXACT        import __DEFAULT_SCHEMA__, RootElement, VLNV, IPXACTSchema, Element, IPXACTException
+
+
+@export
+class BusInterface(Element):
+	"""Represents an IP-XACT bus interface."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	@classmethod
+	def FromXml(cls, element: _Element) -> "BusInterface":
+		pass
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class IndirectInterface(Element):
+	"""Represents an IP-XACT indirect interface."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Channel(Element):
+	"""Represents an IP-XACT channel."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class RemapState(Element):
+	"""Represents an IP-XACT remap state."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class AddressSpace(Element):
+	"""Represents an IP-XACT address space."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class MemoryMap(Element):
+	"""Represents an IP-XACT memory map."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Model(Element):
+	"""Represents an IP-XACT model."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class ComponentGenerator:
+	"""Represents an IP-XACT component generator."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Choice(Element):
+	"""Represents an IP-XACT choice."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class File(Element):
+	_path: Path
+
+	def __init__(self, path: Path) -> None:
+		self._path = Path
+
+	@readonly
+	def Path(self) -> Path:
+		return self._path
+
+	@classmethod
+	def FromXml(cls, fileElement: _Element) -> "FileSet":
+		fileName = None
+		fileType = None
+		for element in fileElement:
+			if isinstance(element, _Comment):
+				continue
+
+			elementLocalname = QName(element).localname
+			if elementLocalname == "name":
+				fileName = element.text
+			elif elementLocalname == "fileType":
+				fileType = element.text
+			elif elementLocalname == "isStructural":
+				pass
+			else:
+				raise IPXACTException(f"Unsupported tag '{elementLocalname}' at component → fileSets → fileSet → file.")
+
+		return cls(Path(fileName))
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+	def __str__(self) -> str:
+		return str(self._path)
+
+
+@export
+class FileSet(Element):
+	"""Represents an IP-XACT fileset."""
+
+	_name: str
+	_files: List[File]
+
+	def __init__(self, name: str, files: List[File]) -> None:
+		self._name =  name
+		self._files = [file for file in files]
+
+	@readonly
+	def Name(self) -> str:
+		return self._name
+
+	@readonly
+	def Files(self) -> List[File]:
+		return self._files
+
+	@readonly
+	def FileCount(self) -> int:
+		return len(self._files)
+
+	@classmethod
+	def FromXml(cls, fileSetElement: _Element) -> "FileSet":
+		files = []
+		fileSetName = None
+		for element in fileSetElement:
+			if isinstance(element, _Comment):
+				continue
+
+			elementLocalname = QName(element).localname
+			if elementLocalname == "name":
+				fileSetName = element.text
+			elif elementLocalname == "file":
+				files.append(File.FromXml(element))
+			else:
+				raise IPXACTException(f"Unsupported tag '{elementLocalname}' at component → fileSets → fileSet.")
+
+		return cls(fileSetName, files)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+	def __str__(self) -> str:
+		return f"FileSet {self._name} ({len(self._files)})"
+
+
+@export
+class WhiteboxElement(Element):
+	"""Represents an IP-XACT whitebos element."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Cpu(Element):
+	"""Represents an IP-XACT cpu."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class OtherClockDriver(Element):
+	"""Represents an IP-XACT *other* clock driver."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class ResetType(Element):
+	"""Represents an IP-XACT reset type."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Parameter(Element):
+	"""Represents an IP-XACT parameter.""""""Represents an IP-XACT assertion."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
+
+
+@export
+class Assertion(Element):
+	"""Represents an IP-XACT assertion."""
+
+	def __init__(self, vlnv: VLNV) -> None:
+		super().__init__(vlnv)
+
+	def ToXml(self, indent=0):
+		"""Converts the object's data into XML format."""
+
+		return ""
 
 
 @export
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
-	_description:         str
+	_rootTagName:         ClassVar[str] = "component"
+
 	_busInterfaces:       List
 	_indirectInterfaces:  List
 	_channels:            List
 	_remapStates:         List
 	_addressSpaces:       List
 	_memoryMaps:          List
-	_model:               "Model"
+	_model:               Nullable[Model]
 	_componentGenerators: List
 	_choices:             List
-	_fileSets:            List
+	_fileSets:            Dict[str, FileSet]
 	_whiteboxElements:    List
 	_cpus:                List
 	_otherClockDrivers:   List
@@ -61,29 +353,82 @@ class Component(RootElement):
 	_parameters:          List
 	_assertions:          List
 
-	def __init__(self, vlnv: VLNV, description: str):
-		super().__init__(vlnv)
-
-		self._description =         description
-		self._busInterfaces =       []
-		self._indirectInterfaces =  []
-		self._channels =            []
-		self._remapStates =         []
-		self._addressSpaces =       []
-		self._memoryMaps =          []
-		self._model =               None
+	def __init__(
+		self,
+		componentFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
+		self._busInterfaces = []
+		self._indirectInterfaces = []
+		self._channels = []
+		self._remapStates = []
+		self._addressSpaces = []
+		self._memoryMaps = []
+		self._model = None
 		self._componentGenerators = []
-		self._choices =             []
-		self._fileSets =            []
-		self._whiteboxElements =    []
-		self._cpus =                []
-		self._otherClockDrivers =   []
-		self._resetTypes =          []
-		self._parameters =          []
-		self._assertions =          []
+		self._choices = []
+		self._fileSets = {}
+		self._whiteboxElements = []
+		self._cpus = []
+		self._otherClockDrivers = []
+		self._resetTypes = []
+		self._parameters = []
+		self._assertions = []
+
+		super().__init__(componentFile, parse, vlnv, description)
+
+	@readonly
+	def FileSets(self) -> Dict[str, FileSet]:
+		return self._fileSets
+
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		if elementLocalname == "busInterfaces":
+			pass
+		# for busInterfaceElement in element:
+		# 	self.AddItem(BusInterface.FromXml(busInterfaceElement))
+		elif elementLocalname == "indirectInterfaces":
+			pass
+		elif elementLocalname == "channels":
+			pass
+		elif elementLocalname == "remapStates":
+			pass
+		elif elementLocalname == "addressSpaces":
+			pass
+		elif elementLocalname == "memoryMaps":
+			pass
+		elif elementLocalname == "model":
+			pass
+		elif elementLocalname == "componentGenerators":
+			pass
+		elif elementLocalname == "choices":
+			pass
+		elif elementLocalname == "fileSets":
+			for fileSetElement in element:
+				if isinstance(fileSetElement, _Comment):
+					continue
+
+				self.AddFileSet(FileSet.FromXml(fileSetElement))
+		elif elementLocalname == "whiteboxElements":
+			pass
+		elif elementLocalname == "cpus":
+			pass
+		elif elementLocalname == "otherClockDrivers":
+			pass
+		elif elementLocalname == "resetTypes":
+			pass
+		elif elementLocalname == "parameters":
+			pass
+		elif elementLocalname == "assertions":
+			pass
+		else:
+			raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def SetItem(self, item):
-		if isinstance(item, Model):                 self._model = item
+		if isinstance(item, Model):
+			self._model = item
 		else:
 			raise ValueError()
 
@@ -105,7 +450,7 @@ class Component(RootElement):
 		elif isinstance(item, Choice):
 			self._choices.append(item)
 		elif isinstance(item, FileSet):
-			self._fileSets.append(item)
+			self.AddFileSet(item)
 		elif isinstance(item, WhiteboxElement):
 			self._whiteboxElements.append(item)
 		elif isinstance(item, Cpu):
@@ -123,6 +468,18 @@ class Component(RootElement):
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
+
+	def AddFileSet(self, fileset: FileSet):
+		if not isinstance(fileset, FileSet):
+			ex = TypeError("Parameter 'fileset' is not a FileSet.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(fileset)}'.")
+			raise ex
+
+		if fileset._name in self._fileSets:
+			raise ValueError(f"Duplicate fileset '{fileset._name}'.")
+
+		self._fileSets[fileset._name] = fileset
 
 	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:
 		"""Converts the object's data into XML format."""
@@ -238,211 +595,3 @@ class Component(RootElement):
 				""")
 
 		return buffer
-
-
-@export
-class BusInterface(Element):
-	"""Represents an IP-XACT bus interface."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class IndirectInterface(Element):
-	"""Represents an IP-XACT indirect interface."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Channel(Element):
-	"""Represents an IP-XACT channel."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class RemapState(Element):
-	"""Represents an IP-XACT remap state."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class AddressSpace(Element):
-	"""Represents an IP-XACT address space."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class MemoryMap(Element):
-	"""Represents an IP-XACT memory map."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Model(Element):
-	"""Represents an IP-XACT model."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class ComponentGenerator:
-	"""Represents an IP-XACT component generator."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Choice(Element):
-	"""Represents an IP-XACT choice."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class FileSet(Element):
-	"""Represents an IP-XACT fileset."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class WhiteboxElement(Element):
-	"""Represents an IP-XACT whitebos element."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Cpu(Element):
-	"""Represents an IP-XACT cpu."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class OtherClockDriver(Element):
-	"""Represents an IP-XACT *other* clock driver."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class ResetType(Element):
-	"""Represents an IP-XACT reset type."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Parameter(Element):
-	"""Represents an IP-XACT parameter.""""""Represents an IP-XACT assertion."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""
-
-
-@export
-class Assertion(Element):
-	"""Represents an IP-XACT assertion."""
-
-	def __init__(self, vlnv: VLNV) -> None:
-		super().__init__(vlnv)
-
-	def ToXml(self, indent=0):
-		"""Converts the object's data into XML format."""
-
-		return ""

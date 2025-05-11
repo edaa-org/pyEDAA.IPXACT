@@ -32,19 +32,19 @@
 from pathlib  import Path
 from sys      import version_info
 from textwrap import dedent
-from typing   import List, Dict
+from typing import List, Dict, Optional as Nullable, ClassVar
 
-from lxml.etree              import XMLParser, XML, XMLSchema, ElementTree, QName
+from lxml.etree import QName, _Element
 
 from pyTooling.Decorators    import export, readonly
 from pyTooling.Common        import getFullyQualifiedName
 
-from pyEDAA.IPXACT           import RootElement, VLNV, IPXACTException, __URI_MAP__, __DEFAULT_SCHEMA__, IPXACTSchema, Element
+from pyEDAA.IPXACT           import NamedElement, RootElement, VLNV, IPXACTException, __DEFAULT_SCHEMA__, IPXACTSchema, Element
 from pyEDAA.IPXACT.Component import Component
 
 
 @export
-class IpxactFile(Element):
+class IpxactFile(NamedElement):
 	"""Represents a IP-XACT file."""
 
 	_name:        str    #: Name
@@ -135,7 +135,8 @@ class IpxactFile(Element):
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_description:            str
+	_rootTagName:            ClassVar[str] = "catalog"
+
 	_abstractionDefinitions: List
 	_abstractors:            List
 	_busInterfaces:          List
@@ -145,10 +146,13 @@ class Catalog(RootElement):
 	_designs:                List
 	_generatorChains:        List
 
-	def __init__(self, vlnv: VLNV, description: str):
-		super().__init__(vlnv)
-
-		self._description =             description
+	def __init__(
+		self,
+		catalogFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
 		self._abstractionDefinitions =  []
 		self._abstractors =             []
 		self._busInterfaces =           []
@@ -158,73 +162,27 @@ class Catalog(RootElement):
 		self._designs =                 []
 		self._generatorChains =         []
 
-	@classmethod
-	def FromFile(cls, filePath : Path):
-		"""Constructs an instance of ``Catalog`` from a file."""
+		super().__init__(catalogFile, parse, vlnv, description)
 
-		if not filePath.exists():
-			raise IPXACTException(f"IPXACT file '{filePath}' not found.") from FileNotFoundError(str(filePath))
-
-		try:
-			with filePath.open("rb") as fileHandle:
-				content = fileHandle.read()
-		except OSError as ex:
-			raise IPXACTException(f"Couldn't open '{filePath}'.") from ex
-
-		xmlParser = XMLParser(remove_blank_text=True, encoding="utf-8")
-		root =      XML(content, parser=xmlParser, base_url=filePath.resolve().as_uri())  # - relative paths are not supported
-		rootTag =   QName(root.tag)
-
-		if rootTag.localname != "catalog":
-			raise IPXACTException("The input IP-XACT file is not a catalog file.")
-
-		namespacePrefix = root.prefix
-		namespaceURI = root.nsmap[namespacePrefix]
-		if namespaceURI in __URI_MAP__:
-			ipxactSchema = __URI_MAP__[namespaceURI]
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		if elementLocalname == "catalogs":
+			for ipxactFileElement in element:
+				self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		elif elementLocalname == "abstractionDefinitions":
+			pass
+		elif elementLocalname == "components":
+			pass
+		elif elementLocalname == "abstractors":
+			pass
+		elif elementLocalname == "designs":
+			pass
+		elif elementLocalname == "designConfigurations":
+			pass
+		elif elementLocalname == "generatorChains":
+			pass
 		else:
-			raise IPXACTException(f"The input IP-XACT file uses an unsupported namespace: '{namespaceURI}'.")
-
-		try:
-			with ipxactSchema.LocalPath.open("rb") as fileHandle:
-				schema = fileHandle.read()
-		except OSError as ex:
-			raise IPXACTException(f"Couldn't open IP-XACT schema '{ipxactSchema.LocalPath}' for {namespacePrefix} ({namespaceURI}).") from ex
-
-		schemaRoot = XML(schema, parser=xmlParser, base_url=ipxactSchema.LocalPath.as_uri())
-		schemaTree =  ElementTree(schemaRoot)
-		xmlSchema =   XMLSchema(schemaTree)
-
-		try:
-			xmlSchema.assertValid(root)
-		except Exception as ex:
-			raise IPXACTException("The input IP-XACT file is not valid.") from ex
-
-		items = []
-		for rootElements in root:
-			element = QName(rootElements)
-			if element.localname == "vendor":
-				vendor = rootElements.text
-			elif element.localname == "library":
-				library = rootElements.text
-			elif element.localname == "name":
-				name = rootElements.text
-			elif element.localname == "version":
-				version = rootElements.text
-			elif element.localname == "description":
-				description = rootElements.text
-			elif element.localname == "catalogs":
-				for ipxactFileElement in rootElements:
-					items.append(IpxactFile.FromXml(ipxactFileElement))
-			else:
-				raise IPXACTException(f"Unsupported tag '{element.localname}' at root-level.")
-
-		vlnv = VLNV(vendor=vendor, library=library, name=name, version=version)
-		catalog = cls(vlnv, description=description)
-		for item in items:
-			catalog.AddItem(item)
-
-		return catalog
+			raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def AddItem(self, item) -> None:
 		if isinstance(item, IpxactFile):

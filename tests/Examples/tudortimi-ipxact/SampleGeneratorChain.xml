@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+// Example generatorChain used to show schema elements defined by the
+// IP-XACT standard. Links within this file refer to schema figures in
+// the standard definition document
+-->
+<!-- LINK: generatorChain: see 9.1, generatorChain -->
+<ipxact:generatorChain xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014"
+                       xsi:schemaLocation="http://www.accellera.org/XMLSchema/IPXACT/1685-2014
+                                           index.xsd">
+  <ipxact:vendor>accellera.org</ipxact:vendor>
+  <ipxact:library>Sample</ipxact:library>
+  <ipxact:name>SampleGeneratorChain</ipxact:name>
+  <ipxact:version>1.0</ipxact:version>
+  <!-- Include generators with the indicated group names -->
+  <!-- LINK: generatorChainSelector: see 9.2, generatorChainSelector -->
+  <ipxact:generatorChainSelector>
+    <ipxact:groupSelector multipleGroupSelectionOperator="and">
+      <ipxact:name>HDLAnalysis</ipxact:name>
+      <ipxact:name>HDLElaboration</ipxact:name>
+    </ipxact:groupSelector>
+  </ipxact:generatorChainSelector>
+  <!-- Include generator with the indicated VLNV -->
+  <ipxact:generatorChainSelector>
+    <ipxact:generatorChainRef vendor="accellera.org" library="Sample"
+                              name="SampleGeneratorChainForReference"
+                              version="1.0"/>
+  </ipxact:generatorChainSelector>
+  <!-- Include component generator with the indicated group name -->
+  <!-- LINK: componentGeneratorSelector: see 9.3, generatorChain component
+       selector -->
+  <ipxact:componentGeneratorSelector>
+    <ipxact:groupSelector>
+      <ipxact:name>DocGeneration</ipxact:name>
+    </ipxact:groupSelector>
+  </ipxact:componentGeneratorSelector>
+  <!-- Define a generator explicitly within the generator chain -->
+  <!-- LINK: generator: see 9.4, generatorChain generator -->
+  <ipxact:generator hidden="false">
+    <ipxact:name>myGenerator</ipxact:name>
+    <ipxact:displayName>My Generator</ipxact:displayName>
+    <ipxact:description>This is my generator</ipxact:description>
+    <ipxact:phase>100.0</ipxact:phase>
+    <ipxact:parameters>
+      <ipxact:parameter parameterId="genParm1" prompt="Parm 1" type="shortint"
+                        resolve="user">
+        <ipxact:name>genParm1</ipxact:name>
+        <ipxact:description>First generator parameter.</ipxact:description>
+        <ipxact:value>1</ipxact:value>
+      </ipxact:parameter>
+    </ipxact:parameters>
+    <ipxact:apiType>TGI_2014_BASE</ipxact:apiType>
+    <ipxact:transportMethods>
+      <ipxact:transportMethod>file</ipxact:transportMethod>
+    </ipxact:transportMethods>
+    <ipxact:generatorExe>../bin/run.sh</ipxact:generatorExe>
+  </ipxact:generator>
+  <ipxact:chainGroup>implementation</ipxact:chainGroup>
+  <ipxact:displayName>Sample Generator Chain</ipxact:displayName>
+  <ipxact:description>Example generator chain used in the IP-XACT standard.</ipxact:description>
+</ipxact:generatorChain>

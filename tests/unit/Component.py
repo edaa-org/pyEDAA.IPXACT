@@ -32,7 +32,7 @@
 """Testcase for ``Catalog``."""
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import VLNV
+from pyEDAA.IPXACT           import VLNV
 from pyEDAA.IPXACT.Component import Component
 
 
@@ -46,4 +46,4 @@ class Components(TestCase):
 	def test_Component(self) -> None:
 		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
-		component = Component(vlnv, "PoC.io.uart.RX")
+		component = Component(vlnv=vlnv, description="PoC.io.uart.RX")

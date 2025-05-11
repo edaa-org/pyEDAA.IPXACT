@@ -227,8 +227,10 @@ License
    :caption: Main Documentation
    :hidden:
 
-   Tutorial
-   FurtherResources
+   Introduction
+   Catalog
+   Component
+   Design
 
 .. raw:: latex
 

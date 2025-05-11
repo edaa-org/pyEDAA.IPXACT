@@ -32,7 +32,7 @@
 """Testcase for ``Catalog``."""
 from unittest     import TestCase
 
-from pyEDAA.IPXACT import VLNV
+from pyEDAA.IPXACT                     import VLNV
 from pyEDAA.IPXACT.DesignConfiguration import DesignConfiguration
 
 
@@ -46,4 +46,4 @@ class Catalogs(TestCase):
 	def test_DesignConfiguration(self) -> None:
 		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
-		designConfiguration = DesignConfiguration(vlnv, "SoFPGA Config")
+		designConfiguration = DesignConfiguration(vlnv=vlnv, description="SoFPGA Config")

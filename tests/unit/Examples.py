@@ -29,13 +29,13 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-"""Testcase for ``Catalog``."""
-from pathlib  import Path
-from unittest import TestCase
+"""Testcases for parsing IP-XACT example files."""
+from pathlib   import Path
+from unittest  import TestCase
 
-from pyEDAA.IPXACT         import VLNV
-from pyEDAA.IPXACT.Catalog import IpxactFile, Catalog
-
+from pyEDAA.IPXACT.Catalog   import Catalog
+from pyEDAA.IPXACT.Component import Component
+from pyEDAA.IPXACT.Design    import Design
 
 if __name__ == "__main__": # pragma: no cover
 	print("ERROR: you called a testcase declaration file as an executable module.")
@@ -43,26 +43,19 @@ if __name__ == "__main__": # pragma: no cover
 	exit(1)
 
 
-class Catalogs(TestCase):
-	# @mark.xfail(reason="This has a known issue.")
-	def test_Catalog(self) -> None:
-		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
+class Tudortimi(TestCase):
+	def test_SampleCatalog(self) -> None:
+		ipxactFile = Path("tests/Examples/tudortimi-ipxact/SampleCatalog.xml")
+		catalog = Catalog(ipxactFile, parse=True)
 
-		catalog = Catalog(vlnv=vlnv, description="IP Core Library")
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
-		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.Wrapper", version=vlnv.Version), "uart_Wrapper.xml", "A UART wrapper."))
+	def test_SampleComponent(self) -> None:
+		ipxactFile = Path("tests/Examples/tudortimi-ipxact/SampleComponent.xml")
+		component = Component(ipxactFile, parse=True)
 
-		self.assertIs(vlnv, catalog.VLNV)
-		self.assertEqual(3, len(catalog.Catalogs))
+		self.assertEqual(2, len(component.FileSets))
+		for fs in component.FileSets.values():
+			self.assertEqual(1, len(fs.Files))
 
-	# @mark.xfail(reason="This has a known issue.")
-	def test_ReadFromFile(self) -> None:
-		filePath = Path("tests/Examples/Catalog.xml")
-		catalog = Catalog(filePath, parse=True)
-
-		self.assertEqual("VHDL", catalog.VLNV.Vendor)
-		self.assertEqual("PoC", catalog.VLNV.Library)
-		self.assertEqual("PoC", catalog.VLNV.Name)
-		self.assertEqual("1.0", catalog.VLNV.Version)
-		self.assertEqual(3, len(catalog.Catalogs))
+	def test_SampleDesign(self) -> None:
+		ipxactFile = Path("tests/Examples/tudortimi-ipxact/SampleDesign.xml")
+		design = Design(ipxactFile, parse=True)
