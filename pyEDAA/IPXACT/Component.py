@@ -29,28 +29,31 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from sys import version_info
+from pathlib              import Path
+from sys                  import version_info
 from textwrap             import dedent
-from typing import List
+from typing               import List, Optional as Nullable, ClassVar
 
-from pyTooling.Common import getFullyQualifiedName
+from lxml.etree           import _Element, QName
+from pyTooling.Common     import getFullyQualifiedName
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import __DEFAULT_SCHEMA__, RootElement, VLNV, IPXACTSchema, Element
+from pyEDAA.IPXACT        import __DEFAULT_SCHEMA__, RootElement, VLNV, IPXACTSchema, Element, IPXACTException
 
 
 @export
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
-	_description:         str
+	_rootTagName:         ClassVar[str] = "component"
+
 	_busInterfaces:       List
 	_indirectInterfaces:  List
 	_channels:            List
 	_remapStates:         List
 	_addressSpaces:       List
 	_memoryMaps:          List
-	_model:               "Model"
+	_model:               Nullable["Model"]
 	_componentGenerators: List
 	_choices:             List
 	_fileSets:            List
@@ -61,10 +64,13 @@ class Component(RootElement):
 	_parameters:          List
 	_assertions:          List
 
-	def __init__(self, vlnv: VLNV, description: str):
-		super().__init__(vlnv)
-
-		self._description =         description
+	def __init__(
+		self,
+		componentFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
 		self._busInterfaces =       []
 		self._indirectInterfaces =  []
 		self._channels =            []
@@ -81,6 +87,16 @@ class Component(RootElement):
 		self._resetTypes =          []
 		self._parameters =          []
 		self._assertions =          []
+
+		super().__init__(componentFile, parse, vlnv, description)
+
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		# if elementLocalname == "catalogs":
+		# 	for ipxactFileElement in element:
+		# 		self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		# else:
+		raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def SetItem(self, item):
 		if isinstance(item, Model):                 self._model = item

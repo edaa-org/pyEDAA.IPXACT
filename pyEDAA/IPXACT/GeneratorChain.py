@@ -29,28 +29,50 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from textwrap           import dedent
+from pathlib              import Path
+from textwrap             import dedent
+from typing               import ClassVar, Optional as Nullable, List
 
+from lxml.etree           import _Element, QName
 from pyTooling.Decorators import export
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV
+from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTException
 
 
 @export
 class GeneratorChain(RootElement):
 	"""Represents an IP-XACT generator chain."""
 
-	def __init__(self, vlnv: VLNV, displayName: str, description: str, chainGroup):
-		"""Constructor"""
+	_rootTagName:                  ClassVar[str] = "generatorChain"
 
-		super().__init__(vlnv)
+	_displayName:                  str
+	_chainGroup:                   List
+	_generatorChainSelector:       "GeneratorChainSelector"
+	_interconnectionConfiguration: List
+	_generator:                    "Generator"
 
-		self._displayName =                   displayName
-		self._description =                   description
-		self._chainGroup =                    chainGroup
+	def __init__(
+		self,
+		generatorChainFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
+		self._displayName =                   ""  # displayName
+		self._chainGroup =                    []  # chainGroup
 		self._generatorChainSelector =        None
 		self._interconnectionConfiguration =  None
 		self._generator =                     None
+
+		super().__init__(generatorChainFile, parse, vlnv, description)
+
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		# if elementLocalname == "catalogs":
+		# 	for ipxactFileElement in element:
+		# 		self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		# else:
+		raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def SetItem(self, item):
 		if isinstance(item,   GeneratorChainSelector):      self._generatorChainSelector =      item

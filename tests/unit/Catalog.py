@@ -48,7 +48,7 @@ class Catalogs(TestCase):
 	def test_Catalog(self) -> None:
 		vlnv = VLNV("VHDL", "PoC", "PoC", "1.0")
 
-		catalog = Catalog(vlnv, "IP Core Library")
+		catalog = Catalog(vlnv=vlnv, description="IP Core Library")
 		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.RX", version=vlnv.Version), "uart_RX.xml", "A UART receiver."))
 		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.TX", version=vlnv.Version), "uart_TX.xml", "A UART transmitter."))
 		catalog.AddItem(IpxactFile(VLNV(vendor=vlnv.Vendor, library=vlnv.Library, name="PoC.io.uart.Wrapper", version=vlnv.Version), "uart_Wrapper.xml", "A UART wrapper."))
@@ -59,7 +59,7 @@ class Catalogs(TestCase):
 	# @mark.xfail(reason="This has a known issue.")
 	def test_ReadFromFile(self) -> None:
 		filePath = Path("tests/Examples/Catalog.xml")
-		catalog = Catalog.FromFile(filePath)
+		catalog = Catalog(filePath, parse=True)
 
 		self.assertEqual("VHDL", catalog.VLNV.Vendor)
 		self.assertEqual("PoC", catalog.VLNV.Library)

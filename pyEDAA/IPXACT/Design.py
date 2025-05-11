@@ -29,46 +29,62 @@
 # SPDX-License-Identifier: Apache-2.0                                                                                  #
 # ==================================================================================================================== #
 #
-from sys      import version_info
-from textwrap import dedent
-from typing   import List
+from pathlib              import Path
+from sys                  import version_info
+from textwrap             import dedent
+from typing               import List, ClassVar, Optional as Nullable
 
+from lxml.etree           import _Element, QName
 from pyTooling.Decorators import export
 from pyTooling.Common     import getFullyQualifiedName
 
-from pyEDAA.IPXACT import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema, Element
+from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSchema, Element, IPXACTException
 
 
 @export
 class Design(RootElement):
 	"""Represents an IP-XACT design."""
 
-	_description:        str
+	_rootTagName:            ClassVar[str] = "design"
+
 	_componentInstances: List
 	_interconnections:   List
 	_adHocConnections:   List
 
-	def __init__(self, vlnv: VLNV, description: str):
+	def __init__(
+		self,
+		designFile: Nullable[Path] = None,
+		parse: bool = False,
+		vlnv: Nullable[VLNV] = None,
+		description: Nullable[str] = None
+	):
 		"""
 		Instantiates a design structure.
 
 		:param vlnv:        A Vendor-Library-Name-Version unique identified.
 		:param description: A description text.
 		"""
-		super().__init__(vlnv)
+		self._componentInstances = []
+		self._interconnections =   []
+		self._adHocConnections =   []
 
-		if not isinstance(description, str):
-			ex = TypeError(f"Parameter 'description' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
-			raise ex
-		elif description == "":
-			raise ValueError(f"Parameter 'description' is empty.")
+		super().__init__(designFile, parse, vlnv, description)
 
-		self._description =             description
-		self._componentInstances =      []
-		self._interconnections =        []
-		self._adHocConnections =        []
+		# if not isinstance(description, str):
+		# 	ex = TypeError(f"Parameter 'description' is not a string.")
+		# 	if version_info >= (3, 11):  # pragma: no cover
+		# 		ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+		# 	raise ex
+		# elif description == "":
+		# 	raise ValueError(f"Parameter 'description' is empty.")
+
+	def Parse(self, element: _Element) -> None:
+		elementLocalname = QName(element).localname
+		# if elementLocalname == "catalogs":
+		# 	for ipxactFileElement in element:
+		# 		self.AddItem(IpxactFile.FromXml(ipxactFileElement))
+		# else:
+		raise IPXACTException(f"Unsupported tag '{elementLocalname}' at root-level.")
 
 	def AddItem(self, item) -> None:
 		if isinstance(item, ComponentInstance):

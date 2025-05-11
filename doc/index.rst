@@ -227,6 +227,10 @@ License
    :caption: Main Documentation
    :hidden:
 
+   Catalog
+   Component
+   Design
+
    Tutorial
    FurtherResources
 

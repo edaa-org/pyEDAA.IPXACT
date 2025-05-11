@@ -33,10 +33,13 @@
 from pathlib  import Path
 from sys      import version_info
 from textwrap import dedent
-from typing   import Union, Dict
+from typing import Union, Dict, Tuple, Optional as Nullable, ClassVar
+
+from docutils.nodes import description
+from lxml.etree import XMLParser, XML, XMLSchema, ElementTree, QName, _Element
 
 from pyTooling.Decorators  import export, readonly
-from pyTooling.MetaClasses import ExtendedType
+from pyTooling.MetaClasses import ExtendedType, abstractmethod
 from pyTooling.Common      import getFullyQualifiedName
 from pyTooling.Versioning  import SemanticVersion, CalendarVersion
 
@@ -47,7 +50,12 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2016-2025, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.5.0"
+__version__ =   "0.6.0"
+
+
+@export
+class IPXACTException(Exception):
+	"""Base-exception for all exceptions in this package."""
 
 
 @export
@@ -285,6 +293,7 @@ class VLNV(metaclass=ExtendedType, slots=True):
 		else:
 			return f"""{indent}<{xmlns}:vlnv vendor="{self._vendor}" library="{self._library}" name="{self._name}" version="{self._version}"/>"""
 
+
 @export
 class Element(metaclass=ExtendedType, slots=True):
 	"""Base-class for all IP-XACT elements."""
@@ -315,11 +324,110 @@ class Element(metaclass=ExtendedType, slots=True):
 class RootElement(Element):
 	"""Base-class for all IP-XACT root elements."""
 
-	@classmethod
-	def FromFile(cls, file: Path):
+	_file:        Nullable[Path]
+	_rootTagName: ClassVar[str] = ""
+	_xmlRoot:     Nullable[_Element]
+	_xmlSchema:   Nullable[_Element]
+
+	_description: str
+
+	def __init__(self, file: Nullable[Path] = None, parse: bool = False, vlnv: Nullable[VLNV] = None, description: Nullable[str] = None) -> None:
+		self._description = description
+
+		if file is None:
+			super().__init__(vlnv)
+			self._file = None
+		elif isinstance(file, Path):
+			self._file = file
+			vlnv = None
+			if parse:
+				self.OpenAndValidate()
+				vlnv, self._description = self.ParseVLNVAndDescription()
+
+			super().__init__(vlnv)
+		else:
+			ex = TypeError(f"Parameter 'file' is not a Path.")
+			if version_info >= (3, 11):  # pragma: no cover
+				ex.add_note(f"Got type '{getFullyQualifiedName(file)}'.")
+			raise ex
+
+	def OpenAndValidate(self) -> None:
+		if not self._file.exists():
+			raise IPXACTException(f"IPXACT file '{self._file}' not found.") from FileNotFoundError(str(self._file))
+
+		try:
+			with self._file.open("rb") as fileHandle:
+				content = fileHandle.read()
+		except OSError as ex:
+			raise IPXACTException(f"Couldn't open '{self._file}'.") from ex
+
+		xmlParser =     XMLParser(remove_blank_text=True, encoding="utf-8")
+		self._xmlRoot = XML(content, parser=xmlParser, base_url=self._file.resolve().as_uri())  # - relative paths are not supported
+		rootTag =       QName(self._xmlRoot.tag)
+
+		if rootTag.localname != self._rootTagName:
+			raise IPXACTException(f"The input IP-XACT file is not a {self._rootTagName} file.")
+
+		namespacePrefix = self._xmlRoot.prefix
+		namespaceURI =    self._xmlRoot.nsmap[namespacePrefix]
+		if namespaceURI in __URI_MAP__:
+			ipxactSchema = __URI_MAP__[namespaceURI]
+		else:
+			raise IPXACTException(f"The input IP-XACT file uses an unsupported namespace: '{namespaceURI}'.")
+
+		try:
+			with ipxactSchema.LocalPath.open("rb") as fileHandle:
+				schema = fileHandle.read()
+		except OSError as ex:
+			raise IPXACTException(f"Couldn't open IP-XACT schema '{ipxactSchema.LocalPath}' for {namespacePrefix} ({namespaceURI}).") from ex
+
+		schemaRoot =      XML(schema, parser=xmlParser, base_url=ipxactSchema.LocalPath.as_uri())
+		schemaTree =      ElementTree(schemaRoot)
+		self._xmlSchema = XMLSchema(schemaTree)
+
+		try:
+			self._xmlSchema.assertValid(self._xmlRoot)
+		except Exception as ex:
+			raise IPXACTException(f"The input IP-XACT file is not valid according to XML schema {namespaceURI}.") from ex
+
+	def ParseVLNVAndDescription(self) -> Tuple[VLNV, str]:
+		vendor = None
+		library = None
+		name = None
+		version = None
+		description = None
+
+		found = 0
+		i = iter(self._xmlRoot)
+		for element in i:
+			elementLocalname = QName(element).localname
+			if elementLocalname == "vendor":
+				found |= 1
+				vendor = element.text
+			elif elementLocalname == "library":
+				found |= 2
+				library = element.text
+			elif elementLocalname == "name":
+				found |= 4
+				name = element.text
+			elif elementLocalname == "version":
+				found |= 8
+				version = element.text
+			elif elementLocalname == "description":
+				found |= 16
+				description = element.text
+			else:
+				self.Parse(element)
+
+			if found == 31:
+				break
+
+		for element in i:
+			self.Parse(element)
+
+		vlnv = VLNV(vendor=vendor, library=library, name=name, version=version)
+		return vlnv, description
+
+	@abstractmethod
+	def Parse(self, element: _Element) -> None:
 		pass
-
-
-@export
-class IPXACTException(Exception):
-	"""Base-exception for all exceptions in this package."""
