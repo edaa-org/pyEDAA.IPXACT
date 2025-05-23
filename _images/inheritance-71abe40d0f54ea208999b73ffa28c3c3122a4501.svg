@@ -1,0 +1,29 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="163pt" height="27pt" viewBox="0.00 0.00 163.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritance38196a3edf</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>Assertion</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion" ns1:title="Represents an IP-XACT assertion." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="155,-19 93,-19 93,0 155,0 155,-19" />
+<ns0:text text-anchor="middle" x="124" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Assertion</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>Element</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.Element" ns1:title="Base-class for all IP-XACT elements." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="57,-19 0,-19 0,0 57,0 57,-19" />
+<ns0:text text-anchor="middle" x="28.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Element</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>Element-&gt;Assertion</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M57.05,-9.5C66.59,-9.5 77.42,-9.5 87.51,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="87.71,-11.25 92.71,-9.5 87.71,-7.75 87.71,-11.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

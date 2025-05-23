@@ -1,0 +1,14 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="114pt" height="27pt" viewBox="0.00 0.00 114.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritanceb1ff9bf223</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>ViewConfiguration</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.DesignConfiguration.html#pyEDAA.IPXACT.DesignConfiguration.ViewConfiguration" ns1:title="Represents an IP-XACT view configuration." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="106,-19 0,-19 0,0 106,0 106,-19" />
+<ns0:text text-anchor="middle" x="53" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">ViewConfiguration</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+</ns0:g>
+</ns0:svg>
