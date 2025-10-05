@@ -13,7 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/doc/_build/html" />
       <excludeFolder url="file://$MODULE_DIR$/pyEDAA.IPXACT.egg-info" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.14" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">

@@ -9,14 +9,16 @@ on:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@dev
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r6
     with:
-      package_namespace: pyEDAA
-      package_name:      IPXACT
-      codecov:           true
-      codacy:            true
-      dorny:             true
-      cleanup:           false
+      package_namespace: 'pyEDAA'
+      package_name:      'IPXACT'
+      bandit:            'true'
+      pylint:            'false'
+      codecov:           'true'
+      codacy:            'true'
+      dorny:             'true'
+      cleanup:           'false'
     secrets:
       PYPI_TOKEN:    ${{ secrets.PYPI_TOKEN }}
       CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
