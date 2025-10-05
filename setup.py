@@ -41,27 +41,29 @@ packageName =            "pyEDAA.IPXACT"
 packageDirectory =       packageName.replace(".", "/")
 packageInformationFile = Path(f"{packageDirectory}/__init__.py")
 
-setup(**DescribePythonPackageHostedOnGitHub(
-	packageName=packageName,
-	description="A Document-Object-Model (DOM) for IP-XACT files.",
-	gitHubNamespace=gitHubNamespace,
-	sourceFileWithVersion=packageInformationFile,
-	developmentStatus="alpha",
-	classifiers=list(DEFAULT_CLASSIFIERS) + [
-		"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
-	],
-	dataFiles={
-		packageName: [
-			str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
-				Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
-				Path.cwd().glob("pyEDAA/IPXACT/py.typed")
-			)
+setup(
+	**DescribePythonPackageHostedOnGitHub(
+		packageName=packageName,
+		description="A Document-Object-Model (DOM) for IP-XACT files.",
+		gitHubNamespace=gitHubNamespace,
+		sourceFileWithVersion=packageInformationFile,
+		developmentStatus="alpha",
+		classifiers=list(DEFAULT_CLASSIFIERS) + [
+			"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 		],
-	}
-))
+		dataFiles={
+			packageName: [
+				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
+					Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
+					Path.cwd().glob("pyEDAA/IPXACT/py.typed")
+				)
+			],
+		}
+	)
+)
