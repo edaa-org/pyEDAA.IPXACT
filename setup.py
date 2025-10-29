@@ -47,10 +47,11 @@ setup(
 		description="A Document-Object-Model (DOM) for IP-XACT files.",
 		gitHubNamespace=gitHubNamespace,
 		sourceFileWithVersion=packageInformationFile,
-		developmentStatus="alpha",
 		classifiers=list(DEFAULT_CLASSIFIERS) + [
 			"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 		],
+		developmentStatus="alpha",
+		pythonVersions=("3.11", "3.12", "3.13", "3.14"),
 		dataFiles={
 			packageName: [
 				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
