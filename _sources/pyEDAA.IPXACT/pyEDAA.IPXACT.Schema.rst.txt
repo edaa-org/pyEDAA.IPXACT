@@ -1,0 +1,96 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+====================
+pyEDAA.IPXACT.Schema
+====================
+
+.. automodule:: pyEDAA.IPXACT.Schema
+
+
+.. currentmodule:: pyEDAA.IPXACT.Schema
+
+
+**Variables**
+
+- :py:data:`_IPXACT_10_INDEX`
+  
+- :py:data:`_IPXACT_11_INDEX`
+  
+- :py:data:`_IPXACT_12_INDEX`
+  
+- :py:data:`_IPXACT_14_INDEX`
+  
+- :py:data:`_IPXACT_15_INDEX`
+  
+- :py:data:`_IPXACT_2009_INDEX`
+  
+- :py:data:`_IPXACT_2014_INDEX`
+  
+- :py:data:`_IPXACT_2022_INDEX`
+  
+
+
+---------------------
+
+**Variables**
+
+
+
+
+.. autodata:: _IPXACT_10_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ipxact-1.0/index.xsd')
+
+.. autodata:: _IPXACT_11_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ipxact-1.1/index.xsd')
+
+.. autodata:: _IPXACT_12_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ipxact-1.2/index.xsd')
+
+.. autodata:: _IPXACT_14_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ipxact-1.4/index.xsd')
+
+.. autodata:: _IPXACT_15_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ipxact-1.5/index.xsd')
+
+.. autodata:: _IPXACT_2009_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ieee-1685-2009/index.xsd')
+
+.. autodata:: _IPXACT_2014_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ieee-1685-2014/index.xsd')
+
+.. autodata:: _IPXACT_2022_INDEX
+   :annotation:
+
+   .. code-block:: text
+
+      PosixPath('/home/runner/work/pyEDAA.IPXACT/pyEDAA.IPXACT/pyEDAA/IPXACT/Schema/ieee-1685-2022/index.xsd')
