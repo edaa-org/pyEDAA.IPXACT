@@ -1,0 +1,94 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+====================
+pyEDAA.IPXACT.Design
+====================
+
+.. automodule:: pyEDAA.IPXACT.Design
+
+
+.. currentmodule:: pyEDAA.IPXACT.Design
+
+
+**Classes**
+
+- :py:class:`Design`:
+  Represents an IP-XACT design.
+
+- :py:class:`IpxactFile`:
+  Represents a IP-XACT file.
+
+- :py:class:`ComponentInstance`:
+  Represents an IP-XACT component instance.
+
+- :py:class:`Interconnection`:
+  Represents an IP-XACT interconnection.
+
+- :py:class:`AdHocConnection`:
+  Represents an IP-XACT ad-hoc connection.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: Design
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Design
+      :parts: 1
+
+.. autoclass:: IpxactFile
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IpxactFile
+      :parts: 1
+
+.. autoclass:: ComponentInstance
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ComponentInstance
+      :parts: 1
+
+.. autoclass:: Interconnection
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Interconnection
+      :parts: 1
+
+.. autoclass:: AdHocConnection
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AdHocConnection
+      :parts: 1

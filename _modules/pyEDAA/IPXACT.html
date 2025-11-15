@@ -1,0 +1,639 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyEDAA.IPXACT &mdash; pyEDAA.IPXACT 0.6.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/override.css?v=e6c450a4" />
+
+  
+    <link rel="shortcut icon" href="../../_static/favicon.svg"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b8503983"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/">Used as a layer of EDA² ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Catalog.html">Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Component.html">Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Design.html">Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">pyEDAA.IPXACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">pyEDAA.IPXACT</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyEDAA.IPXACT</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#              _____ ____    _        _      ___ ______  __    _    ____ _____                                         #</span>
+<span class="c1">#  _ __  _   _| ____|  _ \  / \      / \    |_ _|  _ \ \/ /   / \  / ___|_   _|                                        #</span>
+<span class="c1"># | &#39;_ \| | | |  _| | | | |/ _ \    / _ \    | || |_) \  /   / _ \| |     | |                                          #</span>
+<span class="c1"># | |_) | |_| | |___| |_| / ___ \  / ___ \ _ | ||  __//  \  / ___ \ |___  | |                                          #</span>
+<span class="c1"># | .__/ \__, |_____|____/_/   \_\/_/   \_(_)___|_|  /_/\_\/_/   \_\____| |_|                                          #</span>
+<span class="c1"># |_|    |___/                                                                                                         #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1"># Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;A DOM based IP-XACT implementation for Python.&quot;&quot;&quot;</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w">  </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sys</span><span class="w">      </span><span class="kn">import</span> <span class="n">version_info</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">textwrap</span><span class="w"> </span><span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w">   </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span> <span class="k">as</span> <span class="n">Nullable</span><span class="p">,</span> <span class="n">ClassVar</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">lxml.etree</span><span class="w">            </span><span class="kn">import</span> <span class="n">XMLParser</span><span class="p">,</span> <span class="n">XML</span><span class="p">,</span> <span class="n">XMLSchema</span><span class="p">,</span> <span class="n">ElementTree</span><span class="p">,</span> <span class="n">QName</span><span class="p">,</span> <span class="n">_Element</span><span class="p">,</span> <span class="n">_Comment</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Decorators</span><span class="w">  </span><span class="kn">import</span> <span class="n">export</span><span class="p">,</span> <span class="n">readonly</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.MetaClasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtendedType</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Common</span><span class="w">      </span><span class="kn">import</span> <span class="n">getFullyQualifiedName</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Versioning</span><span class="w">  </span><span class="kn">import</span> <span class="n">SemanticVersion</span><span class="p">,</span> <span class="n">CalendarVersion</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w">       </span><span class="kn">import</span> <span class="n">Schema</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.Schema</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">__author__</span> <span class="o">=</span>    <span class="s2">&quot;Patrick Lehmann&quot;</span>
+<span class="n">__email__</span> <span class="o">=</span>     <span class="s2">&quot;Paebbels@gmail.com&quot;</span>
+<span class="n">__copyright__</span> <span class="o">=</span> <span class="s2">&quot;2016-2025, Patrick Lehmann&quot;</span>
+<span class="n">__license__</span> <span class="o">=</span>   <span class="s2">&quot;Apache License, Version 2.0&quot;</span>
+<span class="n">__version__</span> <span class="o">=</span>   <span class="s2">&quot;0.6.3&quot;</span>
+
+
+<div class="viewcode-block" id="IPXACTException">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTException">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IPXACTException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base-exception for all exceptions in this package.&quot;&quot;&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="IPXACTSchema">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTSchema">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IPXACTSchema</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ExtendedType</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Schema descriptor made of version, namespace prefix, URI, URL and local path.&quot;&quot;&quot;</span>
+
+	<span class="n">_version</span><span class="p">:</span>         <span class="n">Union</span><span class="p">[</span><span class="n">SemanticVersion</span><span class="p">,</span> <span class="n">CalendarVersion</span><span class="p">]</span>  <span class="c1">#: Schema version</span>
+	<span class="n">_namespacePrefix</span><span class="p">:</span> <span class="nb">str</span>                                      <span class="c1">#: XML namespace prefix</span>
+	<span class="n">_schemaUri</span><span class="p">:</span>       <span class="nb">str</span>                                      <span class="c1">#: Schema URI</span>
+	<span class="n">_schemaUrl</span><span class="p">:</span>       <span class="nb">str</span>                                      <span class="c1">#: Schema URL</span>
+	<span class="n">_localPath</span><span class="p">:</span>       <span class="n">Path</span>                                     <span class="c1">#: Local path</span>
+
+<div class="viewcode-block" id="IPXACTSchema.__init__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTSchema.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span>
+		<span class="n">version</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SemanticVersion</span><span class="p">,</span> <span class="n">CalendarVersion</span><span class="p">],</span>
+		<span class="n">xmlNamespacePrefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">schemaUri</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">schemaUrl</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+		<span class="n">localPath</span><span class="p">:</span> <span class="n">Path</span>
+	<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Initializes an IP-XACT Schema description.</span>
+
+<span class="sd">		:param version:            Version of the IP-XACT Schema.</span>
+<span class="sd">		:param xmlNamespacePrefix: XML namespace prefix (``&lt;prefix:element&gt;``)</span>
+<span class="sd">		:param schemaUri:          IP-XACT schema URI</span>
+<span class="sd">		:param schemaUrl:          URL the IP-XACT schema definition file (XSD).</span>
+<span class="sd">		:param localPath:          Path to the local XSD file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="c1"># TODO: add raises ... lines</span>
+		<span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;version&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="k">if</span> <span class="n">version</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;20&quot;</span><span class="p">):</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">CalendarVersion</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">SemanticVersion</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="p">(</span><span class="n">SemanticVersion</span><span class="p">,</span> <span class="n">CalendarVersion</span><span class="p">)):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">version</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;version&#39; is neither a &#39;SemanticVersion&#39;, a &#39;CalendarVersion&#39; nor a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">version</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">xmlNamespacePrefix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;namespacePrefix&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">xmlNamespacePrefix</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;namespacePrefix&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">version</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">schemaUri</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;schemaUri&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schemaUri</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;schemaUri&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">schemaUri</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">schemaUrl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;schemaUrl&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">schemaUrl</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;schemaUrl&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">schemaUrl</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">localPath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;localPath&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">localPath</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;localPath&#39; is not a Path.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">localPath</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_namespacePrefix</span> <span class="o">=</span> <span class="n">xmlNamespacePrefix</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_schemaUri</span> <span class="o">=</span>       <span class="n">schemaUri</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_schemaUrl</span> <span class="o">=</span>       <span class="n">schemaUrl</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_localPath</span> <span class="o">=</span>       <span class="n">localPath</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">SemanticVersion</span><span class="p">,</span> <span class="n">CalendarVersion</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">NamespacePrefix</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_namespacePrefix</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">SchemaUri</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_schemaUri</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">SchemaUrl</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_schemaUrl</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">LocalPath</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_localPath</span>
+
+<div class="viewcode-block" id="IPXACTSchema.__repr__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTSchema.__repr__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2"> IP-XACT </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_schemaUri</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_localPath</span><span class="si">}</span><span class="s2">&gt;&quot;</span></div>
+
+
+<div class="viewcode-block" id="IPXACTSchema.__str__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTSchema.__str__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;IP-XACT </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="si">}</span><span class="s2">&quot;</span></div>
+</div>
+
+
+
+<span class="c1">#                           version, xmlns,    URI                                                          URL,                                                              Local Path</span>
+<span class="n">_IPXACT_10</span> <span class="o">=</span>   <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.0&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_10_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_11</span> <span class="o">=</span>   <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;1.1&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.1&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_11_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_12</span> <span class="o">=</span>   <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;1.2&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.2&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_12_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_14</span> <span class="o">=</span>   <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;1.4&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.4&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_14_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_15</span> <span class="o">=</span>   <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;1.5&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1.5&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_15_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_2009</span> <span class="o">=</span> <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;2009&quot;</span><span class="p">,</span> <span class="s2">&quot;spirit&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">_IPXACT_2009_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_2014</span> <span class="o">=</span> <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;2014&quot;</span><span class="p">,</span> <span class="s2">&quot;ipxact&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.accellera.org/XMLSchema/IPXACT/1685-2014&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.accellera.org/XMLSchema/IPXACT/1685-2014/index.xsd&quot;</span><span class="p">,</span> <span class="n">_IPXACT_2014_INDEX</span><span class="p">)</span>
+<span class="n">_IPXACT_2022</span> <span class="o">=</span> <span class="n">IPXACTSchema</span><span class="p">(</span><span class="s2">&quot;2022&quot;</span><span class="p">,</span> <span class="s2">&quot;ipxact&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.accellera.org/XMLSchema/IPXACT/1685-2022&quot;</span><span class="p">,</span> <span class="s2">&quot;http://www.accellera.org/XMLSchema/IPXACT/1685-2022/index.xsd&quot;</span><span class="p">,</span> <span class="n">_IPXACT_2022_INDEX</span><span class="p">)</span>
+
+<span class="n">__VERSION_TABLE__</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">IPXACTSchema</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="s1">&#39;1.0&#39;</span><span class="p">:</span>   <span class="n">_IPXACT_10</span><span class="p">,</span>
+	<span class="s1">&#39;1.1&#39;</span><span class="p">:</span>   <span class="n">_IPXACT_11</span><span class="p">,</span>
+	<span class="s1">&#39;1.4&#39;</span><span class="p">:</span>   <span class="n">_IPXACT_14</span><span class="p">,</span>
+	<span class="s1">&#39;1.5&#39;</span><span class="p">:</span>   <span class="n">_IPXACT_15</span><span class="p">,</span>
+	<span class="s1">&#39;2009&#39;</span><span class="p">:</span>  <span class="n">_IPXACT_2009</span><span class="p">,</span>
+	<span class="s1">&#39;2014&#39;</span><span class="p">:</span>  <span class="n">_IPXACT_2014</span><span class="p">,</span>
+	<span class="s1">&#39;2022&#39;</span><span class="p">:</span>  <span class="n">_IPXACT_2022</span>
+<span class="p">}</span>          <span class="c1">#: Dictionary of all IP-XACT versions mapping to :class:`IpxactSchema` instances.</span>
+
+<span class="n">__URI_MAP__</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">IPXACTSchema</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="o">.</span><span class="n">SchemaUri</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">__VERSION_TABLE__</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>  <span class="c1">#: Mapping from schema URIs to :class:`IpxactSchema` instances.</span>
+
+<span class="n">__DEFAULT_VERSION__</span> <span class="o">=</span> <span class="s2">&quot;2022&quot;</span>                                  <span class="c1">#: IP-XACT default version</span>
+<span class="n">__DEFAULT_SCHEMA__</span> <span class="o">=</span>  <span class="n">__VERSION_TABLE__</span><span class="p">[</span><span class="n">__DEFAULT_VERSION__</span><span class="p">]</span>  <span class="c1">#: IP-XACT default Schema</span>
+
+
+<div class="viewcode-block" id="VLNV">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VLNV</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ExtendedType</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;VLNV data structure (Vendor, Library, Name, Version) as a unique identifier in IP-XACT.&quot;&quot;&quot;</span>
+
+	<span class="n">_vendor</span><span class="p">:</span>  <span class="nb">str</span>              <span class="c1">#: Vendor name in a VLNV unique identifier</span>
+	<span class="n">_library</span><span class="p">:</span> <span class="nb">str</span>              <span class="c1">#: Library name in a VLNV unique identifier</span>
+	<span class="n">_name</span><span class="p">:</span>    <span class="nb">str</span>              <span class="c1">#: Component name in a VLNV unique identifier</span>
+	<span class="n">_version</span><span class="p">:</span> <span class="n">SemanticVersion</span>  <span class="c1">#: Version in a VLNV unique identifier</span>
+
+<div class="viewcode-block" id="VLNV.__init__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vendor</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">library</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">version</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">SemanticVersion</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Initializes the VLNV data structure.</span>
+
+<span class="sd">		:param vendor:  Vendor name in a VLNV unique identifier</span>
+<span class="sd">		:param library: Library name in a VLNV unique identifier</span>
+<span class="sd">		:param name:    Component name in a VLNV unique identifier</span>
+<span class="sd">		:param version: Version in a VLNV unique identifier</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="k">if</span> <span class="n">vendor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;vendor&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vendor</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;vendor&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">vendor</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">library</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;library&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">library</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;library&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">library</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;name&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;name&#39; is not a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">version</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;version&#39; is None.&quot;</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">SemanticVersion</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">version</span><span class="p">,</span> <span class="n">SemanticVersion</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_version</span> <span class="o">=</span> <span class="n">version</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;version&#39; is neither a &#39;SemanticVersion&#39; nor a string.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">version</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_vendor</span> <span class="o">=</span>   <span class="n">vendor</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_library</span> <span class="o">=</span>  <span class="n">library</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span>     <span class="n">name</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Vendor</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vendor</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Library</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_library</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Version</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SemanticVersion</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_version</span>
+
+<div class="viewcode-block" id="VLNV.ToXml">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="n">IPXACTSchema</span> <span class="o">=</span> <span class="n">__DEFAULT_SCHEMA__</span><span class="p">,</span> <span class="n">isVersionedIdentifier</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Converts the object&#39;s data into XML format.</span>
+
+<span class="sd">		:param indent:                Level of indentations.</span>
+<span class="sd">		:param schema:                XML schema.</span>
+<span class="sd">		:param isVersionedIdentifier: If true, generate 4 individual tags (``&lt;vendor&gt;``, ``&lt;library&gt;``, ``&lt;name&gt;``,</span>
+<span class="sd">		                              ``&lt;version&gt;``), otherwise a single ``&lt;vlnv&gt;``-tag with attributes.</span>
+<span class="sd">		:return:</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+
+		<span class="c1"># WORKAROUND:</span>
+		<span class="c1">#   Python &lt;=3.11:</span>
+		<span class="c1">#   {&#39;\t&#39; * indent} is not supported by Python before 3.12 due to a backslash within {...}</span>
+		<span class="n">indent</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="n">indent</span>
+		<span class="n">xmlns</span> <span class="o">=</span> <span class="n">schema</span><span class="o">.</span><span class="n">NamespacePrefix</span>
+
+		<span class="k">if</span> <span class="n">isVersionedIdentifier</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">dedent</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">				</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:vendor&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_vendor</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:vendor&gt;</span>
+<span class="s2">				</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:library&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_library</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:library&gt;</span>
+<span class="s2">				</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:name&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:name&gt;</span>
+<span class="s2">				</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:version&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:version&gt;</span>
+<span class="s2">			&quot;&quot;&quot;</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">indent</span><span class="si">}</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:vlnv vendor=&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_vendor</span><span class="si">}</span><span class="s2">&quot; library=&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_library</span><span class="si">}</span><span class="s2">&quot; name=&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&quot; version=&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_version</span><span class="si">}</span><span class="s2">&quot;/&gt;&quot;&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Element">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.Element">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Element</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ExtendedType</span><span class="p">,</span> <span class="n">slots</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base-class for all IP-XACT elements.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Element.__init__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.Element.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Initializes the Element class.</span>
+<span class="sd">		&quot;&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="NamedElement">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.NamedElement">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">NamedElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base-class for all IP-XACT elements with a VLNV.&quot;&quot;&quot;</span>
+
+	<span class="n">_vlnv</span><span class="p">:</span> <span class="n">VLNV</span>   <span class="c1">#: VLNV unique identifier.</span>
+
+<div class="viewcode-block" id="NamedElement.__init__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.NamedElement.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">		Initializes the NameElement with an VLNV field for all derives classes.</span>
+
+<span class="sd">		:param vlnv:       VLNV unique identifier.</span>
+<span class="sd">		:raises TypeError: If parameter vlnv is not a VLNV.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vlnv</span><span class="p">,</span> <span class="n">VLNV</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;vlnv&#39; is not a VLNV.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_vlnv</span> <span class="o">=</span>    <span class="n">vlnv</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">VLNV</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VLNV</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vlnv</span></div>
+
+
+
+<div class="viewcode-block" id="RootElement">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.RootElement">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RootElement</span><span class="p">(</span><span class="n">NamedElement</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base-class for all IP-XACT root elements.&quot;&quot;&quot;</span>
+
+	<span class="n">_file</span><span class="p">:</span>        <span class="n">Nullable</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span>
+	<span class="n">_rootTagName</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+	<span class="n">_xmlRoot</span><span class="p">:</span>     <span class="n">Nullable</span><span class="p">[</span><span class="n">_Element</span><span class="p">]</span>
+	<span class="n">_xmlSchema</span><span class="p">:</span>   <span class="n">Nullable</span><span class="p">[</span><span class="n">_Element</span><span class="p">]</span>
+
+	<span class="n">_description</span><span class="p">:</span> <span class="nb">str</span>
+
+<div class="viewcode-block" id="RootElement.__init__">
+<a class="viewcode-back" href="../../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.RootElement.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">parse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="n">VLNV</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">description</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="n">description</span>
+
+		<span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="n">file</span>
+			<span class="n">vlnv</span> <span class="o">=</span> <span class="kc">None</span>
+			<span class="k">if</span> <span class="n">parse</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">OpenAndValidate</span><span class="p">()</span>
+				<span class="n">vlnv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ParseVLNVAndDescription</span><span class="p">()</span>
+
+			<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter &#39;file&#39; is not a Path.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">file</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span></div>
+
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">OpenAndValidate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IPXACT file &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">FileNotFoundError</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="p">))</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileHandle</span><span class="p">:</span>
+				<span class="n">content</span> <span class="o">=</span> <span class="n">fileHandle</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+		<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t open &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="n">xmlParser</span> <span class="o">=</span>     <span class="n">XMLParser</span><span class="p">(</span><span class="n">remove_blank_text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span> <span class="o">=</span> <span class="n">XML</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">xmlParser</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">as_uri</span><span class="p">())</span>  <span class="c1"># - relative paths are not supported</span>
+		<span class="n">rootTag</span> <span class="o">=</span>       <span class="n">QName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span><span class="o">.</span><span class="n">tag</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="n">rootTag</span><span class="o">.</span><span class="n">localname</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rootTagName</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The input IP-XACT file is not a </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_rootTagName</span><span class="si">}</span><span class="s2"> file.&quot;</span><span class="p">)</span>
+
+		<span class="n">namespacePrefix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span><span class="o">.</span><span class="n">prefix</span>
+		<span class="n">namespaceURI</span> <span class="o">=</span>    <span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span><span class="o">.</span><span class="n">nsmap</span><span class="p">[</span><span class="n">namespacePrefix</span><span class="p">]</span>
+		<span class="k">if</span> <span class="n">namespaceURI</span> <span class="ow">in</span> <span class="n">__URI_MAP__</span><span class="p">:</span>
+			<span class="n">ipxactSchema</span> <span class="o">=</span> <span class="n">__URI_MAP__</span><span class="p">[</span><span class="n">namespaceURI</span><span class="p">]</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The input IP-XACT file uses an unsupported namespace: &#39;</span><span class="si">{</span><span class="n">namespaceURI</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="k">with</span> <span class="n">ipxactSchema</span><span class="o">.</span><span class="n">LocalPath</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fileHandle</span><span class="p">:</span>
+				<span class="n">schema</span> <span class="o">=</span> <span class="n">fileHandle</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+		<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Couldn&#39;t open IP-XACT schema &#39;</span><span class="si">{</span><span class="n">ipxactSchema</span><span class="o">.</span><span class="n">LocalPath</span><span class="si">}</span><span class="s2">&#39; for </span><span class="si">{</span><span class="n">namespacePrefix</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">namespaceURI</span><span class="si">}</span><span class="s2">).&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+		<span class="n">schemaRoot</span> <span class="o">=</span>      <span class="n">XML</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="n">parser</span><span class="o">=</span><span class="n">xmlParser</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="n">ipxactSchema</span><span class="o">.</span><span class="n">LocalPath</span><span class="o">.</span><span class="n">as_uri</span><span class="p">())</span>
+		<span class="n">schemaTree</span> <span class="o">=</span>      <span class="n">ElementTree</span><span class="p">(</span><span class="n">schemaRoot</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_xmlSchema</span> <span class="o">=</span> <span class="n">XMLSchema</span><span class="p">(</span><span class="n">schemaTree</span><span class="p">)</span>
+
+		<span class="k">try</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_xmlSchema</span><span class="o">.</span><span class="n">assertValid</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span><span class="p">)</span>
+		<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The input IP-XACT file is not valid according to XML schema </span><span class="si">{</span><span class="n">namespaceURI</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">ex</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">ParseVLNVAndDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">VLNV</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+		<span class="n">vendor</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">library</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">version</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">description</span> <span class="o">=</span> <span class="kc">None</span>
+
+		<span class="n">found</span> <span class="o">=</span> <span class="mi">0</span>
+		<span class="n">i</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xmlRoot</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">_Comment</span><span class="p">):</span>
+				<span class="k">continue</span>
+
+			<span class="n">elementLocalname</span> <span class="o">=</span> <span class="n">QName</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">localname</span>
+			<span class="k">if</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;vendor&quot;</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">|=</span> <span class="mi">1</span>
+				<span class="n">vendor</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;library&quot;</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">|=</span> <span class="mi">2</span>
+				<span class="n">library</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">|=</span> <span class="mi">4</span>
+				<span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;version&quot;</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">|=</span> <span class="mi">8</span>
+				<span class="n">version</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;description&quot;</span><span class="p">:</span>
+				<span class="n">found</span> <span class="o">|=</span> <span class="mi">16</span>
+				<span class="n">description</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+			<span class="k">if</span> <span class="n">found</span> <span class="o">==</span> <span class="mi">31</span><span class="p">:</span>
+				<span class="k">break</span>
+
+		<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">_Comment</span><span class="p">):</span>
+				<span class="k">continue</span>
+
+			<span class="bp">self</span><span class="o">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+		<span class="n">vlnv</span> <span class="o">=</span> <span class="n">VLNV</span><span class="p">(</span><span class="n">vendor</span><span class="o">=</span><span class="n">vendor</span><span class="p">,</span> <span class="n">library</span><span class="o">=</span><span class="n">library</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="n">version</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">vlnv</span><span class="p">,</span> <span class="n">description</span>
+
+	<span class="nd">@abstractmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">_Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">pass</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 15.11.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

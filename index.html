@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyEDAA.IPXACT Documentation &mdash; pyEDAA.IPXACT 0.6.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="_static/css/override.css?v=e6c450a4" />
+
+  
+    <link rel="shortcut icon" href="_static/favicon.svg"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=b8503983"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation/Updates" href="Installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#">
+            
+              <img src="_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/">Used as a layer of EDA² ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Catalog.html">Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Component.html">Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Design.html">Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pyEDAA.IPXACT/pyEDAA.IPXACT.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyEDAA.IPXACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">pyEDAA.IPXACT Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><a class="reference external image-reference" href="https://GitHub.com/edaa-org/pyEDAA.IPXACT"><img alt="_images/logo.svg" class="align-center" src="_images/logo.svg" style="height: 90px;" />
+</a>
+<br><div class="line-block">
+<div class="line"><a class="reference external" href="https://GitHub.com/edaa-org/pyEDAA.IPXACT"><img alt="Sourcecode on GitHub" src="https://img.shields.io/badge/pyEDAA-IPXACT-29b6f6.svg?longCache=true&amp;style=flat-square&amp;logo=GitHub&amp;labelColor=0277bd" style="height: 22px;" /></a> <a class="reference external" href="License.html"><img alt="Code license" src="https://img.shields.io/pypi/l/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=Apache&amp;label=code" style="height: 22px;" /></a> <a class="reference external" href="https://edaa-org.github.io/pyEDAA.IPXACT/"><img alt="Documentation - Read Now!" src="https://img.shields.io/website?longCache=true&amp;style=flat-square&amp;label=edaa-org.github.io%2FpyEDAA.IPXACT&amp;logo=GitHub&amp;logoColor=fff&amp;up_color=blueviolet&amp;up_message=Read%20now%20%E2%9E%9A&amp;url=https%3A%2F%2Fedaa-org.github.io%2FpyEDAA.IPXACT%2Findex.html" style="height: 22px;" /></a> <a class="reference external" href="Doc-License.html"><img alt="Documentation License" src="https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&amp;style=flat-square&amp;logo=CreativeCommons&amp;logoColor=fff" style="height: 22px;" /></a></div>
+<div class="line"><a class="reference external" href="https://pypi.org/project/pyEDAA.IPXACT/"><img alt="PyPI - Tag" src="https://img.shields.io/pypi/v/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=PyPI&amp;logoColor=FBE072" style="height: 22px;" /></a> <a class="reference internal" href="https://img.shields.io/pypi/status/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=PyPI&amp;logoColor=FBE072"><img alt="PyPI - Status" src="https://img.shields.io/pypi/status/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=PyPI&amp;logoColor=FBE072" style="height: 22px;" /></a> <a class="reference internal" href="https://img.shields.io/pypi/pyversions/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=PyPI&amp;logoColor=FBE072"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=PyPI&amp;logoColor=FBE072" style="height: 22px;" /></a></div>
+<div class="line"><a class="reference external" href="https://GitHub.com/edaa-org/pyEDAA.IPXACT/actions/workflows/Pipeline.yml"><img alt="GitHub Workflow - Build and Test Status" src="https://img.shields.io/github/actions/workflow/status/edaa-org/pyEDAA.IPXACT/Pipeline.yml?longCache=true&amp;style=flat-square&amp;label=Build%20and%20Test&amp;logo=GitHub%20Actions&amp;logoColor=FFFFFF" style="height: 22px;" /></a> <a class="reference external" href="https://libraries.io/github/edaa-org/pyEDAA.IPXACT"><img alt="Libraries.io status for latest release" src="https://img.shields.io/librariesio/release/pypi/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=Libraries.io&amp;logoColor=fff" style="height: 22px;" /></a> <a class="reference external" href="https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT"><img alt="Codacy - Quality" src="https://img.shields.io/codacy/grade/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&amp;style=flat-square&amp;logo=codacy" style="height: 22px;" /></a> <a class="reference external" href="https://www.codacy.com/gh/edaa-org/pyEDAA.IPXACT"><img alt="Codacy - Line Coverage" src="https://img.shields.io/codacy/coverage/c924eeffd4cc49ed9ebbbe3a89b6fa76?longCache=true&amp;style=flat-square&amp;logo=codacy" style="height: 22px;" /></a> <a class="reference external" href="https://codecov.io/gh/edaa-org/pyEDAA.IPXACT"><img alt="Codecov - Branch Coverage" src="https://img.shields.io/codecov/c/github/edaa-org/pyEDAA.IPXACT?longCache=true&amp;style=flat-square&amp;logo=Codecov" style="height: 22px;" /></a></div>
+</div>
+<section id="pyedaa-ipxact-documentation">
+<h1>pyEDAA.IPXACT Documentation<a class="headerlink" href="#pyedaa-ipxact-documentation" title="Link to this heading"></a></h1>
+<p>pyEDAA.IPXACT - An IP-XACT DOM (Document Object Model) for <a class="reference external" href="https://standards.ieee.org/findstds/standard/1685-2022.html">IEEE 1685-2022</a>
+in Python.</p>
+<section id="main-goals">
+<span id="goals"></span><h2>Main Goals<a class="headerlink" href="#main-goals" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Offer a Python-based Document Object Model (DOM) for IP-XACT.</p></li>
+</ul>
+</section>
+<section id="implemented-features">
+<span id="features"></span><h2>Implemented Features<a class="headerlink" href="#implemented-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Generate IP-XACT files for</p>
+<ul>
+<li><p>IP-XACT catalogs</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Write an example.</p>
+</div>
+</section>
+<section id="ip-xact-resources">
+<h2>IP-XACT Resources<a class="headerlink" href="#ip-xact-resources" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Standards:</p>
+<ul>
+<li><p><a class="reference external" href="https://standards.ieee.org/findstds/standard/1685-2009.html">IEEE 1685-2009</a></p></li>
+<li><p><a class="reference external" href="https://standards.ieee.org/findstds/standard/1685-2014.html">IEEE 1685-2014</a></p></li>
+<li><p><a class="reference external" href="https://standards.ieee.org/findstds/standard/1685-2022.html">IEEE 1685-2022</a></p></li>
+</ul>
+</li>
+<li><p>Schema files:</p>
+<ul>
+<li><p><a class="extlink-gh reference external" href="https://GitHub.com/edaa-org/IPXACT-Schema">IPXACT-Schema</a> at GitHub</p></li>
+<li><p><a class="reference external" href="http://accellera.org/downloads/standards/ip-xact">IP-XACT</a> at <a class="reference external" href="http://accellera.org">Accellera</a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="news">
+<span id="id2"></span><h2>News<a class="headerlink" href="#news" title="Link to this heading"></a></h2>
+<section id="may-2025-validation-and-schema-updates">
+<h3>May 2025 - Validation and Schema Updates<a class="headerlink" href="#may-2025-validation-and-schema-updates" title="Link to this heading"></a></h3>
+</section>
+<ul class="simple">
+<li><p>Integrated IPXACT-Schema as a submodule and deliver XML schema files (XSD) via Python package as resource files.</p></li>
+<li><p>Reworked XML validation using the correct schema version based on the embedded IP-XACT URI.</p></li>
+</ul>
+<section id="feb-2022-major-update">
+<h3>Feb. 2022 - Major Update<a class="headerlink" href="#feb-2022-major-update" title="Link to this heading"></a></h3>
+</section>
+<ul class="simple">
+<li><p>Major documentation updates</p>
+<ul>
+<li><p>Fixed issues with autoapi/autodoc.</p></li>
+<li><p>Documented dependencies.</p></li>
+</ul>
+</li>
+<li><p>Translated test program to unit tests.</p>
+<ul>
+<li><p>Collect code coverage.</p></li>
+</ul>
+</li>
+<li><p>Linked IP-XACT schema submodule to new location as <a class="extlink-gh reference external" href="https://GitHub.com/edaa-org/IPXACT-Schema">edaa-org/IPXACT-Schema</a>.</p></li>
+</ul>
+<section id="dec-2021-moved-to-eda2">
+<h3>Dec. 2021 - Moved to EDA²<a class="headerlink" href="#dec-2021-moved-to-eda2" title="Link to this heading"></a></h3>
+</section>
+<ul class="simple">
+<li><p>Moved to EDA² as pyEDAA.IPXACT.</p>
+<ul>
+<li><p>Updated documentation pages.</p></li>
+<li><p>Added EDA² branding.</p></li>
+</ul>
+</li>
+<li><p>Activated GHA workflow.</p></li>
+</ul>
+<section id="dec-2019-packaging-for-pypi">
+<h3>Dec. 2019 - Packaging for PyPI<a class="headerlink" href="#dec-2019-packaging-for-pypi" title="Link to this heading"></a></h3>
+</section>
+<ul class="simple">
+<li><p>Code is now available as a Python package on PyPI.</p></li>
+</ul>
+<section id="oct-2016-initial-document-object-model-dom">
+<h3>Oct. 2016 - Initial Document Object Model (DOM)<a class="headerlink" href="#oct-2016-initial-document-object-model-dom" title="Link to this heading"></a></h3>
+</section>
+<ul class="simple">
+<li><p>Initial Document Object Model (DOM).</p></li>
+<li><p>Referenced IP-XACT schema definitions from <a class="extlink-gh reference external" href="https://GitHub.com/UnofficialRepos/IPXACT-Schema">UnofficialRepos/IPXACT-Schema</a></p></li>
+</ul>
+</section>
+<section id="contributors">
+<span id="id3"></span><h2>Contributors<a class="headerlink" href="#contributors" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="extlink-gh reference external" href="https://GitHub.com/Paebbels">Patrick Lehmann</a> (Maintainer)</p></li>
+<li><p><a class="extlink-gh reference external" href="https://GitHub.com/umarcor">Unai Martinez-Corral</a></p></li>
+<li><p><a class="reference external" href="https://GitHub.com/edaa-org/pyEDAA.IPXACT/graphs/contributors">and more…</a></p></li>
+</ul>
+</section>
+<section id="license">
+<span id="id4"></span><h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
+<p>This Python package (source code) is licensed under <a class="reference external" href="Code-License.html">Apache License 2.0</a>. <br />
+The accompanying documentation is licensed under <a class="reference external" href="Doc-License.html">Creative Commons - Attribution 4.0 (CC-BY 4.0)</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Installation.html" class="btn btn-neutral float-right" title="Installation/Updates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 15.11.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

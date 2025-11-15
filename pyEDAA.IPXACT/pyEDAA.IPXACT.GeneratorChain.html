@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyEDAA.IPXACT.GeneratorChain &mdash; pyEDAA.IPXACT 0.6.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/override.css?v=e6c450a4" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.svg"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=b8503983"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pyEDAA.IPXACT.Schema" href="pyEDAA.IPXACT.Schema.html" />
+    <link rel="prev" title="pyEDAA.IPXACT.DesignConfiguration" href="pyEDAA.IPXACT.DesignConfiguration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/">Used as a layer of EDA² ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Catalog.html">Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Component.html">Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Design.html">Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="pyEDAA.IPXACT.html">Python Class Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Catalog.html">pyEDAA.IPXACT.Catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Component.html">pyEDAA.IPXACT.Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Design.html">pyEDAA.IPXACT.Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.DesignConfiguration.html">pyEDAA.IPXACT.DesignConfiguration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pyEDAA.IPXACT.GeneratorChain</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain"><code class="docutils literal notranslate"><span class="pre">GeneratorChain</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__init__"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.ToXml"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.ToXml()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__annotate_func__"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.__annotate_func__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__new__"><code class="docutils literal notranslate"><span class="pre">GeneratorChain.__new__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain._vlnv"><code class="docutils literal notranslate"><span class="pre">GeneratorChain._vlnv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.__init__"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.ToXml"><code class="docutils literal notranslate"><span class="pre">GeneratorChainSelector.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.__init__"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.ToXml"><code class="docutils literal notranslate"><span class="pre">ComponentGeneratorSelector.ToXml()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.Generator"><code class="docutils literal notranslate"><span class="pre">Generator</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.Generator.__init__"><code class="docutils literal notranslate"><span class="pre">Generator.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.Generator.ToXml"><code class="docutils literal notranslate"><span class="pre">Generator.ToXml()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.Schema.html">pyEDAA.IPXACT.Schema</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTException"><code class="docutils literal notranslate"><span class="pre">IPXACTException</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.IPXACTSchema"><code class="docutils literal notranslate"><span class="pre">IPXACTSchema</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV"><code class="docutils literal notranslate"><span class="pre">VLNV</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.Element"><code class="docutils literal notranslate"><span class="pre">Element</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.NamedElement"><code class="docutils literal notranslate"><span class="pre">NamedElement</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.RootElement"><code class="docutils literal notranslate"><span class="pre">RootElement</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyEDAA.IPXACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="pyEDAA.IPXACT.html">pyEDAA.IPXACT</a></li>
+      <li class="breadcrumb-item active">pyEDAA.IPXACT.GeneratorChain</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pyEDAA.IPXACT/pyEDAA.IPXACT.GeneratorChain.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <style type="text/css">
+  span.bolditalic {font-weight: bold; font-style: italic; }
+  span.underline {text-decoration: underline; }
+  span.strike {text-decoration: line-through; }
+  span.xlarge {font-size: x-large; }
+  span.colorred {color: #CC0000; }
+  span.colorgreen {color: #009933; }
+  span.colorblue {color: #0066FF; }
+  span.colorpurple {color: #9900CC; }
+</style><section id="module-pyEDAA.IPXACT.GeneratorChain">
+<span id="pyedaa-ipxact-generatorchain"></span><h1>pyEDAA.IPXACT.GeneratorChain<a class="headerlink" href="#module-pyEDAA.IPXACT.GeneratorChain" title="Link to this heading"></a></h1>
+<p><strong>Classes</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain" title="pyEDAA.IPXACT.GeneratorChain.GeneratorChain"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorChain</span></code></a>:
+Represents an IP-XACT generator chain.</p></li>
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector" title="pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeneratorChainSelector</span></code></a>:
+Represents an IP-XACT generator chain selector.</p></li>
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector" title="pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector"><code class="xref py py-class docutils literal notranslate"><span class="pre">ComponentGeneratorSelector</span></code></a>:
+Represents an IP-XACT component generator selector.</p></li>
+<li><p><a class="reference internal" href="#pyEDAA.IPXACT.GeneratorChain.Generator" title="pyEDAA.IPXACT.GeneratorChain.Generator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Generator</span></code></a>:
+Represents an IP-XACT generator.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Classes</strong></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.GeneratorChain.</span></span><span class="sig-name descname"><span class="pre">GeneratorChain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generatorChainFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlnv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain" title="Link to this definition"></a></dt>
+<dd><p>Represents an IP-XACT generator chain.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-93ed7805c5785bbefb203c104f63db82b2c5a617.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of GeneratorChain</p></object></div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>generatorChainFile</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>parse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+<li><p><strong>vlnv</strong> (<a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV" title="pyEDAA.IPXACT.VLNV"><em>VLNV</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generatorChainFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vlnv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChain.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initializes the NameElement with an VLNV field for all derives classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vlnv</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV" title="pyEDAA.IPXACT.VLNV"><code class="xref py py-class docutils literal notranslate"><span class="pre">VLNV</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span>) – VLNV unique identifier.</p></li>
+<li><p><strong>generatorChainFile</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.14)"><em>Path</em></a><em> | </em><em>None</em>)</p></li>
+<li><p><strong>parse</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)"><em>bool</em></a>)</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.14)"><strong>TypeError</strong></a> – If parameter vlnv is not a VLNV.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain.ToXml">
+<span class="sig-name descname"><span class="pre">ToXml</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChain.ToXml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.ToXml" title="Link to this definition"></a></dt>
+<dd><p>Converts the object’s data into XML format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__annotate_func__">
+<span class="sig-name descname"><span class="pre">__annotate_func__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__annotate_func__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__new__">
+<span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain.__new__" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChain._vlnv">
+<span class="sig-name descname"><span class="pre">_vlnv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="pyEDAA.IPXACT.html#pyEDAA.IPXACT.VLNV" title="pyEDAA.IPXACT.VLNV"><code class="xref py py-class docutils literal notranslate"><span class="pre">VLNV</span></code></a></em><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChain._vlnv" title="Link to this definition"></a></dt>
+<dd><p>VLNV unique identifier.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.GeneratorChain.</span></span><span class="sig-name descname"><span class="pre">GeneratorChainSelector</span></span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChainSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector" title="Link to this definition"></a></dt>
+<dd><p>Represents an IP-XACT generator chain selector.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-49facbdf12326c7f55995f9149c30881bdd12b75.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of GeneratorChainSelector</p></object></div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChainSelector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.ToXml">
+<span class="sig-name descname"><span class="pre">ToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#GeneratorChainSelector.ToXml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.GeneratorChainSelector.ToXml" title="Link to this definition"></a></dt>
+<dd><p>Converts the object’s data into XML format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.GeneratorChain.</span></span><span class="sig-name descname"><span class="pre">ComponentGeneratorSelector</span></span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#ComponentGeneratorSelector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector" title="Link to this definition"></a></dt>
+<dd><p>Represents an IP-XACT component generator selector.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-4c1e4d0d0981274a9cd41ef79e4916bde97d1ec3.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of ComponentGeneratorSelector</p></object></div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#ComponentGeneratorSelector.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.ToXml">
+<span class="sig-name descname"><span class="pre">ToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#ComponentGeneratorSelector.ToXml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.ComponentGeneratorSelector.ToXml" title="Link to this definition"></a></dt>
+<dd><p>Converts the object’s data into XML format.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.Generator">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyEDAA.IPXACT.GeneratorChain.</span></span><span class="sig-name descname"><span class="pre">Generator</span></span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#Generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.Generator" title="Link to this definition"></a></dt>
+<dd><p>Represents an IP-XACT generator.</p>
+<p class="rubric">Inheritance</p>
+<div class="graphviz"><object data="../_images/inheritance-8d7d482764819078df50888a1ec43e2126c3af3a.svg" type="image/svg+xml" class="inheritance graphviz">
+<p class="warning">Inheritance diagram of Generator</p></object></div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.Generator.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#Generator.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.Generator.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyEDAA.IPXACT.GeneratorChain.Generator.ToXml">
+<span class="sig-name descname"><span class="pre">ToXml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pyEDAA/IPXACT/GeneratorChain.html#Generator.ToXml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pyEDAA.IPXACT.GeneratorChain.Generator.ToXml" title="Link to this definition"></a></dt>
+<dd><p>Converts the object’s data into XML format.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pyEDAA.IPXACT.DesignConfiguration.html" class="btn btn-neutral float-left" title="pyEDAA.IPXACT.DesignConfiguration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pyEDAA.IPXACT.Schema.html" class="btn btn-neutral float-right" title="pyEDAA.IPXACT.Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 15.11.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

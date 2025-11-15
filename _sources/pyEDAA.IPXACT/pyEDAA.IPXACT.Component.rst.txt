@@ -1,0 +1,276 @@
+.. # Template modified by Patrick Lehmann
+     * removed automodule on top, because private members are activated for autodoc (no doubled documentation).
+     * Made sections like 'submodules' bold text, but no headlines to reduce number of ToC levels.
+
+=======================
+pyEDAA.IPXACT.Component
+=======================
+
+.. automodule:: pyEDAA.IPXACT.Component
+
+
+.. currentmodule:: pyEDAA.IPXACT.Component
+
+
+**Classes**
+
+- :py:class:`BusInterface`:
+  Represents an IP-XACT bus interface.
+
+- :py:class:`IndirectInterface`:
+  Represents an IP-XACT indirect interface.
+
+- :py:class:`Channel`:
+  Represents an IP-XACT channel.
+
+- :py:class:`RemapState`:
+  Represents an IP-XACT remap state.
+
+- :py:class:`AddressSpace`:
+  Represents an IP-XACT address space.
+
+- :py:class:`MemoryMap`:
+  Represents an IP-XACT memory map.
+
+- :py:class:`Model`:
+  Represents an IP-XACT model.
+
+- :py:class:`ComponentGenerator`:
+  Represents an IP-XACT component generator.
+
+- :py:class:`Choice`:
+  Represents an IP-XACT choice.
+
+- :py:class:`File`:
+  Base-class for all IP-XACT elements.
+
+- :py:class:`FileSet`:
+  Represents an IP-XACT fileset.
+
+- :py:class:`WhiteboxElement`:
+  Represents an IP-XACT whitebos element.
+
+- :py:class:`Cpu`:
+  Represents an IP-XACT cpu.
+
+- :py:class:`OtherClockDriver`:
+  Represents an IP-XACT *other* clock driver.
+
+- :py:class:`ResetType`:
+  Represents an IP-XACT reset type.
+
+- :py:class:`Parameter`:
+  Represents an IP-XACT parameter.Represents an IP-XACT assertion.
+
+- :py:class:`Assertion`:
+  Represents an IP-XACT assertion.
+
+- :py:class:`Component`:
+  Represents an IP-XACT components.
+
+
+
+---------------------
+
+**Classes**
+
+
+
+
+.. autoclass:: BusInterface
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: BusInterface
+      :parts: 1
+
+.. autoclass:: IndirectInterface
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: IndirectInterface
+      :parts: 1
+
+.. autoclass:: Channel
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Channel
+      :parts: 1
+
+.. autoclass:: RemapState
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: RemapState
+      :parts: 1
+
+.. autoclass:: AddressSpace
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: AddressSpace
+      :parts: 1
+
+.. autoclass:: MemoryMap
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: MemoryMap
+      :parts: 1
+
+.. autoclass:: Model
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Model
+      :parts: 1
+
+.. autoclass:: ComponentGenerator
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ComponentGenerator
+      :parts: 1
+
+.. autoclass:: Choice
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Choice
+      :parts: 1
+
+.. autoclass:: File
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: File
+      :parts: 1
+
+.. autoclass:: FileSet
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: FileSet
+      :parts: 1
+
+.. autoclass:: WhiteboxElement
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: WhiteboxElement
+      :parts: 1
+
+.. autoclass:: Cpu
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Cpu
+      :parts: 1
+
+.. autoclass:: OtherClockDriver
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: OtherClockDriver
+      :parts: 1
+
+.. autoclass:: ResetType
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: ResetType
+      :parts: 1
+
+.. autoclass:: Parameter
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Parameter
+      :parts: 1
+
+.. autoclass:: Assertion
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Assertion
+      :parts: 1
+
+.. autoclass:: Component
+   :members:
+   :private-members:
+   :special-members:
+   :inherited-members:
+   :exclude-members: __weakref__
+
+   .. rubric:: Inheritance
+   .. inheritance-diagram:: Component
+      :parts: 1

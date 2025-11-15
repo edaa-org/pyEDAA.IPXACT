@@ -1,0 +1,59 @@
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="438pt" height="27pt" viewBox="0.00 0.00 438.00 27.00">
+<ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 23)">
+<ns0:title>inheritancef9c13fd938</ns0:title>
+
+<ns0:g id="node1" class="node">
+<ns0:title>Element</ns0:title>
+<ns0:g id="a_node1"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.Element" ns1:title="Base-class for all IP-XACT elements." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="57,-19 0,-19 0,0 57,0 57,-19" />
+<ns0:text text-anchor="middle" x="28.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">Element</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node4" class="node">
+<ns0:title>NamedElement</ns0:title>
+<ns0:g id="a_node4"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.NamedElement" ns1:title="Base-class for all IP-XACT elements with a VLNV." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="185,-19 93,-19 93,0 185,0 185,-19" />
+<ns0:text text-anchor="middle" x="139" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">NamedElement</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge2" class="edge">
+<ns0:title>Element-&gt;NamedElement</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M57.16,-9.5C66.44,-9.5 77.1,-9.5 87.57,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="87.69,-11.25 92.69,-9.5 87.69,-7.75 87.69,-11.25" />
+</ns0:g>
+
+<ns0:g id="node2" class="node">
+<ns0:title>GeneratorChain</ns0:title>
+<ns0:g id="a_node2"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.GeneratorChain.html#pyEDAA.IPXACT.GeneratorChain.GeneratorChain" ns1:title="Represents an IP-XACT generator chain." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="430,-19 337,-19 337,0 430,0 430,-19" />
+<ns0:text text-anchor="middle" x="383.5" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">GeneratorChain</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="node3" class="node">
+<ns0:title>RootElement</ns0:title>
+<ns0:g id="a_node3"><ns0:a ns1:href="../pyEDAA.IPXACT/pyEDAA.IPXACT.html#pyEDAA.IPXACT.RootElement" ns1:title="Base-class for all IP-XACT root elements." target="_top">
+<ns0:polygon fill="white" stroke="#1e90ff" points="301,-19 221,-19 221,0 301,0 301,-19" />
+<ns0:text text-anchor="middle" x="261" y="-7" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00">RootElement</ns0:text>
+</ns0:a>
+</ns0:g>
+</ns0:g>
+
+<ns0:g id="edge1" class="edge">
+<ns0:title>RootElement-&gt;GeneratorChain</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M301.12,-9.5C310.93,-9.5 321.58,-9.5 331.86,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="331.87,-11.25 336.87,-9.5 331.87,-7.75 331.87,-11.25" />
+</ns0:g>
+
+<ns0:g id="edge3" class="edge">
+<ns0:title>NamedElement-&gt;RootElement</ns0:title>
+<ns0:path fill="none" stroke="black" stroke-width="0.5" d="M185.02,-9.5C194.99,-9.5 205.55,-9.5 215.5,-9.5" />
+<ns0:polygon fill="black" stroke="black" stroke-width="0.5" points="215.63,-11.25 220.63,-9.5 215.63,-7.75 215.63,-11.25" />
+</ns0:g>
+</ns0:g>
+</ns0:svg>

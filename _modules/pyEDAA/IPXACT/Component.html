@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyEDAA.IPXACT.Component &mdash; pyEDAA.IPXACT 0.6.3 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=55b73dce" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-reports.089ed2e62f89368aa21ac7591d90c12a.css?v=83177741" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/override.css?v=e6c450a4" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.svg"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=b8503983"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+      <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+      <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+      <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+      <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://edaa-org.github.io/">Used as a layer of EDA² ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Installation.html">Installation/Updates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Dependency.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Main Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Catalog.html">Catalog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Component.html">Component</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Design.html">Design</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References and Reports</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.html">Python Class Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../unittests/index.html">Unittest Summary Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../coverage/index.html">Code Coverage Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CodeCoverage.html">Code Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../DocCoverage.html">Doc. Coverage Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../typing/index.html">Static Type Check Report ➚</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../License.html">Apache License 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Doc-License.html">Creative Commons Attribution 4.0 International</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../genindex.html">Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../py-modindex.html">Python Module Index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../TODO.html">TODOs</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyEDAA.IPXACT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../IPXACT.html">pyEDAA.IPXACT</a></li>
+      <li class="breadcrumb-item active">pyEDAA.IPXACT.Component</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for pyEDAA.IPXACT.Component</h1><div class="highlight"><pre>
+<span></span><span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#              _____ ____    _        _      ___ ______  __    _    ____ _____                                         #</span>
+<span class="c1">#  _ __  _   _| ____|  _ \  / \      / \    |_ _|  _ \ \/ /   / \  / ___|_   _|                                        #</span>
+<span class="c1"># | &#39;_ \| | | |  _| | | | |/ _ \    / _ \    | || |_) \  /   / _ \| |     | |                                          #</span>
+<span class="c1"># | |_) | |_| | |___| |_| / ___ \  / ___ \ _ | ||  __//  \  / ___ \ |___  | |                                          #</span>
+<span class="c1"># | .__/ \__, |_____|____/_/   \_\/_/   \_(_)___|_|  /_/\_\/_/   \_\____| |_|                                          #</span>
+<span class="c1"># |_|    |___/                                                                                                         #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Authors:                                                                                                             #</span>
+<span class="c1">#   Patrick Lehmann                                                                                                    #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># License:                                                                                                             #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1"># Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #</span>
+<span class="c1"># Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);                                                      #</span>
+<span class="c1"># you may not use this file except in compliance with the License.                                                     #</span>
+<span class="c1"># You may obtain a copy of the License at                                                                              #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1">#   http://www.apache.org/licenses/LICENSE-2.0                                                                         #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software                                                  #</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,                                                    #</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.                                             #</span>
+<span class="c1"># See the License for the specific language governing permissions and                                                  #</span>
+<span class="c1"># limitations under the License.                                                                                       #</span>
+<span class="c1">#                                                                                                                      #</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0                                                                                  #</span>
+<span class="c1"># ==================================================================================================================== #</span>
+<span class="c1">#</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w">              </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sys</span><span class="w">                  </span><span class="kn">import</span> <span class="n">version_info</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">textwrap</span><span class="w">             </span><span class="kn">import</span> <span class="n">dedent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span> <span class="k">as</span> <span class="n">Nullable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">lxml.etree</span><span class="w">           </span><span class="kn">import</span> <span class="n">_Element</span><span class="p">,</span> <span class="n">QName</span><span class="p">,</span> <span class="n">_Comment</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Decorators</span><span class="w"> </span><span class="kn">import</span> <span class="n">export</span><span class="p">,</span> <span class="n">readonly</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyTooling.Common</span><span class="w">     </span><span class="kn">import</span> <span class="n">getFullyQualifiedName</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyEDAA.IPXACT</span><span class="w">        </span><span class="kn">import</span> <span class="n">__DEFAULT_SCHEMA__</span><span class="p">,</span> <span class="n">RootElement</span><span class="p">,</span> <span class="n">VLNV</span><span class="p">,</span> <span class="n">IPXACTSchema</span><span class="p">,</span> <span class="n">Element</span><span class="p">,</span> <span class="n">IPXACTException</span>
+
+
+<div class="viewcode-block" id="BusInterface">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BusInterface</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT bus interface.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="BusInterface.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">FromXml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">_Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;BusInterface&quot;</span><span class="p">:</span>
+		<span class="k">pass</span>
+
+<div class="viewcode-block" id="BusInterface.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.BusInterface.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="IndirectInterface">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">IndirectInterface</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT indirect interface.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="IndirectInterface.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="IndirectInterface.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.IndirectInterface.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Channel">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Channel</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT channel.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Channel.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Channel.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Channel.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="RemapState">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RemapState</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT remap state.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RemapState.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="RemapState.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.RemapState.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="AddressSpace">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AddressSpace</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT address space.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AddressSpace.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AddressSpace.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.AddressSpace.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="MemoryMap">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MemoryMap</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT memory map.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="MemoryMap.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="MemoryMap.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.MemoryMap.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Model">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Model</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT model.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Model.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Model.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Model.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ComponentGenerator">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ComponentGenerator</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT component generator.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ComponentGenerator.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ComponentGenerator.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ComponentGenerator.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Choice">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Choice</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT choice.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Choice.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Choice.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Choice.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="File">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.File">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">File</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+	<span class="n">_path</span><span class="p">:</span> <span class="n">Path</span>
+
+<div class="viewcode-block" id="File.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.File.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_path</span> <span class="o">=</span> <span class="n">Path</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Path</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_path</span>
+
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">FromXml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fileElement</span><span class="p">:</span> <span class="n">_Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FileSet&quot;</span><span class="p">:</span>
+		<span class="n">fileName</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="n">fileType</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">fileElement</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">_Comment</span><span class="p">):</span>
+				<span class="k">continue</span>
+
+			<span class="n">elementLocalname</span> <span class="o">=</span> <span class="n">QName</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">localname</span>
+			<span class="k">if</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>
+				<span class="n">fileName</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;fileType&quot;</span><span class="p">:</span>
+				<span class="n">fileType</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;isStructural&quot;</span><span class="p">:</span>
+				<span class="k">pass</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported tag &#39;</span><span class="si">{</span><span class="n">elementLocalname</span><span class="si">}</span><span class="s2">&#39; at component → fileSets → fileSet → file.&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">fileName</span><span class="p">))</span>
+
+<div class="viewcode-block" id="File.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.File.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="File.__str__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.File.__str__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_path</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="FileSet">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FileSet</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT fileset.&quot;&quot;&quot;</span>
+
+	<span class="n">_name</span><span class="p">:</span> <span class="nb">str</span>
+	<span class="n">_files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">File</span><span class="p">]</span>
+
+<div class="viewcode-block" id="FileSet.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">files</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">File</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span>  <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">file</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">]</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">Files</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">File</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_files</span>
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">FileCount</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+		<span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_files</span><span class="p">)</span>
+
+	<span class="nd">@classmethod</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">FromXml</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fileSetElement</span><span class="p">:</span> <span class="n">_Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;FileSet&quot;</span><span class="p">:</span>
+		<span class="n">files</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">fileSetName</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">fileSetElement</span><span class="p">:</span>
+			<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">_Comment</span><span class="p">):</span>
+				<span class="k">continue</span>
+
+			<span class="n">elementLocalname</span> <span class="o">=</span> <span class="n">QName</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">localname</span>
+			<span class="k">if</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span>
+				<span class="n">fileSetName</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">text</span>
+			<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span>
+				<span class="n">files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">File</span><span class="o">.</span><span class="n">FromXml</span><span class="p">(</span><span class="n">element</span><span class="p">))</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported tag &#39;</span><span class="si">{</span><span class="n">elementLocalname</span><span class="si">}</span><span class="s2">&#39; at component → fileSets → fileSet.&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">fileSetName</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
+
+<div class="viewcode-block" id="FileSet.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="FileSet.__str__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.FileSet.__str__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;FileSet </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_files</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="WhiteboxElement">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">WhiteboxElement</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT whitebos element.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="WhiteboxElement.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="WhiteboxElement.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.WhiteboxElement.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Cpu">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Cpu</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT cpu.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Cpu.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Cpu.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Cpu.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="OtherClockDriver">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OtherClockDriver</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT *other* clock driver.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="OtherClockDriver.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="OtherClockDriver.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.OtherClockDriver.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="ResetType">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ResetType</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT reset type.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ResetType.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ResetType.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.ResetType.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Parameter">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Parameter</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT parameter.&quot;&quot;&quot;</span><span class="s2">&quot;&quot;&quot;Represents an IP-XACT assertion.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Parameter.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Parameter.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Parameter.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Assertion">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Assertion</span><span class="p">(</span><span class="n">Element</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT assertion.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Assertion.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">:</span> <span class="n">VLNV</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">vlnv</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Assertion.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Assertion.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="k">return</span> <span class="s2">&quot;&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Component">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component">[docs]</a>
+<span class="nd">@export</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Component</span><span class="p">(</span><span class="n">RootElement</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Represents an IP-XACT components.&quot;&quot;&quot;</span>
+
+	<span class="n">_rootTagName</span><span class="p">:</span>         <span class="n">ClassVar</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;component&quot;</span>
+
+	<span class="n">_busInterfaces</span><span class="p">:</span>       <span class="n">List</span>
+	<span class="n">_indirectInterfaces</span><span class="p">:</span>  <span class="n">List</span>
+	<span class="n">_channels</span><span class="p">:</span>            <span class="n">List</span>
+	<span class="n">_remapStates</span><span class="p">:</span>         <span class="n">List</span>
+	<span class="n">_addressSpaces</span><span class="p">:</span>       <span class="n">List</span>
+	<span class="n">_memoryMaps</span><span class="p">:</span>          <span class="n">List</span>
+	<span class="n">_model</span><span class="p">:</span>               <span class="n">Nullable</span><span class="p">[</span><span class="n">Model</span><span class="p">]</span>
+	<span class="n">_componentGenerators</span><span class="p">:</span> <span class="n">List</span>
+	<span class="n">_choices</span><span class="p">:</span>             <span class="n">List</span>
+	<span class="n">_fileSets</span><span class="p">:</span>            <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">FileSet</span><span class="p">]</span>
+	<span class="n">_whiteboxElements</span><span class="p">:</span>    <span class="n">List</span>
+	<span class="n">_cpus</span><span class="p">:</span>                <span class="n">List</span>
+	<span class="n">_otherClockDrivers</span><span class="p">:</span>   <span class="n">List</span>
+	<span class="n">_resetTypes</span><span class="p">:</span>          <span class="n">List</span>
+	<span class="n">_parameters</span><span class="p">:</span>          <span class="n">List</span>
+	<span class="n">_assertions</span><span class="p">:</span>          <span class="n">List</span>
+
+<div class="viewcode-block" id="Component.__init__">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component.__init__">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+		<span class="bp">self</span><span class="p">,</span>
+		<span class="n">componentFile</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+		<span class="n">parse</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+		<span class="n">vlnv</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="n">VLNV</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+		<span class="n">description</span><span class="p">:</span> <span class="n">Nullable</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+	<span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_busInterfaces</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_indirectInterfaces</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_remapStates</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_addressSpaces</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_memoryMaps</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="kc">None</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_componentGenerators</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_choices</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span> <span class="o">=</span> <span class="p">{}</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_whiteboxElements</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_cpus</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_otherClockDrivers</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_resetTypes</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_parameters</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span> <span class="o">=</span> <span class="p">[]</span>
+
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">componentFile</span><span class="p">,</span> <span class="n">parse</span><span class="p">,</span> <span class="n">vlnv</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span></div>
+
+
+	<span class="nd">@readonly</span>
+	<span class="k">def</span><span class="w"> </span><span class="nf">FileSets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">FileSet</span><span class="p">]:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">Parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">:</span> <span class="n">_Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="n">elementLocalname</span> <span class="o">=</span> <span class="n">QName</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">localname</span>
+		<span class="k">if</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;busInterfaces&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="c1"># for busInterfaceElement in element:</span>
+		<span class="c1"># 	self.AddItem(BusInterface.FromXml(busInterfaceElement))</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;indirectInterfaces&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;channels&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;remapStates&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;addressSpaces&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;memoryMaps&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;model&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;componentGenerators&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;choices&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;fileSets&quot;</span><span class="p">:</span>
+			<span class="k">for</span> <span class="n">fileSetElement</span> <span class="ow">in</span> <span class="n">element</span><span class="p">:</span>
+				<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fileSetElement</span><span class="p">,</span> <span class="n">_Comment</span><span class="p">):</span>
+					<span class="k">continue</span>
+
+				<span class="bp">self</span><span class="o">.</span><span class="n">AddFileSet</span><span class="p">(</span><span class="n">FileSet</span><span class="o">.</span><span class="n">FromXml</span><span class="p">(</span><span class="n">fileSetElement</span><span class="p">))</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;whiteboxElements&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;cpus&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;otherClockDrivers&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;resetTypes&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;parameters&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">elif</span> <span class="n">elementLocalname</span> <span class="o">==</span> <span class="s2">&quot;assertions&quot;</span><span class="p">:</span>
+			<span class="k">pass</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">IPXACTException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported tag &#39;</span><span class="si">{</span><span class="n">elementLocalname</span><span class="si">}</span><span class="s2">&#39; at root-level.&quot;</span><span class="p">)</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">SetItem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Model</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_model</span> <span class="o">=</span> <span class="n">item</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">()</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">AddItem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">BusInterface</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_busInterfaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">IndirectInterface</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_indirectInterfaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Channel</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">RemapState</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_remapStates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">AddressSpace</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_addressSpaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">MemoryMap</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_memoryMaps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ComponentGenerator</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_componentGenerators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Choice</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">FileSet</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">AddFileSet</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">WhiteboxElement</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_whiteboxElements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Cpu</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_cpus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">OtherClockDriver</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_otherClockDrivers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">ResetType</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_resetTypes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Parameter</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_parameters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">Assertion</span><span class="p">):</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Parameter &#39;item&#39; is not a BusInterface, IndirectInterface, Channel, RemapState, AddressSpace, MemoryMap, ComponentGenerator, Choice, FileSet, WhiteboxElement, Cpu, OtherClockDriver, ResetType, Parameter, or Assertion.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">item</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+	<span class="k">def</span><span class="w"> </span><span class="nf">AddFileSet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fileset</span><span class="p">:</span> <span class="n">FileSet</span><span class="p">):</span>
+		<span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fileset</span><span class="p">,</span> <span class="n">FileSet</span><span class="p">):</span>
+			<span class="n">ex</span> <span class="o">=</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Parameter &#39;fileset&#39; is not a FileSet.&quot;</span><span class="p">)</span>
+			<span class="k">if</span> <span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
+				<span class="n">ex</span><span class="o">.</span><span class="n">add_note</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got type &#39;</span><span class="si">{</span><span class="n">getFullyQualifiedName</span><span class="p">(</span><span class="n">fileset</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+			<span class="k">raise</span> <span class="n">ex</span>
+
+		<span class="k">if</span> <span class="n">fileset</span><span class="o">.</span><span class="n">_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Duplicate fileset &#39;</span><span class="si">{</span><span class="n">fileset</span><span class="o">.</span><span class="n">_name</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span><span class="p">[</span><span class="n">fileset</span><span class="o">.</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fileset</span>
+
+<div class="viewcode-block" id="Component.ToXml">
+<a class="viewcode-back" href="../../../pyEDAA.IPXACT/pyEDAA.IPXACT.Component.html#pyEDAA.IPXACT.Component.Component.ToXml">[docs]</a>
+	<span class="k">def</span><span class="w"> </span><span class="nf">ToXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">schema</span><span class="p">:</span> <span class="n">IPXACTSchema</span> <span class="o">=</span> <span class="n">__DEFAULT_SCHEMA__</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Converts the object&#39;s data into XML format.&quot;&quot;&quot;</span>
+
+		<span class="n">xmlns</span> <span class="o">=</span> <span class="n">schema</span><span class="o">.</span><span class="n">NamespacePrefix</span>
+		<span class="n">buffer</span> <span class="o">=</span> <span class="n">dedent</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">			&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+<span class="s2">			&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:component</span>
+<span class="s2">			</span><span class="se">\t</span><span class="s2">xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="s2">			</span><span class="se">\t</span><span class="s2">xmlns:</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">=&quot;</span><span class="si">{</span><span class="n">schema</span><span class="o">.</span><span class="n">SchemaUri</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">			</span><span class="se">\t</span><span class="s2">xsi:schemaLocation=&quot;</span><span class="si">{</span><span class="n">schema</span><span class="o">.</span><span class="n">SchemaUri</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">schema</span><span class="o">.</span><span class="n">SchemaUrl</span><span class="si">}</span><span class="s2">&quot;&gt;</span>
+<span class="s2">			</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_vlnv</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span><span class="w"> </span><span class="n">isVersionedIdentifier</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">}</span>
+<span class="s2">			</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:description&gt;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_description</span><span class="si">}</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:description&gt;</span>
+<span class="s2">			&quot;&quot;&quot;</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_busInterfaces</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:busInterfaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">busInterface</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_busInterfaces</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">busInterface</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:busInterfaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indirectInterfaces</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:indirectInterfaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">indirectInterface</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indirectInterfaces</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">indirectInterface</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:indirectInterfaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:channels&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">channel</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:channels&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remapStates</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:remapStates&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">remapState</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_remapStates</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">remapState</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:remapStates&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_addressSpaces</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:addressSpaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">addressSpace</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_addressSpaces</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">addressSpace</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:addressSpaces&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_memoryMaps</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:memoryMaps&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">memoryMap</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_memoryMaps</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">memoryMap</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:memoryMaps&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:model&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:model&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_componentGenerators</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:componentGenerators&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">componentGenerator</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_componentGenerators</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">componentGenerator</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:componentGenerators&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_choices</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:choices&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">choice</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_choices</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">choice</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:choices&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:fileSets&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">fileSet</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fileSets</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">fileSet</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:fileSets&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_whiteboxElements</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:whiteboxElements&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">whiteboxElement</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_whiteboxElements</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">whiteboxElement</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:whiteboxElements&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cpus</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:cpus&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">cpu</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cpus</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">cpu</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:cpus&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_otherClockDrivers</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:otherClockDrivers&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">otherClockDriver</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_otherClockDrivers</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">otherClockDriver</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:otherClockDrivers&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resetTypes</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:resetTypes&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">resetType</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resetTypes</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">resetType</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:resetTypes&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameters</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:parameters&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">parameter</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameters</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">parameter</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:parameters&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span><span class="p">:</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:assertions&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">assertion</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_assertions</span><span class="p">:</span>
+				<span class="n">buffer</span> <span class="o">+=</span> <span class="n">assertion</span><span class="o">.</span><span class="n">ToXml</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+			<span class="n">buffer</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:assertions&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+		<span class="n">buffer</span> <span class="o">+=</span> <span class="n">dedent</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">				&lt;/</span><span class="si">{</span><span class="n">xmlns</span><span class="si">}</span><span class="s2">:component&gt;</span>
+<span class="s2">				&quot;&quot;&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">buffer</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2016-2025, Patrick Lehmann.
+      <span class="lastupdated">Last updated on 15.11.2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
