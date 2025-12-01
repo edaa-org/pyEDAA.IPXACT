@@ -10,6 +10,6 @@ pytest ~= 9.0
 pytest-cov ~= 7.0
 
 # Static Type Checking
-mypy[reports] ~= 1.18
+mypy[reports] ~= 1.19
 typing_extensions ~= 4.15
 lxml >= 5.4, <7.0
