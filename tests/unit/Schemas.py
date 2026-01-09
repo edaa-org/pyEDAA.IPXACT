@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -43,13 +43,13 @@ if __name__ == "__main__": # pragma: no cover
 
 
 class CheckPaths(TestCase):
-	def test_DefaultVersion(self):
+	def test_DefaultVersion(self) -> None:
 		self.assertEqual(2022, int(__DEFAULT_VERSION__))
 
-	def test_DefaultSchema(self):
+	def test_DefaultSchema(self) -> None:
 		self.assertEqual(2022, __DEFAULT_SCHEMA__.Version)
 
-	def test_VersionTable(self):
+	def test_VersionTable(self) -> None:
 		print()
 
 		for version, schema in __VERSION_TABLE__.items():

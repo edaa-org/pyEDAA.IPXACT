@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -46,7 +46,7 @@ from .Schema import *
 
 __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
-__copyright__ = "2016-2025, Patrick Lehmann"
+__copyright__ = "2016-2026, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
 __version__ =   "0.6.3"
 
@@ -272,7 +272,7 @@ class VLNV(metaclass=ExtendedType, slots=True):
 		:param schema:                XML schema.
 		:param isVersionedIdentifier: If true, generate 4 individual tags (``<vendor>``, ``<library>``, ``<name>``,
 		                              ``<version>``), otherwise a single ``<vlnv>``-tag with attributes.
-		:return:
+		:returns:                     XML formatted string representation.
 		"""
 
 		# WORKAROUND:
