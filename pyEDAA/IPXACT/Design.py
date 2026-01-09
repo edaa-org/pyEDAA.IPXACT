@@ -11,7 +11,7 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2025 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -149,7 +149,7 @@ class IpxactFile(Element):
 	_name:        str    #: Name
 	_description: str    #: Description
 
-	def __init__(self, vlnv, name, description):
+	def __init__(self, vlnv, name, description) -> None:
 		"""
 		Instantiates an ipxactFile structure.
 
