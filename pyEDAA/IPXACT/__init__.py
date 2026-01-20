@@ -48,7 +48,7 @@ __author__ =    "Patrick Lehmann"
 __email__ =     "Paebbels@gmail.com"
 __copyright__ = "2016-2026, Patrick Lehmann"
 __license__ =   "Apache License, Version 2.0"
-__version__ =   "0.6.4"
+__version__ =   "0.6.5"
 
 
 @export
