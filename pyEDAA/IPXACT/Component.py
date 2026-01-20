@@ -359,7 +359,7 @@ class Component(RootElement):
 		parse: bool = False,
 		vlnv: Nullable[VLNV] = None,
 		description: Nullable[str] = None
-	):
+	) -> None:
 		self._busInterfaces = []
 		self._indirectInterfaces = []
 		self._channels = []

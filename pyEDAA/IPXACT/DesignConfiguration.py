@@ -55,7 +55,7 @@ class DesignConfiguration(RootElement):
 		parse: bool = False,
 		vlnv: Nullable[VLNV] = None,
 		description: Nullable[str] = None
-	):
+	) -> None:
 		self._generatorChainConfiguration =  None
 		self._interconnectionConfiguration = None
 		self._viewConfiguration =            None

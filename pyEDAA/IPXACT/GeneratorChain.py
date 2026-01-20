@@ -57,7 +57,7 @@ class GeneratorChain(RootElement):
 		parse: bool = False,
 		vlnv: Nullable[VLNV] = None,
 		description: Nullable[str] = None
-	):
+	) -> None:
 		self._displayName =                   ""  # displayName
 		self._chainGroup =                    []  # chainGroup
 		self._generatorChainSelector =        None
