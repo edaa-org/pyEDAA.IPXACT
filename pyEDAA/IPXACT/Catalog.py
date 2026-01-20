@@ -152,7 +152,7 @@ class Catalog(RootElement):
 		parse: bool = False,
 		vlnv: Nullable[VLNV] = None,
 		description: Nullable[str] = None
-	):
+	) -> None:
 		self._abstractionDefinitions =  []
 		self._abstractors =             []
 		self._busInterfaces =           []

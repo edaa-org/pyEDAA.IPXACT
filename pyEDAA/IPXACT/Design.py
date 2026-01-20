@@ -57,7 +57,7 @@ class Design(RootElement):
 		parse: bool = False,
 		vlnv: Nullable[VLNV] = None,
 		description: Nullable[str] = None
-	):
+	) -> None:
 		"""
 		Instantiates a design structure.
 
