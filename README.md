@@ -2,10 +2,10 @@
   <a title="edaa-org.github.io/pyEDAA.IPXACT" href="https://edaa-org.github.io/pyEDAA.IPXACT"><img height="80px" src="doc/_static/logo.svg"/></a>
 </p>
 
-[![Sourcecode on GitHub](https://img.shields.io/badge/pyEDAA-IPXACT-29b6f6.svg?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd)](https://GitHub.com/edaa-org/pyEDAA.IPXACT)
+[![Sourcecode on GitHub](https://img.shields.io/badge/pyEDAA-IPXACT-29b6f6?longCache=true&style=flat-square&logo=GitHub&labelColor=0277bd)](https://GitHub.com/edaa-org/pyEDAA.IPXACT)
 [![Sourcecode License](https://img.shields.io/pypi/l/pyEDAA.IPXACT?longCache=true&style=flat-square&logo=Apache&label=code)](LICENSE.md)
 [![Documentation](https://img.shields.io/website?longCache=true&style=flat-square&label=edaa-org.github.io%2FpyEDAA.IPXACT&logo=GitHub&logoColor=fff&up_color=blueviolet&up_message=Read%20now%20%E2%9E%9A&url=https%3A%2F%2Fedaa-org.github.io%2FpyEDAA.IPXACT%2Findex.html)](https://edaa-org.github.io/pyEDAA.IPXACT/)
-[![Documentation License](https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&style=flat-square&logo=CreativeCommons&logoColor=fff)](LICENSE.md)  
+[![Documentation License](https://img.shields.io/badge/doc-CC--BY%204.0-green?longCache=true&style=flat-square&logo=CreativeCommons&logoColor=fff)](doc/Doc-License.rst)  
 [![PyPI](https://img.shields.io/pypi/v/pyEDAA.IPXACT?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)](https://pypi.org/project/pyEDAA.IPXACT/)
 ![PyPI - Status](https://img.shields.io/pypi/status/pyEDAA.IPXACT?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pyEDAA.IPXACT?longCache=true&style=flat-square&logo=PyPI&logoColor=FBE072)  
