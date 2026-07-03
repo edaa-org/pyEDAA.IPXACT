@@ -3,8 +3,8 @@
 xmlschema >= 2.3.1
 
 # Coverage collection
-Coverage ~= 7.13
+Coverage ~= 7.15
 
 # Test Runner
 pytest ~= 9.0
-pytest-cov ~= 7.0
+pytest-cov ~= 7.1
