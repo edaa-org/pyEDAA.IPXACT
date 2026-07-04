@@ -44,11 +44,15 @@ from pyTooling.Versioning  import SemanticVersion, CalendarVersion
 from .       import Schema
 from .Schema import *
 
-__author__ =    "Patrick Lehmann"
-__email__ =     "Paebbels@gmail.com"
-__copyright__ = "2016-2026, Patrick Lehmann"
-__license__ =   "Apache License, Version 2.0"
-__version__ =   "0.6.5"
+__author__ =            "Patrick Lehmann"
+__email__ =             "Paebbels@gmail.com"
+__copyright__ =         "2016-2026, Patrick Lehmann"
+__license__ =           "Apache License, Version 2.0"
+__version__ =           "0.6.6"
+# __keywords__ =          []
+__project_url__ =       "https://github.com/edaa-org/pyEDAA.IPXACT"
+__documentation_url__ = "https://edaa-org.github.io/pyEDAA.IPXACT"
+__issue_tracker_url__ = "https://GitHub.com/edaa-org/pyEDAA.IPXACT/issues"
 
 
 @export

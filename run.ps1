@@ -33,7 +33,7 @@ Param(
 )
 
 $PackageName = "pyEDAA.IPXACT"
-$PackageVersion = "0.6.5"
+$PackageVersion = "0.6.6"
 
 # set default values
 $EnableDebug =        [bool]$PSCmdlet.MyInvocation.BoundParameters["Debug"]

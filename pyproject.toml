@@ -1,8 +1,7 @@
 [build-system]
 requires = [
-  "setuptools >= 80.0",
-  "wheel ~= 0.45.0",
-  "pyTooling ~= 8.11"
+  "setuptools >= 83.0",
+  "pyTooling ~= 8.15"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -26,7 +25,7 @@ variable-naming-style = "camelCase"
 
 [tool.mypy]
 packages = ["pyEDAA.IPXACT"]
-python_version = "3.13"
+python_version = "3.14"
 #ignore_missing_imports = true
 strict = true
 pretty = true
