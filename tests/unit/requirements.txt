@@ -1,6 +1,6 @@
 -r ../../requirements.txt
 
-xmlschema >= 2.3.1
+xmlschema >= 4.3.2
 
 # Coverage collection
 Coverage ~= 7.15
