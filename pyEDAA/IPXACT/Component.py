@@ -30,9 +30,8 @@
 # ==================================================================================================================== #
 #
 from pathlib              import Path
-from sys                  import version_info
 from textwrap             import dedent
-from typing import List, Optional as Nullable, ClassVar, Dict, Union
+from typing               import List, Optional as Nullable, ClassVar, Dict, Union
 
 from lxml.etree           import _Element, QName, _Comment
 from pyTooling.Decorators import export, readonly
@@ -465,15 +464,13 @@ class Component(RootElement):
 			self._assertions.append(item)
 		else:
 			ex = TypeError("Parameter 'item' is not a BusInterface, IndirectInterface, Channel, RemapState, AddressSpace, MemoryMap, ComponentGenerator, Choice, FileSet, WhiteboxElement, Cpu, OtherClockDriver, ResetType, Parameter, or Assertion.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
 	def AddFileSet(self, fileset: FileSet):
 		if not isinstance(fileset, FileSet):
 			ex = TypeError("Parameter 'fileset' is not a FileSet.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(fileset)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(fileset)}'.")
 			raise ex
 
 		if fileset._name in self._fileSets:

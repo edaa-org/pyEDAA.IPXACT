@@ -31,7 +31,6 @@
 #
 """A DOM based IP-XACT implementation for Python."""
 from pathlib  import Path
-from sys      import version_info
 from textwrap import dedent
 from typing   import Union, Dict, Tuple, Optional as Nullable, ClassVar
 
@@ -99,40 +98,35 @@ class IPXACTSchema(metaclass=ExtendedType, slots=True):
 			self._version = version
 		else:
 			ex = TypeError(f"Parameter 'version' is neither a 'SemanticVersion', a 'CalendarVersion' nor a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
 
 		if xmlNamespacePrefix is None:
 			raise ValueError(f"Parameter 'namespacePrefix' is None.")
 		elif not isinstance(xmlNamespacePrefix, str):
 			ex = TypeError(f"Parameter 'namespacePrefix' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
 
 		if schemaUri is None:
 			raise ValueError(f"Parameter 'schemaUri' is None.")
 		elif not isinstance(schemaUri, str):
 			ex = TypeError(f"Parameter 'schemaUri' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(schemaUri)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(schemaUri)}'.")
 			raise ex
 
 		if schemaUrl is None:
 			raise ValueError(f"Parameter 'schemaUrl' is None.")
 		elif not isinstance(schemaUrl, str):
 			ex = TypeError(f"Parameter 'schemaUrl' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(schemaUrl)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(schemaUrl)}'.")
 			raise ex
 
 		if localPath is None:
 			raise ValueError(f"Parameter 'localPath' is None.")
 		elif not isinstance(localPath, Path):
 			ex = TypeError(f"Parameter 'localPath' is not a Path.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(localPath)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(localPath)}'.")
 			raise ex
 
 		self._namespacePrefix = xmlNamespacePrefix
@@ -216,24 +210,21 @@ class VLNV(metaclass=ExtendedType, slots=True):
 			raise ValueError(f"Parameter 'vendor' is None.")
 		elif not isinstance(vendor, str):
 			ex = TypeError(f"Parameter 'vendor' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(vendor)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(vendor)}'.")
 			raise ex
 
 		if library is None:
 			raise ValueError(f"Parameter 'library' is None.")
 		elif not isinstance(library, str):
 			ex = TypeError(f"Parameter 'library' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(library)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(library)}'.")
 			raise ex
 
 		if name is None:
 			raise ValueError(f"Parameter 'name' is None.")
 		elif not isinstance(name, str):
 			ex = TypeError(f"Parameter 'name' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 
 		if version is None:
@@ -244,8 +235,7 @@ class VLNV(metaclass=ExtendedType, slots=True):
 			self._version = version
 		else:
 			ex = TypeError(f"Parameter 'version' is neither a 'SemanticVersion' nor a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
 
 		self._vendor =   vendor
@@ -321,8 +311,7 @@ class NamedElement(Element):
 		"""
 		if not isinstance(vlnv, VLNV):
 			ex = TypeError(f"Parameter 'vlnv' is not a VLNV.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(vlnv)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(vlnv)}'.")
 			raise ex
 
 		self._vlnv =    vlnv
@@ -359,8 +348,7 @@ class RootElement(NamedElement):
 			super().__init__(vlnv)
 		else:
 			ex = TypeError(f"Parameter 'file' is not a Path.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(file)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(file)}'.")
 			raise ex
 
 	def OpenAndValidate(self) -> None:

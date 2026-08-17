@@ -30,7 +30,6 @@
 # ==================================================================================================================== #
 #
 from pathlib              import Path
-from sys                  import version_info
 from textwrap             import dedent
 from typing               import List, ClassVar, Optional as Nullable
 
@@ -72,8 +71,7 @@ class Design(RootElement):
 
 		# if not isinstance(description, str):
 		# 	ex = TypeError(f"Parameter 'description' is not a string.")
-		# 	if version_info >= (3, 11):  # pragma: no cover
-		# 		ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+		# 	ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 		# 	raise ex
 		# elif description == "":
 		# 	raise ValueError(f"Parameter 'description' is empty.")
@@ -166,16 +164,14 @@ class IpxactFile(Element):
 
 		if not isinstance(name, str):
 			ex = TypeError(f"Parameter 'name' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 		elif name == "":
 			raise ValueError(f"Parameter 'name' is empty.")
 
 		if not isinstance(description, str):
 			ex = TypeError(f"Parameter 'description' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 			raise ex
 		elif description == "":
 			raise ValueError(f"Parameter 'description' is empty.")
