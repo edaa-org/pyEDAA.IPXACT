@@ -211,7 +211,7 @@ class FileSet(Element):
 
 	def __init__(self, name: str, files: List[File]) -> None:
 		self._name =  name
-		self._files = [file for file in files]
+		self._files = list(files)
 
 	@readonly
 	def Name(self) -> str:
