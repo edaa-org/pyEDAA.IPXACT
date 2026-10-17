@@ -15,11 +15,11 @@ permissions:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r7
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r9
     with:
       package_namespace: 'pyEDAA'
       package_name:      'IPXACT'
-      unittest_python_version_list: '3.11 3.12 3.13 3.14 pypy-3.11'
+      unittest_python_version_list: '3.11 3.12 3.13 3.14 3.15 pypy-3.11'
       bandit:            'true'
       pylint:            'false'
       codecov:           'true'

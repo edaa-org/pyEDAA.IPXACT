@@ -51,7 +51,7 @@ setup(
 			"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 		],
 		developmentStatus="alpha",
-		pythonVersions=("3.11", "3.12", "3.13", "3.14"),
+		pythonVersions=("3.11", "3.12", "3.13", "3.14", "3.15"),
 		dataFiles={
 			packageName: [
 				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
