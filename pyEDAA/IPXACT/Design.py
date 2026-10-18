@@ -165,20 +165,20 @@ class IpxactFile(Element):
 		super().__init__(vlnv)
 
 		if not isinstance(name, str):
-			ex = TypeError(f"Parameter 'name' is not a string.")
+			ex = TypeError("Parameter 'name' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 		elif name == "":
-			raise ValueError(f"Parameter 'name' is empty.")
+			raise ValueError("Parameter 'name' is empty.")
 
 		if not isinstance(description, str):
-			ex = TypeError(f"Parameter 'description' is not a string.")
+			ex = TypeError("Parameter 'description' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 			raise ex
 		elif description == "":
-			raise ValueError(f"Parameter 'description' is empty.")
+			raise ValueError("Parameter 'description' is empty.")
 
 		self._name = name
 		self._description = description
