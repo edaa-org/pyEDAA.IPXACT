@@ -45,7 +45,7 @@ from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSc
 class Design(RootElement):
 	"""Represents an IP-XACT design."""
 
-	_rootTagName:            ClassVar[str] = "design"
+	_ROOT_TAG_NAME:          ClassVar[str] = "design"
 
 	_componentInstances: List
 	_interconnections:   List

@@ -336,10 +336,10 @@ class NamedElement(Element):
 class RootElement(NamedElement):
 	"""Base-class for all IP-XACT root elements."""
 
-	_file:        Nullable[Path]
-	_rootTagName: ClassVar[str] = ""
-	_xmlRoot:     Nullable[_Element]
-	_xmlSchema:   Nullable[_Element]
+	_file:          Nullable[Path]
+	_ROOT_TAG_NAME: ClassVar[str] = ""
+	_xmlRoot:       Nullable[_Element]
+	_xmlSchema:     Nullable[_Element]
 
 	_description: str
 
@@ -377,8 +377,8 @@ class RootElement(NamedElement):
 		self._xmlRoot = XML(content, parser=xmlParser, base_url=self._file.resolve().as_uri())  # - relative paths are not supported
 		rootTag =       QName(self._xmlRoot.tag)
 
-		if rootTag.localname != self._rootTagName:
-			raise IPXACTException(f"The input IP-XACT file is not a {self._rootTagName} file.")
+		if rootTag.localname != self._ROOT_TAG_NAME:
+			raise IPXACTException(f"The input IP-XACT file is not a {self._ROOT_TAG_NAME} file.")
 
 		namespacePrefix = self._xmlRoot.prefix
 		namespaceURI =    self._xmlRoot.nsmap[namespacePrefix]
