@@ -135,7 +135,7 @@ class IpxactFile(NamedElement):
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_rootTagName:            ClassVar[str] = "catalog"
+	_ROOT_TAG_NAME:          ClassVar[str] = "catalog"
 
 	_abstractionDefinitions: List
 	_abstractors:            List
