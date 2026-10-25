@@ -3,7 +3,7 @@
 # Static Type Checking
 mypy[reports] ~= 2.3
 typing_extensions ~= 4.16
-lxml >= 6.1 , <7.0
+lxml >= 6.1.1, < 7.0
 
 # Stubs for typechecking (because lxml is used by the project itself)
 lxml-stubs>=0.5.1
