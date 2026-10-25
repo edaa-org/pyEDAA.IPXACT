@@ -66,20 +66,20 @@ class IpxactFile(NamedElement):
 		super().__init__(vlnv)
 
 		if not isinstance(name, str):
-			ex = TypeError(f"Parameter 'name' is not a string.")
+			ex = TypeError("Parameter 'name' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 		elif name == "":
-			raise ValueError(f"Parameter 'name' is empty.")
+			raise ValueError("Parameter 'name' is empty.")
 
 		if not isinstance(description, str):
-			ex = TypeError(f"Parameter 'description' is not a string.")
+			ex = TypeError("Parameter 'description' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 			raise ex
 		elif description == "":
-			raise ValueError(f"Parameter 'description' is empty.")
+			raise ValueError("Parameter 'description' is empty.")
 
 		self._vlnv = vlnv
 		self._name = name
@@ -190,7 +190,7 @@ class Catalog(RootElement):
 		elif isinstance(item, Component):
 			self._components.append(item)
 		else:
-			ex = TypeError(f"Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
+			ex = TypeError("Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex

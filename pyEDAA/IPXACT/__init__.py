@@ -89,7 +89,7 @@ class IPXACTSchema(metaclass=ExtendedType, slots=True):
 		"""
 		# TODO: add raises ... lines
 		if version is None:
-			raise ValueError(f"Parameter 'version' is None.")
+			raise ValueError("Parameter 'version' is None.")
 		elif isinstance(version, str):
 			if version.startswith("20"):
 				self._version = CalendarVersion.Parse(version)
@@ -98,39 +98,39 @@ class IPXACTSchema(metaclass=ExtendedType, slots=True):
 		elif isinstance(version, (SemanticVersion, CalendarVersion)):
 			self._version = version
 		else:
-			ex = TypeError(f"Parameter 'version' is neither a 'SemanticVersion', a 'CalendarVersion' nor a string.")
+			ex = TypeError("Parameter 'version' is neither a 'SemanticVersion', a 'CalendarVersion' nor a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
 
 		if xmlNamespacePrefix is None:
-			raise ValueError(f"Parameter 'namespacePrefix' is None.")
+			raise ValueError("Parameter 'namespacePrefix' is None.")
 		elif not isinstance(xmlNamespacePrefix, str):
-			ex = TypeError(f"Parameter 'namespacePrefix' is not a string.")
+			ex = TypeError("Parameter 'namespacePrefix' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
 
 		if schemaUri is None:
-			raise ValueError(f"Parameter 'schemaUri' is None.")
+			raise ValueError("Parameter 'schemaUri' is None.")
 		elif not isinstance(schemaUri, str):
-			ex = TypeError(f"Parameter 'schemaUri' is not a string.")
+			ex = TypeError("Parameter 'schemaUri' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(schemaUri)}'.")
 			raise ex
 
 		if schemaUrl is None:
-			raise ValueError(f"Parameter 'schemaUrl' is None.")
+			raise ValueError("Parameter 'schemaUrl' is None.")
 		elif not isinstance(schemaUrl, str):
-			ex = TypeError(f"Parameter 'schemaUrl' is not a string.")
+			ex = TypeError("Parameter 'schemaUrl' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(schemaUrl)}'.")
 			raise ex
 
 		if localPath is None:
-			raise ValueError(f"Parameter 'localPath' is None.")
+			raise ValueError("Parameter 'localPath' is None.")
 		elif not isinstance(localPath, Path):
-			ex = TypeError(f"Parameter 'localPath' is not a Path.")
+			ex = TypeError("Parameter 'localPath' is not a Path.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(localPath)}'.")
 			raise ex
@@ -213,37 +213,37 @@ class VLNV(metaclass=ExtendedType, slots=True):
 		"""
 
 		if vendor is None:
-			raise ValueError(f"Parameter 'vendor' is None.")
+			raise ValueError("Parameter 'vendor' is None.")
 		elif not isinstance(vendor, str):
-			ex = TypeError(f"Parameter 'vendor' is not a string.")
+			ex = TypeError("Parameter 'vendor' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(vendor)}'.")
 			raise ex
 
 		if library is None:
-			raise ValueError(f"Parameter 'library' is None.")
+			raise ValueError("Parameter 'library' is None.")
 		elif not isinstance(library, str):
-			ex = TypeError(f"Parameter 'library' is not a string.")
+			ex = TypeError("Parameter 'library' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(library)}'.")
 			raise ex
 
 		if name is None:
-			raise ValueError(f"Parameter 'name' is None.")
+			raise ValueError("Parameter 'name' is None.")
 		elif not isinstance(name, str):
-			ex = TypeError(f"Parameter 'name' is not a string.")
+			ex = TypeError("Parameter 'name' is not a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 
 		if version is None:
-			raise ValueError(f"Parameter 'version' is None.")
+			raise ValueError("Parameter 'version' is None.")
 		elif isinstance(version, str):
 			self._version = SemanticVersion.Parse(version)
 		elif isinstance(version, SemanticVersion):
 			self._version = version
 		else:
-			ex = TypeError(f"Parameter 'version' is neither a 'SemanticVersion' nor a string.")
+			ex = TypeError("Parameter 'version' is neither a 'SemanticVersion' nor a string.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(version)}'.")
 			raise ex
@@ -320,7 +320,7 @@ class NamedElement(Element):
 		:raises TypeError: If parameter vlnv is not a VLNV.
 		"""
 		if not isinstance(vlnv, VLNV):
-			ex = TypeError(f"Parameter 'vlnv' is not a VLNV.")
+			ex = TypeError("Parameter 'vlnv' is not a VLNV.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(vlnv)}'.")
 			raise ex
@@ -358,7 +358,7 @@ class RootElement(NamedElement):
 
 			super().__init__(vlnv)
 		else:
-			ex = TypeError(f"Parameter 'file' is not a Path.")
+			ex = TypeError("Parameter 'file' is not a Path.")
 			if version_info >= (3, 11):  # pragma: no cover
 				ex.add_note(f"Got type '{getFullyQualifiedName(file)}'.")
 			raise ex
