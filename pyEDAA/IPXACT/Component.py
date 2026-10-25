@@ -334,7 +334,7 @@ class Assertion(Element):
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
-	_rootTagName:         ClassVar[str] = "component"
+	_ROOT_TAG_NAME:       ClassVar[str] = "component"
 
 	_busInterfaces:       List
 	_indirectInterfaces:  List

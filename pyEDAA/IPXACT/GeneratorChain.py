@@ -43,7 +43,7 @@ from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTEx
 class GeneratorChain(RootElement):
 	"""Represents an IP-XACT generator chain."""
 
-	_rootTagName:                  ClassVar[str] = "generatorChain"
+	_ROOT_TAG_NAME:                ClassVar[str] = "generatorChain"
 
 	_displayName:                  str
 	_chainGroup:                   List
