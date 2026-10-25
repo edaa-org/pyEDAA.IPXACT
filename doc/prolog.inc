@@ -4,15 +4,7 @@
 .. include:: <isonum.txt>
 .. include:: <mmlalias.txt>
 
-.. # define a hard line break for HTML
-.. |br| raw:: html
-
-   <br />
-
-.. # define horizontal line for HTML
-.. |hr| raw:: html
-
-   <hr />
+.. # |br| and |hr| are registered by the 'pyTooling.Sphinx' extension.
 
 .. # define additional CSS based styles and ReST roles for HTML
 .. raw:: html
