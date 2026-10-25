@@ -32,7 +32,6 @@
 """Package installer for 'An abstract SystemRDL language model'."""
 from setuptools          import setup
 
-from itertools           import chain
 from pathlib             import Path
 from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
@@ -54,15 +53,15 @@ setup(
 		pythonVersions=("3.11", "3.12", "3.13", "3.14", "3.15"),
 		dataFiles={
 			packageName: [
-				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/py.typed")
+				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in (
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/py.typed")
 				)
 			],
 		}
