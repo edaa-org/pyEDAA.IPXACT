@@ -11,7 +11,8 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2021-2026 Electronic Design Automation Abstraction (EDA²)                                                  #
+# Copyright 2017-2020 Patrick Lehmann - Boetzingen, Germany                                                            #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -30,9 +31,8 @@
 # ==================================================================================================================== #
 #
 from pathlib              import Path
-from sys                  import version_info
 from textwrap             import dedent
-from typing import List, Optional as Nullable, ClassVar, Dict, Union
+from typing               import List, Optional as Nullable, ClassVar, Dict, Union
 
 from lxml.etree           import _Element, QName, _Comment
 from pyTooling.Decorators import export, readonly
@@ -211,7 +211,7 @@ class FileSet(Element):
 
 	def __init__(self, name: str, files: List[File]) -> None:
 		self._name =  name
-		self._files = [file for file in files]
+		self._files = list(files)
 
 	@readonly
 	def Name(self) -> str:
@@ -334,7 +334,7 @@ class Assertion(Element):
 class Component(RootElement):
 	"""Represents an IP-XACT components."""
 
-	_rootTagName:         ClassVar[str] = "component"
+	_ROOT_TAG_NAME:       ClassVar[str] = "component"
 
 	_busInterfaces:       List
 	_indirectInterfaces:  List
@@ -465,15 +465,13 @@ class Component(RootElement):
 			self._assertions.append(item)
 		else:
 			ex = TypeError("Parameter 'item' is not a BusInterface, IndirectInterface, Channel, RemapState, AddressSpace, MemoryMap, ComponentGenerator, Choice, FileSet, WhiteboxElement, Cpu, OtherClockDriver, ResetType, Parameter, or Assertion.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
 	def AddFileSet(self, fileset: FileSet):
 		if not isinstance(fileset, FileSet):
 			ex = TypeError("Parameter 'fileset' is not a FileSet.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(fileset)}'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(fileset)}'.")
 			raise ex
 
 		if fileset._name in self._fileSets:

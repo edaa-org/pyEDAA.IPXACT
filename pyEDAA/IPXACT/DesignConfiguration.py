@@ -11,7 +11,8 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2021-2026 Electronic Design Automation Abstraction (EDA²)                                                  #
+# Copyright 2017-2020 Patrick Lehmann - Boetzingen, Germany                                                            #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -43,7 +44,7 @@ from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSc
 class DesignConfiguration(RootElement):
 	"""Represents an IP-XACT design configuration."""
 
-	_rootTagName:                  ClassVar[str] = "designConfiguration"
+	_ROOT_TAG_NAME:                ClassVar[str] = "designConfiguration"
 
 	_generatorChainConfiguration:  Nullable["GeneratorChainConfiguration"]
 	_interconnectionConfiguration: Nullable["InterconnectionConfiguration"]

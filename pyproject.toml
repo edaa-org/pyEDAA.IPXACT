@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-  "setuptools >= 83.0",
-  "pyTooling ~= 8.15"
+  "setuptools >= 84.2.1",
+  "pyTooling >= 10.1.1, < 11.0"
 ]
 build-backend = "setuptools.build_meta"
 
@@ -25,7 +25,7 @@ variable-naming-style = "camelCase"
 
 [tool.mypy]
 packages = ["pyEDAA.IPXACT"]
-python_version = "3.14"
+python_version = "3.15"
 #ignore_missing_imports = true
 strict = true
 pretty = true
@@ -66,6 +66,7 @@ ignore-setters = true
 [tool.coverage.run]
 branch = true
 relative_files = true
+patch = ["subprocess"]
 omit = [
 	"*site-packages*",
 	"setup.py",

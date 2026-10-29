@@ -11,7 +11,8 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2021-2026 Electronic Design Automation Abstraction (EDA²)                                                  #
+# Copyright 2017-2020 Patrick Lehmann - Boetzingen, Germany                                                            #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -30,9 +31,8 @@
 # ==================================================================================================================== #
 #
 from pathlib  import Path
-from sys      import version_info
 from textwrap import dedent
-from typing import List, Dict, Optional as Nullable, ClassVar
+from typing   import List, Dict, Optional as Nullable, ClassVar
 
 from lxml.etree import QName, _Element
 
@@ -66,20 +66,18 @@ class IpxactFile(NamedElement):
 		super().__init__(vlnv)
 
 		if not isinstance(name, str):
-			ex = TypeError(f"Parameter 'name' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
+			ex = TypeError("Parameter 'name' is not a string.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 		elif name == "":
-			raise ValueError(f"Parameter 'name' is empty.")
+			raise ValueError("Parameter 'name' is empty.")
 
 		if not isinstance(description, str):
-			ex = TypeError(f"Parameter 'description' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+			ex = TypeError("Parameter 'description' is not a string.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 			raise ex
 		elif description == "":
-			raise ValueError(f"Parameter 'description' is empty.")
+			raise ValueError("Parameter 'description' is empty.")
 
 		self._vlnv = vlnv
 		self._name = name
@@ -135,7 +133,7 @@ class IpxactFile(NamedElement):
 class Catalog(RootElement):
 	"""Represents an IP-XACT catalog."""
 
-	_rootTagName:            ClassVar[str] = "catalog"
+	_ROOT_TAG_NAME:          ClassVar[str] = "catalog"
 
 	_abstractionDefinitions: List
 	_abstractors:            List
@@ -190,9 +188,8 @@ class Catalog(RootElement):
 		elif isinstance(item, Component):
 			self._components.append(item)
 		else:
-			ex = TypeError(f"Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
+			ex = TypeError("Parameter 'item' is neither a 'IpxactFile' nor a 'Component'.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(item)}'.")
 			raise ex
 
 	def ToXml(self, schema: IPXACTSchema = __DEFAULT_SCHEMA__) -> str:

@@ -15,15 +15,20 @@ permissions:
 
 jobs:
   Pipeline:
-    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r7
+    uses: pyTooling/Actions/.github/workflows/CompletePipeline.yml@r9
     with:
       package_namespace: 'pyEDAA'
       package_name:      'IPXACT'
-      unittest_python_version_list: '3.11 3.12 3.13 3.14 pypy-3.11'
+      # No pypy-3.12: lxml 6.1 has no wheel for it, and building lxml from source fails on PyPy 3.12's C API headers.
+      unittest_python_version_list: '3.11 3.12 3.13 3.14 3.15 pypy-3.11'
+      # lxml publishes PyPy wheels only for PyPy 7.3, but setup-python installs PyPy 8.0: pip builds lxml from source,
+      # which fails without the libxml2/libxslt headers. macOS has them. Enable again when lxml has PyPy 8.0 wheels.
+      unittest_disable_list:        'ubuntu:pypy-3.11 ubuntu-arm:pypy-3.11 windows:pypy-3.11 windows-arm:pypy-3.11'
       bandit:            'true'
       pylint:            'false'
       codecov:           'true'
       codacy:            'true'
+      coverage_html:     'false'   # the documentation renders its code coverage below 'coverage/' itself
       dorny:             'true'
       cleanup:           'false'
     secrets:

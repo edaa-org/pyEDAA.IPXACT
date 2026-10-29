@@ -5,13 +5,15 @@ sphinx ~= 9.1
 #docutils ~= 0.22.0
 docutils_stubs ~= 0.0.22
 
+# The extension the documentation uses: pyTooling.Sphinx with its domain 'report'
+pyTooling.Sphinx[reports] ~= 1.0
+
 # ReadTheDocs Theme
 sphinx_rtd_theme ~= 3.1
 
 # Sphinx Extenstions
-sphinxcontrib-mermaid ~= 2.0
+sphinxcontrib-mermaid ~= 2.1
 autoapi >= 2.0.1
 sphinx_design ~= 0.7.0
 sphinx-copybutton >= 0.5.2
-sphinx_autodoc_typehints ~= 3.12
-sphinx_reports ~= 0.11.0
+sphinx_autodoc_typehints ~= 3.17

@@ -11,7 +11,8 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2021-2026 Electronic Design Automation Abstraction (EDA²)                                                  #
+# Copyright 2017-2020 Patrick Lehmann - Boetzingen, Germany                                                            #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -30,7 +31,6 @@
 # ==================================================================================================================== #
 #
 from pathlib              import Path
-from sys                  import version_info
 from textwrap             import dedent
 from typing               import List, ClassVar, Optional as Nullable
 
@@ -45,7 +45,7 @@ from pyEDAA.IPXACT        import RootElement, __DEFAULT_SCHEMA__, VLNV, IPXACTSc
 class Design(RootElement):
 	"""Represents an IP-XACT design."""
 
-	_rootTagName:            ClassVar[str] = "design"
+	_ROOT_TAG_NAME:          ClassVar[str] = "design"
 
 	_componentInstances: List
 	_interconnections:   List
@@ -72,8 +72,7 @@ class Design(RootElement):
 
 		# if not isinstance(description, str):
 		# 	ex = TypeError(f"Parameter 'description' is not a string.")
-		# 	if version_info >= (3, 11):  # pragma: no cover
-		# 		ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+		# 	ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 		# 	raise ex
 		# elif description == "":
 		# 	raise ValueError(f"Parameter 'description' is empty.")
@@ -165,20 +164,18 @@ class IpxactFile(Element):
 		super().__init__(vlnv)
 
 		if not isinstance(name, str):
-			ex = TypeError(f"Parameter 'name' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
+			ex = TypeError("Parameter 'name' is not a string.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(name)}'.")
 			raise ex
 		elif name == "":
-			raise ValueError(f"Parameter 'name' is empty.")
+			raise ValueError("Parameter 'name' is empty.")
 
 		if not isinstance(description, str):
-			ex = TypeError(f"Parameter 'description' is not a string.")
-			if version_info >= (3, 11):  # pragma: no cover
-				ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
+			ex = TypeError("Parameter 'description' is not a string.")
+			ex.add_note(f"Got type '{getFullyQualifiedName(description)}'.")
 			raise ex
 		elif description == "":
-			raise ValueError(f"Parameter 'description' is empty.")
+			raise ValueError("Parameter 'description' is empty.")
 
 		self._name = name
 		self._description = description

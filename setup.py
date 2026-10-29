@@ -11,7 +11,8 @@
 #                                                                                                                      #
 # License:                                                                                                             #
 # ==================================================================================================================== #
-# Copyright 2017-2026 Patrick Lehmann - Bötzingen, Germany                                                             #
+# Copyright 2021-2026 Electronic Design Automation Abstraction (EDA²)                                                  #
+# Copyright 2017-2020 Patrick Lehmann - Boetzingen, Germany                                                            #
 # Copyright 2016-2016 Patrick Lehmann - Dresden, Germany                                                               #
 #                                                                                                                      #
 # Licensed under the Apache License, Version 2.0 (the "License");                                                      #
@@ -32,7 +33,6 @@
 """Package installer for 'An abstract SystemRDL language model'."""
 from setuptools          import setup
 
-from itertools           import chain
 from pathlib             import Path
 from pyTooling.Packaging import DescribePythonPackageHostedOnGitHub, DEFAULT_CLASSIFIERS
 
@@ -51,18 +51,18 @@ setup(
 			"Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 		],
 		developmentStatus="alpha",
-		pythonVersions=("3.11", "3.12", "3.13", "3.14"),
+		pythonVersions=("3.11", "3.12", "3.13", "3.14", "3.15"),
 		dataFiles={
 			packageName: [
-				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in chain(
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
-					Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
-					Path.cwd().glob("pyEDAA/IPXACT/py.typed")
+				str(file.relative_to(Path.cwd() / "pyEDAA/IPXACT")) for file in (
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/*.xsd"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ipxact-*/README.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/*.xsd"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/README.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/LICENSE"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/ieee-1685-*/NOTICE"),
+					*Path.cwd().glob("pyEDAA/IPXACT/Schema/*.md"),
+					*Path.cwd().glob("pyEDAA/IPXACT/py.typed")
 				)
 			],
 		}
