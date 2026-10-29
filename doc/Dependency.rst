@@ -134,21 +134,31 @@ Packaging (Optional)
 Additional Python packages needed for installation package generation. These packages are only needed for developers or
 on a CI server.
 
-:file:`pyproject.toml` lists them as build requirements, so ``python3 -m build`` installs them itself.
+.. rubric:: Building an Installation Package
 
-.. ``dependency-table`` reads requirements files and published packages, but not the build requirements in
-   'pyproject.toml', so this table stays hand-written.
+:file:`pyproject.toml` lists them as build requirements (``[build-system]``), so ``build`` installs them into an
+isolated build environment itself.
 
+.. tab-set::
+
+   .. tab-item:: Linux/macOS
+      :sync: Linux
+
+      .. code-block:: bash
+
+         python3 -m build --wheel
+
+   .. tab-item:: Windows
+      :sync: Windows
+
+      .. code-block:: powershell
+
+         python -m build --wheel
 
 .. rubric:: Dependency List
 
-+----------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Package**                                                                | **Version**  | **License**                                                                                              | **Dependencies**                                                                                                                                     |
-+============================================================================+==============+==========================================================================================================+======================================================================================================================================================+
-| `setuptools <https://GitHub.com/pypa/setuptools>`__                        | ≥83.0        | `MIT <https://GitHub.com/pypa/setuptools/blob/main/LICENSE>`__                                           | *None*                                                                                                                                               |
-+----------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `pyTooling <https://GitHub.com/pyTooling/pyTooling>`__                     | ≥10.0        | `Apache License, 2.0 <https://GitHub.com/pyTooling/pyTooling/blob/main/LICENSE.md>`__                    | *None*                                                                                                                                               |
-+----------------------------------------------------------------------------+--------------+----------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. dependency-table:: packaging
+   :caption: Dependencies for generating an installation package.
 
 
 .. _DEP/publishing:

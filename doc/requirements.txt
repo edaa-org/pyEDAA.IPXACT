@@ -6,7 +6,7 @@ sphinx ~= 9.1
 docutils_stubs ~= 0.0.22
 
 # The extension the documentation uses: pyTooling.Sphinx with its domain 'report'
-pyTooling.Sphinx[reports] ~= 0.1.0rc6
+pyTooling.Sphinx[reports] ~= 1.0
 
 # ReadTheDocs Theme
 sphinx_rtd_theme ~= 3.1
